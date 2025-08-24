@@ -89,3 +89,49 @@ Memory Specifications
     wireless_performance: 866Mbps_WiFi_5_2T2R
     memory_available: 123MB_after_kernel_overhead
     storage_available: 12.5MB_rootfs_JFFS2
+
+########################################################################
+
+RTL8822CS Theoretical vs Configured Capabilities
+
+  Maximum Chipset Capabilities (RTL8822CS)
+
+  wifi_maximum_specs:
+    standard: 802.11a/b/g/n/ac_Wave_2
+    max_throughput: 867Mbps_PHY_rate
+    spatial_streams: 2T2R_MIMO
+    frequency_bands: 2.4GHz_5GHz_dual_band
+    channel_widths: [20MHz, 40MHz, 80MHz]
+    modulation: BPSK_QPSK_16QAM_64QAM_256QAM
+    vht_modes:
+      VHT20: MCS0_to_MCS8
+      VHT40: MCS0_to_MCS9
+      VHT80: MCS0_to_MCS9
+    advanced_features: MU_MIMO_Wave_2_compatible
+    interface: SDIO_3.0_208MHz_max
+
+  bluetooth_maximum_specs:
+    version: 5.0_LE_EDR
+    interface: UART_mixed_SDIO
+    power_management: advanced_low_power_modes
+
+  Current CPC200-CCPA Configuration (from hostapd.conf)
+
+  actual_configuration:
+    hw_mode: a  # 5GHz only (not utilizing dual-band)
+    channel: 36  # Single fixed channel
+    ieee80211n: enabled
+    ieee80211ac: enabled
+    wmm: enabled
+
+    # HT (802.11n) capabilities configured
+    ht_capabilities: [SHORT-GI-20, SHORT-GI-40, HT40+]
+
+    # VHT (802.11ac) capabilities - NOT CONFIGURED
+    vht_capabilities: commented_out  # [SHORT-GI-80][SHORT-GI-160]
+    require_vht: disabled
+
+    # Limitations identified
+    bandwidth_limit: 40MHz_max  # HT40+ only, no 80MHz VHT
+    channel_selection: fixed_36  # No dynamic channel selection
+    spatial_streams: not_explicitly_configured
