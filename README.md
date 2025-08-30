@@ -8,7 +8,7 @@ Also included is the Macronix (MXIC) Flash chip Spec PDF
 
 CPC200-CCPA [On hand Device inspection]
 hardware_platform:
-- soc: NXP i.MX6UL (ARM Cortex-A7, single core, 528MHz)
+- soc: NXP i.MX6UL (ARM Cortex-A7, single core, 528MHz) ** Fake Branding of Atmel
 - ram: Samsung K4B1G1646D-HCF8 (128MB DDR3L-800)
 - flash: Macronix MX25L12835F (16MB SPI NOR, SOP8 package)
 - wireless: Realtek RTL8822CS (WiFi 5 + BT 4.2 combo)
