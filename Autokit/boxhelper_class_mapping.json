@@ -1,0 +1,280 @@
+{
+  "apk_info": {
+    "name": "BoxHelper.apk",
+    "purpose": "CPC200-CCPA USB communication manager",
+    "protection": "Minimal obfuscation",
+    "main_package": "cn.manstep.phonemirrorBox"
+  },
+  "class_mappings": {
+    "ui_layer": {
+      "cn.manstep.phonemirrorBox.MainActivity": {
+        "description": "Main activity and UI controller",
+        "key_methods": [
+          "onCreate() - Session initialization",
+          "onDestroy() - Cleanup and shutdown", 
+          "t() - Update UI state based on connection",
+          "u() - Configure landscape layout",
+          "v() - Configure portrait layout"
+        ],
+        "key_variables": {
+          "p": "ImageButton - Upgrade button",
+          "q": "TextView - Status text display",
+          "r": "CommunicationManager - USB communication core",
+          "s": "GradientRoundProgress - Progress bar",
+          "u": "boolean - Device ready state flag",
+          "v": "String - Upgrade URL for firmware",
+          "w": "String - Device version string",
+          "x": "String - Device code/identifier"
+        }
+      },
+      "cn.manstep.phonemirrorBox.GradientRoundProgress": {
+        "description": "Custom progress bar widget",
+        "purpose": "Display download/upgrade progress"
+      }
+    },
+    "communication_layer": {
+      "b.a.a.c": {
+        "description": "Core USB communication manager",
+        "actual_name": "CommunicationManager",
+        "key_methods": [
+          "run() - Device detection loop (every 2 seconds)",
+          "a() - USB bulk read operation",
+          "b() - Session initialization (Command 0x01)",
+          "c() - USB bulk write operation"
+        ],
+        "key_variables": {
+          "g": "boolean - USB connection active flag",
+          "d": "boolean - USB permission request pending",
+          "l": "int - Connected device product ID",
+          "f": "UsbManager - Android USB system service",
+          "n": "static UsbDeviceConnection - Active USB connection",
+          "o": "static UsbEndpoint - Input endpoint (device->host)",
+          "p": "static UsbEndpoint - Output endpoint (host->device)",
+          "f740b": "ThreadPoolExecutor - Main thread pool (1-2 threads)",
+          "i": "ScheduledExecutorService - Timer and scheduled tasks",
+          "k": "ConcurrentHashMap<Integer,Future> - Task tracking map",
+          "h": "byte[49152] - USB transfer buffer (48KB)",
+          "j": "ProtocolDataStructure - Session configuration",
+          "m": "BroadcastReceiver - USB permission receiver",
+          "e": "UIHandler - Handler for UI updates"
+        },
+        "inner_classes": {
+          "a": "USB permission broadcast receiver",
+          "b": "Device detection task (Runnable)"
+        },
+        "usb_detection": {
+          "vendor_id": "4884 (0x1314 - Carlinkit)",
+          "max_interfaces": "3",
+          "endpoint_type": "USB_ENDPOINT_XFER_BULK (type 2)",
+          "permission_action": "cn.manstep.phonemirrorBox.USB_PERMISSION"
+        }
+      }
+    },
+    "protocol_layer": {
+      "b.a.a.d": {
+        "description": "Protocol message processor",
+        "actual_name": "MessageProcessor", 
+        "key_methods": [
+          "run() - Main message processing loop",
+          "Protocol header parsing (16 bytes)",
+          "Command processing and dispatch"
+        ],
+        "protocol_support": {
+          "header_size": "16 bytes",
+          "magic_number": "0x55AA55AA (1437226410)",
+          "byte_order": "LITTLE_ENDIAN",
+          "max_payload": "1048576 bytes (1MB)",
+          "checksum": "command XOR 0xFFFFFFFF"
+        },
+        "supported_commands": {
+          "1": "0x01 - Session/Capabilities response",
+          "25": "0x19 - BoxSettings/Configuration",
+          "204": "0xCC - Software Version"
+        }
+      },
+      "b.a.a.k": {
+        "description": "Protocol data structure for session config",
+        "actual_name": "ProtocolDataStructure",
+        "buffer_size": "28 bytes",
+        "key_variables": {
+          "f751a": "int - Display width",
+          "f752b": "int - Display height", 
+          "f753c": "int - Frame rate (FPS)",
+          "d": "int - Video format",
+          "e": "int - Max packet size (49152 = 48KB)",
+          "f": "int - Protocol version",
+          "h": "static int - Operation mode (default: 2)",
+          "g": "ByteBuffer - 28-byte protocol buffer"
+        },
+        "default_values": {
+          "width": "800 pixels",
+          "height": "480 pixels", 
+          "fps": "30 frames/second",
+          "format": "5",
+          "packet_max": "49152 bytes",
+          "version": "255"
+        }
+      }
+    },
+    "ui_integration": {
+      "b.a.a.g": {
+        "description": "UI message handler (extends Handler)",
+        "actual_name": "UIHandler",
+        "key_methods": [
+          "a(int, String) - Send message to UI thread",
+          "handleMessage(Message) - Process UI update messages"
+        ],
+        "message_types": {
+          "1": "Version information update",
+          "2": "Session disconnected notification",
+          "3": "Device configuration update (JSON)"
+        },
+        "key_variables": {
+          "f746a": "MainActivity reference (interface f)"
+        }
+      }
+    },
+    "download_system": {
+      "b.a.a.a": {
+        "description": "APK download manager",
+        "actual_name": "DownloadManager",
+        "key_variables": {
+          "f734a": "String - Local file path",
+          "f735b": "int - Download progress bytes",
+          "f736c": "WeakReference<Activity> - Activity reference",
+          "d": "String - Download URL",
+          "e": "Handler - Progress update handler",
+          "f": "DownloadCallback interface"
+        }
+      },
+      "b.a.a.b": {
+        "description": "Download task thread",
+        "actual_name": "DownloadTask",
+        "key_methods": [
+          "run() - Execute HTTP download",
+          "HTTP connection with 10s timeouts",
+          "Progress tracking and file writing",
+          "APK installation via Intent"
+        ],
+        "file_provider": "cn.manstep.phonemirrorBox.fileProvider"
+      }
+    },
+    "support_frameworks": {
+      "a.b.k.h": {
+        "description": "Base activity class",
+        "likely_actual": "AppCompatActivity or FragmentActivity"
+      },
+      "a.b.k.k": {
+        "description": "UI framework support classes"
+      },
+      "a.e.d.a": {
+        "description": "Permission management utility"
+      }
+    }
+  },
+  "threading_architecture": {
+    "main_thread_pool": {
+      "class": "b.a.a.c.f740b",
+      "type": "ThreadPoolExecutor", 
+      "core_size": "1",
+      "max_size": "2",
+      "queue": "LinkedBlockingQueue",
+      "policy": "AbortPolicy"
+    },
+    "scheduled_executor": {
+      "class": "b.a.a.c.i",
+      "type": "ScheduledThreadPoolExecutor",
+      "size": "2",
+      "tasks": [
+        "Device detection (every 2 seconds)",
+        "Heartbeat transmission (every 2 seconds when active)"
+      ]
+    },
+    "task_tracking": {
+      "class": "b.a.a.c.k", 
+      "type": "ConcurrentHashMap<Integer, Future<?>>",
+      "task_ids": {
+        "0": "Device detection timer",
+        "1": "Heartbeat timer (added when session active)"
+      }
+    }
+  },
+  "protocol_details": {
+    "cpc200_ccpa": {
+      "magic_header": "0x55AA55AA",
+      "header_size": "16 bytes",
+      "max_payload": "1MB (dynamically allocated)",
+      "byte_order": "LITTLE_ENDIAN",
+      "checksum": "Bitwise NOT of command"
+    },
+    "session_handshake": {
+      "command": "0x01 (Open)",
+      "payload_size": "28 bytes",
+      "parameters": [
+        "Display width/height",
+        "Frame rate and format",
+        "Max packet size",
+        "Protocol version and mode"
+      ]
+    },
+    "heartbeat": {
+      "command": "0xAA (170 decimal)",
+      "payload_size": "0 bytes",
+      "interval": "2000ms (2 seconds)",
+      "purpose": "Keep-alive and connection monitoring"
+    }
+  },
+  "usb_communication": {
+    "device_filtering": {
+      "vendor_id": "0x1314 (4884 decimal)",
+      "product_ids": ["0x1520", "0x1521"],
+      "max_interfaces": "3",
+      "required_endpoints": ">=2 (bulk transfer)"
+    },
+    "transfer_settings": {
+      "type": "USB_ENDPOINT_XFER_BULK",
+      "buffer_size": "49152 bytes (48KB)",
+      "timeout": "1000ms",
+      "direction": {
+        "input": "0x80 (128) - device to host",
+        "output": "0x00 - host to device"
+      }
+    }
+  },
+  "session_states": {
+    "ui_states": {
+      "detached": "u=false, button disabled, disconnected icon",
+      "active": "u=true, button enabled, connected icon"
+    },
+    "connection_states": {
+      "detecting": "g=false, scanning for devices",
+      "permission": "d=true, requesting USB access",
+      "connected": "g=true, USB active", 
+      "error": "Recovery mode or permanent failure"
+    }
+  },
+  "jadx_search_patterns": {
+    "usb_communication": [
+      "vendorId.*4884",
+      "UsbManager",
+      "bulkTransfer",
+      "0x1314"
+    ],
+    "protocol": [
+      "0x55AA55AA",
+      "1437226410", 
+      "LITTLE_ENDIAN",
+      "ByteBuffer.*allocate"
+    ],
+    "threading": [
+      "scheduleAtFixedRate",
+      "ThreadPoolExecutor",
+      "ConcurrentHashMap"
+    ],
+    "session_management": [
+      "Handler.*handleMessage",
+      "Message.*obtain",
+      "sendEmptyMessage"
+    ]
+  }
+}

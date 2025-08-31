@@ -1,0 +1,301 @@
+{
+  "apk_info": {
+    "name": "AutoKit_2025.03.19.1126.apk", 
+    "size": "10MB",
+    "protection": "360 Jiagu (defeated via VDEX extraction)",
+    "main_dex": "classes.dex (1,209,004 bytes - protected)",
+    "clean_dex": "autokit_extracted.dex (1,209,252 bytes - clean)",
+    "touch_system": "assets/HWTouch.dex (11,764 bytes - unprotected)"
+  },
+  "protection_bypass": {
+    "method": "VDEX extraction from ART cache",
+    "clean_file": "autokit_extracted.dex",
+    "entropy": "5.13 (low - successfully deobfuscated)",
+    "jiagu_artifacts": [
+      "libjiagu.so (defeated)",
+      "libjiagu_*.so variants (neutralized)",
+      ".jiagu.lock (inactive)"
+    ]
+  },
+  "touch_system": {
+    "location": "assets/HWTouch.dex",
+    "status": "Unprotected - direct analysis possible",
+    "main_class": "com.hewei.phonemirror.touch.HWTouch",
+    "key_methods": {
+      "main(String[])": "Entry point - creates server on 127.0.0.1:8878",
+      "init()": "Initialize InputManager via reflection",
+      "recvTouch(Socket)": "Process incoming touch commands",
+      "sendAction(int, float, float)": "Execute touch actions",
+      "getResolution()": "Get display resolution via ServiceManager reflection",
+      "injectMotionEvent()": "Inject touch events via hidden APIs"
+    },
+    "network_config": {
+      "ip": "127.0.0.1",
+      "port": "8878",
+      "protocol": "TCP socket server"
+    },
+    "touch_commands": {
+      "TOUCH_DOWN": "0",
+      "TOUCH_MOVE": "1", 
+      "TOUCH_UP": "2",
+      "TOUCH_MENU": "3",
+      "TOUCH_HOME": "4",
+      "TOUCH_BACK": "5", 
+      "TOUCH_EXIT": "100"
+    },
+    "coordinate_system": {
+      "input": "Normalized (0.0 - 1.0)",
+      "output": "Pixel coordinates with rotation handling",
+      "rotation_support": "0°, 90°, 180°, 270°"
+    }
+  },
+  "expected_main_classes": {
+    "service_layer": {
+      "cn.manstep.phonemirror.service.CarPlayService": {
+        "description": "Main CarPlay/AndroidAuto service",
+        "responsibilities": [
+          "Service lifecycle management",
+          "USB communication coordination", 
+          "Audio/video stream management",
+          "Touch input coordination"
+        ]
+      },
+      "cn.manstep.phonemirror.receiver.MediaButtonReceiver": {
+        "description": "Media button broadcast receiver",
+        "purpose": "Handle media control buttons from vehicle"
+      }
+    },
+    "audio_system": {
+      "cn.manstep.phonemirror.audio.AudioProcessor": {
+        "description": "Audio stream processing manager",
+        "native_library": "libAudioProcess.so",
+        "technology": "WebRTC AudioProcessing + XTour API",
+        "jni_methods": [
+          "Java_com_xtour_audioprocess_NativeAdapter_processData",
+          "Java_com_xtour_audioprocess_NativeAdapter_init",
+          "Java_com_xtour_audioprocess_NativeAdapter_cleanup"
+        ]
+      },
+      "cn.manstep.phonemirror.audio.WebRTCProcessor": {
+        "description": "WebRTC audio processing implementation",
+        "features": [
+          "Noise suppression",
+          "Echo cancellation", 
+          "Automatic gain control",
+          "Automotive environment optimization"
+        ]
+      }
+    },
+    "video_system": {
+      "cn.manstep.phonemirror.video.H264Decoder": {
+        "description": "H.264 video decoder",
+        "native_library": "libopenH264decoder.so",
+        "jni_methods": [
+          "Java_cn_manstep_phonemirrorBox_OpenH264Decoder_decodeFrame",
+          "Java_cn_manstep_phonemirrorBox_OpenH264Decoder_nativeInit",
+          "Java_cn_manstep_phonemirrorBox_OpenH264Decoder_cleanup"
+        ]
+      },
+      "cn.manstep.phonemirror.video.MediaCodecManager": {
+        "description": "Android MediaCodec integration",
+        "purpose": "Hardware-accelerated video decoding fallback"
+      },
+      "cn.manstep.phonemirror.video.DisplayManager": {
+        "description": "Display output management",
+        "responsibilities": [
+          "Surface creation and management",
+          "Resolution negotiation",
+          "Orientation handling"
+        ]
+      }
+    },
+    "screen_capture": {
+      "cn.manstep.phonemirror.capture.ScreenCaptureService": {
+        "description": "Screen mirroring capture system", 
+        "native_libraries": [
+          "libscreencap40.so - Android 4.0",
+          "libscreencap50.so - Android 5.0",
+          "libscreencap60.so - Android 6.0", 
+          "libscreencap70.so - Android 7.0",
+          "libscreencap80.so - Android 8.0",
+          "libscreencap90.so - Android 9.0",
+          "libscreencap100.so - Android 10.0+"
+        ],
+        "compatibility": "API 14-29+ comprehensive coverage"
+      }
+    }
+  },
+  "native_libraries": {
+    "audio_processing": {
+      "libAudioProcess.so": {
+        "size": "2,645,680 bytes",
+        "architecture": "ARM64/ARM32/x86/x86_64",
+        "technology": "WebRTC AudioProcessing 3.0+",
+        "wrapper": "XTour API automotive optimization",
+        "key_exports": [
+          "Java_com_xtour_audioprocess_NativeAdapter_processData",
+          "webrtc::AudioProcessing::Create",
+          "webrtc::AudioProcessing::ProcessStream"
+        ]
+      }
+    },
+    "video_processing": {
+      "libopenH264decoder.so": {
+        "size": "456,272 bytes",
+        "technology": "Cisco OpenH264 decoder",
+        "optimization": "ARM64 NEON SIMD",
+        "key_exports": [
+          "WelsCreateDecoder", 
+          "WelsDecoderDecodeFrame",
+          "Java_cn_manstep_phonemirrorBox_OpenH264Decoder_decodeFrame"
+        ]
+      }
+    },
+    "screen_capture": {
+      "libscreencap_variants": {
+        "count": "13 libraries",
+        "size_range": "21KB - 132KB",
+        "purpose": "Android version-specific screen capture",
+        "api_coverage": "Android 4.0 - 10.0+"
+      }
+    },
+    "protection_artifacts": {
+      "libjiagu.so": {
+        "status": "Defeated",
+        "size": "~500KB",
+        "purpose": "360 Jiagu protection runtime (neutralized)"
+      }
+    }
+  },
+  "obfuscation_patterns": {
+    "class_names": {
+      "single_letter": ["a", "b", "c", "d", "e", "f", "g"],
+      "short_packages": ["a.b.c", "b.a.a", "com.a"],
+      "numbered_inner": ["a$1", "b$2", "c$3"]
+    },
+    "variable_names": {
+      "single_letter": ["a", "b", "c", "d", "e", "f", "g", "h"],
+      "prefixed_numbers": ["f751a", "f752b", "f740b"],
+      "generic_terms": ["str", "obj", "var", "tmp"]
+    },
+    "method_names": {
+      "preserved": ["onCreate", "onDestroy", "run", "handleMessage"],
+      "obfuscated": ["a()", "b()", "c()", "d()"]
+    }
+  },
+  "search_patterns_for_jadx": {
+    "main_service": [
+      "Service.*extends",
+      "CarPlay",
+      "AndroidAuto",
+      "startForeground",
+      "NotificationManager"
+    ],
+    "audio_processing": [
+      "AudioManager",
+      "AudioRecord", 
+      "AudioTrack",
+      "webrtc",
+      "XTour",
+      "processData"
+    ],
+    "video_processing": [
+      "MediaCodec",
+      "SurfaceView",
+      "H264",
+      "OpenH264",
+      "decodeFrame",
+      "Surface.*create"
+    ],
+    "touch_system": [
+      "InputManager",
+      "injectInputEvent",
+      "MotionEvent",
+      "127\\.0\\.0\\.1.*8878",
+      "ServerSocket"
+    ],
+    "usb_communication": [
+      "UsbManager",
+      "CarPlayService",
+      "bulkTransfer",
+      "0x55AA55AA",
+      "CPC200"
+    ],
+    "screen_capture": [
+      "screencap",
+      "screenshot",
+      "DisplayManager",
+      "WindowManager",
+      "MediaProjection"
+    ]
+  },
+  "expected_manifest_entries": {
+    "services": [
+      "cn.manstep.phonemirror.service.CarPlayService",
+      "cn.manstep.phonemirror.service.AudioService",
+      "cn.manstep.phonemirror.service.VideoService"
+    ],
+    "receivers": [
+      "cn.manstep.phonemirror.receiver.MediaButtonReceiver",
+      "cn.manstep.phonemirror.receiver.USBReceiver"
+    ],
+    "permissions": [
+      "android.permission.RECORD_AUDIO",
+      "android.permission.MODIFY_AUDIO_SETTINGS",
+      "android.permission.CAPTURE_VIDEO_OUTPUT",
+      "android.permission.SYSTEM_ALERT_WINDOW",
+      "android.hardware.usb.host"
+    ]
+  },
+  "jadx_analysis_workflow": {
+    "step_1": {
+      "description": "Initial decompilation",
+      "commands": [
+        "jadx -d autokit_decompiled AutoKit_2025.03.19.1126.apk",
+        "jadx -d autokit_clean --show-bad-code autokit_extracted.dex"
+      ]
+    },
+    "step_2": {
+      "description": "Identify main service",
+      "search": "grep -r 'Service.*extends\\|startForeground' autokit_decompiled/sources/"
+    },
+    "step_3": {
+      "description": "Find audio processing",
+      "search": "grep -r 'AudioManager\\|webrtc\\|XTour' autokit_decompiled/sources/"
+    },
+    "step_4": {
+      "description": "Find video processing", 
+      "search": "grep -r 'MediaCodec\\|H264\\|decodeFrame' autokit_decompiled/sources/"
+    },
+    "step_5": {
+      "description": "Analyze native libraries",
+      "commands": [
+        "strings autokit_decompiled/resources/lib/arm64-v8a/*.so | grep Java_",
+        "objdump -T autokit_decompiled/resources/lib/arm64-v8a/*.so"
+      ]
+    }
+  },
+  "recovery_instructions": {
+    "if_protection_active": {
+      "symptoms": [
+        "Most classes show as encrypted/garbled",
+        "High entropy in DEX files",
+        "Jiagu protection messages"
+      ],
+      "solution": "Use the provided autokit_extracted.dex (clean VDEX extraction)"
+    },
+    "if_jadx_fails": {
+      "alternatives": [
+        "dex2jar + CFR decompiler",
+        "Ghidra with Android/DEX support",
+        "APKTool for resource extraction only"
+      ]
+    }
+  },
+  "performance_expectations": {
+    "decompilation_time": "5-15 minutes (depending on system)",
+    "output_size": "50-100MB decompiled sources",
+    "success_rate": "90%+ for main functionality identification",
+    "native_analysis": "Requires additional tools (Ghidra/IDA)"
+  }
+}
