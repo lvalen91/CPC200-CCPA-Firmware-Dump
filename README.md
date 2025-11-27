@@ -1,3 +1,5 @@
+!! Do not update to 2025.10.15.1127 IMG. You will not be able to gain root SSH via exploit. !!
+
 This repo will attempt to maintain a pair of Firmware IMG (used for updating).
 And a EEPROM IC Flash Dump after the update is complete.
 
