@@ -1,3 +1,5 @@
+!! Do not update to 2025.10.15.1127 IMG. You will not be able to gain root SSH via exploit. !!
+
 Manual IMG file updaing via USB Storage (Total Time ~ 3 Minutes)
 
 For CPC200-CCPA:
