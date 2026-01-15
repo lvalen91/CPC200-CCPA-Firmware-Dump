@@ -11,7 +11,7 @@ Actual:
 - Disables/Uncomments dropbear SSH by replacing entire /etc/init.d folder and rcS file within
 - New Projection Binaries. Potential New features or protocole messages (requires further testing)
 So Far found
-
+```
   HU_NEEDNAVI_STREAM          - Head unit requests nav video stream
   HU_NAVISCREEN_INFO          - Nav screen dimensions
   HU_NAVISCREEN_SAFEAREA_INFO - Safe display area
@@ -23,7 +23,7 @@ So Far found
   RequestNaviScreenFoucs      - Request screen focus (typo in firmware)
   ReleaseNaviScreenFoucs      - Release screen focus (typo in firmware)
   naviScreen                  - Nav screen reference
-
+```
 - Various other files replaced.
 
 Custom Firmware Modifications:
