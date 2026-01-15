@@ -1,3 +1,5 @@
+# TEST CFW, ACCEPT THE RISKS IF USED
+
 Custom Firmware of CPC200-CCPA (A15W) 
 
 Version: 2025.10.15.1127
