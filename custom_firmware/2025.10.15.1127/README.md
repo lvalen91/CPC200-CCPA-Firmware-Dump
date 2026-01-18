@@ -34,6 +34,20 @@ file: ARMadb-driver
 Custom Firmware Modifications:
 - Enables Dropbear and added SFTP support
 
+1 .Rename to A15W_Update.img
+
+2. Place on FAT32 Flash Drive
+
+3. Connect to Adapter
+
+4. Connect Adapter to its own AC Power Adaper
+
+5. Wait for Red Blue flashing to start
+
+6. Once it stops, wait 1 minute
+
+7. Unplug for power and remove USB Drive.
+
 Once installed reset root ssh password using the available passwordless telnet port. 
 
 ```
