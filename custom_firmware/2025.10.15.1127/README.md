@@ -33,3 +33,11 @@ file: ARMadb-driver
 
 Custom Firmware Modifications:
 - Enables Dropbear and added SFTP support
+
+Once installed reset root ssh password using the available passwordless telnet port. 
+
+```
+telnet 192.168.43.1
+```
+
+Use passwd to set a new root password. And then secure as you see fit.
