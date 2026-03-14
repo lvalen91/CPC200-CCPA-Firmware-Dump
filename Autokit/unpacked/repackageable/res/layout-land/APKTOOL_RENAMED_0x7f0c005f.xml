@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButtonToggleGroup android:orientation="horizontal" android:id="@id/APKTOOL_RENAMED_0x7f090165" android:background="?APKTOOL_RENAMED_0x7f0400c9" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f040083="@id/APKTOOL_RENAMED_0x7f090163" app:APKTOOL_RENAMED_0x7f0402c6="true" app:APKTOOL_RENAMED_0x7f0402d8="true"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Button android:id="@id/APKTOOL_RENAMED_0x7f090163" android:layout_width="0.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f0158" android:layout_weight="1.0" android:insetTop="4.0dp" android:insetBottom="4.0dp" style="?APKTOOL_RENAMED_0x7f04022c" />
+    <Button android:id="@id/APKTOOL_RENAMED_0x7f090164" android:layout_width="0.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f015c" android:layout_weight="1.0" android:insetTop="4.0dp" android:insetBottom="4.0dp" style="?APKTOOL_RENAMED_0x7f04022c" />
+</com.google.android.material.button.MaterialButtonToggleGroup>

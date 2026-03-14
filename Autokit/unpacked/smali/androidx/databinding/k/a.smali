@@ -1,0 +1,75 @@
+.class public final Landroidx/databinding/k/a;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+.field public final static action_container:I = 2131296319
+
+.field public final static action_divider:I = 2131296321
+
+.field public final static action_image:I = 2131296322
+
+.field public final static action_text:I = 2131296328
+
+.field public final static actions:I = 2131296329
+
+.field public final static async:I = 2131296349
+
+.field public final static blocking:I = 2131296364
+
+.field public final static bottom:I = 2131296365
+
+.field public final static chronometer:I = 2131296419
+
+.field public final static dataBinding:I = 2131296439
+
+.field public final static end:I = 2131296480
+
+.field public final static forever:I = 2131296505
+
+.field public final static icon:I = 2131296532
+
+.field public final static icon_group:I = 2131296533
+
+.field public final static info:I = 2131296566
+
+.field public final static italic:I = 2131296572
+
+.field public final static left:I = 2131296589
+
+.field public final static line1:I = 2131296592
+
+.field public final static line3:I = 2131296593
+
+.field public final static none:I = 2131296688
+
+.field public final static normal:I = 2131296689
+
+.field public final static notification_background:I = 2131296690
+
+.field public final static notification_main_column:I = 2131296691
+
+.field public final static notification_main_column_container:I = 2131296692
+
+.field public final static right:I = 2131296742
+
+.field public final static right_icon:I = 2131296744
+
+.field public final static right_side:I = 2131296745
+
+.field public final static start:I = 2131296809
+
+.field public final static tag_transition_group:I = 2131296838
+
+.field public final static tag_unhandled_key_event_manager:I = 2131296839
+
+.field public final static tag_unhandled_key_listeners:I = 2131296840
+
+.field public final static text:I = 2131296846
+
+.field public final static text2:I = 2131296847
+
+.field public final static time:I = 2131296866
+
+.field public final static title:I = 2131296871
+
+.field public final static top:I = 2131296879

@@ -1,0 +1,89 @@
+.class public Ld/c/a/a/p/d$b;
+.super Ljava/lang/Object;
+.implements Landroid/animation/TypeEvaluator;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/EnclosingClass;
+  value = Ld/c/a/a/p/d;
+.end annotation
+.annotation system Ldalvik/annotation/InnerClass;
+  accessFlags = 9
+  name = "b"
+.end annotation
+.annotation system Ldalvik/annotation/Signature;
+  value = {
+    "Ljava/lang/Object;",
+    "Landroid/animation/TypeEvaluator<",
+    "Ld/c/a/a/p/d$e;",
+    ">;"
+  }
+.end annotation
+
+.field public final static b:Landroid/animation/TypeEvaluator;
+  .annotation system Ldalvik/annotation/Signature;
+    value = {
+      "Landroid/animation/TypeEvaluator<",
+      "Ld/c/a/a/p/d$e;",
+      ">;"
+    }
+  .end annotation
+.end field
+
+.field private final a:Ld/c/a/a/p/d$e;
+
+.method static constructor <clinit>()V
+  .registers 2
+  .line 1
+    new-instance v0, Ld/c/a/a/p/d$b;
+    invoke-direct { v0 }, Ld/c/a/a/p/d$b;-><init>()V
+    sput-object v0, Ld/c/a/a/p/d$b;->b:Landroid/animation/TypeEvaluator;
+    return-void
+.end method
+
+.method public constructor <init>()V
+  .registers 3
+  .line 1
+    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+  .line 2
+    new-instance v0, Ld/c/a/a/p/d$e;
+    const/4 v1, 0
+    invoke-direct { v0, v1 }, Ld/c/a/a/p/d$e;-><init>(Ld/c/a/a/p/d$a;)V
+    iput-object v0, p0, Ld/c/a/a/p/d$b;->a:Ld/c/a/a/p/d$e;
+    return-void
+.end method
+
+.method public a(FLd/c/a/a/p/d$e;Ld/c/a/a/p/d$e;)Ld/c/a/a/p/d$e;
+  .registers 8
+  .line 1
+    iget-object v0, p0, Ld/c/a/a/p/d$b;->a:Ld/c/a/a/p/d$e;
+    iget v1, p2, Ld/c/a/a/p/d$e;->a:F
+    iget v2, p3, Ld/c/a/a/p/d$e;->a:F
+  .line 2
+    invoke-static { v1, v2, p1 }, Ld/c/a/a/v/a;->c(FFF)F
+    move-result v1
+    iget v2, p2, Ld/c/a/a/p/d$e;->b:F
+    iget v3, p3, Ld/c/a/a/p/d$e;->b:F
+  .line 3
+    invoke-static { v2, v3, p1 }, Ld/c/a/a/v/a;->c(FFF)F
+    move-result v2
+    iget p2, p2, Ld/c/a/a/p/d$e;->c:F
+    iget p3, p3, Ld/c/a/a/p/d$e;->c:F
+  .line 4
+    invoke-static { p2, p3, p1 }, Ld/c/a/a/v/a;->c(FFF)F
+    move-result p1
+  .line 5
+    invoke-virtual { v0, v1, v2, p1 }, Ld/c/a/a/p/d$e;->a(FFF)V
+  .line 6
+    iget-object p1, p0, Ld/c/a/a/p/d$b;->a:Ld/c/a/a/p/d$e;
+    return-object p1
+.end method
+
+.method public bridge synthetic evaluate(FLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  .registers 4
+  .line 1
+    check-cast p2, Ld/c/a/a/p/d$e;
+    check-cast p3, Ld/c/a/a/p/d$e;
+    invoke-virtual { p0, p1, p2, p3 }, Ld/c/a/a/p/d$b;->a(FLd/c/a/a/p/d$e;Ld/c/a/a/p/d$e;)Ld/c/a/a/p/d$e;
+    move-result-object p1
+    return-object p1
+.end method

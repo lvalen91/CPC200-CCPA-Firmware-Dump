@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/APKTOOL_RENAMED_0x7f080121" android:id="@id/APKTOOL_RENAMED_0x7f090175" android:title="@string/APKTOOL_RENAMED_0x7f0f0204" app:APKTOOL_RENAMED_0x7f0402ce="APKTOOL_RENAMED_0x7f090116" />
+    <item android:icon="@drawable/APKTOOL_RENAMED_0x7f080129" android:enabled="false" android:id="@id/APKTOOL_RENAMED_0x7f090176" android:title="" app:APKTOOL_RENAMED_0x7f0402ce="APKTOOL_RENAMED_0x7f090116" />
+</menu>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/APKTOOL_RENAMED_0x7f0902a0" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.Toolbar android:id="@id/APKTOOL_RENAMED_0x7f09026d" android:background="@color/APKTOOL_RENAMED_0x7f06019a" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="?APKTOOL_RENAMED_0x7f040003">
+        <TextView android:textColor="@color/APKTOOL_RENAMED_0x7f06019b" android:layout_gravity="center" android:id="@id/APKTOOL_RENAMED_0x7f09026e" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/APKTOOL_RENAMED_0x7f0f0202" style="@style/APKTOOL_RENAMED_0x7f1001ee" />
+    </androidx.appcompat.widget.Toolbar>
+    <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f09029f" android:background="@color/APKTOOL_RENAMED_0x7f060193" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@id/APKTOOL_RENAMED_0x7f0902c2" android:layout_below="@id/APKTOOL_RENAMED_0x7f09026d">
+        <ImageView android:layout_gravity="center" android:id="@id/APKTOOL_RENAMED_0x7f090122" android:layout_width="200.0dp" android:layout_height="200.0dp" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f080127" />
+        <com.yalantis.ucrop.view.UCropView android:id="@id/APKTOOL_RENAMED_0x7f09029e" android:layout_width="match_parent" android:layout_height="match_parent" android:alpha="0.0" />
+    </FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="APKTOOL_RENAMED_0x7f100052" parent="@style/APKTOOL_RENAMED_0x7f10009d" />
+    <style name="APKTOOL_RENAMED_0x7f100059" parent="@style/APKTOOL_RENAMED_0x7f10009e" />
+    <style name="APKTOOL_RENAMED_0x7f10008b" parent="@style/APKTOOL_RENAMED_0x7f100243">
+        <item name="android:backgroundDimAmount">0.32</item>
+        <item name="android:checkedTextViewStyle">@style/APKTOOL_RENAMED_0x7f1002f1</item>
+        <item name="android:dialogCornerRadius">@null</item>
+        <item name="APKTOOL_RENAMED_0x7f040027">@style/APKTOOL_RENAMED_0x7f100138</item>
+        <item name="APKTOOL_RENAMED_0x7f04006c">@style/APKTOOL_RENAMED_0x7f1002e9</item>
+        <item name="APKTOOL_RENAMED_0x7f04006d">@style/APKTOOL_RENAMED_0x7f1002e9</item>
+        <item name="APKTOOL_RENAMED_0x7f04006e">@style/APKTOOL_RENAMED_0x7f1002ea</item>
+        <item name="APKTOOL_RENAMED_0x7f04006f">@style/APKTOOL_RENAMED_0x7f1002e9</item>
+        <item name="APKTOOL_RENAMED_0x7f040227">@style/APKTOOL_RENAMED_0x7f100139</item>
+    </style>
+    <style name="APKTOOL_RENAMED_0x7f10009d" parent="@style/APKTOOL_RENAMED_0x7f10009a">
+        <item name="APKTOOL_RENAMED_0x7f040113">?android:dialogCornerRadius</item>
+    </style>
+    <style name="APKTOOL_RENAMED_0x7f10009e" parent="@style/APKTOOL_RENAMED_0x7f10009b">
+        <item name="APKTOOL_RENAMED_0x7f040113">?android:dialogCornerRadius</item>
+    </style>
+</resources>

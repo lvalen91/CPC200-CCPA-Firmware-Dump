@@ -1,0 +1,258 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.hardware.usb.action.USB_DEVICE_ATTACHED:
+        415b2b1 cn.manstep.phonemirrorBox/.MainActivity filter 442db17
+          Action: "android.hardware.usb.action.USB_DEVICE_ATTACHED"
+        a027b04 cn.manstep.phonemirrorBox/.Main1Activity filter da1c8ed
+          Action: "android.hardware.usb.action.USB_DEVICE_ATTACHED"
+      android.intent.action.MAIN:
+        415b2b1 cn.manstep.phonemirrorBox/.MainActivity filter f953396
+          Action: "android.intent.action.MAIN"
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.LAUNCHER"
+        d68f322 cn.manstep.phonemirrorBox/.LauncherActivity filter e1011b3
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+      android.intent.action.VIEW:
+        415b2b1 cn.manstep.phonemirrorBox/.MainActivity filter f953396
+          Action: "android.intent.action.MAIN"
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      hy.intent.action.MEDIA_BUTTON:
+        5ae4370 cn.manstep.phonemirrorBox/.MediaButtonReceiver filter c5f06e9
+          Action: "hy.intent.action.MEDIA_BUTTON"
+          Action: "android.intent.action.MEDIA_BUTTON"
+      android.intent.action.BOOT_COMPLETED:
+        9c71f6e cn.manstep.phonemirrorBox/.AutoStartReceiver filter 270160f
+          Action: "android.intent.action.BOOT_COMPLETED"
+          mPriority=1000, mOrder=0, mHasStaticPartialTypes=false, mHasDynamicPartialTypes=false
+      cn.manstep.phonemirrorBox.AUTO_BOX_WEAK:
+        f0c269c cn.manstep.phonemirrorBox/.ApplicationWeakReceiver filter 49828a5
+          Action: "cn.manstep.phonemirrorBox.AUTO_BOX_WEAK"
+      android.intent.action.MEDIA_BUTTON:
+        5ae4370 cn.manstep.phonemirrorBox/.MediaButtonReceiver filter c5f06e9
+          Action: "hy.intent.action.MEDIA_BUTTON"
+          Action: "android.intent.action.MEDIA_BUTTON"
+
+Service Resolver Table:
+  Non-Data Actions:
+      com.hase.auto.CARPLAY_SERVICE:
+        5c9c47a cn.manstep.phonemirrorBox/.service.CarPlayService filter 122042b
+          Action: "com.hase.auto.CARPLAY_SERVICE"
+
+Domain verification status:
+
+Registered ContentProviders:
+  cn.manstep.phonemirrorBox/androidx.lifecycle.ProcessLifecycleOwnerInitializer:
+    Provider{c9b0607 cn.manstep.phonemirrorBox/androidx.lifecycle.ProcessLifecycleOwnerInitializer}
+  cn.manstep.phonemirrorBox/androidx.core.content.FileProvider:
+    Provider{a41e334 cn.manstep.phonemirrorBox/androidx.core.content.FileProvider}
+  cn.manstep.phonemirrorBox/.MyFileProvider:
+    Provider{f7fc55d cn.manstep.phonemirrorBox/.MyFileProvider}
+
+ContentProvider Authorities:
+  [cn.manstep.phonemirrorBox.myfileprovider]:
+    Provider{f7fc55d cn.manstep.phonemirrorBox/.MyFileProvider}
+      applicationInfo=ApplicationInfo{79062a0 cn.manstep.phonemirrorBox}
+  [cn.manstep.phonemirrorBox.fileprovider]:
+    Provider{a41e334 cn.manstep.phonemirrorBox/androidx.core.content.FileProvider}
+      applicationInfo=ApplicationInfo{e46ee59 cn.manstep.phonemirrorBox}
+  [cn.manstep.phonemirrorBox.lifecycle-process]:
+    Provider{c9b0607 cn.manstep.phonemirrorBox/androidx.lifecycle.ProcessLifecycleOwnerInitializer}
+      applicationInfo=ApplicationInfo{2a8ca1e cn.manstep.phonemirrorBox}
+
+Key Set Manager:
+  [cn.manstep.phonemirrorBox]
+      Signing KeySets: 44
+
+Packages:
+  Package [cn.manstep.phonemirrorBox] (a762ff):
+    appId=10254
+    pkg=Package{d1bc61e cn.manstep.phonemirrorBox}
+    codePath=/data/app/~~Kwq_v_aMAGQOBJhRwRf0tQ==/cn.manstep.phonemirrorBox-lXZBrMPpd0LFphrYkaoKVA==
+    resourcePath=/data/app/~~Kwq_v_aMAGQOBJhRwRf0tQ==/cn.manstep.phonemirrorBox-lXZBrMPpd0LFphrYkaoKVA==
+    legacyNativeLibraryDir=/data/app/~~Kwq_v_aMAGQOBJhRwRf0tQ==/cn.manstep.phonemirrorBox-lXZBrMPpd0LFphrYkaoKVA==/lib
+    extractNativeLibs=true
+    primaryCpuAbi=arm64-v8a
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=2112232222 minSdk=16 targetSdk=29
+    minExtensionVersions=[]
+    versionName=2025.03.19.1126
+    hiddenApiEnforcementPolicy=2
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=3
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA LARGE_HEAP ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_UNRESIZEABLE ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_REQUEST_LEGACY_EXTERNAL_STORAGE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    scannedAsStoppedSystemApp=false
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesLibraries:
+      android.test.base
+    usesLibraryFiles:
+      /system/framework/android.test.base.jar
+    timeStamp=2026-03-10 17:18:54
+    lastUpdateTime=2026-03-10 17:18:54
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    packageSource=1
+    appMetadataFilePath=null
+    appMetadataSource=0
+    signatures=PackageSignatures{464aeff version:3, signatures:[e5b72a5a], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA LARGE_HEAP ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_UNRESIZEABLE ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_REQUEST_LEGACY_EXTERNAL_STORAGE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    requested permissions:
+      android.permission.POST_NOTIFICATIONS
+      android.permission.ACCESS_FINE_LOCATION
+      android.permission.MODIFY_AUDIO_SETTINGS
+      android.permission.ACCESS_NOTIFICATION_POLICY
+      android.hardware.usb.accessory
+      android.permission.SYSTEM_ALERT_WINDOW
+      android.permission.SYSTEM_OVERLAY_WINDOW
+      android.permission.INTERNAL_SYSTEM_WINDOW
+      android.permission.CHANGE_NETWORK_STATE
+      android.permission.FOREGROUND_SERVICE
+      android.permission.READ_MEDIA_VISUAL_USER_SELECTED
+      android.permission.RECEIVE_BOOT_COMPLETED
+      android.permission.BLUETOOTH_CONNECT
+      android.car.permission.CAR_CONTROL_AUDIO_VOLUME
+      android.permission.BLUETOOTH
+      android.permission.CHANGE_WIFI_MULTICAST_STATE
+      android.permission.GET_TASKS
+      android.permission.INTERNET
+      android.permission.REORDER_TASKS
+      android.hardware.usb.host
+      android.permission.BLUETOOTH_ADMIN
+      android.permission.READ_EXTERNAL_STORAGE
+      android.permission.INTERACT_ACROSS_USERS_FULL
+      android.permission.ACCESS_COARSE_LOCATION
+      android.permission.READ_PHONE_STATE
+      android.permission.READ_PRIVILEGED_PHONE_STATE
+      android.permission.READ_MEDIA_IMAGES
+      android.permission.CHANGE_WIFI_STATE
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.READ_MEDIA_AUDIO
+      android.permission.READ_MEDIA_VIDEO
+      android.permission.KILL_BACKGROUND_PROCESSES
+      android.permission.BLUETOOTH_ADVERTISE
+      android.permission.READ_MEDIA_STORAGE
+      android.permission.ACCESS_WIFI_STATE
+      android.permission.REQUEST_INSTALL_PACKAGES
+      android.permission.RECORD_AUDIO
+      android.permission.ACCESS_BACKGROUND_LOCATION
+      android.permission.BLUETOOTH_SCAN
+    install permissions:
+      android.permission.MODIFY_AUDIO_SETTINGS: granted=true
+      android.permission.ACCESS_NOTIFICATION_POLICY: granted=true
+      android.permission.SYSTEM_ALERT_WINDOW: granted=true
+      android.permission.CHANGE_NETWORK_STATE: granted=true
+      android.permission.FOREGROUND_SERVICE: granted=true
+      android.permission.RECEIVE_BOOT_COMPLETED: granted=true
+      android.permission.BLUETOOTH: granted=true
+      android.permission.CHANGE_WIFI_MULTICAST_STATE: granted=true
+      android.permission.GET_TASKS: granted=true
+      android.permission.INTERNET: granted=true
+      android.permission.REORDER_TASKS: granted=true
+      android.permission.BLUETOOTH_ADMIN: granted=true
+      android.permission.CHANGE_WIFI_STATE: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      android.permission.KILL_BACKGROUND_PROCESSES: granted=true
+      android.permission.ACCESS_WIFI_STATE: granted=true
+    User 0: ceDataInode=352999 deDataInode=90685 installed=true hidden=false suspended=false distractionFlags=0 stopped=true notLaunched=true enabled=0 instant=false virtual=false quarantined=false
+      installReason=0
+      dataDir=/data/user/0/cn.manstep.phonemirrorBox
+      firstInstallTime=2026-03-08 16:33:48
+      uninstallReason=0
+      gids=[3002, 3003, 3001]
+      runtime permissions:
+        android.permission.POST_NOTIFICATIONS: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_FINE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_MEDIA_VISUAL_USER_SELECTED: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.BLUETOOTH_CONNECT: granted=true, flags=[ REVOKE_WHEN_REQUESTED|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_EXTERNAL_STORAGE: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.ACCESS_COARSE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_PHONE_STATE: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_MEDIA_IMAGES: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_UPGRADE_EXEMPT]
+        android.permission.READ_MEDIA_AUDIO: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_UPGRADE_EXEMPT]
+        android.permission.READ_MEDIA_VIDEO: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_UPGRADE_EXEMPT]
+        android.permission.BLUETOOTH_ADVERTISE: granted=true, flags=[ REVOKE_WHEN_REQUESTED|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.RECORD_AUDIO: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_BACKGROUND_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.BLUETOOTH_SCAN: granted=true, flags=[ REVOKE_WHEN_REQUESTED|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+    User 10: ceDataInode=271072 deDataInode=90804 installed=true hidden=false suspended=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false
+      installReason=0
+      dataDir=/data/user/10/cn.manstep.phonemirrorBox
+      firstInstallTime=1969-12-31 14:00:00
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/TransparentNavigationBar/TransparentNavigationBarOverlay.apk
+      legacy overlay paths:
+        /product/overlay/TransparentNavigationBar/TransparentNavigationBarOverlay.apk
+      gids=[3002, 3003, 3001]
+      runtime permissions:
+        android.permission.POST_NOTIFICATIONS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_FINE_LOCATION: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]
+        android.permission.READ_MEDIA_VISUAL_USER_SELECTED: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.BLUETOOTH_CONNECT: granted=true, flags=[ REVOKE_WHEN_REQUESTED|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_EXTERNAL_STORAGE: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.ACCESS_COARSE_LOCATION: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_PHONE_STATE: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_MEDIA_IMAGES: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_UPGRADE_EXEMPT]
+        android.permission.READ_MEDIA_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_UPGRADE_EXEMPT]
+        android.permission.READ_MEDIA_VIDEO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_UPGRADE_EXEMPT]
+        android.permission.BLUETOOTH_ADVERTISE: granted=true, flags=[ REVOKE_WHEN_REQUESTED|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.RECORD_AUDIO: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_BACKGROUND_LOCATION: granted=false, flags=[ REVOKED_COMPAT|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.BLUETOOTH_SCAN: granted=true, flags=[ REVOKE_WHEN_REQUESTED|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+      enabledComponents:
+        cn.manstep.phonemirrorBox.MediaButtonReceiver
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+  queries via component:
+    android.car.usb.handler:
+      cn.manstep.phonemirrorBox
+    com.android.settings.intelligence:
+      cn.manstep.phonemirrorBox
+    com.google.android.carassistant:
+      cn.manstep.phonemirrorBox
+  queryable via interaction:
+    User 0:
+    User 10:
+      [com.android.providers.settings,com.android.keychain,com.android.emulator.multidisplay,com.android.localtransport,com.android.location.fused,android,com.android.car,com.android.server.telecom,com.android.car.developeroptions,com.android.inputdevices,com.android.car.cluster.osdouble,com.android.car.settings]:
+        cn.manstep.phonemirrorBox
+      [com.android.providers.settings,com.android.keychain,com.android.emulator.multidisplay,com.android.localtransport,com.android.location.fused,android,com.android.car,com.android.server.telecom,com.android.car.developeroptions,com.android.inputdevices,com.android.car.cluster.osdouble,com.android.car.settings]:
+        cn.manstep.phonemirrorBox
+      com.google.android.carassistant:
+        cn.manstep.phonemirrorBox
+      [com.google.android.gms,com.google.android.gsf]:
+        cn.manstep.phonemirrorBox
+      com.google.android.apps.automotive.inputmethod:
+        cn.manstep.phonemirrorBox
+      com.android.systemui:
+        cn.manstep.phonemirrorBox
+      com.google.android.permissioncontroller:
+        cn.manstep.phonemirrorBox
+      com.google.android.providers.media.module:
+        cn.manstep.phonemirrorBox
+  queryable via uses-library:
+
+Dexopt state:
+  [cn.manstep.phonemirrorBox]
+    path: /data/app/~~Kwq_v_aMAGQOBJhRwRf0tQ==/cn.manstep.phonemirrorBox-lXZBrMPpd0LFphrYkaoKVA==/base.apk
+      arm64: [status=verify] [reason=install] [primary-abi]
+        [location is /data/app/~~Kwq_v_aMAGQOBJhRwRf0tQ==/cn.manstep.phonemirrorBox-lXZBrMPpd0LFphrYkaoKVA==/oat/arm64/base.odex]
+
+Compiler stats:
+  [cn.manstep.phonemirrorBox]
+     base.apk - 76

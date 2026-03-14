@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:tag="layout/fragment_audio_debug_0" android:background="@drawable/APKTOOL_RENAMED_0x7f08006f" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/APKTOOL_RENAMED_0x7f090270" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f10026e">
+        <ImageView android:id="@id/APKTOOL_RENAMED_0x7f090072" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f10011b" />
+        <TextView android:textColor="#ffffff" android:text="@string/APKTOOL_RENAMED_0x7f0f006e" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100271" />
+        <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f090095" android:layout_width="32.0dp" android:layout_height="32.0dp" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e4="@id/APKTOOL_RENAMED_0x7f090077" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" />
+        <Button android:id="@id/APKTOOL_RENAMED_0x7f090077" android:tag="binding_1" android:padding="0.0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="16.0dp" android:minHeight="24.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f00db" android:textAllCaps="false" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="@null" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100270" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout android:id="@id/APKTOOL_RENAMED_0x7f09014f" android:background="#222222" android:layout_width="match_parent" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f090270">
+        <View android:id="@id/APKTOOL_RENAMED_0x7f0902a6" android:background="@drawable/APKTOOL_RENAMED_0x7f08010e" android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_centerInParent="true" />
+        <View android:id="@id/APKTOOL_RENAMED_0x7f0902a7" android:background="@drawable/APKTOOL_RENAMED_0x7f08010d" android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_below="@id/APKTOOL_RENAMED_0x7f0902a6" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <ScrollView android:scrollbars="vertical" android:fadingEdge="vertical" android:layout_width="0.0dp" android:layout_height="0.0dp" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f09014f" app:APKTOOL_RENAMED_0x7f0401fb="0.0">
+        <LinearLayout android:orientation="vertical" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:tag="binding_2" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="低版本API" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <androidx.appcompat.widget.SwitchCompat android:tag="binding_3" android:layout_width="54.0dp" android:layout_height="30.0dp" android:thumb="@drawable/APKTOOL_RENAMED_0x7f080112" app:APKTOOL_RENAMED_0x7f040301="50.0dp" app:APKTOOL_RENAMED_0x7f040371="@drawable/APKTOOL_RENAMED_0x7f080115" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_4" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f0191" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <LinearLayout android:gravity="center_vertical" android:tag="binding_5" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TextView android:gravity="end|center" android:tag="binding_6" android:paddingLeft="1.0dp" android:paddingRight="1.0dp" android:focusable="true" android:clickable="true" android:layout_width="40.0dp" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <ImageView android:tag="binding_7" android:background="@drawable/APKTOOL_RENAMED_0x7f0800a1" android:padding="4.0dp" android:focusable="true" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center_vertical" android:tag="binding_8" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TextView android:gravity="end|center" android:tag="binding_9" android:paddingLeft="1.0dp" android:paddingRight="1.0dp" android:focusable="true" android:clickable="true" android:layout_width="40.0dp" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <ImageView android:background="@drawable/APKTOOL_RENAMED_0x7f0800a1" android:padding="4.0dp" android:focusable="true" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+                </LinearLayout>
+                <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f0901cc" android:background="@drawable/APKTOOL_RENAMED_0x7f0800d7" android:layout_width="24.0dp" android:layout_height="24.0dp" android:button="@null" app:APKTOOL_RENAMED_0x7f040071="@null" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_10" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f0213" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <LinearLayout android:gravity="center_vertical" android:tag="binding_11" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TextView android:gravity="end|center" android:tag="binding_12" android:paddingLeft="1.0dp" android:paddingRight="1.0dp" android:focusable="true" android:clickable="true" android:layout_width="40.0dp" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <ImageView android:tag="binding_13" android:background="@drawable/APKTOOL_RENAMED_0x7f0800a1" android:padding="4.0dp" android:focusable="true" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center_vertical" android:tag="binding_14" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TextView android:gravity="end|center" android:tag="binding_15" android:paddingLeft="1.0dp" android:paddingRight="1.0dp" android:focusable="true" android:clickable="true" android:layout_width="40.0dp" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <ImageView android:background="@drawable/APKTOOL_RENAMED_0x7f0800a1" android:padding="4.0dp" android:focusable="true" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+                </LinearLayout>
+                <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f0901cf" android:background="@drawable/APKTOOL_RENAMED_0x7f0800d7" android:layout_width="24.0dp" android:layout_height="24.0dp" android:button="@null" app:APKTOOL_RENAMED_0x7f040071="@null" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_16" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f00a3" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <CheckBox android:tag="binding_17" android:padding="0.0dp" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="通话模式" android:layout_weight="0.0" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <CheckBox android:tag="binding_18" android:padding="0.0dp" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="扬声器" android:layout_weight="0.0" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <LinearLayout android:gravity="center_vertical" android:tag="binding_19" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TextView android:gravity="end|center" android:tag="binding_20" android:paddingLeft="1.0dp" android:paddingRight="1.0dp" android:focusable="true" android:clickable="true" android:layout_width="40.0dp" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <ImageView android:tag="binding_21" android:background="@drawable/APKTOOL_RENAMED_0x7f0800a1" android:padding="4.0dp" android:focusable="true" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center_vertical" android:tag="binding_22" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TextView android:gravity="end|center" android:tag="binding_23" android:paddingLeft="1.0dp" android:paddingRight="1.0dp" android:focusable="true" android:clickable="true" android:layout_width="40.0dp" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <ImageView android:background="@drawable/APKTOOL_RENAMED_0x7f0800a1" android:padding="4.0dp" android:focusable="true" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+                </LinearLayout>
+                <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f0901cb" android:background="@drawable/APKTOOL_RENAMED_0x7f0800d7" android:layout_width="24.0dp" android:layout_height="24.0dp" android:button="@null" app:APKTOOL_RENAMED_0x7f040071="@null" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_24" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f01d8" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <LinearLayout android:gravity="center_vertical" android:tag="binding_25" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TextView android:gravity="end|center" android:tag="binding_26" android:paddingLeft="1.0dp" android:paddingRight="1.0dp" android:focusable="true" android:clickable="true" android:layout_width="40.0dp" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <ImageView android:tag="binding_27" android:background="@drawable/APKTOOL_RENAMED_0x7f0800a1" android:padding="4.0dp" android:focusable="true" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+                </LinearLayout>
+                <LinearLayout android:gravity="center_vertical" android:tag="binding_28" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TextView android:gravity="end|center" android:tag="binding_29" android:paddingLeft="1.0dp" android:paddingRight="1.0dp" android:focusable="true" android:clickable="true" android:layout_width="40.0dp" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <ImageView android:background="@drawable/APKTOOL_RENAMED_0x7f0800a1" android:padding="4.0dp" android:focusable="true" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+                </LinearLayout>
+                <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f0901ce" android:background="@drawable/APKTOOL_RENAMED_0x7f0800d7" android:layout_width="24.0dp" android:layout_height="24.0dp" android:button="@null" app:APKTOOL_RENAMED_0x7f040071="@null" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="MIC录音" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <LinearLayout android:gravity="center_vertical" android:tag="binding_30" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <TextView android:gravity="end|center" android:tag="binding_31" android:paddingLeft="1.0dp" android:paddingRight="1.0dp" android:focusable="true" android:clickable="true" android:layout_width="40.0dp" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <ImageView android:background="@drawable/APKTOOL_RENAMED_0x7f0800a1" android:padding="4.0dp" android:focusable="true" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+                </LinearLayout>
+                <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f0901df" android:background="@drawable/APKTOOL_RENAMED_0x7f0800c8" android:layout_width="24.0dp" android:layout_height="24.0dp" android:button="@null" app:APKTOOL_RENAMED_0x7f040071="@null" />
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:tag="binding_32" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                    <TextView android:text="录音采样率" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <RadioButton android:tag="binding_33" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="16000" />
+                        <RadioButton android:tag="binding_34" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="48000" />
+                    </RadioGroup>
+                </LinearLayout>
+                <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                    <TextView android:text="录音声道" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <RadioButton android:tag="binding_35" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="单声道" />
+                        <RadioButton android:tag="binding_36" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="立体声" />
+                        <RadioButton android:tag="binding_37" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="声道索引" />
+                    </RadioGroup>
+                </LinearLayout>
+                <LinearLayout android:tag="binding_38" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                    <TextView android:text="声道索引" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                    <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f090216" android:tag="binding_39" android:layout_width="20.0dp" android:layout_height="20.0dp" android:layout_weight="1.0" />
+                    <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f090217" android:tag="binding_40" android:layout_width="20.0dp" android:layout_height="20.0dp" android:layout_weight="1.0" />
+                    <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f090218" android:tag="binding_41" android:layout_width="20.0dp" android:layout_height="20.0dp" android:layout_weight="1.0" />
+                    <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f090219" android:tag="binding_42" android:layout_width="20.0dp" android:layout_height="20.0dp" android:layout_weight="1.0" />
+                    <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f09021a" android:tag="binding_43" android:layout_width="20.0dp" android:layout_height="20.0dp" android:layout_weight="1.0" />
+                    <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f09021b" android:tag="binding_44" android:layout_width="20.0dp" android:layout_height="20.0dp" android:layout_weight="1.0" />
+                    <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f09021c" android:tag="binding_45" android:layout_width="20.0dp" android:layout_height="20.0dp" android:layout_weight="1.0" />
+                    <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f09021d" android:tag="binding_46" android:layout_width="20.0dp" android:layout_height="20.0dp" android:layout_weight="1.0" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:tag="binding_47" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="播放录音" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f0901cd" android:background="@drawable/APKTOOL_RENAMED_0x7f0800d7" android:layout_width="24.0dp" android:layout_height="24.0dp" android:button="@null" app:APKTOOL_RENAMED_0x7f040071="@null" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <cn.manstep.phonemirrorBox.widget.WaveformView android:id="@id/APKTOOL_RENAMED_0x7f0902bb" android:tag="binding_48" android:layout_width="match_parent" android:layout_height="100.0dp" android:layout_marginBottom="96.0dp" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" />
+    <LinearLayout android:tag="binding_49" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f10011c">
+        <TextView android:id="@id/APKTOOL_RENAMED_0x7f0902b6" android:padding="0.0dp" android:layout_width="wrap_content" android:layout_margin="0.0dp" android:text="音量(100)" android:layout_weight="0.0" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+        <SeekBar android:id="@id/APKTOOL_RENAMED_0x7f0902b5" android:layout_width="0.0dp" android:layout_height="match_parent" android:layout_weight="2.0" />
+        <TextView android:gravity="center" android:id="@id/APKTOOL_RENAMED_0x7f0902b7" android:padding="0.0dp" android:layout_width="48.0dp" android:text="100" android:layout_weight="0.0" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+        <ImageView android:id="@id/APKTOOL_RENAMED_0x7f090133" android:layout_width="20.0dp" android:layout_height="20.0dp" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800e9" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

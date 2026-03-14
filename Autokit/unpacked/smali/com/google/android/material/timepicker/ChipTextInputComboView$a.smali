@@ -1,0 +1,17 @@
+.class synthetic Lcom/google/android/material/timepicker/ChipTextInputComboView$a;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/EnclosingClass;
+  value = Lcom/google/android/material/timepicker/ChipTextInputComboView;
+.end annotation
+.annotation system Ldalvik/annotation/InnerClass;
+  accessFlags = 4104
+  name = null
+.end annotation
+
+.method public constructor <init>()V
+  .registers 2
+    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+    return-void
+.end method

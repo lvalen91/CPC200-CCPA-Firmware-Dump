@@ -1,0 +1,6 @@
+package p016c.p065p;
+
+/* JADX INFO: renamed from: c.p.m0 */
+/* JADX INFO: loaded from: /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/classes_decrypted.dex */
+interface InterfaceC0677m0 {
+}

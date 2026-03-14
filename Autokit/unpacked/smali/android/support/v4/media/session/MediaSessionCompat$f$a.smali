@@ -1,0 +1,44 @@
+.class Landroid/support/v4/media/session/MediaSessionCompat$f$a;
+.super Ljava/lang/Object;
+.implements Landroid/media/RemoteControlClient$OnMetadataUpdateListener;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/EnclosingMethod;
+  value = Landroid/support/v4/media/session/MediaSessionCompat$f;->h(Landroid/support/v4/media/session/MediaSessionCompat$c;Landroid/os/Handler;)V
+.end annotation
+.annotation system Ldalvik/annotation/InnerClass;
+  accessFlags = 0
+  name = null
+.end annotation
+
+.field final synthetic a:Landroid/support/v4/media/session/MediaSessionCompat$f;
+
+.method constructor <init>(Landroid/support/v4/media/session/MediaSessionCompat$f;)V
+  .registers 2
+  .line 1
+    iput-object p1, p0, Landroid/support/v4/media/session/MediaSessionCompat$f$a;->a:Landroid/support/v4/media/session/MediaSessionCompat$f;
+    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+    return-void
+.end method
+
+.method public onMetadataUpdate(ILjava/lang/Object;)V
+  .registers 9
+    const v0, 268435457
+    if-ne p1, v0, :L0
+  .line 1
+    instance-of p1, p2, Landroid/media/Rating;
+    if-eqz p1, :L0
+  .line 2
+    iget-object v0, p0, Landroid/support/v4/media/session/MediaSessionCompat$f$a;->a:Landroid/support/v4/media/session/MediaSessionCompat$f;
+    const/16 v1, 19
+    const/4 v2, -1
+    const/4 v3, -1
+  .line 3
+    invoke-static { p2 }, Landroid/support/v4/media/RatingCompat;->j(Ljava/lang/Object;)Landroid/support/v4/media/RatingCompat;
+    move-result-object v4
+    const/4 v5, 0
+  .line 4
+    invoke-virtual/range { v0 .. v5 }, Landroid/support/v4/media/session/MediaSessionCompat$i;->o(IIILjava/lang/Object;Landroid/os/Bundle;)V
+  :L0
+    return-void
+.end method

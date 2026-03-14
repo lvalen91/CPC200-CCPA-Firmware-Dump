@@ -1,0 +1,137 @@
+# Autokit Class Index (sorted by size)
+# Tue Mar 10 17:38:23 AKDT 2026
+   65330 total
+    2892 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/BoxInterface/C0735f.java
+    2800 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p075i0/C0874t.java
+    2379 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/MainActivity.java
+    2236 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p075i0/C0862h.java
+    1670 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C1016y.java
+    1566 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p075i0/C0856b.java
+    1496 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/BoxInterface/C0731b.java
+    1491 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/ViewOnClickListenerC1017z.java
+    1393 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p089v0/C0995e.java
+    1224 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p091x0/C1013k.java
+    1180 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p075i0/C0868n.java
+    1149 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p075i0/C0860f.java
+    1139 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p078l0/C0905l.java
+    1048 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p081n0/C0922a.java
+    1007 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C0953u.java
+     925 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/BoxInterface/C0730a.java
+     909 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/AutoKitHideSettingsActivity.java
+     891 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/BoxInterface/C0733d.java
+     874 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/ActivityC0881k.java
+     846 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p083p0/C0928c.java
+     663 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/AndroidH264view.java
+     652 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/KeyLearnActivity.java
+     638 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/AutoStartService.java
+     630 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p091x0/C1003a.java
+     612 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util/C0975l.java
+     570 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p091x0/C1011i.java
+     531 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p091x0/C1009g.java
+     512 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p091x0/C1006d.java
+     506 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C0930q.java
+     492 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/AutoBoxMirrorTextureView.java
+     491 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/BoxInterface/C0739j.java
+     490 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p078l0/ViewOnClickListenerC0909p.java
+     467 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p078l0/ViewOnClickListenerC0911r.java
+     447 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util/C0968e0.java
+     443 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util/C0979p.java
+     426 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C0795b0.java
+     421 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/customview/AdjustSizeView.java
+     413 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/floatwindow/C0844f.java
+     412 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C0797c0.java
+     408 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p089v0/C0991a.java
+     404 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p078l0/C0908o.java
+     396 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p091x0/C1007e.java
+     396 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/BoxInterface/C0732c.java
+     391 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util/C0977n.java
+     376 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/ecarx/ECarXUtil.java
+     373 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p088u0/C0956c.java
+     359 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p075i0/C0870p.java
+     348 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p078l0/ViewOnClickListenerC0910q.java
+     343 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util/C0964c0.java
+     336 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/service/BackgroundService.java
+     335 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/floatwindow/C0843e.java
+     334 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/AutoBoxMirrorView.java
+     331 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util/C0966d0.java
+     322 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p078l0/C0915v.java
+     310 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C0990v.java
+     306 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C0792a0.java
+     305 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/AutoBoxMirrorSoftView.java
+     304 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p077k0/C0882a.java
+     302 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p077k0/C0890i.java
+     299 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/floatwindow/FloatWindowService.java
+     297 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C0921n.java
+     296 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p085r0/InterfaceC0941c.java
+     289 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/floatwindow/ViewOnClickListenerC0841c.java
+     286 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p091x0/C1015m.java
+     285 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util/C0962b0.java
+     281 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/MyApplication.java
+     270 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p088u0/AbstractC0954a.java
+     261 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/DialogC0893l.java
+     252 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p069d/C0799a.java
+     248 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p077k0/DialogC0891j.java
+     235 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p077k0/C0889h.java
+     232 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util/C0982s.java
+     229 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p089v0/C0993c.java
+     226 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/WaitFragment.java
+     226 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p072f0/C0827c.java
+     226 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/AndroidJpegView.java
+     225 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C0925p.java
+     222 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/customview/C0798a.java
+     219 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util/C0980q.java
+     217 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/ModeChangeService.java
+     214 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/AssistTouch.java
+     210 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p077k0/C0884c.java
+     209 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/FloatWindowService.java
+     206 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p072f0/C0829e.java
+     204 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p090w0/C0998b.java
+     200 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/FirstPage.java
+     198 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/customview/SelectTextSettingsItem.java
+     189 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/customview/CustomProgressBar.java
+     173 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p078l0/C0913t.java
+     172 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p072f0/C0826b.java
+     171 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p072f0/C0831g.java
+     169 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p077k0/C0892k.java
+     167 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/MediaButtonReceiver.java
+     164 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p075i0/C0878x.java
+     160 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p077k0/C0888g.java
+     159 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p072f0/C0830f.java
+     154 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p088u0/C0957d.java
+     153 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/C1002x.java
+     150 /Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p075i0/C0858d.java
+
+# Package structure
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/BoxInterface
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/customview
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/ecarx
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/floatwindow
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p069d
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p070d0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p071e0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p072f0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p073g0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p074h0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p075i0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p076j0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p077k0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p078l0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p079m0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p079m0/p080a
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p081n0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p082o0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p083p0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p084q0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p085r0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p086s0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p087t0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p088u0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p089v0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p090w0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/p091x0
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/service
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/util
+/Users/zeno/Downloads/misc/cpc200_ccpa_firmware_binaries/apk/unpacked/sources/cn/manstep/phonemirrorBox/widget

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <boolean name="MediaPlaying_5" value="false" />
+    <boolean name="Cmd_1_b" value="true" />
+    <boolean name="UsedWirelessMode" value="true" />
+    <int name="UiVersion" value="37" />
+    <int name="MicGain" value="0" />
+    <boolean name="HaveMuteFile" value="true" />
+    <int name="KeyCode_6" value="18" />
+    <int name="KeyCode_5" value="17" />
+    <int name="KeyCode_87" value="2" />
+    <int name="KeyCode_88" value="1" />
+    <boolean name="Cmd_5_b" value="true" />
+    <int name="KeyCode_85" value="5" />
+    <boolean name="Cmd_2_b" value="true" />
+    <int name="WirelessConnectMode" value="0" />
+    <int name="mediaDelay" value="300" />
+    <float name="density" value="3.3333333" />
+    <float name="sdensity" value="3.3333333" />
+    <int name="vandroidautoh" value="1080" />
+    <int name="Cmd_17" value="5" />
+    <int name="KeyCode_231" value="8" />
+    <int name="BootDelay" value="0" />
+    <int name="Cmd_2" value="87" />
+    <int name="Cmd_1" value="88" />
+    <int name="Cmd_18" value="6" />
+    <int name="Cmd_8" value="231" />
+    <int name="Cmd_5" value="85" />
+    <int name="densityd" value="533" />
+    <string name="BoxVersion">BOX:2025.10.15.1127CAYW</string>
+    <boolean name="ATP" value="true" />
+</map>

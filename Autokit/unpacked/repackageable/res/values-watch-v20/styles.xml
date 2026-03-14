@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="APKTOOL_RENAMED_0x7f100054" parent="@style/APKTOOL_RENAMED_0x7f1000a0">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+    <style name="APKTOOL_RENAMED_0x7f10005b" parent="@style/APKTOOL_RENAMED_0x7f1000a2">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+    <style name="APKTOOL_RENAMED_0x7f100077" parent="@style/APKTOOL_RENAMED_0x7f1000a3">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+</resources>

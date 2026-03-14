@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AlertDialogLayout android:gravity="start|top" android:orientation="vertical" android:id="@id/APKTOOL_RENAMED_0x7f0901c1" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/APKTOOL_RENAMED_0x7f0c000a" />
+    <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f0900ae" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48.0dp">
+        <View android:layout_gravity="top" android:id="@id/APKTOOL_RENAMED_0x7f0901f5" android:background="?APKTOOL_RENAMED_0x7f0400ba" android:visibility="gone" android:layout_width="match_parent" android:layout_height="1.0dp" />
+        <androidx.core.widget.NestedScrollView android:id="@id/APKTOOL_RENAMED_0x7f0901f6" android:clipToPadding="false" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <android.widget.Space android:id="@id/APKTOOL_RENAMED_0x7f090253" android:visibility="gone" android:layout_width="match_parent" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070025" />
+                <TextView android:id="@android:id/message" android:paddingLeft="?APKTOOL_RENAMED_0x7f040114" android:paddingRight="?APKTOOL_RENAMED_0x7f040114" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/APKTOOL_RENAMED_0x7f1001ae" />
+                <android.widget.Space android:id="@id/APKTOOL_RENAMED_0x7f090252" android:visibility="gone" android:layout_width="match_parent" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070025" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+        <View android:layout_gravity="bottom" android:id="@id/APKTOOL_RENAMED_0x7f0901f4" android:background="?APKTOOL_RENAMED_0x7f0400ba" android:visibility="gone" android:layout_width="match_parent" android:layout_height="1.0dp" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f0900b4" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48.0dp">
+        <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f0900b3" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </FrameLayout>
+    <include android:layout_width="match_parent" android:layout_height="wrap_content" layout="@layout/APKTOOL_RENAMED_0x7f0c0008" />
+</androidx.appcompat.widget.AlertDialogLayout>

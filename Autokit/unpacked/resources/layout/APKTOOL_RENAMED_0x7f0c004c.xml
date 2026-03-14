@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:background="@drawable/APKTOOL_RENAMED_0x7f08006f" android:focusable="true" android:clickable="true" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:id="@id/APKTOOL_RENAMED_0x7f090072" app:APKTOOL_RENAMED_0x7f0401dd="@id/APKTOOL_RENAMED_0x7f090295" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="@id/APKTOOL_RENAMED_0x7f090295" style="@style/APKTOOL_RENAMED_0x7f10011b" />
+    <TextView android:id="@id/APKTOOL_RENAMED_0x7f090295" android:layout_height="48.0dp" android:text="文件分享" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100271" />
+</androidx.constraintlayout.widget.ConstraintLayout>

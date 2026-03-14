@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:paddingLeft="@dimen/APKTOOL_RENAMED_0x7f070248" android:paddingTop="@dimen/APKTOOL_RENAMED_0x7f070248" android:paddingRight="@dimen/APKTOOL_RENAMED_0x7f070395" android:paddingBottom="@dimen/APKTOOL_RENAMED_0x7f070248" android:descendantFocusability="blocksDescendants" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="14.0sp" android:textColor="#000" android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/APKTOOL_RENAMED_0x7f09027d" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <View android:layout_width="0.0dp" android:layout_height="0.0dp" android:layout_weight="1.0" />
+    <ImageView android:gravity="center_vertical" android:layout_gravity="center_vertical" android:id="@id/APKTOOL_RENAMED_0x7f090126" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070404" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070404" />
+</LinearLayout>

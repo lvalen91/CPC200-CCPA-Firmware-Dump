@@ -1,0 +1,62 @@
+.class Lcom/google/android/material/floatingactionbutton/b$d;
+.super Ljava/lang/Object;
+.implements Landroid/animation/TypeEvaluator;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/EnclosingMethod;
+  value = Lcom/google/android/material/floatingactionbutton/b;->d0(Landroid/animation/ObjectAnimator;)V
+.end annotation
+.annotation system Ldalvik/annotation/InnerClass;
+  accessFlags = 0
+  name = null
+.end annotation
+.annotation system Ldalvik/annotation/Signature;
+  value = {
+    "Ljava/lang/Object;",
+    "Landroid/animation/TypeEvaluator<",
+    "Ljava/lang/Float;",
+    ">;"
+  }
+.end annotation
+
+.field a:Landroid/animation/FloatEvaluator;
+
+.method constructor <init>(Lcom/google/android/material/floatingactionbutton/b;)V
+  .registers 2
+  .line 1
+    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+  .line 2
+    new-instance p1, Landroid/animation/FloatEvaluator;
+    invoke-direct { p1 }, Landroid/animation/FloatEvaluator;-><init>()V
+    iput-object p1, p0, Lcom/google/android/material/floatingactionbutton/b$d;->a:Landroid/animation/FloatEvaluator;
+    return-void
+.end method
+
+.method public a(FLjava/lang/Float;Ljava/lang/Float;)Ljava/lang/Float;
+  .registers 5
+  .line 1
+    iget-object v0, p0, Lcom/google/android/material/floatingactionbutton/b$d;->a:Landroid/animation/FloatEvaluator;
+    invoke-virtual { v0, p1, p2, p3 }, Landroid/animation/FloatEvaluator;->evaluate(FLjava/lang/Number;Ljava/lang/Number;)Ljava/lang/Float;
+    move-result-object p1
+    invoke-virtual { p1 }, Ljava/lang/Float;->floatValue()F
+    move-result p1
+    const p2, 1036831949
+    cmpg-float p2, p1, p2
+    if-gez p2, :L0
+    const/4 p1, 0
+  :L0
+  .line 2
+    invoke-static { p1 }, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
+    move-result-object p1
+    return-object p1
+.end method
+
+.method public bridge synthetic evaluate(FLjava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  .registers 4
+  .line 1
+    check-cast p2, Ljava/lang/Float;
+    check-cast p3, Ljava/lang/Float;
+    invoke-virtual { p0, p1, p2, p3 }, Lcom/google/android/material/floatingactionbutton/b$d;->a(FLjava/lang/Float;Ljava/lang/Float;)Ljava/lang/Float;
+    move-result-object p1
+    return-object p1
+.end method

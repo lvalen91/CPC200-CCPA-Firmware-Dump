@@ -1,0 +1,70 @@
+.class public Landroidx/appcompat/widget/AppCompatSeekBar;
+.super Landroid/widget/SeekBar;
+.source "SourceFile"
+
+.field private final b:Landroidx/appcompat/widget/t;
+
+.method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+  .registers 4
+  .line 1
+    sget v0, Lc/a/a;->seekBarStyle:I
+    invoke-direct { p0, p1, p2, v0 }, Landroidx/appcompat/widget/AppCompatSeekBar;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+    return-void
+.end method
+
+.method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+  .registers 4
+  .line 2
+    invoke-direct { p0, p1, p2, p3 }, Landroid/widget/SeekBar;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+  .line 3
+    invoke-virtual { p0 }, Landroid/widget/SeekBar;->getContext()Landroid/content/Context;
+    move-result-object p1
+    invoke-static { p0, p1 }, Landroidx/appcompat/widget/p0;->a(Landroid/view/View;Landroid/content/Context;)V
+  .line 4
+    new-instance p1, Landroidx/appcompat/widget/t;
+    invoke-direct { p1, p0 }, Landroidx/appcompat/widget/t;-><init>(Landroid/widget/SeekBar;)V
+    iput-object p1, p0, Landroidx/appcompat/widget/AppCompatSeekBar;->b:Landroidx/appcompat/widget/t;
+  .line 5
+    invoke-virtual { p1, p2, p3 }, Landroidx/appcompat/widget/t;->c(Landroid/util/AttributeSet;I)V
+    return-void
+.end method
+
+.method protected drawableStateChanged()V
+  .registers 2
+  .line 1
+    invoke-super { p0 }, Landroid/widget/SeekBar;->drawableStateChanged()V
+  .line 2
+    iget-object v0, p0, Landroidx/appcompat/widget/AppCompatSeekBar;->b:Landroidx/appcompat/widget/t;
+    invoke-virtual { v0 }, Landroidx/appcompat/widget/t;->h()V
+    return-void
+.end method
+
+.method public jumpDrawablesToCurrentState()V
+  .registers 2
+  .line 1
+    invoke-super { p0 }, Landroid/widget/SeekBar;->jumpDrawablesToCurrentState()V
+  .line 2
+    iget-object v0, p0, Landroidx/appcompat/widget/AppCompatSeekBar;->b:Landroidx/appcompat/widget/t;
+    invoke-virtual { v0 }, Landroidx/appcompat/widget/t;->i()V
+    return-void
+.end method
+
+.method protected declared-synchronized onDraw(Landroid/graphics/Canvas;)V
+  .catchall { :L0 .. :L1 } :L2
+  .registers 3
+    monitor-enter p0
+  :L0
+  .line 1
+    invoke-super { p0, p1 }, Landroid/widget/SeekBar;->onDraw(Landroid/graphics/Canvas;)V
+  .line 2
+    iget-object v0, p0, Landroidx/appcompat/widget/AppCompatSeekBar;->b:Landroidx/appcompat/widget/t;
+    invoke-virtual { v0, p1 }, Landroidx/appcompat/widget/t;->g(Landroid/graphics/Canvas;)V
+  :L1
+  .line 3
+    monitor-exit p0
+    return-void
+  :L2
+    move-exception p1
+    monitor-exit p0
+    throw p1
+.end method

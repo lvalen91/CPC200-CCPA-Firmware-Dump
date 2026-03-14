@@ -1,0 +1,14 @@
+package cn.manstep.phonemirrorBox.g0;
+
+/* JADX INFO: loaded from: /tmp/autokit_analysis/dumped_dex/dex_47.dex */
+public class c {
+    private String a;
+
+    public c(int i, String str) {
+        this.a = str;
+    }
+
+    public String a() {
+        return this.a;
+    }
+}

@@ -1,0 +1,329 @@
+.class final Lcom/google/android/material/datepicker/l;
+.super Ljava/lang/Object;
+.implements Ljava/lang/Comparable;
+.implements Landroid/os/Parcelable;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/Signature;
+  value = {
+    "Ljava/lang/Object;",
+    "Ljava/lang/Comparable<",
+    "Lcom/google/android/material/datepicker/l;",
+    ">;",
+    "Landroid/os/Parcelable;"
+  }
+.end annotation
+
+.field public final static CREATOR:Landroid/os/Parcelable$Creator;
+  .annotation system Ldalvik/annotation/Signature;
+    value = {
+      "Landroid/os/Parcelable$Creator<",
+      "Lcom/google/android/material/datepicker/l;",
+      ">;"
+    }
+  .end annotation
+.end field
+
+.field private final b:Ljava/util/Calendar;
+
+.field final c:I
+
+.field final d:I
+
+.field final e:I
+
+.field final f:I
+
+.field final g:J
+
+.field private h:Ljava/lang/String;
+
+.method static constructor <clinit>()V
+  .registers 3
+  .line 1
+    new-instance v0, Lcom/google/android/material/datepicker/l$a;
+    invoke-direct { v0 }, Lcom/google/android/material/datepicker/l$a;-><init>()V
+    sput-object v0, Lcom/google/android/material/datepicker/l;->CREATOR:Landroid/os/Parcelable$Creator;
+    return-void
+.end method
+
+.method private constructor <init>(Ljava/util/Calendar;)V
+  .registers 5
+  .line 1
+    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+    const/4 v0, 5
+    const/4 v1, 1
+  .line 2
+    invoke-virtual { p1, v0, v1 }, Ljava/util/Calendar;->set(II)V
+  .line 3
+    invoke-static { p1 }, Lcom/google/android/material/datepicker/s;->d(Ljava/util/Calendar;)Ljava/util/Calendar;
+    move-result-object p1
+    iput-object p1, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    const/4 v2, 2
+  .line 4
+    invoke-virtual { p1, v2 }, Ljava/util/Calendar;->get(I)I
+    move-result p1
+    iput p1, p0, Lcom/google/android/material/datepicker/l;->c:I
+  .line 5
+    iget-object p1, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-virtual { p1, v1 }, Ljava/util/Calendar;->get(I)I
+    move-result p1
+    iput p1, p0, Lcom/google/android/material/datepicker/l;->d:I
+  .line 6
+    iget-object p1, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    const/4 v1, 7
+    invoke-virtual { p1, v1 }, Ljava/util/Calendar;->getMaximum(I)I
+    move-result p1
+    iput p1, p0, Lcom/google/android/material/datepicker/l;->e:I
+  .line 7
+    iget-object p1, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-virtual { p1, v0 }, Ljava/util/Calendar;->getActualMaximum(I)I
+    move-result p1
+    iput p1, p0, Lcom/google/android/material/datepicker/l;->f:I
+  .line 8
+    iget-object p1, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-virtual { p1 }, Ljava/util/Calendar;->getTimeInMillis()J
+    move-result-wide v0
+    iput-wide v0, p0, Lcom/google/android/material/datepicker/l;->g:J
+    return-void
+.end method
+
+.method static k(II)Lcom/google/android/material/datepicker/l;
+  .registers 4
+  .line 1
+    invoke-static { }, Lcom/google/android/material/datepicker/s;->k()Ljava/util/Calendar;
+    move-result-object v0
+    const/4 v1, 1
+  .line 2
+    invoke-virtual { v0, v1, p0 }, Ljava/util/Calendar;->set(II)V
+    const/4 p0, 2
+  .line 3
+    invoke-virtual { v0, p0, p1 }, Ljava/util/Calendar;->set(II)V
+  .line 4
+    new-instance p0, Lcom/google/android/material/datepicker/l;
+    invoke-direct { p0, v0 }, Lcom/google/android/material/datepicker/l;-><init>(Ljava/util/Calendar;)V
+    return-object p0
+.end method
+
+.method static l(J)Lcom/google/android/material/datepicker/l;
+  .registers 3
+  .line 1
+    invoke-static { }, Lcom/google/android/material/datepicker/s;->k()Ljava/util/Calendar;
+    move-result-object v0
+  .line 2
+    invoke-virtual { v0, p0, p1 }, Ljava/util/Calendar;->setTimeInMillis(J)V
+  .line 3
+    new-instance p0, Lcom/google/android/material/datepicker/l;
+    invoke-direct { p0, v0 }, Lcom/google/android/material/datepicker/l;-><init>(Ljava/util/Calendar;)V
+    return-object p0
+.end method
+
+.method static m()Lcom/google/android/material/datepicker/l;
+  .registers 4
+  .line 1
+    new-instance v0, Lcom/google/android/material/datepicker/l;
+    invoke-static { }, Lcom/google/android/material/datepicker/s;->i()Ljava/util/Calendar;
+    move-result-object v1
+    invoke-direct { v0, v1 }, Lcom/google/android/material/datepicker/l;-><init>(Ljava/util/Calendar;)V
+    return-object v0
+.end method
+
+.method public bridge synthetic compareTo(Ljava/lang/Object;)I
+  .registers 2
+  .line 1
+    check-cast p1, Lcom/google/android/material/datepicker/l;
+    invoke-virtual { p0, p1 }, Lcom/google/android/material/datepicker/l;->j(Lcom/google/android/material/datepicker/l;)I
+    move-result p1
+    return p1
+.end method
+
+.method public describeContents()I
+  .registers 2
+    const/4 v0, 0
+    return v0
+.end method
+
+.method public equals(Ljava/lang/Object;)Z
+  .registers 6
+    const/4 v0, 1
+    if-ne p0, p1, :L0
+    return v0
+  :L0
+  .line 1
+    instance-of v1, p1, Lcom/google/android/material/datepicker/l;
+    const/4 v2, 0
+    if-nez v1, :L1
+    return v2
+  :L1
+  .line 2
+    check-cast p1, Lcom/google/android/material/datepicker/l;
+  .line 3
+    iget v1, p0, Lcom/google/android/material/datepicker/l;->c:I
+    iget v3, p1, Lcom/google/android/material/datepicker/l;->c:I
+    if-ne v1, v3, :L2
+    iget v1, p0, Lcom/google/android/material/datepicker/l;->d:I
+    iget p1, p1, Lcom/google/android/material/datepicker/l;->d:I
+    if-ne v1, p1, :L2
+    goto :L3
+  :L2
+    const/4 v0, 0
+  :L3
+    return v0
+.end method
+
+.method public hashCode()I
+  .registers 4
+    const/4 v0, 2
+    new-array v0, v0, [Ljava/lang/Object;
+  .line 1
+    iget v1, p0, Lcom/google/android/material/datepicker/l;->c:I
+    invoke-static { v1 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v1
+    const/4 v2, 0
+    aput-object v1, v0, v2
+    iget v1, p0, Lcom/google/android/material/datepicker/l;->d:I
+    invoke-static { v1 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v1
+    const/4 v2, 1
+    aput-object v1, v0, v2
+  .line 2
+    invoke-static { v0 }, Ljava/util/Arrays;->hashCode([Ljava/lang/Object;)I
+    move-result v0
+    return v0
+.end method
+
+.method public j(Lcom/google/android/material/datepicker/l;)I
+  .registers 3
+  .line 1
+    iget-object v0, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    iget-object p1, p1, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-virtual { v0, p1 }, Ljava/util/Calendar;->compareTo(Ljava/util/Calendar;)I
+    move-result p1
+    return p1
+.end method
+
+.method n()I
+  .registers 3
+  .line 1
+    iget-object v0, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    const/4 v1, 7
+    invoke-virtual { v0, v1 }, Ljava/util/Calendar;->get(I)I
+    move-result v0
+    iget-object v1, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-virtual { v1 }, Ljava/util/Calendar;->getFirstDayOfWeek()I
+    move-result v1
+    sub-int/2addr v0, v1
+    if-gez v0, :L0
+  .line 2
+    iget v1, p0, Lcom/google/android/material/datepicker/l;->e:I
+    add-int/2addr v0, v1
+  :L0
+    return v0
+.end method
+
+.method o(I)J
+  .registers 4
+  .line 1
+    iget-object v0, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-static { v0 }, Lcom/google/android/material/datepicker/s;->d(Ljava/util/Calendar;)Ljava/util/Calendar;
+    move-result-object v0
+    const/4 v1, 5
+  .line 2
+    invoke-virtual { v0, v1, p1 }, Ljava/util/Calendar;->set(II)V
+  .line 3
+    invoke-virtual { v0 }, Ljava/util/Calendar;->getTimeInMillis()J
+    move-result-wide v0
+    return-wide v0
+.end method
+
+.method p(J)I
+  .registers 4
+  .line 1
+    iget-object v0, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-static { v0 }, Lcom/google/android/material/datepicker/s;->d(Ljava/util/Calendar;)Ljava/util/Calendar;
+    move-result-object v0
+  .line 2
+    invoke-virtual { v0, p1, p2 }, Ljava/util/Calendar;->setTimeInMillis(J)V
+    const/4 p1, 5
+  .line 3
+    invoke-virtual { v0, p1 }, Ljava/util/Calendar;->get(I)I
+    move-result p1
+    return p1
+.end method
+
+.method q(Landroid/content/Context;)Ljava/lang/String;
+  .registers 4
+  .line 1
+    iget-object v0, p0, Lcom/google/android/material/datepicker/l;->h:Ljava/lang/String;
+    if-nez v0, :L0
+  .line 2
+    iget-object v0, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-virtual { v0 }, Ljava/util/Calendar;->getTimeInMillis()J
+    move-result-wide v0
+    invoke-static { p1, v0, v1 }, Lcom/google/android/material/datepicker/e;->c(Landroid/content/Context;J)Ljava/lang/String;
+    move-result-object p1
+    iput-object p1, p0, Lcom/google/android/material/datepicker/l;->h:Ljava/lang/String;
+  :L0
+  .line 3
+    iget-object p1, p0, Lcom/google/android/material/datepicker/l;->h:Ljava/lang/String;
+    return-object p1
+.end method
+
+.method r()J
+  .registers 3
+  .line 1
+    iget-object v0, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-virtual { v0 }, Ljava/util/Calendar;->getTimeInMillis()J
+    move-result-wide v0
+    return-wide v0
+.end method
+
+.method s(I)Lcom/google/android/material/datepicker/l;
+  .registers 4
+  .line 1
+    iget-object v0, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    invoke-static { v0 }, Lcom/google/android/material/datepicker/s;->d(Ljava/util/Calendar;)Ljava/util/Calendar;
+    move-result-object v0
+    const/4 v1, 2
+  .line 2
+    invoke-virtual { v0, v1, p1 }, Ljava/util/Calendar;->add(II)V
+  .line 3
+    new-instance p1, Lcom/google/android/material/datepicker/l;
+    invoke-direct { p1, v0 }, Lcom/google/android/material/datepicker/l;-><init>(Ljava/util/Calendar;)V
+    return-object p1
+.end method
+
+.method t(Lcom/google/android/material/datepicker/l;)I
+  .registers 4
+  .line 1
+    iget-object v0, p0, Lcom/google/android/material/datepicker/l;->b:Ljava/util/Calendar;
+    instance-of v0, v0, Ljava/util/GregorianCalendar;
+    if-eqz v0, :L0
+  .line 2
+    iget v0, p1, Lcom/google/android/material/datepicker/l;->d:I
+    iget v1, p0, Lcom/google/android/material/datepicker/l;->d:I
+    sub-int/2addr v0, v1
+    mul-int/lit8 v0, v0, 12
+    iget p1, p1, Lcom/google/android/material/datepicker/l;->c:I
+    iget v1, p0, Lcom/google/android/material/datepicker/l;->c:I
+    sub-int/2addr p1, v1
+    add-int/2addr v0, p1
+    return v0
+  :L0
+  .line 3
+    new-instance p1, Ljava/lang/IllegalArgumentException;
+    const-string v0, "Only Gregorian calendars are supported."
+    invoke-direct { p1, v0 }, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    throw p1
+.end method
+
+.method public writeToParcel(Landroid/os/Parcel;I)V
+  .registers 3
+  .line 1
+    iget p2, p0, Lcom/google/android/material/datepicker/l;->d:I
+    invoke-virtual { p1, p2 }, Landroid/os/Parcel;->writeInt(I)V
+  .line 2
+    iget p2, p0, Lcom/google/android/material/datepicker/l;->c:I
+    invoke-virtual { p1, p2 }, Landroid/os/Parcel;->writeInt(I)V
+    return-void
+.end method

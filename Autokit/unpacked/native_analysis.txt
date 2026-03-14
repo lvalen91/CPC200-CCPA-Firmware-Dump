@@ -1,0 +1,389 @@
+# Native Library Analysis - Tue Mar 10 17:38:04 AKDT 2026
+
+================================================================
+Library: libAudioProcess.so (arm64-v8a)
+================================================================
+--- JNI / Exports ---
+215  0x00154464 0x00154464 GLOBAL FUNC   180      WebRtcAecm_GetBufferFarendError
+218  0x000bf294 0x000bf294 GLOBAL FUNC   356      _ZN3rtc11html_decodeEPcmPKcm                                                                                                                                               rtc::html_decode(char*, unsigned long, char const*, unsigned long)
+222  0x0011f988 0x0011f988 GLOBAL FUNC   300      _ZN6webrtc23IntelligibilityEnhancer17TransformCallback17ProcessAudioBlockEPKPKNSt6__ndk17complexIfEEmmmPKPS4_                                                              webrtc::IntelligibilityEnhancer::TransformCallback::ProcessAudioBlock(std::__ndk1::complex<float> const* const*, unsigned long, unsigned long, unsigned long, std::__ndk1::complex<float>* const*)
+227  0x00176f54 0x00176f54 GLOBAL FUNC   160      _ZN6webrtc11AudioBuffer11split_bandsEm                                                                                                                                     webrtc::AudioBuffer::split_bands(unsigned long)
+235  0x000d1f14 0x000d1f14 GLOBAL FUNC   4280     WebRtcIsac_EncodeLb
+237  0x00181388 0x00181388 GLOBAL FUNC   124      _ZN6webrtc19AudioProcessingImpl19set_delay_offset_msEi                                                                                                                     webrtc::AudioProcessingImpl::set_delay_offset_ms(int)
+244  0x00151e30 0x00151e30 GLOBAL FUNC   856      WebRtcAecm_ProcessFrame
+254  0x00177d64 0x00177d64 GLOBAL FUNC   24       _ZNK6webrtc11AudioBuffer9num_bandsEv                                                                                                                                       webrtc::AudioBuffer::num_bands() const
+265  0x001d49d4 0x001d49d4 GLOBAL FUNC   8        _ZNKSt6__ndk115__codecvt_utf16IDsLb0EE16do_always_noconvEv                                                                                                                 std::__ndk1::__codecvt_utf16<char16_t, false>::do_always_noconv() const
+287  0x001786c0 0x001786c0 GLOBAL FUNC   120      _ZN6webrtc11AudioBuffer19MergeFrequencyBandsEv                                                                                                                             webrtc::AudioBuffer::MergeFrequencyBands()
+288  0x001d29b4 0x001d29b4 GLOBAL FUNC   212      _ZNKSt6__ndk17codecvtIwc9mbstate_tE11do_encodingEv                                                                                                                         std::__ndk1::codecvt<wchar_t, char, mbstate_t>::do_encoding() const
+356  0x0021ac20 0x0021ac20 GLOBAL OBJ    31       _ZTSN6webrtc19AudioProcessingImplE                                                                                                                                         typeinfo name for webrtc::AudioProcessingImpl
+396  0x001d36dc 0x001d36dc GLOBAL FUNC   104      _ZNKSt6__ndk17codecvtIDic9mbstate_tE5do_inERS1_PKcS5_RS5_PDiS7_RS7_                                                                                                        std::__ndk1::codecvt<char32_t, char, mbstate_t>::do_in(mbstate_t&, char const*, char const*, char const*&, char32_t*, char32_t*, char32_t*&) const
+404  0x0017f74c 0x0017f74c GLOBAL FUNC   748      _ZNK6webrtc19AudioProcessingImpl17is_data_processedEv                                                                                                                      webrtc::AudioProcessingImpl::is_data_processed() const
+408  0x0017c474 0x0017c474 GLOBAL FUNC   216      _ZN6webrtc19AudioProcessingImpl10InitializeERKNS_16ProcessingConfigE                                                                                                       webrtc::AudioProcessingImpl::Initialize(webrtc::ProcessingConfig const&)
+421  0x0017d370 0x0017d370 GLOBAL FUNC   444      _ZN6webrtc19AudioProcessingImpl25InitializeExperimentalAgcEv                                                                                                               webrtc::AudioProcessingImpl::InitializeExperimentalAgc()
+427  0x0017f058 0x0017f058 GLOBAL FUNC   1608     _ZN6webrtc19AudioProcessingImpl13ProcessStreamEPNS_10AudioFrameE                                                                                                           webrtc::AudioProcessingImpl::ProcessStream(webrtc::AudioFrame*)
+447  0x001d221c 0x001d221c GLOBAL FUNC   836      _ZNKSt6__ndk17codecvtIwc9mbstate_tE6do_outERS1_PKwS5_RS5_PcS7_RS7_                                                                                                         std::__ndk1::codecvt<wchar_t, char, mbstate_t>::do_out(mbstate_t&, wchar_t const*, wchar_t const*, wchar_t const*&, char*, char*, char*&) const
+448  0x000dbdf8 0x000dbdf8 GLOBAL FUNC   1172     WebRtcIsac_DecodePitchLag
+449  0x000c9244 0x000c9244 GLOBAL FUNC   492      _ZN6webrtc12AudioDecoder15DecodeRedundantEPKhmimPsPNS0_10SpeechTypeE                                                                                                       webrtc::AudioDecoder::DecodeRedundant(unsigned char const*, unsigned long, int, unsigned long, short*, webrtc::AudioDecoder::SpeechType*)
+462  0x00181304 0x00181304 GLOBAL FUNC   132      _ZN6webrtc19AudioProcessingImpl22set_stream_key_pressedEb                                                                                                                  webrtc::AudioProcessingImpl::set_stream_key_pressed(bool)
+468  0x00187238 0x00187238 GLOBAL FUNC   1120     _ZN6webrtc20EchoCancellationImpl19ProcessCaptureAudioEPNS_11AudioBufferE                                                                                                   webrtc::EchoCancellationImpl::ProcessCaptureAudio(webrtc::AudioBuffer*)
+480  0x001d5b20 0x001d5b20 GLOBAL FUNC   24       _ZNKSt6__ndk120__codecvt_utf8_utf16IDiE13do_max_lengthEv                                                                                                                   std::__ndk1::__codecvt_utf8_utf16<char32_t>::do_max_length() const
+481  0x000d8548 0x000d8548 GLOBAL FUNC   496      WebRtcIsac_EncodeRc
+491  0x001d4364 0x001d4364 GLOBAL FUNC   272      _ZNKSt6__ndk115__codecvt_utf16IwLb0EE5do_inER9mbstate_tPKcS5_RS5_PwS7_RS7_                                                                                                 std::__ndk1::__codecvt_utf16<wchar_t, false>::do_in(mbstate_t&, char const*, char const*, char const*&, wchar_t*, wchar_t*, wchar_t*&) const
+492  0x00177028 0x00177028 GLOBAL FUNC   176      _ZNK6webrtc11AudioBuffer20split_channels_constENS_4BandE                                                                                                                   webrtc::AudioBuffer::split_channels_const(webrtc::Band) const
+499  0x0027a158 0x0027b158 GLOBAL OBJ    96       _ZTVNSt6__ndk115__codecvt_utf16IwLb1EEE                                                                                                                                    vtable for std::__ndk1::__codecvt_utf16<wchar_t, true>
+518  0x0021da77 0x0021da77 GLOBAL OBJ    36       _ZTSNSt6__ndk115__codecvt_utf16IwLb0EEE                                                                                                                                    typeinfo name for std::__ndk1::__codecvt_utf16<wchar_t, false>
+525  0x000be7a0 0x000be7a0 GLOBAL FUNC   608      _ZN3rtc11utf8_decodeEPKcmPm                                                                                                                                                rtc::utf8_decode(char const*, unsigned long, unsigned long*)
+526  0x0027a1b8 0x0027b1b8 GLOBAL OBJ    24       _ZTINSt6__ndk115__codecvt_utf16IwLb1EEE                                                                                                                                    typeinfo for std::__ndk1::__codecvt_utf16<wchar_t, true>
+538  0x0021a5f4 0x0021a5f4 GLOBAL OBJ    16       _ZN6webrtc15AudioProcessing20kNativeSampleRatesHzE                                                                                                                         webrtc::AudioProcessing::kNativeSampleRatesHz
+561  0x0017d9b4 0x0017d9b4 GLOBAL FUNC   60       _ZN6webrtc19AudioProcessingImpl24InitializeLevelEstimatorEv                                                                                                                webrtc::AudioProcessingImpl::InitializeLevelEstimator()
+592  0x000bf3f8 0x000bf3f8 GLOBAL FUNC   1396     _ZN3rtc10xml_decodeEPcmPKcm                                                                                                                                                rtc::xml_decode(char*, unsigned long, char const*, unsigned long)
+595  0x000c9d48 0x000c9d48 GLOBAL FUNC   20       _ZN6webrtc12AudioEncoder18SetMaxPlaybackRateEi                                                                                                                             webrtc::AudioEncoder::SetMaxPlaybackRate(int)
+610  0x00171208 0x00171208 GLOBAL FUNC   288      _ZN6webrtc13StandaloneVad8AddAudioEPKsm                                                                                                                                    webrtc::StandaloneVad::AddAudio(short const*, unsigned long)
+611  0x0017de20 0x0017de20 GLOBAL FUNC   52       _ZNK6webrtc19AudioProcessingImpl20num_reverse_channelsEv                                                                                                                   webrtc::AudioProcessingImpl::num_reverse_channels() const
+616  0x001dd6e4 0x001dd6e4 GLOBAL FUNC   196      _ZNSt6__ndk17codecvtIwc9mbstate_tED1Ev                                                                                                                                     std::__ndk1::codecvt<wchar_t, char, mbstate_t>::~codecvt()
+619  0x0017ca2c 0x0017ca2c GLOBAL FUNC   44       _ZN6webrtc19AudioProcessingImpl22MaybeInitializeCaptureERKNS_16ProcessingConfigE                                                                                           webrtc::AudioProcessingImpl::MaybeInitializeCapture(webrtc::ProcessingConfig const&)
+624  0x00181560 0x00181560 GLOBAL FUNC   224      _ZN6webrtc19AudioProcessingImpl19StartDebugRecordingEP7__sFILEl                                                                                                            webrtc::AudioProcessingImpl::StartDebugRecording(__sFILE*, long)
+650  0x0021da57 0x0021da57 GLOBAL OBJ    32       _ZTSNSt6__ndk114__codecvt_utf8IDiEE                                                                                                                                        typeinfo name for std::__ndk1::__codecvt_utf8<char32_t>
+660  0x001d3ce0 0x001d3ce0 GLOBAL FUNC   8        _ZNKSt6__ndk114__codecvt_utf8IwE11do_encodingEv                                                                                                                            std::__ndk1::__codecvt_utf8<wchar_t>::do_encoding() const
+665  0x000db9f8 0x000db9f8 GLOBAL FUNC   288      WebRtcIsac_DecodePitchGain
+689  0x0027a338 0x0027b338 GLOBAL OBJ    96       _ZTVNSt6__ndk115__codecvt_utf16IDiLb1EEE                                                                                                                                   vtable for std::__ndk1::__codecvt_utf16<char32_t, true>
+695  0x0021a5cd 0x0021a5cd GLOBAL OBJ    23       _ZTSN6webrtc11AudioBufferE                                                                                                                                                 typeinfo name for webrtc::AudioBuffer
+729  0x0017d0b0 0x0017d0b0 GLOBAL FUNC   104      _ZNK6webrtc19AudioProcessingImpl21rev_conversion_neededEv                                                                                                                  webrtc::AudioProcessingImpl::rev_conversion_needed() const
+743  0x000c9488 0x000c9488 GLOBAL FUNC   32       _ZNK6webrtc12AudioDecoder12HasDecodePlcEv                                                                                                                                  webrtc::AudioDecoder::HasDecodePlc() const
+751  0x00279d28 0x0027ad28 GLOBAL OBJ    56       _ZTINSt6__ndk17codecvtIDic9mbstate_tEE                                                                                                                                     typeinfo for std::__ndk1::codecvt<char32_t, char, mbstate_t>
+758  0x001d592c 0x001d592c GLOBAL FUNC   108      _ZNKSt6__ndk120__codecvt_utf8_utf16IDsE5do_inER9mbstate_tPKcS5_RS5_PDsS7_RS7_                                                                                              std::__ndk1::__codecvt_utf8_utf16<char16_t>::do_in(mbstate_t&, char const*, char const*, char const*&, char16_t*, char16_t*, char16_t*&) const
+764  0x000c0120 0x000c0120 GLOBAL FUNC   84       _ZN3rtc10hex_encodeERKNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE                                                                                  rtc::hex_encode(std::__ndk1::basic_string<char, std::__ndk1::char_traits<char>, std::__ndk1::allocator<char> > const&)
+789  0x001d1fd4 0x001d1fd4 GLOBAL FUNC   36       _ZNSt6__ndk17codecvtIcc9mbstate_tED0Ev                                                                                                                                     std::__ndk1::codecvt<char, char, mbstate_t>::~codecvt()
+--- Key Strings ---
+       VIDEO:%11ld;
+       VIDEO:%5ld %5ld;
+   VIDEO MIX:%11ld;
+   VIDEO MIX:%5ld %5ld;
+  AUDIO PROC:%11ld;
+  AUDIO PROC:%5ld %5ld;
+ AUDIO MIX/C:%11ld;
+ AUDIO MIX/C:%5ld %5ld;
+ AUDIO MIX/S:%11ld;
+ AUDIO MIX/S:%5ld %5ld;
+_Z27GetSubframesPitchParametersiPdS_iiS_S_S_S_
+_ZN3rtc10hex_decodeEcPh
+_ZN3rtc10hex_decodeEPcmPKcm
+_ZN3rtc10hex_decodeEPcmRKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEE
+_ZN3rtc10hex_encodeEh
+_ZN3rtc10hex_encodeEPcmPKcm
+_ZN3rtc10hex_encodeEPKcm
+_ZN3rtc10hex_encodeERKNSt6__ndk112basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEE
+_ZN3rtc10scoped_ptrIN6webrtc14AudioConverterENS_14DefaultDeleterIS2_EEE5resetEPS2_
+_ZN3rtc10scoped_ptrIN6webrtc14AudioConverterENS_14DefaultDeleterIS2_EEE7releaseEv
+_ZN3rtc10scoped_ptrIN6webrtc14AudioConverterENS_14DefaultDeleterIS2_EEEC2Ev
+_ZN3rtc10scoped_ptrIN6webrtc14AudioConverterENS_14DefaultDeleterIS2_EEEC2IS2_S4_EEONS0_IT_T0_EE
+_ZN3rtc10scoped_ptrIN6webrtc14AudioConverterENS_14DefaultDeleterIS2_EEED2Ev
+_ZN3rtc10url_decodeEPcmPKcm
+_ZN3rtc10url_encodeEPcmPKcm
+_ZN3rtc10xml_decodeEPcmPKcm
+_ZN3rtc10xml_encodeEPcmPKcm
+_ZN3rtc11html_decodeEPcmPKcm
+_ZN3rtc11html_encodeEPcmPKcm
+_ZN3rtc11utf8_decodeEPKcmPm
+_ZN3rtc11utf8_encodeEPcmm
+_ZN3rtc14DefaultDeleterIN6webrtc14AudioConverterEEC2Ev
+_ZN3rtc14ScopedToUniqueIN6webrtc14AudioConverterEEENSt6__ndk110unique_ptrIT_NS3_14default_deleteIS5_EEEENS_10scoped_ptrIS5_NS_14DefaultDeleterIS5_EEEE
+_ZN3rtc25hex_decode_with_delimiterEPcmPKcmc
+_ZN3rtc25hex_decode_with_delimiterEPcmRKNSt6__ndk112basic_stringIcNS1_11char_traitsIcEENS1_9allocatorIcEEEEc
+_ZN3rtc25hex_encode_with_delimiterEPcmPKcmc
+_ZN3rtc25hex_encode_with_delimiterEPKcmc
+_ZN3rtc6decodeEPcmPKcmc
+_ZN3rtc6encodeEPcmPKcmS2_c
+_ZN3rtc8internal15scoped_ptr_implIN6webrtc14AudioConverterENS_14DefaultDeleterIS3_EEE11get_deleterEv
+_ZN3rtc8internal15scoped_ptr_implIN6webrtc14AudioConverterENS_14DefaultDeleterIS3_EEE4DataC2EPS3_
+_ZN3rtc8internal15scoped_ptr_implIN6webrtc14AudioConverterENS_14DefaultDeleterIS3_EEE4DataC2EPS3_RKS5_
+_ZN3rtc8internal15scoped_ptr_implIN6webrtc14AudioConverterENS_14DefaultDeleterIS3_EEE5resetEPS3_
+_ZN3rtc8internal15scoped_ptr_implIN6webrtc14AudioConverterENS_14DefaultDeleterIS3_EEE7releaseEv
+_ZN3rtc8internal15scoped_ptr_implIN6webrtc14AudioConverterENS_14DefaultDeleterIS3_EEEC2EPS3_
+_ZN3rtc8internal15scoped_ptr_implIN6webrtc14AudioConverterENS_14DefaultDeleterIS3_EEEC2IS3_S5_EEPNS1_IT_T0_EE
+_ZN3rtc8internal15scoped_ptr_implIN6webrtc14AudioConverterENS_14DefaultDeleterIS3_EEED2Ev
+_ZN6webrtc10AudioFrame5ResetEv
+_ZN6webrtc10AudioFrameC2Ev
+_ZN6webrtc10AudioFrameD0Ev
+
+================================================================
+Library: libconnection.so (arm64-v8a)
+================================================================
+--- JNI / Exports ---
+122 0x000049f8 0x000049f8 GLOBAL FUNC   4        JNI_OnUnLoad
+173 0x0000496c 0x0000496c GLOBAL FUNC   140      JNI_OnLoad
+--- Key Strings ---
+ "libusb_control_transfer
+.eh_frame
+.eh_frame_hdr
+[%2ld.%06ld] [%08x] libusb: %s [%s] 
+/dev/bus/usb
+/dev/bus/usb/%03u
+/dev/bus/usb/%03u/%03u
+/dev/bus/usb/%hhu/%hhu
+/dev/usbdev%u.%u
+/sys/bus/usb/devices
+/sys/bus/usb/devices/%s/%s
+cn/manstep/phonemirrorBox/BoxInterface/BoxConnection
+found BOS descriptor: size %u bytes, %u capabilities
+found usbfs at %s
+get_usbfs_fd
+https://libusb.info
+invalid usbdev format '%s'
+is_usbdev_entry
+libusb
+libusb couldn't open USB device %s, errno=%d
+libusb requires write access to USB device nodes
+libusb v%u.%u.%u.%u%s
+libusb_alloc_streams
+libusb_alloc_transfer
+libusb_attach_kernel_driver
+libusb_bulk_transfer
+libusb_cancel_transfer
+libusb_claim_interface
+libusb_clear_halt
+libusb_close
+libusb_control_transfer
+LIBUSB_DEBUG
+libusb_detach_kernel_driver
+libusb_dev_mem_alloc
+libusb_dev_mem_free
+LIBUSB_ERROR_ACCESS
+LIBUSB_ERROR_BUSY
+LIBUSB_ERROR_INTERRUPTED
+LIBUSB_ERROR_INVALID_PARAM
+LIBUSB_ERROR_IO
+libusb_error_name
+LIBUSB_ERROR_NO_DEVICE
+LIBUSB_ERROR_NO_MEM
+LIBUSB_ERROR_NOT_FOUND
+LIBUSB_ERROR_NOT_SUPPORTED
+LIBUSB_ERROR_OTHER
+LIBUSB_ERROR_OVERFLOW
+LIBUSB_ERROR_PIPE
+LIBUSB_ERROR_TIMEOUT
+libusb_event_handler_active
+
+================================================================
+Library: libdtmf.so (arm64-v8a)
+================================================================
+--- JNI / Exports ---
+227 0x00006580 0x00006580 GLOBAL FUNC   484      Java_cn_manstep_phonemirrorBox_Dtmf_dtmfDoAec
+--- Key Strings ---
+_ZN11DTMFDecoderIsE18fillDtmfStatsTableEv
+_ZN11DTMFDecoderIsE19dtmfStatsTable_findEtt
+_ZN11DTMFDecoderIsE6decodeEPKsmi
+_ZN11DTMFDecoderIsEC2EPNS0_7HandlerEmmmd
+_ZN11TextHandler11OnCodeBeginEP11DTMFDecoderIsEhm
+_ZN11TextHandler6OnCodeEP11DTMFDecoderIsEhm
+_ZN11TextHandler9OnCodeEndEP11DTMFDecoderIsEhm
+_ZTIN11DTMFDecoderIsE7HandlerE
+_ZTSN11DTMFDecoderIsE7HandlerE
+.eh_frame
+.eh_frame_hdr
+DTMFDecoder
+Java_cn_manstep_phonemirrorBox_Dtmf_dtmfDoAec
+N11DTMFDecoderIsE7HandlerE
+
+================================================================
+Library: libhtlog.so (arm64-v8a)
+================================================================
+--- JNI / Exports ---
+31  0x00003724 0x00003724 GLOBAL FUNC   36       Java_net_iwebrtc_audioprocess_sdk_AudioProcess_set_1config
+153 0x000038e8 0x000038e8 GLOBAL FUNC   12       Java_net_iwebrtc_audioprocess_sdk_AudioProcess_initAgc
+155 0x0000f9e8 0x0000f9e8 GLOBAL FUNC   184      WebRtcAecm_BufferFarFrame
+157 0x0000fb94 0x0000fb94 GLOBAL FUNC   492      WebRtcAecm_ProcessFrame
+167 0x00003764 0x00003764 GLOBAL FUNC   360      Java_net_iwebrtc_audioprocess_sdk_AudioProcess_processData
+169 0x0000faa0 0x0000faa0 GLOBAL FUNC   244      WebRtcAecm_FetchFarFrame
+183 0x000038f4 0x000038f4 GLOBAL FUNC   160      Java_net_iwebrtc_audioprocess_sdk_AudioProcess_processDataAgc
+194 0x000038cc 0x000038cc GLOBAL FUNC   28       Java_net_iwebrtc_audioprocess_sdk_AudioProcess_destroy
+197 0x00003748 0x00003748 GLOBAL FUNC   28       Java_net_iwebrtc_audioprocess_sdk_AudioProcess_init
+202 0x0000371c 0x0000371c GLOBAL FUNC   8        Java_net_iwebrtc_audioprocess_sdk_AudioProcess_create
+210 0x00003994 0x00003994 GLOBAL FUNC   32       Java_net_iwebrtc_audioprocess_sdk_AudioProcess_destroyAgc
+--- Key Strings ---
+.eh_frame
+.eh_frame_hdr
+Java_net_iwebrtc_audioprocess_sdk_AudioProcess_create
+Java_net_iwebrtc_audioprocess_sdk_AudioProcess_destroy
+Java_net_iwebrtc_audioprocess_sdk_AudioProcess_destroyAgc
+Java_net_iwebrtc_audioprocess_sdk_AudioProcess_init
+Java_net_iwebrtc_audioprocess_sdk_AudioProcess_initAgc
+Java_net_iwebrtc_audioprocess_sdk_AudioProcess_processData
+Java_net_iwebrtc_audioprocess_sdk_AudioProcess_processDataAgc
+Java_net_iwebrtc_audioprocess_sdk_AudioProcess_set_1config
+WebRtc_history_size
+WebRtc_set_history_size
+WebRtcAecm_BufferFarFrame
+WebRtcAecm_CalcStepSize
+WebRtcAecm_echo_path_size_bytes
+WebRtcAecm_FetchFarFrame
+WebRtcAecm_ProcessFrame
+WebRtcSpl_DotProductWithScale
+WebRtcSpl_ScaleAndAddVectors
+WebRtcSpl_ScaleAndAddVectorsWithRound
+WebRtcSpl_ScaleAndAddVectorsWithRoundC
+WebRtcSpl_ScaleVector
+WebRtcSpl_ScaleVectorWithSat
+
+================================================================
+Library: libopenH264decoder.so (arm64-v8a)
+================================================================
+--- JNI / Exports ---
+3   0x0005bbac 0x0005bbac GLOBAL FUNC   808       _ZN7WelsDec16DecodeUEGMvCabacEPNS_19SWelsCabacDecEngineEPNS_19SWels_Cabac_ElementEjRj                                                  WelsDec::DecodeUEGMvCabac(WelsDec::SWelsCabacDecEngine*, WelsDec::SWels_Cabac_Element*, unsigned int, unsigned int&)
+7   0x0005b2bc 0x0005b2bc GLOBAL FUNC   208       _ZN7WelsDec20DecodeTerminateCabacEPNS_19SWelsCabacDecEngineERj                                                                         WelsDec::DecodeTerminateCabac(WelsDec::SWelsCabacDecEngine*, unsigned int&)
+9   0x0001204c 0x0001204c GLOBAL FUNC   200       _ZN7WelsDec12CWelsDecoder12UninitializeEv                                                                                              WelsDec::CWelsDecoder::Uninitialize()
+20  0x000512d4 0x000512d4 GLOBAL FUNC   4020      _ZN7WelsDec25ParseInterMotionInfoCabacEPNS_21TagWelsDecoderContextEPNS_16TagNeighborAvailEPhPA30_A2_sS7_PA30_a                         WelsDec::ParseInterMotionInfoCabac(WelsDec::TagWelsDecoderContext*, WelsDec::TagNeighborAvail*, unsigned char*, short (*) [30][2], short (*) [30][2], signed char (*) [30])
+25  0x00026230 0x00026230 GLOBAL FUNC   172       _ZN7WelsDec15WelsResetRefPicEPNS_21TagWelsDecoderContextE                                                                              WelsDec::WelsResetRefPic(WelsDec::TagWelsDecoderContext*)
+27  0x00019a98 0x00019a98 GLOBAL FUNC   332       _ZN7WelsDec12InitBsBufferEPNS_21TagWelsDecoderContextE                                                                                 WelsDec::InitBsBuffer(WelsDec::TagWelsDecoderContext*)
+32  0x0003fa34 0x0003fa34 GLOBAL FUNC   3220      _ZN7WelsDec14ParseNalHeaderEPNS_21TagWelsDecoderContextEPN10WelsCommon16TagNalUnitHeaderEPhiS5_iPi                                     WelsDec::ParseNalHeader(WelsDec::TagWelsDecoderContext*, WelsCommon::TagNalUnitHeader*, unsigned char*, int, unsigned char*, int, int*)
+36  0x0002e7c4 0x0002e7c4 GLOBAL FUNC   0         WelsDecoderI4x4LumaPredHU_AArch64_neon
+39  0x0001cfe4 0x0001cfe4 GLOBAL FUNC   196       _ZN7WelsDec18InitCurDqLayerDataEPNS_21TagWelsDecoderContextEPNS_10TagDqLayerE                                                          WelsDec::InitCurDqLayerData(WelsDec::TagWelsDecoderContext*, WelsDec::TagDqLayer*)
+42  0x0005b0b4 0x0005b0b4 GLOBAL FUNC   340       _ZN7WelsDec14DecodeBinCabacEPNS_19SWelsCabacDecEngineEPNS_19SWels_Cabac_ElementERj                                                     WelsDec::DecodeBinCabac(WelsDec::SWelsCabacDecEngine*, WelsDec::SWels_Cabac_Element*, unsigned int&)
+48  0x00011cd8 0x00011cd8 GLOBAL FUNC   460       _ZN7WelsDec12CWelsDecoder9SetOptionE14DECODER_OPTIONPv                                                                                 WelsDec::CWelsDecoder::SetOption(DECODER_OPTION, void*)
+49  0x000616dc 0x000616dc GLOBAL FUNC   64        __register_frame
+51  0x0002eaec 0x0002eaec GLOBAL FUNC   0         WelsDecoderI16x16LumaPredV_AArch64_neon
+54  0x0001cda8 0x0001cda8 GLOBAL FUNC   176       _ZN7WelsDec23WelsDecodeAccessUnitEndEPNS_21TagWelsDecoderContextE                                                                      WelsDec::WelsDecodeAccessUnitEnd(WelsDec::TagWelsDecoderContext*)
+56  0x00014c0c 0x00014c0c GLOBAL FUNC   8         _ZN14welsCodecTrace23SetTraceCallbackContextEPv                                                                                        welsCodecTrace::SetTraceCallbackContext(void*)
+58  0x00020df0 0x00020df0 GLOBAL FUNC   168       _ZN7WelsDec17ImplementErrorConEPNS_21TagWelsDecoderContextE                                                                            WelsDec::ImplementErrorCon(WelsDec::TagWelsDecoderContext*)
+59  0x0002e8ac 0x0002e8ac GLOBAL FUNC   0         WelsDecoderIChromaPredH_AArch64_neon
+62  0x00020d48 0x00020d48 GLOBAL FUNC   80        _ZN7WelsDec16MarkECFrameAsRefEPNS_21TagWelsDecoderContextE                                                                             WelsDec::MarkECFrameAsRef(WelsDec::TagWelsDecoderContext*)
+75  0x00050ed4 0x00050ed4 GLOBAL FUNC   672       _ZN7WelsDec16ParseRefIdxCabacEPNS_21TagWelsDecoderContextEPNS_16TagNeighborAvailEPhPA30_aiiiiRa                                        WelsDec::ParseRefIdxCabac(WelsDec::TagWelsDecoderContext*, WelsDec::TagNeighborAvail*, unsigned char*, signed char (*) [30], int, int, int, int, signed char&)
+78  0x00015e70 0x00015e70 GLOBAL FUNC   356       _ZN7WelsDec16WelsCloseDecoderEPNS_21TagWelsDecoderContextE                                                                             WelsDec::WelsCloseDecoder(WelsDec::TagWelsDecoderContext*)
+80  0x000491c0 0x000491c0 GLOBAL FUNC   604       _ZN7WelsDec27WelsTargetSliceConstructionEPNS_21TagWelsDecoderContextE                                                                  WelsDec::WelsTargetSliceConstruction(WelsDec::TagWelsDecoderContext*)
+81  0x0004b0d8 0x0004b0d8 GLOBAL FUNC   3196      _ZN7WelsDec32WelsDecodeMbCabacPSliceBaseMode0EPNS_21TagWelsDecoderContextEPNS_16TagNeighborAvailERj                                    WelsDec::WelsDecodeMbCabacPSliceBaseMode0(WelsDec::TagWelsDecoderContext*, WelsDec::TagNeighborAvail*, unsigned int&)
+84  0x00048bc8 0x00048bc8 GLOBAL FUNC   204       _ZN7WelsDec23WelsMbInterConstructionEPNS_21TagWelsDecoderContextEPNS_10TagDqLayerE                                                     WelsDec::WelsMbInterConstruction(WelsDec::TagWelsDecoderContext*, WelsDec::TagDqLayer*)
+86  0x00050718 0x00050718 GLOBAL FUNC   16        _ZN7WelsDec20ParseEndOfSliceCabacEPNS_21TagWelsDecoderContextERj                                                                       WelsDec::ParseEndOfSliceCabac(WelsDec::TagWelsDecoderContext*, unsigned int&)
+87  0x00055d70 0x00055d70 GLOBAL FUNC   10512     _ZN7WelsDec14ParseInterInfoEPNS_21TagWelsDecoderContextEPA30_A2_sPA30_aPN10WelsCommon15TagBitStringAuxE                                WelsDec::ParseInterInfo(WelsDec::TagWelsDecoderContext*, short (*) [30][2], signed char (*) [30], WelsCommon::TagBitStringAux*)
+104 0x00013800 0x00013800 GLOBAL FUNC   2496      _ZN7WelsDec12CWelsDecoder18DecodeFrameNoDelayEPKhiPPhP13TagBufferInfo                                                                  WelsDec::CWelsDecoder::DecodeFrameNoDelay(unsigned char const*, int, unsigned char**, TagBufferInfo*)
+110 0x000151b4 0x000151b4 GLOBAL FUNC   240       WelsDecoderDefaults
+111 0x0005575c 0x0005575c GLOBAL FUNC   1556      _ZN7WelsDec25WelsResidualBlockCavlc8x8EPNS_11TagVlcTableEPhPN10WelsCommon15TagBitStringAuxEiiPKhiPsihPNS_21TagWelsDecoderContextE      WelsDec::WelsResidualBlockCavlc8x8(WelsDec::TagVlcTable*, unsigned char*, WelsCommon::TagBitStringAux*, int, int, unsigned char const*, int, short*, int, unsigned char, WelsDec::TagWelsDecoderContext*)
+114 0x000127c4 0x000127c4 GLOBAL FUNC   752       _ZN7WelsDec12CWelsDecoder11InitDecoderEPK19TagSVCDecodingParam                                                                         WelsDec::CWelsDecoder::InitDecoder(TagSVCDecodingParam const*)
+115 0x00012114 0x00012114 GLOBAL FUNC   280       _ZN7WelsDec12CWelsDecoderD1Ev                                                                                                          WelsDec::CWelsDecoder::~CWelsDecoder()
+116 0x00014bf8 0x00014bf8 GLOBAL FUNC   12        _ZN14welsCodecTrace13SetTraceLevelEi                                                                                                   welsCodecTrace::SetTraceLevel(int)
+119 0x0001141c 0x0001141c GLOBAL FUNC   12        Java_cn_manstep_phonemirrorBox_OpenH264Decoder_getWidth
+120 0x00014bf0 0x00014bf0 GLOBAL FUNC   8         _ZN14welsCodecTrace16SetCodecInstanceEPv                                                                                               welsCodecTrace::SetCodecInstance(void*)
+132 0x0002ebc8 0x0002ebc8 GLOBAL FUNC   0         WelsDecoderI16x16LumaPredDc_AArch64_neon
+133 0x00014b08 0x00014b08 GLOBAL FUNC   4         _ZN14welsCodecTraceD2Ev                                                                                                                welsCodecTrace::~welsCodecTrace()
+136 0x00055080 0x00055080 GLOBAL FUNC   1756      _ZN7WelsDec22WelsResidualBlockCavlcEPNS_11TagVlcTableEPhPN10WelsCommon15TagBitStringAuxEiiPKhiPshPNS_21TagWelsDecoderContextE          WelsDec::WelsResidualBlockCavlc(WelsDec::TagVlcTable*, unsigned char*, WelsCommon::TagBitStringAux*, int, int, unsigned char const*, int, short*, unsigned char, WelsDec::TagWelsDecoderContext*)
+145 0x000406c8 0x000406c8 GLOBAL FUNC   424       _ZN7WelsDec18ParsePrefixNalUnitEPNS_21TagWelsDecoderContextEPN10WelsCommon15TagBitStringAuxE                                           WelsDec::ParsePrefixNalUnit(WelsDec::TagWelsDecoderContext*, WelsCommon::TagBitStringAux*)
+147 0x00041b90 0x00041b90 GLOBAL FUNC   4984      _ZN7WelsDec8ParseSpsEPNS_21TagWelsDecoderContextEPN10WelsCommon15TagBitStringAuxEPiS5_Phi                                              WelsDec::ParseSps(WelsDec::TagWelsDecoderContext*, WelsCommon::TagBitStringAux*, int*, int*, unsigned char*, int)
+150 0x0002e024 0x0002e024 GLOBAL FUNC   348       _ZN7WelsDec9RecChromaEiPNS_21TagWelsDecoderContextEPsPNS_10TagDqLayerE                                                                 WelsDec::RecChroma(int, WelsDec::TagWelsDecoderContext*, short*, WelsDec::TagDqLayer*)
+158 0x00020d98 0x00020d98 GLOBAL FUNC   88        _ZN7WelsDec12NeedErrorConEPNS_21TagWelsDecoderContextE                                                                                 WelsDec::NeedErrorCon(WelsDec::TagWelsDecoderContext*)
+165 0x0002e694 0x0002e694 GLOBAL FUNC   0         WelsDecoderI4x4LumaPredDDLTop_AArch64_neon
+170 0x0004bd54 0x0004bd54 GLOBAL FUNC   888       _ZN7WelsDec23WelsDecodeMbCabacPSliceEPNS_21TagWelsDecoderContextEPNS_10TagNalUnitERj                                                   WelsDec::WelsDecodeMbCabacPSlice(WelsDec::TagWelsDecoderContext*, WelsDec::TagNalUnit*, unsigned int&)
+172 0x00011328 0x00011328 GLOBAL FUNC   184       Java_cn_manstep_phonemirrorBox_OpenH264Decoder_nativeInit
+176 0x00011b40 0x00011b40 GLOBAL FUNC   8         _ZN7WelsDec12CWelsDecoder13DecodeFrameExEPKhiPhiRiS4_S4_S4_                                                                            WelsDec::CWelsDecoder::DecodeFrameEx(unsigned char const*, int, unsigned char*, int, int&, int&, int&, int&)
+180 0x0001cf80 0x0001cf80 GLOBAL FUNC   32        _ZN7WelsDec22WelsDqLayerDecodeStartEPNS_21TagWelsDecoderContextEPNS_10TagNalUnitEPNS_6TagSpsEPNS_6TagPpsE                              WelsDec::WelsDqLayerDecodeStart(WelsDec::TagWelsDecoderContext*, WelsDec::TagNalUnit*, WelsDec::TagSps*, WelsDec::TagPps*)
+187 0x0001268c 0x0001268c GLOBAL FUNC   116       _ZN7WelsDec12CWelsDecoderC2Ev                                                                                                          WelsDec::CWelsDecoder::CWelsDecoder()
+191 0x00050924 0x00050924 GLOBAL FUNC   492       _ZN7WelsDec22ParseMBTypePSliceCabacEPNS_21TagWelsDecoderContextEPNS_16TagNeighborAvailERj                                              WelsDec::ParseMBTypePSliceCabac(WelsDec::TagWelsDecoderContext*, WelsDec::TagNeighborAvail*, unsigned int&)
+194 0x0001fa3c 0x0001fa3c GLOBAL FUNC   272       _ZN7WelsDec19DoErrorConFrameCopyEPNS_21TagWelsDecoderContextE                                                                          WelsDec::DoErrorConFrameCopy(WelsDec::TagWelsDecoderContext*)
+197 0x0001e440 0x0001e440 GLOBAL FUNC   1728      _ZN7WelsDec19ConstructAccessUnitEPNS_21TagWelsDecoderContextEPPhP13TagBufferInfo                                                       WelsDec::ConstructAccessUnit(WelsDec::TagWelsDecoderContext*, unsigned char**, TagBufferInfo*)
+201 0x000528c8 0x000528c8 GLOBAL FUNC   516       _ZN7WelsDec24ParseSignificantMapCabacEPiiPNS_21TagWelsDecoderContextERj                                                                WelsDec::ParseSignificantMapCabac(int*, int, WelsDec::TagWelsDecoderContext*, unsigned int&)
+--- Key Strings ---
+ max_num_ref_frames exceeds level limits!
+ the pic_height_in_mbs exceeds the level limits!
+ the pic_width_in_mbs exceeds the level limits!
+__deregister_frame
+__deregister_frame_info
+__deregister_frame_info_bases
+__frame_state_for
+__register_frame
+__register_frame_info
+__register_frame_info_bases
+__register_frame_info_table
+__register_frame_info_table_bases
+__register_frame_table
+_ZN10WelsCommon36McHorVer20Width5Or9Or17_AArch64_neonEPKhiPhiii
+_ZN10WelsCommon37McHorVer02Height5Or9Or17_AArch64_neonEPKhiPhiii
+_ZN10WelsCommon50McHorVer22Width5Or9Or17Height5Or9Or17_AArch64_neonEPKhiPhiii
+_ZN14welsCodecTrace10CodecTraceEiPKcSt9__va_list
+_ZN14welsCodecTrace13SetTraceLevelEi
+_ZN14welsCodecTrace16SetCodecInstanceEPv
+_ZN14welsCodecTrace16SetTraceCallbackEPFvPviPKcE
+_ZN14welsCodecTrace16StaticCodecTraceEPviPKcSt9__va_list
+_ZN14welsCodecTrace23SetTraceCallbackContextEPv
+_ZN14welsCodecTraceC1Ev
+_ZN14welsCodecTraceC2Ev
+_ZN14welsCodecTraceD1Ev
+_ZN14welsCodecTraceD2Ev
+_ZN7WelsDec11RecI16x16MbEiPNS_21TagWelsDecoderContextEPsPNS_10TagDqLayerE
+_ZN7WelsDec11RecI4x4LumaEiPNS_21TagWelsDecoderContextEPsPNS_10TagDqLayerE
+_ZN7WelsDec11RecI8x8LumaEiPNS_21TagWelsDecoderContextEPsPNS_10TagDqLayerE
+_ZN7WelsDec12AllocPictureEPNS_21TagWelsDecoderContextEii
+_ZN7WelsDec12CWelsDecoder10InitializeEPK19TagSVCDecodingParam
+_ZN7WelsDec12CWelsDecoder11DecodeFrameEPKhiPPhPiRiS6_
+_ZN7WelsDec12CWelsDecoder11InitDecoderEPK19TagSVCDecodingParam
+_ZN7WelsDec12CWelsDecoder12DecodeFrame2EPKhiPPhP13TagBufferInfo
+_ZN7WelsDec12CWelsDecoder12DecodeParserEPKhiP15TagParserBsInfo
+_ZN7WelsDec12CWelsDecoder12ResetDecoderEv
+_ZN7WelsDec12CWelsDecoder12UninitializeEv
+_ZN7WelsDec12CWelsDecoder13DecodeFrameExEPKhiPhiRiS4_S4_S4_
+_ZN7WelsDec12CWelsDecoder13UninitDecoderEv
+_ZN7WelsDec12CWelsDecoder18DecodeFrameNoDelayEPKhiPPhP13TagBufferInfo
+_ZN7WelsDec12CWelsDecoder9GetOptionE14DECODER_OPTIONPv
+_ZN7WelsDec12CWelsDecoder9SetOptionE14DECODER_OPTIONPv
+_ZN7WelsDec12CWelsDecoderC1Ev
+_ZN7WelsDec12CWelsDecoderC2Ev
+_ZN7WelsDec12CWelsDecoderD0Ev
+_ZN7WelsDec12CWelsDecoderD1Ev
+_ZN7WelsDec12CWelsDecoderD2Ev
+_ZN7WelsDec12DoMbECMvCopyEPNS_21TagWelsDecoderContextEPNS_10TagPictureES3_iiiPNS_14TagMCRefMemberE
+_ZN7WelsDec12GetInterPredEPhS0_S0_PNS_21TagWelsDecoderContextE
+_ZN7WelsDec12InitBsBufferEPNS_21TagWelsDecoderContextE
+
+================================================================
+Library: libtools2.1.so (arm64-v8a)
+================================================================
+--- JNI / Exports ---
+30  0x00001ac0 0x00001ac0 GLOBAL FUNC   160      JNI_OnLoad
+--- Key Strings ---
+.eh_frame
+.eh_frame_hdr
+cn.manstep.phonemirrorBox
+cn.manstep.phonemirrorBox.tool
+cn/manstep/phonemirrorBox/util/JniTools
+com.leapmotor.phonemirrorBox
+
+================================================================
+Library: libutil.so (arm64-v8a)
+================================================================
+--- JNI / Exports ---
+131 0x0000bdf4 0x0000bdf4 GLOBAL FUNC 96       Java_com_tencent_mars_xlog_Xlog_releaseXlogInstance
+132 0x0000c970 0x0000c970 GLOBAL FUNC 20       Java_com_tencent_mars_xlog_Xlog_setLogLevel
+134 0x0000bd88 0x0000bd88 GLOBAL FUNC 108      Java_com_tencent_mars_xlog_Xlog_getXlogInstance
+137 0x0000c480 0x0000c480 GLOBAL FUNC 680      Java_com_tencent_mars_xlog_Xlog_logWrite
+139 0x0000c984 0x0000c984 GLOBAL FUNC 20       Java_com_tencent_mars_xlog_Xlog_setAppenderMode
+140 0x0000c464 0x0000c464 GLOBAL FUNC 4        Java_com_tencent_mars_xlog_Xlog_appenderClose
+141 0x0000c9c4 0x0000c9c4 GLOBAL FUNC 20       Java_com_tencent_mars_xlog_Xlog_setMaxAliveTime
+145 0x0000b5c0 0x0000b5c0 GLOBAL FUNC 352      JNI_OnLoad
+147 0x0000c95c 0x0000c95c GLOBAL FUNC 20       Java_com_tencent_mars_xlog_Xlog_getLogLevel
+160 0x0000be54 0x0000be54 GLOBAL FUNC 1552     Java_com_tencent_mars_xlog_Xlog_appenderOpen
+161 0x0000c468 0x0000c468 GLOBAL FUNC 24       Java_com_tencent_mars_xlog_Xlog_appenderFlush
+165 0x0000b76c 0x0000b76c GLOBAL FUNC 1564     Java_com_tencent_mars_xlog_Xlog_newXlogInstance
+170 0x0000c9b0 0x0000c9b0 GLOBAL FUNC 20       Java_com_tencent_mars_xlog_Xlog_setMaxFileSize
+172 0x0000c728 0x0000c728 GLOBAL FUNC 564      Java_com_tencent_mars_xlog_Xlog_logWrite2
+175 0x0000c998 0x0000c998 GLOBAL FUNC 24       Java_com_tencent_mars_xlog_Xlog_setConsoleLogOpen
+--- Key Strings ---
+__FitSize
+_len=%lu, m_nMallocUnitSize=%lu, nMallocSize=%lu, m_nCapacity=%lu
+_ZN4mars4xlog26appender_set_max_file_sizeEm
+.eh_frame
+.eh_frame_hdr
+(size_t)_nPos <= _nLenght
+(size_t)_pos <= _lenght
+(size_t)_pos <= Length()
+[F]log_size <= 5*1024, err(%d, %d)
+can't resize below mapped offset
+can't resize private mapped file
+can't resize readonly mapped file
+failed querying file size
+failed setting file size
+invalid new file size
+Java_com_tencent_mars_xlog_Xlog_setMaxFileSize
+mars_boost::filesystem::file_size
+mars_boost::filesystem::resize_file
+N12_GLOBAL__N_116itanium_demangle19SizeofParamPackExprE
+sizeof (
+sizeof... (
+sizeof...(
+wstr.size() != 0

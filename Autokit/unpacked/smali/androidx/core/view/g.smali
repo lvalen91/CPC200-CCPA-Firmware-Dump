@@ -1,0 +1,9 @@
+.class public interface abstract Landroidx/core/view/g;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+.annotation runtime Ljava/lang/Deprecated;
+.end annotation
+
+.method public abstract onCreateView(Landroid/view/View;Ljava/lang/String;Landroid/content/Context;Landroid/util/AttributeSet;)Landroid/view/View;
+.end method

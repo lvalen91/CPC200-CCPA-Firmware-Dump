@@ -1,0 +1,30 @@
+.class Landroidx/fragment/app/x$h;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/EnclosingClass;
+  value = Landroidx/fragment/app/x;
+.end annotation
+.annotation system Ldalvik/annotation/InnerClass;
+  accessFlags = 8
+  name = "h"
+.end annotation
+
+.field public a:Landroidx/fragment/app/Fragment;
+
+.field public b:Z
+
+.field public c:Landroidx/fragment/app/a;
+
+.field public d:Landroidx/fragment/app/Fragment;
+
+.field public e:Z
+
+.field public f:Landroidx/fragment/app/a;
+
+.method constructor <init>()V
+  .registers 1
+  .line 1
+    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+    return-void
+.end method

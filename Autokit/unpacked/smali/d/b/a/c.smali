@@ -1,0 +1,1436 @@
+.class public Ld/b/a/c;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+.field private final a:Lcn/manstep/phonemirrorBox/util/i;
+
+.field protected b:I
+
+.field protected c:Ld/b/a/a;
+
+.field protected d:Landroid/media/AudioRecord;
+
+.field protected e:Z
+
+.field private f:Z
+
+.field private g:Lnet/iwebrtc/audioprocess/sdk/AudioProcess;
+
+.field private h:I
+
+.field protected i:I
+
+.field private j:I
+
+.field private k:[B
+
+.field private l:[B
+
+.field private m:[B
+
+.field private n:I
+
+.field protected o:I
+
+.method public constructor <init>()V
+  .registers 4
+  .line 1
+    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+  .line 2
+    new-instance v0, Lcn/manstep/phonemirrorBox/util/i;
+    invoke-direct { v0 }, Lcn/manstep/phonemirrorBox/util/i;-><init>()V
+    iput-object v0, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    const/4 v0, 1
+  .line 3
+    iput v0, p0, Ld/b/a/c;->b:I
+    const/4 v1, 0
+  .line 4
+    iput-boolean v1, p0, Ld/b/a/c;->e:Z
+  .line 5
+    iput-boolean v1, p0, Ld/b/a/c;->f:Z
+    const/16 v2, 320
+  .line 6
+    iput v2, p0, Ld/b/a/c;->h:I
+  .line 7
+    iput v1, p0, Ld/b/a/c;->j:I
+  .line 8
+    iput v1, p0, Ld/b/a/c;->n:I
+  .line 9
+    iput v0, p0, Ld/b/a/c;->o:I
+    return-void
+.end method
+
+.method public constructor <init>(I)V
+  .registers 4
+  .line 10
+    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+  .line 11
+    new-instance v0, Lcn/manstep/phonemirrorBox/util/i;
+    invoke-direct { v0 }, Lcn/manstep/phonemirrorBox/util/i;-><init>()V
+    iput-object v0, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    const/4 v0, 1
+  .line 12
+    iput v0, p0, Ld/b/a/c;->b:I
+    const/4 v0, 0
+  .line 13
+    iput-boolean v0, p0, Ld/b/a/c;->e:Z
+  .line 14
+    iput-boolean v0, p0, Ld/b/a/c;->f:Z
+    const/16 v1, 320
+  .line 15
+    iput v1, p0, Ld/b/a/c;->h:I
+  .line 16
+    iput v0, p0, Ld/b/a/c;->j:I
+  .line 17
+    iput v0, p0, Ld/b/a/c;->n:I
+  .line 18
+    iput p1, p0, Ld/b/a/c;->o:I
+    return-void
+.end method
+
+.method private a()V
+  .catchall { :L0 .. :L1 } :L2
+  .catchall { :L3 .. :L4 } :L2
+  .registers 4
+  .line 1
+    iget-object v0, p0, Ld/b/a/c;->g:Lnet/iwebrtc/audioprocess/sdk/AudioProcess;
+    if-eqz v0, :L5
+  .line 2
+    invoke-virtual { v0 }, Lnet/iwebrtc/audioprocess/sdk/AudioProcess;->Destroy()V
+    const/4 v0, 0
+  .line 3
+    iput-object v0, p0, Ld/b/a/c;->g:Lnet/iwebrtc/audioprocess/sdk/AudioProcess;
+  .line 4
+    iput-object v0, p0, Ld/b/a/c;->m:[B
+  .line 5
+    iput-object v0, p0, Ld/b/a/c;->l:[B
+  .line 6
+    iget-object v1, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    monitor-enter v1
+  :L0
+  .line 7
+    iget-object v2, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v2 }, Lcn/manstep/phonemirrorBox/util/i;->b()V
+    const/4 v2, 0
+  .line 8
+    iput v2, p0, Ld/b/a/c;->j:I
+  .line 9
+    iput-object v0, p0, Ld/b/a/c;->k:[B
+  .line 10
+    monitor-exit v1
+  :L1
+  .line 11
+    iput-boolean v2, p0, Ld/b/a/c;->f:Z
+    goto :L5
+  :L2
+    move-exception v0
+  :L3
+  .line 12
+    monitor-exit v1
+  :L4
+    throw v0
+  :L5
+    return-void
+.end method
+
+.method private d()V
+  .registers 3
+    const-string v0, "AudioRecorder,InitAECProcesser: !!!"
+  .line 1
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  .line 2
+    iget-object v0, p0, Ld/b/a/c;->g:Lnet/iwebrtc/audioprocess/sdk/AudioProcess;
+    if-nez v0, :L0
+  .line 3
+    new-instance v0, Lnet/iwebrtc/audioprocess/sdk/AudioProcess;
+    invoke-direct { v0 }, Lnet/iwebrtc/audioprocess/sdk/AudioProcess;-><init>()V
+    iput-object v0, p0, Ld/b/a/c;->g:Lnet/iwebrtc/audioprocess/sdk/AudioProcess;
+  .line 4
+    iget-object v1, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    iget v1, v1, Ld/b/a/a;->a:I
+    invoke-virtual { v0, v1 }, Lnet/iwebrtc/audioprocess/sdk/AudioProcess;->Init(I)V
+  .line 5
+    iget v0, p0, Ld/b/a/c;->h:I
+    new-array v1, v0, [B
+    iput-object v1, p0, Ld/b/a/c;->l:[B
+  .line 6
+    new-array v0, v0, [B
+    iput-object v0, p0, Ld/b/a/c;->m:[B
+  :L0
+    return-void
+.end method
+
+.method private m()I
+  .registers 7
+  .line 1
+    iget-object v0, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    if-eqz v0, :L4
+  .line 2
+    iget v1, v0, Ld/b/a/a;->a:I
+    iget v2, v0, Ld/b/a/a;->b:I
+    iget v0, v0, Ld/b/a/a;->c:I
+    invoke-static { v1, v2, v0 }, Landroid/media/AudioRecord;->getMinBufferSize(III)I
+    move-result v0
+  .line 3
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "calculateBufSize: minBufSize="
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, v0 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v3, ",mChannelCount="
+    invoke-virtual { v1, v3 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget v3, p0, Ld/b/a/c;->b:I
+    invoke-virtual { v1, v3 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v1
+    const-string v3, "AudioRecorder"
+    invoke-static { v3, v1 }, Lcn/manstep/phonemirrorBox/util/s;->d(Ljava/lang/String;Ljava/lang/String;)V
+    if-lez v0, :L3
+  .line 4
+    iget v1, p0, Ld/b/a/c;->b:I
+    const/4 v4, 1
+    if-le v1, v4, :L0
+  .line 5
+    iget-object v0, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    iget v1, v0, Ld/b/a/a;->a:I
+    const/16 v4, 16
+    iget v0, v0, Ld/b/a/a;->c:I
+    invoke-static { v1, v4, v0 }, Landroid/media/AudioRecord;->getMinBufferSize(III)I
+    move-result v0
+    iget v1, p0, Ld/b/a/c;->b:I
+    mul-int v0, v0, v1
+  :L0
+  .line 6
+    iget v1, p0, Ld/b/a/c;->h:I
+    div-int v4, v0, v1
+    const/16 v5, 8
+    if-ge v4, v5, :L1
+    mul-int/lit8 v1, v1, 8
+    goto :L2
+  :L1
+  .line 7
+    div-int/2addr v0, v1
+    div-int/lit8 v0, v0, 4
+    mul-int/lit8 v0, v0, 4
+    add-int/lit8 v0, v0, 4
+    mul-int v1, v1, v0
+  :L2
+  .line 8
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    invoke-virtual { v0, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v3, v0 }, Lcn/manstep/phonemirrorBox/util/s;->d(Ljava/lang/String;Ljava/lang/String;)V
+    return v1
+  :L3
+  .line 9
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "calculateBufSize: "
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, v0 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v2, ", "
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-direct { p0, v0 }, Ld/b/a/c;->p(I)Ljava/lang/String;
+    move-result-object v0
+    invoke-virtual { v1, v0 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v3, v0 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+  .line 10
+    iget v0, p0, Ld/b/a/c;->b:I
+    mul-int/lit16 v0, v0, 512
+    return v0
+  :L4
+    const/4 v0, 0
+    return v0
+.end method
+
+.method private p(I)Ljava/lang/String;
+  .registers 4
+    const/4 v0, -6
+    if-eq p1, v0, :L3
+    const/4 v0, -3
+    if-eq p1, v0, :L2
+    const/4 v0, -2
+    if-eq p1, v0, :L1
+    const/4 v0, -1
+    if-eq p1, v0, :L0
+  .line 1
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, ""
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    return-object p1
+  :L0
+    const-string p1, "ERROR"
+    return-object p1
+  :L1
+    const-string p1, "ERROR_BAD_VALUE"
+    return-object p1
+  :L2
+    const-string p1, "ERROR_INVALID_OPERATION"
+    return-object p1
+  :L3
+    const-string p1, "ERROR_DEAD_OBJECT"
+    return-object p1
+.end method
+
+.method private t([BII[BII)V
+  .registers 11
+  .line 1
+    rem-int/lit8 v0, p3, 2
+    if-nez v0, :L0
+    rem-int/lit8 v0, p6, 2
+    if-eqz v0, :L1
+  :L0
+    const-string v0, "reSampleAudio size error!!!"
+  .line 2
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+  :L1
+    int-to-float p3, p3
+    int-to-float v0, p6
+    div-float/2addr p3, v0
+    const/4 v0, 0
+  :L2
+  .line 3
+    div-int/lit8 v1, p6, 2
+    if-ge v0, v1, :L3
+    int-to-float v1, v0
+    mul-float v1, v1, p3
+    float-to-double v1, v1
+  .line 4
+    invoke-static { v1, v2 }, Ljava/lang/Math;->floor(D)D
+    move-result-wide v1
+    double-to-int v1, v1
+    mul-int/lit8 v2, v0, 2
+    add-int/2addr v2, p5
+    mul-int/lit8 v1, v1, 2
+    add-int/2addr v1, p2
+  .line 5
+    aget-byte v3, p1, v1
+    aput-byte v3, p4, v2
+    add-int/lit8 v2, v2, 1
+    add-int/lit8 v1, v1, 1
+  .line 6
+    aget-byte v1, p1, v1
+    aput-byte v1, p4, v2
+    add-int/lit8 v0, v0, 1
+    goto :L2
+  :L3
+    return-void
+.end method
+
+.method protected b([BII)V
+  .catchall { :L1 .. :L4 } :L11
+  .catchall { :L5 .. :L8 } :L7
+  .catchall { :L12 .. :L13 } :L11
+  .registers 11
+    const/4 v0, 0
+    const/4 v1, 0
+  :L0
+  .line 1
+    iget v2, p0, Ld/b/a/c;->h:I
+    add-int/2addr v2, v1
+    if-gt v2, p3, :L14
+  .line 2
+    iget-object v2, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    monitor-enter v2
+  :L1
+  .line 3
+    iget-object v3, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v3 }, Lcn/manstep/phonemirrorBox/util/i;->c()[B
+    move-result-object v3
+  .line 4
+    sget-boolean v4, Lcn/manstep/phonemirrorBox/p;->w:Z
+    if-eqz v4, :L2
+    const-string v4, "output.pcm"
+  .line 5
+    invoke-static { }, Lcn/manstep/phonemirrorBox/MyApplication;->b()Lcn/manstep/phonemirrorBox/MyApplication;
+    move-result-object v5
+    invoke-static { v3, v4, v5 }, Lcn/manstep/phonemirrorBox/util/n;->A([BLjava/lang/String;Landroid/content/Context;)Z
+  :L2
+  .line 6
+    iget-boolean v4, p0, Ld/b/a/c;->f:Z
+    if-nez v4, :L3
+    const-string v4, "AudioRecorder"
+  .line 7
+    new-instance v5, Ljava/lang/StringBuilder;
+    invoke-direct { v5 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v6, "DoAECProcess: Start DoAeEC, OutPut Audio buffer size: "
+    invoke-virtual { v5, v6 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v6, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v6 }, Lcn/manstep/phonemirrorBox/util/i;->g()I
+    move-result v6
+    invoke-virtual { v5, v6 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v5 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v5
+    invoke-static { v4, v5 }, Lcn/manstep/phonemirrorBox/util/s;->d(Ljava/lang/String;Ljava/lang/String;)V
+    const/4 v4, 1
+  .line 8
+    iput-boolean v4, p0, Ld/b/a/c;->f:Z
+  :L3
+  .line 9
+    monitor-exit v2
+  :L4
+    if-eqz v3, :L9
+    add-int v2, p2, v1
+  .line 10
+    iget-object v4, p0, Ld/b/a/c;->l:[B
+    iget v5, p0, Ld/b/a/c;->h:I
+    invoke-static { p1, v2, v4, v0, v5 }, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+  .line 11
+    iget-object v4, p0, Ld/b/a/c;->g:Lnet/iwebrtc/audioprocess/sdk/AudioProcess;
+    iget-object v5, p0, Ld/b/a/c;->l:[B
+    iget-object v6, p0, Ld/b/a/c;->m:[B
+    invoke-virtual { v4, v3, v5, v6 }, Lnet/iwebrtc/audioprocess/sdk/AudioProcess;->ProcessData([B[B[B)V
+  .line 12
+    iget-object v3, p0, Ld/b/a/c;->m:[B
+    iget v4, p0, Ld/b/a/c;->h:I
+    invoke-static { v3, v0, p1, v2, v4 }, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+  .line 13
+    iget-object v2, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    monitor-enter v2
+  :L5
+  .line 14
+    iget-object v3, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v3 }, Lcn/manstep/phonemirrorBox/util/i;->e()Z
+    move-result v3
+    if-nez v3, :L6
+  .line 15
+    iget-object v3, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v3, v0 }, Lcn/manstep/phonemirrorBox/util/i;->f(I)V
+  :L6
+  .line 16
+    monitor-exit v2
+    goto :L10
+  :L7
+    move-exception p1
+    monitor-exit v2
+  :L8
+    throw p1
+  :L9
+    const-string v2, "AudioRecorder"
+  .line 17
+    new-instance v3, Ljava/lang/StringBuilder;
+    invoke-direct { v3 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v4, "DoAECProcess: OutPut Audio buffer not enough: "
+    invoke-virtual { v3, v4 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v4, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v4 }, Lcn/manstep/phonemirrorBox/util/i;->g()I
+    move-result v4
+    invoke-virtual { v3, v4 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v3 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v3
+    invoke-static { v2, v3 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+  :L10
+  .line 18
+    iget v2, p0, Ld/b/a/c;->h:I
+    add-int/2addr v1, v2
+    goto/16 :L0
+  :L11
+    move-exception p1
+  :L12
+  .line 19
+    monitor-exit v2
+  :L13
+    throw p1
+  :L14
+    return-void
+.end method
+
+.method public c()I
+  .registers 3
+  .line 1
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "AudioRecord GetBufferSize: "
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget v1, p0, Ld/b/a/c;->i:I
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+  .line 2
+    iget v0, p0, Ld/b/a/c;->i:I
+    return v0
+.end method
+
+.method public e([BII)V
+  .catchall { :L0 .. :L13 } :L12
+  .registers 10
+  .line 1
+    iget-object v0, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    monitor-enter v0
+  :L0
+  .line 2
+    iget-object v1, p0, Ld/b/a/c;->k:[B
+    if-nez v1, :L1
+  .line 3
+    iget v1, p0, Ld/b/a/c;->h:I
+    new-array v1, v1, [B
+    iput-object v1, p0, Ld/b/a/c;->k:[B
+  :L1
+  .line 4
+    iget v1, p0, Ld/b/a/c;->j:I
+    const/4 v2, 0
+    if-eqz v1, :L4
+  .line 5
+    iget-object v1, p0, Ld/b/a/c;->k:[B
+  .line 6
+    iget v3, p0, Ld/b/a/c;->h:I
+    iget v4, p0, Ld/b/a/c;->j:I
+    sub-int/2addr v3, v4
+    if-ltz v3, :L2
+    add-int/lit8 v4, p2, 0
+  .line 7
+    iget v5, p0, Ld/b/a/c;->j:I
+    invoke-static { p1, v4, v1, v5, v3 }, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+    add-int/2addr v3, v2
+  .line 8
+    iget-object v4, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v4, v1 }, Lcn/manstep/phonemirrorBox/util/i;->a([B)V
+    goto :L3
+  :L2
+  .line 9
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v4, "AudioRecorder,PushOutPutAudio: len = "
+    invoke-virtual { v1, v4 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, v3 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v1
+    invoke-static { v1 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+    const/4 v3, 0
+  :L3
+  .line 10
+    iput v2, p0, Ld/b/a/c;->j:I
+    goto :L5
+  :L4
+    const/4 v3, 0
+  :L5
+  .line 11
+    iget v1, p0, Ld/b/a/c;->h:I
+    add-int/2addr v1, v3
+    if-gt v1, p3, :L6
+  .line 12
+    iget-object v1, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    iget v4, p0, Ld/b/a/c;->h:I
+    invoke-virtual { v1, v4 }, Lcn/manstep/phonemirrorBox/util/i;->d(I)[B
+    move-result-object v1
+    add-int v4, p2, v3
+  .line 13
+    iget v5, p0, Ld/b/a/c;->h:I
+    invoke-static { p1, v4, v1, v2, v5 }, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+  .line 14
+    iget-object v4, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v4, v1 }, Lcn/manstep/phonemirrorBox/util/i;->a([B)V
+  .line 15
+    iget v1, p0, Ld/b/a/c;->h:I
+    add-int/2addr v3, v1
+    goto :L5
+  :L6
+    if-ge v3, p3, :L8
+  .line 16
+    iget-object v1, p0, Ld/b/a/c;->k:[B
+    sub-int/2addr p3, v3
+  .line 17
+    array-length v4, v1
+    if-le p3, v4, :L7
+    const-string p1, "AudioRecorder"
+    const-string p2, "PushOutPutAudio: java.lang.ArrayIndexOutOfBoundsException"
+  .line 18
+    invoke-static { p1, p2 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+  .line 19
+    monitor-exit v0
+    return-void
+  :L7
+    add-int/2addr p2, v3
+  .line 20
+    invoke-static { p1, p2, v1, v2, p3 }, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+  .line 21
+    iput p3, p0, Ld/b/a/c;->j:I
+  :L8
+  .line 22
+    sget p1, Lnet/iwebrtc/audioprocess/sdk/AudioProcess;->RecordDelay:I
+    div-int/lit8 p1, p1, 10
+  .line 23
+    iget-boolean p2, p0, Ld/b/a/c;->f:Z
+    if-eqz p2, :L9
+    add-int/lit8 p1, p1, 8
+  :L9
+    const-string p2, "AudioRecorder"
+  .line 24
+    new-instance p3, Ljava/lang/StringBuilder;
+    invoke-direct { p3 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "PushOutPutAudio: OutPut Audio buffer size: "
+    invoke-virtual { p3, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v1, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v1 }, Lcn/manstep/phonemirrorBox/util/i;->g()I
+    move-result v1
+    invoke-virtual { p3, v1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { p3 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p3
+    invoke-static { p2, p3 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+  :L10
+  .line 25
+    iget-object p2, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { p2 }, Lcn/manstep/phonemirrorBox/util/i;->g()I
+    move-result p2
+    if-le p2, p1, :L11
+  .line 26
+    iget-object p2, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { p2, v2 }, Lcn/manstep/phonemirrorBox/util/i;->f(I)V
+    const-string p2, "AudioRecorder"
+  .line 27
+    new-instance p3, Ljava/lang/StringBuilder;
+    invoke-direct { p3 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "PushOutPutAudio: OutPut Audio buffer overrun size: "
+    invoke-virtual { p3, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v1, p0, Ld/b/a/c;->a:Lcn/manstep/phonemirrorBox/util/i;
+    invoke-virtual { v1 }, Lcn/manstep/phonemirrorBox/util/i;->g()I
+    move-result v1
+    invoke-virtual { p3, v1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { p3 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p3
+    invoke-static { p2, p3 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+    goto :L10
+  :L11
+  .line 28
+    monitor-exit v0
+    return-void
+  :L12
+    move-exception p1
+    monitor-exit v0
+  :L13
+    goto :L15
+  :L14
+    throw p1
+  :L15
+    goto :L14
+.end method
+
+.method public f([BII)Z
+  .catch Ljava/lang/Exception; { :L1 .. :L12 } :L13
+  .registers 10
+  .line 1
+    new-array v0, p3, [B
+    const/4 v0, 0
+    const/4 v1, 0
+  :L0
+  .line 2
+    iget-boolean v2, p0, Ld/b/a/c;->e:Z
+    if-eqz v2, :L14
+    iget-object v2, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    if-eqz v2, :L14
+  :L1
+  .line 3
+    invoke-static { }, Lcn/manstep/phonemirrorBox/u;->z()Lcn/manstep/phonemirrorBox/u;
+    move-result-object v2
+    invoke-virtual { v2 }, Lcn/manstep/phonemirrorBox/u;->a0()Z
+    move-result v2
+    const/4 v3, 1
+    if-eqz v2, :L2
+    add-int v2, p2, v1
+    sub-int v4, p3, v1
+  .line 4
+    invoke-virtual { p0, p1, v2, v4 }, Ld/b/a/c;->u([BII)I
+    move-result v2
+    goto :L4
+  :L2
+  .line 5
+    iget v2, p0, Ld/b/a/c;->b:I
+    if-le v2, v3, :L3
+    add-int v2, p2, v1
+    sub-int v4, p3, v1
+  .line 6
+    invoke-virtual { p0, p1, v2, v4 }, Ld/b/a/c;->g([BII)I
+    move-result v2
+    goto :L4
+  :L3
+  .line 7
+    iget-object v2, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    add-int v4, p2, v1
+    sub-int v5, p3, v1
+    invoke-virtual { v2, p1, v4, v5 }, Landroid/media/AudioRecord;->read([BII)I
+    move-result v2
+  :L4
+    if-lez v2, :L10
+    add-int/2addr v1, v2
+    if-ne v1, p3, :L9
+  .line 8
+    sget-boolean v2, Lcn/manstep/phonemirrorBox/p;->x:Z
+    if-eqz v2, :L5
+    const-string v2, "input_src.pcm"
+  .line 9
+    invoke-static { }, Lcn/manstep/phonemirrorBox/MyApplication;->b()Lcn/manstep/phonemirrorBox/MyApplication;
+    move-result-object v4
+    invoke-static { p1, p2, p3, v2, v4 }, Lcn/manstep/phonemirrorBox/util/n;->z([BIILjava/lang/String;Landroid/content/Context;)Z
+  :L5
+  .line 10
+    sget-boolean v2, Lcn/manstep/phonemirrorBox/p;->H:Z
+    if-eqz v2, :L6
+  .line 11
+    invoke-virtual { p0, p1, p2, p3 }, Ld/b/a/c;->b([BII)V
+  :L6
+  .line 12
+    sget-boolean v2, Lcn/manstep/phonemirrorBox/p;->y:Z
+    if-eqz v2, :L7
+    sget-boolean v2, Lcn/manstep/phonemirrorBox/p;->H:Z
+    if-eqz v2, :L7
+    const-string v2, "input_aec.pcm"
+  .line 13
+    invoke-static { }, Lcn/manstep/phonemirrorBox/MyApplication;->b()Lcn/manstep/phonemirrorBox/MyApplication;
+    move-result-object v4
+    invoke-static { p1, p2, p3, v2, v4 }, Lcn/manstep/phonemirrorBox/util/n;->z([BIILjava/lang/String;Landroid/content/Context;)Z
+  :L7
+  .line 14
+    iget v2, p0, Ld/b/a/c;->n:I
+    if-eqz v2, :L8
+  .line 15
+    iget v2, p0, Ld/b/a/c;->n:I
+    invoke-static { p1, p2, p3, v2 }, Lcn/manstep/phonemirrorBox/util/JniTools;->amplifyPcmData([BIII)V
+  :L8
+    return v3
+  :L9
+    if-le v1, p3, :L0
+  .line 16
+    new-instance v2, Ljava/lang/StringBuilder;
+    invoke-direct { v2 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v3, "AudioRecorder,ReadAudioData: read over size: "
+    invoke-virtual { v2, v3 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v2, v1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v3, " > "
+    invoke-virtual { v2, v3 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v2, p3 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v2 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v2
+    invoke-static { v2 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+    goto :L14
+  :L10
+    const/4 v3, -3
+    if-ne v2, v3, :L11
+    const-string v2, "AudioRecorder,ReadAudioData: read failed: the object isn't properly initialized."
+  .line 17
+    invoke-static { v2 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+  .line 18
+    invoke-virtual { p0, v0 }, Ld/b/a/c;->l(Z)V
+    goto :L14
+  :L11
+  .line 19
+    new-instance v3, Ljava/lang/StringBuilder;
+    invoke-direct { v3 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v4, "AudioRecorder,ReadAudioData: read failed:"
+    invoke-virtual { v3, v4 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v3, v2 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v3 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v2
+    invoke-static { v2 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+  :L12
+    goto :L14
+  :L13
+    move-exception v2
+  .line 20
+    new-instance v3, Ljava/lang/StringBuilder;
+    invoke-direct { v3 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v4, "ReadAudioData:\n"
+    invoke-virtual { v3, v4 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static { v2 }, Lcn/manstep/phonemirrorBox/util/s;->g(Ljava/lang/Throwable;)Ljava/lang/String;
+    move-result-object v2
+    invoke-virtual { v3, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v3 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v2
+    const-string v3, "AudioRecorder"
+    invoke-static { v3, v2 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+    goto/16 :L0
+  :L14
+    return v0
+.end method
+
+.method public g([BII)I
+  .registers 9
+  .line 1
+    invoke-static { }, Lcn/manstep/phonemirrorBox/u;->z()Lcn/manstep/phonemirrorBox/u;
+    move-result-object p3
+    invoke-virtual { p3 }, Lcn/manstep/phonemirrorBox/u;->E()I
+    move-result p3
+  .line 2
+    iget v0, p0, Ld/b/a/c;->b:I
+    const/4 v1, 0
+    if-lt p3, v0, :L0
+    const/4 p3, 0
+  :L0
+  .line 3
+    iget v0, p0, Ld/b/a/c;->i:I
+  .line 4
+    new-array v2, v0, [B
+  .line 5
+    iget-object v3, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { v3, v2, v1, v0 }, Landroid/media/AudioRecord;->read([BII)I
+    move-result v0
+    if-lez v0, :L2
+  .line 6
+    sget-boolean v3, Lcn/manstep/phonemirrorBox/p;->x:Z
+    if-eqz v3, :L1
+  .line 7
+    new-instance v3, Ljava/lang/StringBuilder;
+    invoke-direct { v3 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v4, "input2_16k_"
+    invoke-virtual { v3, v4 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget v4, p0, Ld/b/a/c;->b:I
+    invoke-virtual { v3, v4 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v4, ".pcm"
+    invoke-virtual { v3, v4 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v3 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v3
+    invoke-static { }, Lcn/manstep/phonemirrorBox/MyApplication;->b()Lcn/manstep/phonemirrorBox/MyApplication;
+    move-result-object v4
+    invoke-static { v2, v1, v0, v3, v4 }, Lcn/manstep/phonemirrorBox/util/n;->z([BIILjava/lang/String;Landroid/content/Context;)Z
+  :L1
+  .line 8
+    iget v3, p0, Ld/b/a/c;->b:I
+    div-int v4, v0, v3
+    if-ge v1, v4, :L2
+  .line 9
+    div-int/lit8 v4, v1, 2
+    mul-int/lit8 v3, v3, 2
+    mul-int v4, v4, v3
+    mul-int/lit8 v3, p3, 2
+    add-int/2addr v4, v3
+    rem-int/lit8 v3, v1, 2
+    add-int/2addr v4, v3
+    add-int v3, v1, p2
+  .line 10
+    aget-byte v4, v2, v4
+    aput-byte v4, p1, v3
+    add-int/lit8 v1, v1, 1
+    goto :L1
+  :L2
+  .line 11
+    iget p1, p0, Ld/b/a/c;->b:I
+    div-int/2addr v0, p1
+    return v0
+.end method
+
+.method public h(Ld/b/a/a;)V
+  .registers 5
+  .line 1
+    iput-object p1, p0, Ld/b/a/c;->c:Ld/b/a/a;
+  .line 2
+    iget v0, p1, Ld/b/a/a;->a:I
+    const/4 v1, 2
+    const/4 v2, 1
+    invoke-static { v0, v1, v2 }, Lnet/iwebrtc/audioprocess/sdk/AudioProcess;->calculateBufferSize(III)I
+    move-result v0
+    iput v0, p0, Ld/b/a/c;->h:I
+  .line 3
+    iget v0, p0, Ld/b/a/c;->b:I
+    const/16 v2, 8
+    if-ne v0, v2, :L0
+  .line 4
+    iget-object v0, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    const/16 v1, 1020
+    iput v1, v0, Ld/b/a/a;->b:I
+    goto :L1
+  :L0
+    if-ne v0, v1, :L1
+  .line 5
+    iget-object v0, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    const/16 v1, 12
+    iput v1, v0, Ld/b/a/a;->b:I
+  :L1
+  .line 6
+    invoke-direct { p0 }, Ld/b/a/c;->m()I
+    move-result v0
+    iput v0, p0, Ld/b/a/c;->i:I
+  .line 7
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "SetAudioRecordConfig: mBufSize="
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget v1, p0, Ld/b/a/c;->i:I
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v1, ", "
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { p1 }, Ld/b/a/a;->toString()Ljava/lang/String;
+    move-result-object p1
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    const-string v0, "AudioRecorder"
+    invoke-static { v0, p1 }, Lcn/manstep/phonemirrorBox/util/s;->d(Ljava/lang/String;Ljava/lang/String;)V
+    return-void
+.end method
+
+.method public i()V
+  .registers 2
+    const/4 v0, 1
+  .line 1
+    invoke-virtual { p0, v0 }, Ld/b/a/c;->j(Z)V
+    return-void
+.end method
+
+.method public j(Z)V
+  .catch Ljava/lang/Exception; { :L1 .. :L2 } :L3
+  .registers 4
+  .line 1
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "AudioRecorder,StartAudioRecord: notice = "
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  .line 2
+    iget-object v0, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    if-eqz v0, :L5
+    const/4 v0, 0
+  .line 3
+    invoke-virtual { p0, v0 }, Ld/b/a/c;->l(Z)V
+    if-eqz p1, :L0
+  .line 4
+    invoke-static { }, Lcn/manstep/phonemirrorBox/v0/a;->t()Lcn/manstep/phonemirrorBox/v0/a;
+    move-result-object v0
+    invoke-virtual { v0 }, Lcn/manstep/phonemirrorBox/v0/a;->p()V
+    const-string v0, "AudioRecorder,StartAudioRecord: AUTO_BOX_MODE_REQUEST_MIC"
+  .line 5
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  :L0
+  .line 6
+    iget v0, p0, Ld/b/a/c;->i:I
+    if-lez v0, :L4
+  .line 7
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "AudioRecorder,StartAudioRecord: mBufSize = "
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget v1, p0, Ld/b/a/c;->i:I
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  :L1
+  .line 8
+    invoke-virtual { p0 }, Ld/b/a/c;->s()Z
+    move-result v0
+    iput-boolean v0, p0, Ld/b/a/c;->e:Z
+  .line 9
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "AudioRecorder,StartAudioRecord: notice="
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    const-string p1, ", isRecording="
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-boolean p1, p0, Ld/b/a/c;->e:Z
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    invoke-static { p1 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  .line 10
+    iget-boolean p1, p0, Ld/b/a/c;->e:Z
+    if-eqz p1, :L4
+    sget-boolean p1, Lcn/manstep/phonemirrorBox/p;->H:Z
+    if-eqz p1, :L4
+  .line 11
+    invoke-direct { p0 }, Ld/b/a/c;->d()V
+  :L2
+    goto :L4
+  :L3
+    move-exception p1
+  .line 12
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "AudioRecorder,StartAudioRecord: "
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { p1 }, Ljava/lang/Exception;->getMessage()Ljava/lang/String;
+    move-result-object v1
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v1, "\n"
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static { p1 }, Lcn/manstep/phonemirrorBox/util/s;->g(Ljava/lang/Throwable;)Ljava/lang/String;
+    move-result-object p1
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    invoke-static { p1 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+    const/4 p1, 1
+    const/16 v0, 17
+  .line 13
+    invoke-static { p1, v0 }, Lcn/manstep/phonemirrorBox/BoxInterface/d;->O(II)Z
+    const/4 p1, 0
+  .line 14
+    iput-object p1, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+  :L4
+  .line 15
+    iget-object p1, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    if-eqz p1, :L5
+  .line 16
+    new-instance p1, Ljava/lang/StringBuilder;
+    invoke-direct { p1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v0, "StartAudioRecord: AudioSource="
+    invoke-virtual { p1, v0 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { v0 }, Landroid/media/AudioRecord;->getAudioSource()I
+    move-result v0
+    invoke-virtual { p1, v0 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v0, ",ChannelCount="
+    invoke-virtual { p1, v0 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { v0 }, Landroid/media/AudioRecord;->getChannelCount()I
+    move-result v0
+    invoke-virtual { p1, v0 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { p1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    const-string v0, "AudioRecorder"
+    invoke-static { v0, p1 }, Lcn/manstep/phonemirrorBox/util/s;->d(Ljava/lang/String;Ljava/lang/String;)V
+  .line 17
+    new-instance p1, Ljava/lang/StringBuilder;
+    invoke-direct { p1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "StartAudioRecord: SampleRate="
+    invoke-virtual { p1, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v1, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { v1 }, Landroid/media/AudioRecord;->getSampleRate()I
+    move-result v1
+    invoke-virtual { p1, v1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { p1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    invoke-static { v0, p1 }, Lcn/manstep/phonemirrorBox/util/s;->i(Ljava/lang/String;Ljava/lang/String;)V
+  :L5
+    return-void
+.end method
+
+.method public k()V
+  .registers 2
+    const/4 v0, 1
+  .line 1
+    invoke-virtual { p0, v0 }, Ld/b/a/c;->l(Z)V
+    return-void
+.end method
+
+.method protected l(Z)V
+  .catch Ljava/lang/Exception; { :L1 .. :L2 } :L3
+  .registers 4
+  .line 1
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "AudioRecorder,StopAudioRecord: notice="
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    const-string v1, ", isRecording="
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-boolean v1, p0, Ld/b/a/c;->e:Z
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  .line 2
+    iget-boolean v0, p0, Ld/b/a/c;->e:Z
+    if-eqz v0, :L4
+    if-eqz p1, :L0
+  .line 3
+    invoke-static { }, Lcn/manstep/phonemirrorBox/v0/a;->t()Lcn/manstep/phonemirrorBox/v0/a;
+    move-result-object p1
+    invoke-virtual { p1 }, Lcn/manstep/phonemirrorBox/v0/a;->D()V
+    const-string p1, "AudioRecorder,StopAudioRecord: AUTO_BOX_MODE_RELEASE_MIC"
+  .line 4
+    invoke-static { p1 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  :L0
+    const/4 p1, 0
+  :L1
+  .line 5
+    iput-boolean p1, p0, Ld/b/a/c;->e:Z
+  .line 6
+    iget-object p1, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { p1 }, Landroid/media/AudioRecord;->stop()V
+  .line 7
+    iget-object p1, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { p1 }, Landroid/media/AudioRecord;->release()V
+    const/4 p1, 0
+  .line 8
+    iput-object p1, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+  .line 9
+    sget-boolean p1, Lcn/manstep/phonemirrorBox/p;->H:Z
+    if-eqz p1, :L4
+  .line 10
+    invoke-direct { p0 }, Ld/b/a/c;->a()V
+  :L2
+    goto :L4
+  :L3
+    move-exception p1
+  .line 11
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "StopAudioRecord\n"
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static { p1 }, Lcn/manstep/phonemirrorBox/util/s;->g(Ljava/lang/Throwable;)Ljava/lang/String;
+    move-result-object p1
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    const-string v0, "AudioRecorder"
+    invoke-static { v0, p1 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+  :L4
+    return-void
+.end method
+
+.method public n()I
+  .registers 2
+  .line 1
+    iget-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    if-eqz v0, :L0
+  .line 2
+    invoke-virtual { v0 }, Landroid/media/AudioRecord;->getChannelCount()I
+    move-result v0
+    return v0
+  :L0
+    const/4 v0, 1
+    return v0
+.end method
+
+.method public o()Z
+  .registers 2
+  .line 1
+    iget-boolean v0, p0, Ld/b/a/c;->e:Z
+    return v0
+.end method
+
+.method public q()I
+  .registers 2
+  .line 1
+    iget-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    if-nez v0, :L0
+    const/4 v0, 0
+    return v0
+  :L0
+  .line 2
+    invoke-virtual { v0 }, Landroid/media/AudioRecord;->getRecordingState()I
+    move-result v0
+    return v0
+.end method
+
+.method protected r(I)V
+  .catch Ljava/lang/Exception; { :L0 .. :L1 } :L2
+  .registers 8
+  .line 1
+    new-instance v0, Landroid/media/AudioFormat$Builder;
+    invoke-direct { v0 }, Landroid/media/AudioFormat$Builder;-><init>()V
+    iget-object v1, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    iget v1, v1, Ld/b/a/a;->c:I
+  .line 2
+    invoke-virtual { v0, v1 }, Landroid/media/AudioFormat$Builder;->setEncoding(I)Landroid/media/AudioFormat$Builder;
+    move-result-object v0
+    iget-object v1, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    iget v1, v1, Ld/b/a/a;->a:I
+  .line 3
+    invoke-virtual { v0, v1 }, Landroid/media/AudioFormat$Builder;->setSampleRate(I)Landroid/media/AudioFormat$Builder;
+    move-result-object v0
+  .line 4
+    invoke-virtual { v0, p1 }, Landroid/media/AudioFormat$Builder;->setChannelIndexMask(I)Landroid/media/AudioFormat$Builder;
+    move-result-object v0
+  .line 5
+    invoke-virtual { v0 }, Landroid/media/AudioFormat$Builder;->build()Landroid/media/AudioFormat;
+    move-result-object v0
+  .line 6
+    invoke-virtual { v0 }, Landroid/media/AudioFormat;->getChannelCount()I
+    move-result v1
+    iput v1, p0, Ld/b/a/c;->b:I
+  .line 7
+    invoke-direct { p0 }, Ld/b/a/c;->m()I
+    move-result v1
+    iput v1, p0, Ld/b/a/c;->i:I
+  .line 8
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "initMultiChannelRecorder: "
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static { }, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
+    move-result-object v2
+    const/4 v3, 5
+    new-array v3, v3, [Ljava/lang/Object;
+    iget v4, p0, Ld/b/a/c;->b:I
+    invoke-static { v4 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v4
+    const/4 v5, 0
+    aput-object v4, v3, v5
+    invoke-static { p1 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v4
+    const/4 v5, 1
+    aput-object v4, v3, v5
+    invoke-static { p1 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object p1
+    const/4 v4, 2
+    aput-object p1, v3, v4
+    iget p1, p0, Ld/b/a/c;->i:I
+    invoke-static { p1 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object p1
+    const/4 v4, 3
+    aput-object p1, v3, v4
+    iget p1, p0, Ld/b/a/c;->o:I
+    invoke-static { p1 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object p1
+    const/4 v4, 4
+    aput-object p1, v3, v4
+    const-string p1, "ChannelCount=%d, channelIndexMask=%d(0x%02x), BufSize=%d, audioSource=%d"
+    invoke-static { v2, p1, v3 }, Ljava/lang/String;->format(Ljava/util/Locale;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+    move-result-object p1
+    invoke-virtual { v1, p1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    const-string v1, "AudioRecorder"
+    invoke-static { v1, p1 }, Lcn/manstep/phonemirrorBox/util/s;->i(Ljava/lang/String;Ljava/lang/String;)V
+  :L0
+  .line 9
+    new-instance p1, Landroid/media/AudioRecord$Builder;
+    invoke-direct { p1 }, Landroid/media/AudioRecord$Builder;-><init>()V
+  .line 10
+    invoke-virtual { p1, v0 }, Landroid/media/AudioRecord$Builder;->setAudioFormat(Landroid/media/AudioFormat;)Landroid/media/AudioRecord$Builder;
+    move-result-object p1
+    iget v0, p0, Ld/b/a/c;->o:I
+  .line 11
+    invoke-virtual { p1, v0 }, Landroid/media/AudioRecord$Builder;->setAudioSource(I)Landroid/media/AudioRecord$Builder;
+    move-result-object p1
+    iget v0, p0, Ld/b/a/c;->i:I
+  .line 12
+    invoke-virtual { p1, v0 }, Landroid/media/AudioRecord$Builder;->setBufferSizeInBytes(I)Landroid/media/AudioRecord$Builder;
+    move-result-object p1
+  .line 13
+    invoke-virtual { p1 }, Landroid/media/AudioRecord$Builder;->build()Landroid/media/AudioRecord;
+    move-result-object p1
+    iput-object p1, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+  :L1
+    goto :L3
+  :L2
+    move-exception p1
+    const/4 v0, 0
+  .line 14
+    iput-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+  .line 15
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "initMultiChannelRecorder:\n"
+    invoke-virtual { v0, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-static { p1 }, Lcn/manstep/phonemirrorBox/util/s;->g(Ljava/lang/Throwable;)Ljava/lang/String;
+    move-result-object p1
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    invoke-static { v1, p1 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+  :L3
+    return-void
+.end method
+
+.method protected s()Z
+  .registers 10
+  .line 1
+    invoke-static { }, Lcn/manstep/phonemirrorBox/u;->z()Lcn/manstep/phonemirrorBox/u;
+    move-result-object v0
+    invoke-virtual { v0 }, Lcn/manstep/phonemirrorBox/u;->a0()Z
+    move-result v0
+    const-string v1, "AudioRecorder"
+    if-eqz v0, :L0
+    const-string v0, "AudioRecorder,initRecorder: use 48K record"
+  .line 2
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  .line 3
+    new-instance v0, Landroid/media/AudioRecord;
+    iget v3, p0, Ld/b/a/c;->o:I
+    const v4, 48000
+    iget-object v2, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    iget v5, v2, Ld/b/a/a;->b:I
+    iget v6, v2, Ld/b/a/a;->c:I
+    const v7, 48000
+    iget v2, v2, Ld/b/a/a;->a:I
+    div-int/2addr v7, v2
+    iget v2, p0, Ld/b/a/c;->i:I
+    mul-int v7, v7, v2
+    move-object v2, v0
+    invoke-direct/range { v2 .. v7 }, Landroid/media/AudioRecord;-><init>(IIIII)V
+    iput-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    goto :L2
+  :L0
+  .line 4
+    invoke-static { }, Lcn/manstep/phonemirrorBox/b0;->i()Lcn/manstep/phonemirrorBox/b0;
+    move-result-object v0
+    invoke-static { }, Lcn/manstep/phonemirrorBox/u;->z()Lcn/manstep/phonemirrorBox/u;
+    move-result-object v2
+    invoke-virtual { v2 }, Lcn/manstep/phonemirrorBox/u;->D()I
+    move-result v2
+    const-string v3, "RecordChannel"
+    invoke-virtual { v0, v3, v2 }, Lcn/manstep/phonemirrorBox/b0;->m(Ljava/lang/String;I)I
+    move-result v0
+  .line 5
+    new-instance v2, Ljava/lang/StringBuilder;
+    invoke-direct { v2 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v3, "initRecorder: indexMask="
+    invoke-virtual { v2, v3 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v2, v0 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v2 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v2
+    invoke-static { v1, v2 }, Lcn/manstep/phonemirrorBox/util/s;->d(Ljava/lang/String;Ljava/lang/String;)V
+  .line 6
+    sget v2, Landroid/os/Build$VERSION;->SDK_INT:I
+    const/16 v3, 23
+    if-lt v2, v3, :L1
+    if-lez v0, :L1
+    const/16 v2, 16
+    if-eq v0, v2, :L1
+  .line 7
+    invoke-virtual { p0, v0 }, Ld/b/a/c;->r(I)V
+    goto :L2
+  :L1
+  .line 8
+    new-instance v0, Landroid/media/AudioRecord;
+    iget v4, p0, Ld/b/a/c;->o:I
+    iget-object v2, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    iget v5, v2, Ld/b/a/a;->a:I
+    iget v6, v2, Ld/b/a/a;->b:I
+    iget v7, v2, Ld/b/a/a;->c:I
+    iget v8, p0, Ld/b/a/c;->i:I
+    move-object v3, v0
+    invoke-direct/range { v3 .. v8 }, Landroid/media/AudioRecord;-><init>(IIIII)V
+    iput-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+  :L2
+  .line 9
+    iget-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    const/4 v2, 0
+    if-nez v0, :L3
+    const-string v0, "initRecorder: mRecorder == null"
+  .line 10
+    invoke-static { v1, v0 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+    return v2
+  :L3
+  .line 11
+    invoke-virtual { v0 }, Landroid/media/AudioRecord;->getState()I
+    move-result v0
+    const/16 v3, 26
+    const/4 v4, 1
+    if-eq v0, v4, :L4
+  .line 12
+    invoke-static { v2 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v0
+    invoke-static { v4, v3, v0 }, Lcn/manstep/phonemirrorBox/BoxInterface/d;->P(IILjava/lang/Object;)Z
+    return v2
+  :L4
+  .line 13
+    iget-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { v0 }, Landroid/media/AudioRecord;->startRecording()V
+  .line 14
+    iget-object v0, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { v0 }, Landroid/media/AudioRecord;->getRecordingState()I
+    move-result v0
+    const/4 v2, 3
+    if-eq v0, v2, :L5
+  .line 15
+    invoke-static { v4 }, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v0
+    invoke-static { v4, v3, v0 }, Lcn/manstep/phonemirrorBox/BoxInterface/d;->P(IILjava/lang/Object;)Z
+    goto :L6
+  :L5
+    const/16 v0, 27
+  .line 16
+    invoke-static { v4, v0 }, Lcn/manstep/phonemirrorBox/BoxInterface/d;->O(II)Z
+  :L6
+  .line 17
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "initRecorder: AudioSource="
+    invoke-virtual { v0, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v2, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { v2 }, Landroid/media/AudioRecord;->getAudioSource()I
+    move-result v2
+    invoke-virtual { v0, v2 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v2, ","
+    invoke-virtual { v0, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget v2, p0, Ld/b/a/c;->o:I
+    invoke-virtual { v0, v2 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v1, v0 }, Lcn/manstep/phonemirrorBox/util/s;->i(Ljava/lang/String;Ljava/lang/String;)V
+  .line 18
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "initRecorder: ChannelCount="
+    invoke-virtual { v0, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v2, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    invoke-virtual { v2 }, Landroid/media/AudioRecord;->getChannelCount()I
+    move-result v2
+    invoke-virtual { v0, v2 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v1, v0 }, Lcn/manstep/phonemirrorBox/util/s;->i(Ljava/lang/String;Ljava/lang/String;)V
+    return v4
+.end method
+
+.method protected u([BII)I
+  .registers 12
+    const v0, 48000
+    mul-int p3, p3, v0
+  .line 1
+    iget-object v1, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    iget v1, v1, Ld/b/a/a;->a:I
+    div-int/2addr p3, v1
+  .line 2
+    new-array v2, p3, [B
+  .line 3
+    iget-object v1, p0, Ld/b/a/c;->d:Landroid/media/AudioRecord;
+    const/4 v3, 0
+    invoke-virtual { v1, v2, v3, p3 }, Landroid/media/AudioRecord;->read([BII)I
+    move-result v4
+    if-lez v4, :L1
+  .line 4
+    sget-boolean p3, Lcn/manstep/phonemirrorBox/p;->x:Z
+    if-eqz p3, :L0
+  .line 5
+    invoke-static { }, Lcn/manstep/phonemirrorBox/MyApplication;->b()Lcn/manstep/phonemirrorBox/MyApplication;
+    move-result-object p3
+    const-string v1, "input2_48k_1.pcm"
+    invoke-static { v2, v3, v4, v1, p3 }, Lcn/manstep/phonemirrorBox/util/n;->z([BIILjava/lang/String;Landroid/content/Context;)Z
+  :L0
+  .line 6
+    iget-object p3, p0, Ld/b/a/c;->c:Ld/b/a/a;
+    iget p3, p3, Ld/b/a/a;->a:I
+    mul-int p3, p3, v4
+    div-int/2addr p3, v0
+    const/4 v3, 0
+    move-object v1, p0
+    move-object v5, p1
+    move v6, p2
+    move v7, p3
+  .line 7
+    invoke-direct/range { v1 .. v7 }, Ld/b/a/c;->t([BII[BII)V
+    return p3
+  :L1
+    return v4
+.end method
+
+.method public v(I)V
+  .registers 2
+  .line 1
+    iput p1, p0, Ld/b/a/c;->o:I
+    return-void
+.end method
+
+.method public w(I)V
+  .registers 4
+  .line 1
+    iput p1, p0, Ld/b/a/c;->n:I
+  .line 2
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "AudioRecorder,setMicGain: gain = "
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string p1, "db"
+    invoke-virtual { v0, p1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    invoke-static { p1 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+    return-void
+.end method

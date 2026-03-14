@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset android:insetLeft="@dimen/APKTOOL_RENAMED_0x7f07002d" android:insetRight="@dimen/APKTOOL_RENAMED_0x7f07002d" android:insetTop="@dimen/APKTOOL_RENAMED_0x7f07002e" android:insetBottom="@dimen/APKTOOL_RENAMED_0x7f07002c"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <selector>
+        <item android:state_enabled="false" android:drawable="@drawable/APKTOOL_RENAMED_0x7f080050" />
+        <item android:state_focused="false" android:state_pressed="false" android:drawable="@drawable/APKTOOL_RENAMED_0x7f080050" />
+        <item android:drawable="@drawable/APKTOOL_RENAMED_0x7f08004f" />
+    </selector>
+</inset>

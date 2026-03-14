@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:tag="layout/fragment_settings_0" android:background="@drawable/APKTOOL_RENAMED_0x7f08006f" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/APKTOOL_RENAMED_0x7f10026e">
+        <ImageView android:id="@id/APKTOOL_RENAMED_0x7f090134" android:tag="binding_1" android:padding="4.0dp" android:layout_width="24.0dp" android:layout_height="24.0dp" android:scaleType="fitCenter" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f080104" />
+        <Button android:tag="binding_2" android:text="@string/APKTOOL_RENAMED_0x7f0f009b" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f5="@id/APKTOOL_RENAMED_0x7f090134" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f10026f" />
+        <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f01e4" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100271" />
+        <Button android:tag="binding_3" android:background="#00000000" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="@string/APKTOOL_RENAMED_0x7f0f00ff" android:layout_alignParentRight="true" android:textAllCaps="false" android:layout_alignParentEnd="true" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100270" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView android:id="@id/APKTOOL_RENAMED_0x7f0901f6" android:scrollbars="vertical" android:fadingEdge="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="vertical" android:id="@id/APKTOOL_RENAMED_0x7f0902bf" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10016a">
+                    <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f0224" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                    <RadioGroup android:orientation="horizontal" android:id="@id/APKTOOL_RENAMED_0x7f09011a" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <RadioButton android:tag="binding_4" android:text="@string/APKTOOL_RENAMED_0x7f0f01ed" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                        <RadioButton android:tag="binding_5" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f0108" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                        <RadioButton android:tag="binding_6" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f00bc" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                    </RadioGroup>
+                </LinearLayout>
+                <View android:background="#27314f" android:layout_width="match_parent" android:layout_height="1.0dp" />
+            </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f00d8" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_7" android:text="@string/APKTOOL_RENAMED_0x7f0f00d9" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                    <RadioButton android:tag="binding_8" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f00da" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <cn.manstep.phonemirrorBox.customview.SelectTextSettingsItem android:tag="binding_9" app:APKTOOL_RENAMED_0x7f040363="@string/APKTOOL_RENAMED_0x7f0f01d1" style="@style/APKTOOL_RENAMED_0x7f100167" />
+            <cn.manstep.phonemirrorBox.customview.SelectTextSettingsItem android:tag="binding_10" app:APKTOOL_RENAMED_0x7f040363="@string/APKTOOL_RENAMED_0x7f0f010a" style="@style/APKTOOL_RENAMED_0x7f100167" />
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f0117" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_11" android:text="CarPlay" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                    <RadioButton android:tag="binding_12" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f016b" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout android:tag="binding_13" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f0003" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_14" android:text="HiCar" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                    <RadioButton android:tag="binding_15" android:layout_marginLeft="10.0dp" android:text="Android Auto" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016c" />
+                    <RadioButton android:tag="binding_16" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f007e" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016c" />
+                    <RadioButton android:tag="binding_17" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f016b" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout android:tag="binding_18" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="Android Auto" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_19" android:text="480P" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_20" android:layout_marginLeft="10.0dp" android:text="720P" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_21" android:layout_marginLeft="10.0dp" android:text="1080P" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/APKTOOL_RENAMED_0x7f090091" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f00ce" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_22" android:text="@string/APKTOOL_RENAMED_0x7f0f0149" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                    <RadioButton android:tag="binding_23" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f007b" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016d" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout android:tag="binding_24" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f00e7" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_25" android:text="@string/APKTOOL_RENAMED_0x7f0f001b" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_26" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f00f0" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_27" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f00ee" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_28" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f00ed" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout android:tag="binding_29" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="华为HiCar" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_30" android:text="@string/APKTOOL_RENAMED_0x7f0f01a4" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:layout_marginLeft="10.0dp" android:checked="true" android:text="@string/APKTOOL_RENAMED_0x7f0f01a2" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f019a" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_31" android:text="@string/APKTOOL_RENAMED_0x7f0f01a4" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_32" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f01a2" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_33" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f006f" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout android:tag="binding_34" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f019b" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <TextView android:tag="binding_35" android:focusable="true" android:clickable="true" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e4="@id/APKTOOL_RENAMED_0x7f0900b9" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100170" />
+                <cn.manstep.phonemirrorBox.customview.CustomImageView android:layout_gravity="center_vertical" android:id="@id/APKTOOL_RENAMED_0x7f0900b9" android:background="@null" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="centerInside" android:contentDescription="@string/APKTOOL_RENAMED_0x7f0f019b" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/APKTOOL_RENAMED_0x7f090065" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f0070" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_36" android:text="@string/APKTOOL_RENAMED_0x7f0f01a4" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_37" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f01a2" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout android:tag="binding_38" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f01f6" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_39" android:text="Siri" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_40" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f0101" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f00f2" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_41" android:text="@string/APKTOOL_RENAMED_0x7f0f0141" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_42" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f01d5" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f011d" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:id="@id/APKTOOL_RENAMED_0x7f09011b" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_43" android:text="@string/APKTOOL_RENAMED_0x7f0f010b" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_44" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f0026" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_45" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f006f" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f01da" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0">
+                    <RadioButton android:tag="binding_46" android:text="@string/APKTOOL_RENAMED_0x7f0f01a4" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                    <RadioButton android:tag="binding_47" android:layout_marginLeft="10.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f01a2" android:layout_marginStart="10.0dp" style="@style/APKTOOL_RENAMED_0x7f10016e" />
+                </RadioGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout android:tag="binding_48" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f005b" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <cn.manstep.phonemirrorBox.customview.CustomImageView android:layout_gravity="center_vertical" android:tag="binding_49" android:background="@null" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070185" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070185" android:scaleType="centerInside" android:contentDescription="@string/APKTOOL_RENAMED_0x7f0f005b" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:id="@id/APKTOOL_RENAMED_0x7f09029b" android:text="@string/APKTOOL_RENAMED_0x7f0f0063" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <TextView android:gravity="center_vertical" android:id="@id/APKTOOL_RENAMED_0x7f09029a" android:tag="binding_50" android:focusable="true" android:clickable="true" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100170" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:layout_width="wrap_content" android:text="@string/APKTOOL_RENAMED_0x7f0f008e" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <TextView android:gravity="center_vertical" android:id="@id/APKTOOL_RENAMED_0x7f09029c" android:tag="binding_51" android:focusable="true" android:clickable="true" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100170" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout android:tag="binding_52" style="@style/APKTOOL_RENAMED_0x7f10016a">
+                <TextView android:layout_width="wrap_content" android:text="SN" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+                <TextView android:tag="binding_53" style="@style/APKTOOL_RENAMED_0x7f100170" />
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:id="@id/APKTOOL_RENAMED_0x7f0901ba" android:tag="binding_54" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dp" android:layout_marginBottom="20.0dp">
+                    <Button android:textColor="#ffffff" android:gravity="center" android:id="@id/APKTOOL_RENAMED_0x7f090075" android:background="@drawable/APKTOOL_RENAMED_0x7f08005e" android:text="@string/APKTOOL_RENAMED_0x7f0f00b4" android:textAllCaps="false" style="@style/APKTOOL_RENAMED_0x7f1000fe" />
+                    <View android:layout_width="0.0dp" android:layout_height="match_parent" android:layout_weight="3.0" />
+                    <Button android:textColor="#ffffff" android:gravity="center" android:id="@id/APKTOOL_RENAMED_0x7f090082" android:background="@drawable/APKTOOL_RENAMED_0x7f08005e" android:text="@string/APKTOOL_RENAMED_0x7f0f00a0" android:textAllCaps="false" style="@style/APKTOOL_RENAMED_0x7f1000fe" />
+                </LinearLayout>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dp" android:layout_marginBottom="20.0dp" android:baselineAligned="true">
+                    <LinearLayout android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <TextView android:textSize="14.0sp" android:textColor="#ffffff" android:id="@id/APKTOOL_RENAMED_0x7f09027e" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dp" />
+                        <Button android:textSize="20.0sp" android:textColor="@drawable/APKTOOL_RENAMED_0x7f08012a" android:layout_gravity="center_horizontal" android:id="@id/APKTOOL_RENAMED_0x7f090071" android:background="#00000000" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/APKTOOL_RENAMED_0x7f0f009f" android:drawableLeft="@drawable/APKTOOL_RENAMED_0x7f080059" android:textAllCaps="false" />
+                    </LinearLayout>
+                    <View android:layout_width="0.0dp" android:layout_height="match_parent" android:layout_weight="0.1" />
+                    <LinearLayout android:orientation="vertical" android:layout_width="0.0dp" android:layout_height="wrap_content" android:layout_weight="1.0">
+                        <TextView android:textSize="14.0sp" android:textColor="#ffffff" android:id="@id/APKTOOL_RENAMED_0x7f090280" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10.0dp" />
+                        <Button android:textSize="20.0sp" android:textColor="@drawable/APKTOOL_RENAMED_0x7f08012a" android:layout_gravity="center_horizontal" android:id="@id/APKTOOL_RENAMED_0x7f090073" android:background="#00000000" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/APKTOOL_RENAMED_0x7f0f0094" android:drawableLeft="@drawable/APKTOOL_RENAMED_0x7f080075" android:textAllCaps="false" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

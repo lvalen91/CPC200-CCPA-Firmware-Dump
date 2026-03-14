@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="APKTOOL_RENAMED_0x7f100108" parent="@style/APKTOOL_RENAMED_0x7f100107">
+        <item name="android:background">@drawable/APKTOOL_RENAMED_0x7f080088</item>
+        <item name="android:layout_width">40.0dp</item>
+        <item name="android:layout_height">40.0dp</item>
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+    <style name="APKTOOL_RENAMED_0x7f100109" parent="@style/APKTOOL_RENAMED_0x7f100107">
+        <item name="android:background">@drawable/APKTOOL_RENAMED_0x7f0800e9</item>
+        <item name="android:layout_width">40.0dp</item>
+        <item name="android:layout_height">40.0dp</item>
+        <item name="android:layout_marginTop">10.0dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+</resources>

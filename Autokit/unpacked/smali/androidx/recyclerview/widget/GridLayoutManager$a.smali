@@ -1,0 +1,31 @@
+.class public final Landroidx/recyclerview/widget/GridLayoutManager$a;
+.super Landroidx/recyclerview/widget/GridLayoutManager$c;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/EnclosingClass;
+  value = Landroidx/recyclerview/widget/GridLayoutManager;
+.end annotation
+.annotation system Ldalvik/annotation/InnerClass;
+  accessFlags = 25
+  name = "a"
+.end annotation
+
+.method public constructor <init>()V
+  .registers 1
+  .line 1
+    invoke-direct { p0 }, Landroidx/recyclerview/widget/GridLayoutManager$c;-><init>()V
+    return-void
+.end method
+
+.method public e(II)I
+  .registers 3
+  .line 1
+    rem-int/2addr p1, p2
+    return p1
+.end method
+
+.method public f(I)I
+  .registers 2
+    const/4 p1, 1
+    return p1
+.end method

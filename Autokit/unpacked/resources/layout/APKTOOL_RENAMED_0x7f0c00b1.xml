@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f0902c2" android:background="@color/APKTOOL_RENAMED_0x7f06019e" android:layout_width="match_parent" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f0701b5" android:layout_above="@id/APKTOOL_RENAMED_0x7f0902c5">
+        <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/APKTOOL_RENAMED_0x7f090148" android:layout_width="match_parent" android:layout_height="match_parent" />
+        <include android:id="@id/APKTOOL_RENAMED_0x7f09014a" layout="@layout/APKTOOL_RENAMED_0x7f0c00b2" />
+        <include android:id="@id/APKTOOL_RENAMED_0x7f09014b" layout="@layout/APKTOOL_RENAMED_0x7f0c00b3" />
+    </FrameLayout>
+    <ImageView android:background="@drawable/APKTOOL_RENAMED_0x7f080126" android:layout_width="match_parent" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f0701b3" android:layout_above="@id/APKTOOL_RENAMED_0x7f0902c5" />
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@id/APKTOOL_RENAMED_0x7f0902c5" android:background="@color/APKTOOL_RENAMED_0x7f06019e" android:layout_width="match_parent" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f0701b6" android:baselineAligned="false" android:layout_alignParentBottom="true">
+        <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f090232" style="@style/APKTOOL_RENAMED_0x7f10034e">
+            <ImageView android:id="@id/APKTOOL_RENAMED_0x7f090125" android:src="@drawable/APKTOOL_RENAMED_0x7f080125" style="@style/APKTOOL_RENAMED_0x7f10034b" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f090230" style="@style/APKTOOL_RENAMED_0x7f10034e">
+            <ImageView android:id="@id/APKTOOL_RENAMED_0x7f090123" android:src="@drawable/APKTOOL_RENAMED_0x7f08011f" style="@style/APKTOOL_RENAMED_0x7f10034b" />
+        </FrameLayout>
+        <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f090231" style="@style/APKTOOL_RENAMED_0x7f10034e">
+            <ImageView android:id="@id/APKTOOL_RENAMED_0x7f090124" android:src="@drawable/APKTOOL_RENAMED_0x7f080124" style="@style/APKTOOL_RENAMED_0x7f10034b" />
+        </FrameLayout>
+    </LinearLayout>
+</merge>

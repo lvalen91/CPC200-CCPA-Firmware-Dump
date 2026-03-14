@@ -1,0 +1,595 @@
+.class Lcn/manstep/phonemirrorBox/AndroidH264view$b;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/EnclosingClass;
+  value = Lcn/manstep/phonemirrorBox/AndroidH264view;
+.end annotation
+.annotation system Ldalvik/annotation/InnerClass;
+  accessFlags = 10
+  name = "b"
+.end annotation
+
+.field a:Z
+
+.field b:Landroid/media/MediaCodec$BufferInfo;
+
+.field private c:J
+
+.field private d:Landroid/media/MediaCodec;
+
+.field private e:Ljava/lang/Object;
+
+.field private f:Ljava/util/Vector;
+  .annotation system Ldalvik/annotation/Signature;
+    value = {
+      "Ljava/util/Vector<",
+      "[B>;"
+    }
+  .end annotation
+.end field
+
+.field private g:Ljava/lang/Thread;
+
+.field private h:J
+
+.field private i:J
+
+.field private j:J
+
+.field private k:Ljava/lang/Thread;
+
+.field private l:Ljava/util/List;
+  .annotation system Ldalvik/annotation/Signature;
+    value = {
+      "Ljava/util/List<",
+      "Ljava/lang/Long;",
+      ">;"
+    }
+  .end annotation
+.end field
+
+.field private m:Ljava/util/Timer;
+
+.method static constructor <clinit>()V
+  .registers 2
+    return-void
+.end method
+
+.method private constructor <init>()V
+  .registers 5
+  .line 1
+    invoke-direct { p0 }, Ljava/lang/Object;-><init>()V
+    const/4 v0, 0
+  .line 2
+    iput-boolean v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->a:Z
+  .line 3
+    new-instance v0, Landroid/media/MediaCodec$BufferInfo;
+    invoke-direct { v0 }, Landroid/media/MediaCodec$BufferInfo;-><init>()V
+    iput-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->b:Landroid/media/MediaCodec$BufferInfo;
+    const-wide/16 v0, 0
+  .line 4
+    iput-wide v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->c:J
+    const/4 v2, 0
+  .line 5
+    iput-object v2, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+  .line 6
+    new-instance v3, Ljava/lang/Object;
+    invoke-direct { v3 }, Ljava/lang/Object;-><init>()V
+    iput-object v3, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->e:Ljava/lang/Object;
+  .line 7
+    iput-object v2, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->g:Ljava/lang/Thread;
+  .line 8
+    iput-wide v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->h:J
+  .line 9
+    iput-wide v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->i:J
+  .line 10
+    iput-wide v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->j:J
+  .line 11
+    iput-object v2, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->k:Ljava/lang/Thread;
+  .line 12
+    new-instance v0, Ljava/util/ArrayList;
+    invoke-direct { v0 }, Ljava/util/ArrayList;-><init>()V
+    iput-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->l:Ljava/util/List;
+  .line 13
+    iput-object v2, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->m:Ljava/util/Timer;
+    return-void
+.end method
+
+.method synthetic constructor <init>(Lcn/manstep/phonemirrorBox/AndroidH264view$a;)V
+  .registers 2
+  .line 14
+    invoke-direct { p0 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b;-><init>()V
+    return-void
+.end method
+
+.method static synthetic a(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)Ljava/lang/Object;
+  .registers 1
+  .line 1
+    iget-object p0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->e:Ljava/lang/Object;
+    return-object p0
+.end method
+
+.method static synthetic b(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)Ljava/util/Vector;
+  .registers 1
+  .line 1
+    iget-object p0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->f:Ljava/util/Vector;
+    return-object p0
+.end method
+
+.method static synthetic c(Lcn/manstep/phonemirrorBox/AndroidH264view$b;[B)V
+  .registers 2
+  .line 1
+    invoke-direct { p0, p1 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->p([B)V
+    return-void
+.end method
+
+.method static synthetic d(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)Landroid/media/MediaCodec;
+  .registers 1
+  .line 1
+    iget-object p0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    return-object p0
+.end method
+
+.method static synthetic e(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)J
+  .registers 3
+  .line 1
+    iget-wide v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->j:J
+    return-wide v0
+.end method
+
+.method static synthetic f(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)J
+  .registers 5
+  .line 1
+    iget-wide v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->j:J
+    const-wide/16 v2, 1
+    add-long/2addr v2, v0
+    iput-wide v2, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->j:J
+    return-wide v0
+.end method
+
+.method static synthetic g(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)J
+  .registers 3
+  .line 1
+    iget-wide v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->i:J
+    return-wide v0
+.end method
+
+.method static synthetic h(Lcn/manstep/phonemirrorBox/AndroidH264view$b;J)J
+  .registers 3
+  .line 1
+    iput-wide p1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->i:J
+    return-wide p1
+.end method
+
+.method static synthetic i(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)J
+  .registers 3
+  .line 1
+    iget-wide v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->h:J
+    return-wide v0
+.end method
+
+.method static synthetic j(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)Ljava/util/List;
+  .registers 1
+  .line 1
+    iget-object p0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->l:Ljava/util/List;
+    return-object p0
+.end method
+
+.method static synthetic k(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)V
+  .registers 1
+  .line 1
+    invoke-direct { p0 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->o()V
+    return-void
+.end method
+
+.method static synthetic l(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)V
+  .registers 1
+  .line 1
+    invoke-direct { p0 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->r()V
+    return-void
+.end method
+
+.method static synthetic m(Lcn/manstep/phonemirrorBox/AndroidH264view$b;Landroid/view/Surface;II)V
+  .registers 4
+  .line 1
+    invoke-direct { p0, p1, p2, p3 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->t(Landroid/view/Surface;II)V
+    return-void
+.end method
+
+.method static synthetic n(Lcn/manstep/phonemirrorBox/AndroidH264view$b;[BII)V
+  .registers 4
+  .line 1
+    invoke-direct { p0, p1, p2, p3 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->s([BII)V
+    return-void
+.end method
+
+.method private o()V
+  .catch Ljava/lang/Exception; { :L0 .. :L1 } :L2
+  .registers 3
+  :L0
+  .line 1
+    iget-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    if-eqz v0, :L3
+  .line 2
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "release mediaCodec ----"
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  .line 3
+    invoke-direct { p0 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->u()V
+  .line 4
+    iget-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    invoke-virtual { v0 }, Landroid/media/MediaCodec;->release()V
+    const/4 v0, 0
+  .line 5
+    iput-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+  :L1
+    goto :L3
+  :L2
+    move-exception v0
+  .line 6
+    invoke-virtual { v0 }, Ljava/lang/Exception;->printStackTrace()V
+  .line 7
+    invoke-static { v0 }, Landroid/util/Log;->getStackTraceString(Ljava/lang/Throwable;)Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+  :L3
+    return-void
+.end method
+
+.method private p([B)V
+  .registers 4
+  .line 1
+    array-length v0, p1
+    const/4 v1, 0
+    invoke-direct { p0, p1, v1, v0 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->q([BII)V
+    return-void
+.end method
+
+.method private q([BII)V
+  .catchall { :L4 .. :L6 } :L11
+  .catchall { :L6 .. :L8 } :L7
+  .catchall { :L8 .. :L10 } :L11
+  .registers 20
+    move-object/from16 v1, p0
+  .line 1
+    iget-boolean v0, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->a:Z
+    if-nez v0, :L0
+    return-void
+  :L0
+  .line 2
+    iget-wide v2, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->c:J
+    const-wide/16 v4, 0
+    cmp-long v0, v2, v4
+    if-nez v0, :L1
+  .line 3
+    invoke-static { }, Landroid/os/SystemClock;->uptimeMillis()J
+    move-result-wide v2
+    iput-wide v2, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->h:J
+    move-wide v2, v4
+    goto :L2
+  :L1
+  .line 4
+    invoke-static { }, Landroid/os/SystemClock;->uptimeMillis()J
+    move-result-wide v2
+    iget-wide v6, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->h:J
+    sub-long/2addr v2, v6
+  :L2
+    const/4 v0, 0
+  :L3
+    if-nez v0, :L12
+  :L4
+  .line 5
+    iget-boolean v6, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->a:Z
+    if-eqz v6, :L12
+  .line 6
+    iget-object v6, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    const-wide/32 v7, 100000
+    invoke-virtual { v6, v7, v8 }, Landroid/media/MediaCodec;->dequeueInputBuffer(J)I
+    move-result v10
+    if-ltz v10, :L9
+  .line 7
+    iget-object v0, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    invoke-virtual { v0 }, Landroid/media/MediaCodec;->getInputBuffers()[Ljava/nio/ByteBuffer;
+    move-result-object v0
+    aget-object v0, v0, v10
+  .line 8
+    invoke-virtual { v0 }, Ljava/nio/ByteBuffer;->clear()Ljava/nio/Buffer;
+    move-object/from16 v6, p1
+    move/from16 v7, p2
+    move/from16 v8, p3
+  .line 9
+    invoke-virtual { v0, v6, v7, v8 }, Ljava/nio/ByteBuffer;->put([BII)Ljava/nio/ByteBuffer;
+  .line 10
+    iget-object v9, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    const/4 v11, 0
+    const-wide/16 v12, 1000
+    mul-long v13, v2, v12
+    const/4 v15, 0
+    move/from16 v12, p3
+    invoke-virtual/range { v9 .. v15 }, Landroid/media/MediaCodec;->queueInputBuffer(IIIJI)V
+  .line 11
+    iget-wide v9, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->c:J
+    cmp-long v0, v9, v4
+    if-nez v0, :L5
+  .line 12
+    iget-object v0, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->l:Ljava/util/List;
+    invoke-interface { v0 }, Ljava/util/List;->clear()V
+  .line 13
+    iget-object v0, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->k:Ljava/lang/Thread;
+    invoke-virtual { v0 }, Ljava/lang/Thread;->start()V
+  :L5
+  .line 14
+    iget-wide v9, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->c:J
+    const-wide/16 v11, 1
+    add-long/2addr v9, v11
+    iput-wide v9, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->c:J
+  .line 15
+    iget-object v9, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->l:Ljava/util/List;
+    monitor-enter v9
+  :L6
+  .line 16
+    iget-object v0, v1, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->l:Ljava/util/List;
+    invoke-static { v2, v3 }, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
+    move-result-object v10
+    invoke-interface { v0, v10 }, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  .line 17
+    monitor-exit v9
+    const/4 v0, 1
+    goto :L3
+  :L7
+    move-exception v0
+    monitor-exit v9
+  :L8
+    throw v0
+  :L9
+    move-object/from16 v6, p1
+    move/from16 v7, p2
+    move/from16 v8, p3
+    const-string v9, "AvcDecoder"
+  .line 18
+    new-instance v11, Ljava/lang/StringBuilder;
+    invoke-direct { v11 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v12, "Get decoder inputBuffer error: "
+    invoke-virtual { v11, v12 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v11, v10 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v11 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v10
+    invoke-static { v9, v10 }, Lcn/manstep/phonemirrorBox/util/s;->f(Ljava/lang/String;Ljava/lang/String;)V
+  :L10
+    goto :L3
+  :L11
+    move-exception v0
+  .line 19
+    invoke-virtual { v0 }, Ljava/lang/Throwable;->printStackTrace()V
+    const-string v0, "inputBufferIndex Error"
+  .line 20
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  :L12
+    return-void
+.end method
+
+.method private r()V
+  .catch Ljava/io/IOException; { :L0 .. :L2 } :L3
+  .registers 3
+  :L0
+    const-string v0, "video/avc"
+  .line 1
+    invoke-static { v0 }, Landroid/media/MediaCodec;->createDecoderByType(Ljava/lang/String;)Landroid/media/MediaCodec;
+    move-result-object v0
+    iput-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    if-nez v0, :L1
+    const-string v0, "mediaCodec ----NULL"
+  .line 2
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+  :L1
+    const-string v0, "initDecodeMediaCodec ----- video/avc"
+  .line 3
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  .line 4
+    new-instance v0, Ljava/lang/StringBuilder;
+    invoke-direct { v0 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v1, "mediaCodec ----"
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    iget-object v1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    invoke-virtual { v0, v1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+    invoke-virtual { v0 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  :L2
+    goto :L4
+  :L3
+    move-exception v0
+  .line 5
+    invoke-virtual { v0 }, Ljava/io/IOException;->printStackTrace()V
+  .line 6
+    invoke-static { v0 }, Landroid/util/Log;->getStackTraceString(Ljava/lang/Throwable;)Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+  :L4
+    return-void
+.end method
+
+.method private s([BII)V
+  .catchall { :L0 .. :L3 } :L2
+  .registers 6
+  .line 1
+    sget v0, Lcn/manstep/phonemirrorBox/p;->F:I
+    if-lez v0, :L4
+  .line 2
+    new-array v0, p3, [B
+    const/4 v1, 0
+  .line 3
+    invoke-static { p1, p2, v0, v1, p3 }, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+  .line 4
+    iget-object v1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->e:Ljava/lang/Object;
+    monitor-enter v1
+  :L0
+  .line 5
+    iget-object p1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->f:Ljava/util/Vector;
+    invoke-virtual { p1, v0 }, Ljava/util/Vector;->add(Ljava/lang/Object;)Z
+  .line 6
+    iget-object p1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->f:Ljava/util/Vector;
+    invoke-virtual { p1 }, Ljava/util/Vector;->size()I
+    move-result p1
+    sget p2, Lcn/manstep/phonemirrorBox/p;->F:I
+    if-le p1, p2, :L1
+  .line 7
+    iget-object p1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->e:Ljava/lang/Object;
+    invoke-virtual { p1 }, Ljava/lang/Object;->notifyAll()V
+  :L1
+  .line 8
+    monitor-exit v1
+    goto :L5
+  :L2
+    move-exception p1
+    monitor-exit v1
+  :L3
+    throw p1
+  :L4
+  .line 9
+    invoke-direct { p0, p1, p2, p3 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->q([BII)V
+  :L5
+    return-void
+.end method
+
+.method private t(Landroid/view/Surface;II)V
+  .catchall { :L0 .. :L4 } :L3
+  .registers 7
+  .line 1
+    iget-boolean v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->a:Z
+    if-nez v0, :L5
+    if-lez p2, :L5
+    if-lez p3, :L5
+  .line 2
+    iget-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->e:Ljava/lang/Object;
+    monitor-enter v0
+  :L0
+  .line 3
+    iget-object v1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    if-eqz v1, :L2
+  .line 4
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "AvcDecoder start:"
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, p2 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    const-string v2, "-"
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, p3 }, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v1
+    invoke-static { v1 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+  .line 5
+    new-instance v1, Ljava/util/Vector;
+    const/16 v2, 320
+    invoke-direct { v1, v2 }, Ljava/util/Vector;-><init>(I)V
+    iput-object v1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->f:Ljava/util/Vector;
+    const-string v1, "video/avc"
+  .line 6
+    invoke-static { v1, p2, p3 }, Landroid/media/MediaFormat;->createVideoFormat(Ljava/lang/String;II)Landroid/media/MediaFormat;
+    move-result-object p2
+  .line 7
+    iget-object p3, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    const/4 v1, 0
+    const/4 v2, 0
+    invoke-virtual { p3, p2, p1, v1, v2 }, Landroid/media/MediaCodec;->configure(Landroid/media/MediaFormat;Landroid/view/Surface;Landroid/media/MediaCrypto;I)V
+  .line 8
+    iget-object p1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    invoke-virtual { p1 }, Landroid/media/MediaCodec;->start()V
+    const/4 p1, 1
+  .line 9
+    iput-boolean p1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->a:Z
+  .line 10
+    new-instance p1, Ljava/lang/Thread;
+    new-instance p2, Lcn/manstep/phonemirrorBox/AndroidH264view$b$a;
+    invoke-direct { p2, p0 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b$a;-><init>(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)V
+    const-string p3, "hdv"
+    invoke-direct { p1, p2, p3 }, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;Ljava/lang/String;)V
+    iput-object p1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->g:Ljava/lang/Thread;
+  .line 11
+    sget p2, Lcn/manstep/phonemirrorBox/p;->F:I
+    if-lez p2, :L1
+  .line 12
+    invoke-virtual { p1 }, Ljava/lang/Thread;->start()V
+  :L1
+    const-wide/16 p1, 0
+  .line 13
+    iput-wide p1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->j:J
+  .line 14
+    new-instance p1, Ljava/lang/Thread;
+    new-instance p2, Lcn/manstep/phonemirrorBox/AndroidH264view$b$b;
+    invoke-direct { p2, p0 }, Lcn/manstep/phonemirrorBox/AndroidH264view$b$b;-><init>(Lcn/manstep/phonemirrorBox/AndroidH264view$b;)V
+    const-string p3, "render"
+    invoke-direct { p1, p2, p3 }, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;Ljava/lang/String;)V
+    iput-object p1, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->k:Ljava/lang/Thread;
+  :L2
+  .line 15
+    monitor-exit v0
+    goto :L5
+  :L3
+    move-exception p1
+    monitor-exit v0
+  :L4
+    throw p1
+  :L5
+    return-void
+.end method
+
+.method private u()V
+  .catch Ljava/lang/InterruptedException; { :L0 .. :L1 } :L2
+  .registers 3
+  .line 1
+    iget-boolean v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->a:Z
+    if-eqz v0, :L4
+    const-string v0, "AvcDecoder stop"
+  .line 2
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->c(Ljava/lang/String;)V
+    const-wide/16 v0, 0
+  .line 3
+    iput-wide v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->c:J
+    const/4 v0, 0
+  .line 4
+    iput-boolean v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->a:Z
+  :L0
+  .line 5
+    iget-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->g:Ljava/lang/Thread;
+    invoke-virtual { v0 }, Ljava/lang/Thread;->join()V
+  .line 6
+    iget-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->k:Ljava/lang/Thread;
+    invoke-virtual { v0 }, Ljava/lang/Thread;->join()V
+  :L1
+    goto :L3
+  :L2
+    move-exception v0
+  .line 7
+    invoke-virtual { v0 }, Ljava/lang/InterruptedException;->printStackTrace()V
+  .line 8
+    invoke-static { v0 }, Landroid/util/Log;->getStackTraceString(Ljava/lang/Throwable;)Ljava/lang/String;
+    move-result-object v0
+    invoke-static { v0 }, Lcn/manstep/phonemirrorBox/util/s;->e(Ljava/lang/String;)V
+  :L3
+  .line 9
+    iget-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    invoke-virtual { v0 }, Landroid/media/MediaCodec;->flush()V
+  .line 10
+    iget-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->d:Landroid/media/MediaCodec;
+    invoke-virtual { v0 }, Landroid/media/MediaCodec;->stop()V
+  :L4
+  .line 11
+    iget-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->m:Ljava/util/Timer;
+    if-eqz v0, :L5
+  .line 12
+    invoke-virtual { v0 }, Ljava/util/Timer;->cancel()V
+  :L5
+    const/4 v0, 0
+  .line 13
+    iput-object v0, p0, Lcn/manstep/phonemirrorBox/AndroidH264view$b;->m:Ljava/util/Timer;
+    return-void
+.end method

@@ -1,0 +1,1774 @@
+=== Protocol-relevant strings from decrypted DEX ===
+, HiCarURL: 
+, scale_Y = 
+AndroidAuto(
+autoMirrored
+bottomMargin
+colorSurface
+EVT_BOX_INFO
+getMarginEnd
+iPhoneMirror
+mLayoutScale
+onTouchEvent
+resizeBuffer
+screenLayout
+setMarginEnd
+setScaleText
+setScaleType
+titleMargins
+            vec4 texc = texture2D(sTexture, vTextureCoord + uTexOffset[i]);
+        sum = texture2D(sTexture, vTextureCoord);
+    } else if (vTextureCoord.x > vTextureCoord.y + 0.005) {
+    gl_FragColor = texture2D(sTexture, vTextureCoord);
+    gl_FragColor = vTextureColor;
+    if (vTextureCoord.x < vTextureCoord.y - 0.005) {
+    lowp float luminance = dot(vTextureColor.rgb, luminanceWeighting);
+    lowp vec3 greyScaleColor = vec3(luminance);
+    vec4 brightnessColor = vec4((vTextureColor.rgb + vec3(brightness)), vTextureColor.w);
+    vec4 contrastColor = vec4(((vTextureColor.rgb - vec3(0.5)) * contrast + vec3(0.5)), vTextureColor.w);
+    vec4 exposureColor = vec4(vTextureColor.rgb * pow(2.0, exposure), vTextureColor.w);
+    vec4 saturationColor = vec4(mix(greyScaleColor, vTextureColor.rgb, saturation), vTextureColor.w);
+    vec4 tc = texture2D(sTexture, vTextureCoord);
+    vec4 vTextureColor = texture2D(uTextureSampler, vTextureCoord);
+    vTextureColor = brightnessColor;
+    vTextureColor = contrastColor;
+    vTextureColor = exposureColor;
+    vTextureColor = saturationColor;
+    vTextureCoord = (uTexMatrix * aTextureCoord).xy;
+    vTextureCoord = (uTextureMatrix * aTextureCoordinate).xy;
+ abc_text_size_display_1_material
+ abc_text_size_display_2_material
+ abc_text_size_display_3_material
+ abc_text_size_display_4_material
+ AutoBoxMirrorView,on_Box_Phase: 
+ AutoBoxMirrorView,setVideoWH: w=
+ BoxCarPlay,onDataOut: VideoSize=
+ BoxProtocol,copyLocalFileToBox: 
+ BoxProtocol,sendBoxAllSettings: 
+ Constraint_layout_goneMarginLeft
+ Data bytes does not match offset
+ EVT_UPDATE_BLUETOOTH_ONLINE_LIST
+ EVT_UPDATE_BLUETOOTH_PAIRED_LIST
+ GradientColorItem_android_offset
+ in onInterceptTouchEvent
+ in onTouchEvent
+ Layout_android_layout_marginLeft
+ Lcn/manstep/phonemirrorBox/a0$a;
+ Lcn/manstep/phonemirrorBox/a0$b;
+ Lcn/manstep/phonemirrorBox/a0$c;
+ Lcn/manstep/phonemirrorBox/a0$d;
+ Lcn/manstep/phonemirrorBox/a0$e;
+ Lcn/manstep/phonemirrorBox/a0$f;
+ Lcn/manstep/phonemirrorBox/d0/a;
+ Lcn/manstep/phonemirrorBox/d0/b;
+ Lcn/manstep/phonemirrorBox/d0/c;
+ Lcn/manstep/phonemirrorBox/d0/d;
+ Lcn/manstep/phonemirrorBox/d0/e;
+ Lcn/manstep/phonemirrorBox/d0/f;
+ Lcn/manstep/phonemirrorBox/d0/g;
+ Lcn/manstep/phonemirrorBox/d0/h;
+ Lcn/manstep/phonemirrorBox/d0/i;
+ Lcn/manstep/phonemirrorBox/d0/j;
+ Lcn/manstep/phonemirrorBox/d0/k;
+ Lcn/manstep/phonemirrorBox/d0/l;
+ Lcn/manstep/phonemirrorBox/Dtmf;
+ Lcn/manstep/phonemirrorBox/e0/a;
+ Lcn/manstep/phonemirrorBox/e0/b;
+ Lcn/manstep/phonemirrorBox/f0/a;
+ Lcn/manstep/phonemirrorBox/f0/b;
+ Lcn/manstep/phonemirrorBox/f0/c;
+ Lcn/manstep/phonemirrorBox/f0/d;
+ Lcn/manstep/phonemirrorBox/f0/e;
+ Lcn/manstep/phonemirrorBox/f0/f;
+ Lcn/manstep/phonemirrorBox/f0/g;
+ Lcn/manstep/phonemirrorBox/g0/a;
+ Lcn/manstep/phonemirrorBox/g0/b;
+ Lcn/manstep/phonemirrorBox/g0/c;
+ Lcn/manstep/phonemirrorBox/g0/d;
+ Lcn/manstep/phonemirrorBox/g0/e;
+ Lcn/manstep/phonemirrorBox/h0/a;
+ Lcn/manstep/phonemirrorBox/h0/b;
+ Lcn/manstep/phonemirrorBox/i0/a;
+ Lcn/manstep/phonemirrorBox/i0/b;
+ Lcn/manstep/phonemirrorBox/i0/c;
+ Lcn/manstep/phonemirrorBox/i0/d;
+ Lcn/manstep/phonemirrorBox/i0/e;
+ Lcn/manstep/phonemirrorBox/i0/f;
+ Lcn/manstep/phonemirrorBox/i0/g;
+ Lcn/manstep/phonemirrorBox/i0/h;
+ Lcn/manstep/phonemirrorBox/i0/i;
+ Lcn/manstep/phonemirrorBox/i0/j;
+ Lcn/manstep/phonemirrorBox/i0/k;
+ Lcn/manstep/phonemirrorBox/i0/l;
+ Lcn/manstep/phonemirrorBox/i0/m;
+ Lcn/manstep/phonemirrorBox/i0/n;
+ Lcn/manstep/phonemirrorBox/i0/o;
+ Lcn/manstep/phonemirrorBox/i0/p;
+ Lcn/manstep/phonemirrorBox/i0/q;
+ Lcn/manstep/phonemirrorBox/i0/r;
+ Lcn/manstep/phonemirrorBox/i0/s;
+ Lcn/manstep/phonemirrorBox/i0/t;
+ Lcn/manstep/phonemirrorBox/i0/u;
+ Lcn/manstep/phonemirrorBox/i0/v;
+ Lcn/manstep/phonemirrorBox/i0/w;
+ Lcn/manstep/phonemirrorBox/i0/x;
+ Lcn/manstep/phonemirrorBox/j0/a;
+ Lcn/manstep/phonemirrorBox/k0/a;
+ Lcn/manstep/phonemirrorBox/k0/b;
+ Lcn/manstep/phonemirrorBox/k0/c;
+ Lcn/manstep/phonemirrorBox/k0/d;
+ Lcn/manstep/phonemirrorBox/k0/e;
+ Lcn/manstep/phonemirrorBox/k0/f;
+ Lcn/manstep/phonemirrorBox/k0/g;
+ Lcn/manstep/phonemirrorBox/k0/h;
+ Lcn/manstep/phonemirrorBox/k0/i;
+ Lcn/manstep/phonemirrorBox/k0/j;
+ Lcn/manstep/phonemirrorBox/k0/k;
+ Lcn/manstep/phonemirrorBox/l0/a;
+ Lcn/manstep/phonemirrorBox/l0/b;
+ Lcn/manstep/phonemirrorBox/l0/c;
+ Lcn/manstep/phonemirrorBox/l0/d;
+ Lcn/manstep/phonemirrorBox/l0/e;
+ Lcn/manstep/phonemirrorBox/l0/f;
+ Lcn/manstep/phonemirrorBox/l0/g;
+ Lcn/manstep/phonemirrorBox/l0/h;
+ Lcn/manstep/phonemirrorBox/l0/i;
+ Lcn/manstep/phonemirrorBox/l0/j;
+ Lcn/manstep/phonemirrorBox/l0/k;
+ Lcn/manstep/phonemirrorBox/l0/l;
+ Lcn/manstep/phonemirrorBox/l0/m;
+ Lcn/manstep/phonemirrorBox/l0/n;
+ Lcn/manstep/phonemirrorBox/l0/o;
+ Lcn/manstep/phonemirrorBox/l0/p;
+ Lcn/manstep/phonemirrorBox/l0/q;
+ Lcn/manstep/phonemirrorBox/l0/r;
+ Lcn/manstep/phonemirrorBox/l0/s;
+ Lcn/manstep/phonemirrorBox/l0/t;
+ Lcn/manstep/phonemirrorBox/l0/u;
+ Lcn/manstep/phonemirrorBox/l0/v;
+ Lcn/manstep/phonemirrorBox/l0/w;
+ Lcn/manstep/phonemirrorBox/n0/a;
+ Lcn/manstep/phonemirrorBox/o0/a;
+ Lcn/manstep/phonemirrorBox/p0/a;
+ Lcn/manstep/phonemirrorBox/p0/b;
+ Lcn/manstep/phonemirrorBox/p0/c;
+ Lcn/manstep/phonemirrorBox/p0/d;
+ Lcn/manstep/phonemirrorBox/q0/a;
+ Lcn/manstep/phonemirrorBox/q0/b;
+ Lcn/manstep/phonemirrorBox/q0/c;
+ Lcn/manstep/phonemirrorBox/q0/d;
+ Lcn/manstep/phonemirrorBox/q0/e;
+ Lcn/manstep/phonemirrorBox/q0/f;
+ Lcn/manstep/phonemirrorBox/q0/g;
+ Lcn/manstep/phonemirrorBox/r0/a;
+ Lcn/manstep/phonemirrorBox/r0/b;
+ Lcn/manstep/phonemirrorBox/r0/c;
+ Lcn/manstep/phonemirrorBox/r0/d;
+ Lcn/manstep/phonemirrorBox/r0/e;
+ Lcn/manstep/phonemirrorBox/s0/a;
+ Lcn/manstep/phonemirrorBox/s0/b;
+ Lcn/manstep/phonemirrorBox/t0/a;
+ Lcn/manstep/phonemirrorBox/u0/a;
+ Lcn/manstep/phonemirrorBox/u0/b;
+ Lcn/manstep/phonemirrorBox/u0/c;
+ Lcn/manstep/phonemirrorBox/u0/d;
+ Lcn/manstep/phonemirrorBox/u0/e;
+ Lcn/manstep/phonemirrorBox/v0/a;
+ Lcn/manstep/phonemirrorBox/v0/b;
+ Lcn/manstep/phonemirrorBox/v0/c;
+ Lcn/manstep/phonemirrorBox/v0/d;
+ Lcn/manstep/phonemirrorBox/v0/e;
+ Lcn/manstep/phonemirrorBox/w0/a;
+ Lcn/manstep/phonemirrorBox/w0/b;
+ Lcn/manstep/phonemirrorBox/w0/c;
+ Lcn/manstep/phonemirrorBox/x0/a;
+ Lcn/manstep/phonemirrorBox/x0/b;
+ Lcn/manstep/phonemirrorBox/x0/c;
+ Lcn/manstep/phonemirrorBox/x0/d;
+ Lcn/manstep/phonemirrorBox/x0/e;
+ Lcn/manstep/phonemirrorBox/x0/f;
+ Lcn/manstep/phonemirrorBox/x0/g;
+ Lcn/manstep/phonemirrorBox/x0/h;
+ Lcn/manstep/phonemirrorBox/x0/i;
+ Lcn/manstep/phonemirrorBox/x0/j;
+ Lcn/manstep/phonemirrorBox/x0/k;
+ Lcn/manstep/phonemirrorBox/x0/l;
+ Lcn/manstep/phonemirrorBox/x0/m;
+ MaterialButton_android_insetLeft
+ mtrl_navigation_rail_icon_margin
+ NavigationView_itemShapeInsetTop
+ notification_media_narrow_margin
+ onCmd: Stop record audio========
+ scale=
+_BoxCarPlay,waitforSurfaceAvailable:RenderThread ask SurfaceAvailable: Config.bUseTextureView = 
+_display_name
+-@@@AutoBoxMirrorSoftView onDetachedFromWindow
+-AutoBoxMirrorTextureView onDetachedFromWindow
+-BoxProtocol,onCmd: Recv bWifiDeviceConected: 
+-BoxProtocol,send_g_open: error phoneWorkMode=
+-BoxProtocol,sendCmd: bOpened_ = false, cmd = 
+-BoxProtocol,showConnectionPinCode: phoneType=
+-ConstraintLayout_Layout_layout_goneMarginLeft
+-FloatingActionButton_ensureMinTouchTargetSize
+-Lcn/manstep/phonemirrorBox/AndroidBackGround;
+-Lcn/manstep/phonemirrorBox/AndroidH264view$a;
+-Lcn/manstep/phonemirrorBox/AndroidH264view$b;
+-Lcn/manstep/phonemirrorBox/AndroidH264view$c;
+-Lcn/manstep/phonemirrorBox/AndroidJpegView$a;
+-Lcn/manstep/phonemirrorBox/AutoBoxMirrorView;
+-Lcn/manstep/phonemirrorBox/AutoStartReceiver;
+-Lcn/manstep/phonemirrorBox/CheckActivity$a$a;
+-Lcn/manstep/phonemirrorBox/ecarx/ECarXUtil$a;
+-Lcn/manstep/phonemirrorBox/ecarx/ECarXUtil$b;
+-Lcn/manstep/phonemirrorBox/ecarx/ECarXUtil$c;
+-Lcn/manstep/phonemirrorBox/ecarx/ECarXUtil$d;
+-Lcn/manstep/phonemirrorBox/ForegroundService;
+-Lcn/manstep/phonemirrorBox/ModeChangeService;
+-material_timepicker_dialog_buttons_margin_top
+, AndroidAutoSize:
+, display=
+, iPhoneMode=
+, isSupportHiCar=
+, MaxVideoSize:
+, mSingleWorkMode=
+, phoneModel='
+, scale: 
+, scaled_height=
+, scaled_left=
+, scaled_top=
+, scaledDensity=
+, surface=
+, sysScaledDensity=
+, textScaleX=
+,androidWorkMode=
+,AutoBoxMirrorTextureView,RecaculateScaleWH: 
+,AutoBoxMirrorTextureView,ReSizeView: Screen:
+,AutoBoxMirrorView,onRotationChanged: Screen:
+,BoxProtocol,onCmd: Hardware Error: Bluetooth
+,BoxProtocol,send_camera_info: Write data err
+,BoxProtocol,send_camera_info: Write head err
+,cn.manstep.phonemirrorBox.sdk.IRemoteService
+,ConstraintLayout_Layout_layout_goneMarginEnd
+,ConstraintLayout_Layout_layout_goneMarginTop
+,getDM: @@@isScreenLandscape :
+,Landroid/widget/RelativeLayout$LayoutParams;
+,Lcn/manstep/phonemirrorBox/AutoStartService;
+,Lcn/manstep/phonemirrorBox/BoxInterface/a$a;
+,Lcn/manstep/phonemirrorBox/BoxInterface/a$b;
+,Lcn/manstep/phonemirrorBox/BoxInterface/a$c;
+,Lcn/manstep/phonemirrorBox/BoxInterface/b$a;
+,Lcn/manstep/phonemirrorBox/BoxInterface/b$b;
+,Lcn/manstep/phonemirrorBox/BoxInterface/b$c;
+,Lcn/manstep/phonemirrorBox/BoxInterface/b$d;
+,Lcn/manstep/phonemirrorBox/BoxInterface/b$e;
+,Lcn/manstep/phonemirrorBox/BoxInterface/b$f;
+,Lcn/manstep/phonemirrorBox/BoxInterface/d$a;
+,Lcn/manstep/phonemirrorBox/BoxInterface/d$b;
+,Lcn/manstep/phonemirrorBox/BoxInterface/d$c;
+,Lcn/manstep/phonemirrorBox/BoxInterface/d$d;
+,Lcn/manstep/phonemirrorBox/BoxInterface/d$e;
+,Lcn/manstep/phonemirrorBox/BoxInterface/d$f;
+,Lcn/manstep/phonemirrorBox/BoxInterface/d$g;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$a;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$b;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$c;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$d;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$e;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$f;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$g;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$h;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$i;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$j;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$k;
+,Lcn/manstep/phonemirrorBox/BoxInterface/f$l;
+,Lcn/manstep/phonemirrorBox/KeyLearnActivity;
+,Lcn/manstep/phonemirrorBox/LauncherActivity;
+,Lcn/manstep/phonemirrorBox/MainActivity$e$a;
+,Lcn/manstep/phonemirrorBox/MainActivity$e$b;
+,Lcn/manstep/phonemirrorBox/MainActivity$s$a;
+,Lcn/manstep/phonemirrorBox/MainActivity$z$a;
+,mtrl_bottomappbar_fab_cradle_vertical_offset
+,mtrl_navigation_item_shape_horizontal_margin
+,onCmd: Resend g_Open!! #####################
+,surfaceChanged: RenderThread surfaceChanged 
+,videoSize=
+,Widget_MaterialComponents_TimePicker_Display
+,WorkMode:
+; boundsInScreen: 
+;@@@AutoBoxMirrorSoftView onAttachedToWindow & boxInterface=
+;AutoBoxMirrorTextureView onAttachedToWindow & boxInterface=
+;BoxProtocol,sendAndroidWorkModeAssets: UploadAssets failed!
+;com.szchoiceway.eventcenter.EventUtils.ACTION_MCU_CMD_EVENT
+;ThemeOverlay_MaterialComponents_MaterialCalendar_Fullscreen
+;Widget_MaterialComponents_NavigationRailView_PrimarySurface
+:cn.manstep.phonemirrorBox.AUTO_BOX_CONTROL_CMD_DATA_STRING
+:Landroid/graphics/SurfaceTexture$OnFrameAvailableListener;
+:Landroid/view/ScaleGestureDetector$OnScaleGestureListener;
+:Lcn/manstep/phonemirrorBox/floatwindow/FloatWindowService;
+:MainActivity,enterFullScreen: ###### isVideoNotFullscreen=
+:mtrl_calendar_selection_text_baseline_to_bottom_fullscreen
+!android:visibility:screenLocation
+!AndroidH264View surfaceDestroyed:
+!BoxProtocol,copyAssetFiletoBox: 
+!BoxProtocol,onCmd: Unknown cmd = 
+!BoxProtocol,send_g_open: success 
+!BoxProtocol,sendAndroidAutoSize: 
+!BoxProtocol,setBoxBluetoothName: 
+!cn.manstep.phonemirrorBox.CarPlay
+!cn.manstep.phonemirrorBox.STARTED
+!Constraint_layout_goneMarginRight
+!Constraint_layout_goneMarginStart
+!design_dark_default_color_surface
+!DeviceCheck,recordeAudio offset =
+!enterFullScreen: isHideSysNavBar=
+!Freescale-SABRESD-MX6DQ-4.4.2(19)
+!GLFrameRenderer :: Screene size: 
+!Landroid/graphics/SurfaceTexture;
+!Layout_android_layout_marginRight
+!Layout_android_layout_marginStart
+!Lcn/manstep/phonemirrorBox/d/a$a;
+!Lcn/manstep/phonemirrorBox/d/a$b;
+!Lcn/manstep/phonemirrorBox/d/a$c;
+!Lcn/manstep/phonemirrorBox/d/a$d;
+!Lcn/manstep/phonemirrorBox/j$a$a;
+!Lcn/manstep/phonemirrorBox/z$k$a;
+!mtrl_badge_horizontal_edge_offset
+!notification_content_margin_start
+!onCmd: Start record audio========
+!RenderThread ask surfaceDestroyed
+!startMirror: boxProtol not null  
+!TextAppearance_AppCompat_Display1
+!TextAppearance_AppCompat_Display2
+!TextAppearance_AppCompat_Display3
+!TextAppearance_AppCompat_Display4
+!waitforSurfaceAvailable: surface=
+.abc_action_bar_subtitle_bottom_margin_material
+.BoxCarPlay,sendSurfaceAvailable:mRenderThread=
+.BoxProtocol,onCmd: Recv CMD_PLUG, Phone Type: 
+.BoxProtocol,send_g_open: g_Open.iBoxversion = 
+.BoxProtocol,send_g_open: Write g_Open data err
+.BoxProtocol,send_g_open: Write g_Open head err
+.BoxProtocol,sendBoxName: Box name is too long.
+.CollapsingToolbarLayout_expandedTitleMarginEnd
+.CollapsingToolbarLayout_expandedTitleMarginTop
+.ConstraintLayout_Layout_layout_goneMarginRight
+.ConstraintLayout_Layout_layout_goneMarginStart
+.Lcn/manstep/phonemirrorBox/AdjustSizeActivity;
+.Lcn/manstep/phonemirrorBox/AutoStartService$a;
+.Lcn/manstep/phonemirrorBox/AutoStartService$b;
+.Lcn/manstep/phonemirrorBox/AutoStartService$c;
+.Lcn/manstep/phonemirrorBox/AutoStartService$d;
+.Lcn/manstep/phonemirrorBox/AutoStartService$e;
+.Lcn/manstep/phonemirrorBox/AutoStartService$f;
+.Lcn/manstep/phonemirrorBox/AutoStartService$g;
+.Lcn/manstep/phonemirrorBox/AutoStartService$h;
+.Lcn/manstep/phonemirrorBox/BoxInterface/a$b$a;
+.Lcn/manstep/phonemirrorBox/BoxInterface/b$b$a;
+.Lcn/manstep/phonemirrorBox/BoxInterface/b$b$b;
+.Lcn/manstep/phonemirrorBox/BoxInterface/b$b$c;
+.Lcn/manstep/phonemirrorBox/BoxInterface/b$b$d;
+.Lcn/manstep/phonemirrorBox/BoxInterface/b$f$a;
+.Lcn/manstep/phonemirrorBox/BoxInterface/b$f$b;
+.Lcn/manstep/phonemirrorBox/BoxInterface/b$f$c;
+.Lcn/manstep/phonemirrorBox/BoxInterface/f$d$a;
+.Lcn/manstep/phonemirrorBox/FloatWindowService;
+.Lcn/manstep/phonemirrorBox/KeyLearnActivity$a;
+.Lcn/manstep/phonemirrorBox/KeyLearnActivity$b;
+.Lcn/manstep/phonemirrorBox/KeyLearnActivity$c;
+.Lcn/manstep/phonemirrorBox/KeyLearnActivity$d;
+.Lcn/manstep/phonemirrorBox/KeyLearnActivity$e;
+.Lcn/manstep/phonemirrorBox/KeyLearnActivity$f;
+.Lcn/manstep/phonemirrorBox/KeyLearnActivity$g;
+.Lcn/manstep/phonemirrorBox/KeyLearnActivity$h;
+.Lcn/manstep/phonemirrorBox/MainActivity$s$a$a;
+.Lcn/manstep/phonemirrorBox/MainActivity$s$a$b;
+.ListPopupWindow_android_dropDownVerticalOffset
+.mtrl_calendar_title_baseline_to_top_fullscreen
+.onCmd: #PHASE_IOS_WORING/PHASE_ANDROID_WORKING
+.ucrop_default_crop_rect_corner_touch_threshold
+.WaitFragment,resetDisplaySize: VIDEO_MAX_SIZE 
+.Widget_MaterialComponents_AppBarLayout_Surface
+'@@@AutoBoxMirrorSoftView surfaceChanged
+'android.media.metadata.DISPLAY_ICON_URI
+'android.media.metadata.DISPLAY_SUBTITLE
+'AutoBoxMirrorTextureView,on_Box_Phase: 
+'BoxProtocol,onCmd: CMD_UPDATE iStatus: 
+'BoxProtocol,onCmd: Hardware Error: Wifi
+'BoxProtocol,saveFileFromBox: Recv file 
+'BoxProtocol,send_g_open: phoneWorkMode=
+'BoxProtocol,UploadAssets: context==null
+'cn.manstep.phonemirrorBox.AUTO_BOX_WEAK
+'cn.manstep.phonemirrorBox.third.AcoUtil
+'cn.manstep.phonemirrorBox.third.AvdUtil
+'ConstraintSet_android_layout_marginLeft
+'item_touch_helper_swipe_escape_velocity
+'Landroid/opengl/GLSurfaceView$Renderer;
+'Lcn/manstep/phonemirrorBox/AssistCmd$a;
+'Lcn/manstep/phonemirrorBox/AssistTouch;
+'Lcn/manstep/phonemirrorBox/FirstPage$a;
+'Lcn/manstep/phonemirrorBox/util/d0$c$a;
+'mtrl_navigation_bar_item_default_margin
+'mtrl_navigation_rail_text_bottom_margin
+'mtrl_snackbar_message_margin_horizontal
+'onCmd: #CMD_PLUGOUT Phone Disconnected.
+'resizeAndroidAutoView: androidAutoSize=
+'UiLogic on_Box_Phase EVT_PHONE_PLUG_OUT
+"/data/data/cn.manstep.phonemirror/
+"BoxProtocol,BoxProtocol: ===***===
+"BoxProtocol,changeIphoneWorkMode: 
+"BoxProtocol,sendAutoConnByBtAddr: 
+"BoxProtocol,sendBluetoothPinCode: 
+"buildTextures videoSizeChanged: w=
+"Constraint_layout_goneMarginBottom
+"ConstraintSet_layout_goneMarginEnd
+"ConstraintSet_layout_goneMarginTop
+"iPhoneMirrorNotSupportView parse: 
+"Layout_android_layout_marginBottom
+"Lcn/manstep/phonemirrorBox/d0/f$a;
+"Lcn/manstep/phonemirrorBox/d0/f$b;
+"Lcn/manstep/phonemirrorBox/d0/h$a;
+"Lcn/manstep/phonemirrorBox/d0/h$b;
+"Lcn/manstep/phonemirrorBox/d0/i$a;
+"Lcn/manstep/phonemirrorBox/d0/i$b;
+"Lcn/manstep/phonemirrorBox/d0/j$a;
+"Lcn/manstep/phonemirrorBox/d0/j$b;
+"Lcn/manstep/phonemirrorBox/d0/k$a;
+"Lcn/manstep/phonemirrorBox/d0/k$b;
+"Lcn/manstep/phonemirrorBox/d0/l$a;
+"Lcn/manstep/phonemirrorBox/d0/l$b;
+"Lcn/manstep/phonemirrorBox/f0/b$a;
+"Lcn/manstep/phonemirrorBox/f0/c$a;
+"Lcn/manstep/phonemirrorBox/f0/e$a;
+"Lcn/manstep/phonemirrorBox/f0/f$a;
+"Lcn/manstep/phonemirrorBox/f0/g$a;
+"Lcn/manstep/phonemirrorBox/h0/a$a;
+"Lcn/manstep/phonemirrorBox/h0/b$a;
+"Lcn/manstep/phonemirrorBox/i0/h$a;
+"Lcn/manstep/phonemirrorBox/i0/h$b;
+"Lcn/manstep/phonemirrorBox/j0/a$a;
+"Lcn/manstep/phonemirrorBox/k0/a$a;
+"Lcn/manstep/phonemirrorBox/k0/a$b;
+"Lcn/manstep/phonemirrorBox/k0/a$c;
+"Lcn/manstep/phonemirrorBox/k0/b$a;
+"Lcn/manstep/phonemirrorBox/k0/c$a;
+"Lcn/manstep/phonemirrorBox/k0/c$b;
+"Lcn/manstep/phonemirrorBox/k0/d$a;
+"Lcn/manstep/phonemirrorBox/k0/e$a;
+"Lcn/manstep/phonemirrorBox/k0/e$b;
+"Lcn/manstep/phonemirrorBox/k0/f$a;
+"Lcn/manstep/phonemirrorBox/k0/f$b;
+"Lcn/manstep/phonemirrorBox/k0/g$a;
+"Lcn/manstep/phonemirrorBox/k0/g$b;
+"Lcn/manstep/phonemirrorBox/k0/g$c;
+"Lcn/manstep/phonemirrorBox/k0/g$d;
+"Lcn/manstep/phonemirrorBox/k0/h$a;
+"Lcn/manstep/phonemirrorBox/k0/h$b;
+"Lcn/manstep/phonemirrorBox/k0/h$c;
+"Lcn/manstep/phonemirrorBox/k0/i$a;
+"Lcn/manstep/phonemirrorBox/k0/i$b;
+"Lcn/manstep/phonemirrorBox/k0/i$c;
+"Lcn/manstep/phonemirrorBox/k0/i$d;
+"Lcn/manstep/phonemirrorBox/k0/i$e;
+"Lcn/manstep/phonemirrorBox/k0/j$a;
+"Lcn/manstep/phonemirrorBox/k0/k$a;
+"Lcn/manstep/phonemirrorBox/k0/k$b;
+"Lcn/manstep/phonemirrorBox/k0/k$c;
+"Lcn/manstep/phonemirrorBox/l0/k$a;
+"Lcn/manstep/phonemirrorBox/l0/k$b;
+"Lcn/manstep/phonemirrorBox/l0/l$a;
+"Lcn/manstep/phonemirrorBox/l0/l$b;
+"Lcn/manstep/phonemirrorBox/l0/l$c;
+"Lcn/manstep/phonemirrorBox/l0/l$d;
+"Lcn/manstep/phonemirrorBox/l0/l$e;
+"Lcn/manstep/phonemirrorBox/l0/l$f;
+"Lcn/manstep/phonemirrorBox/l0/l$g;
+"Lcn/manstep/phonemirrorBox/l0/l$h;
+"Lcn/manstep/phonemirrorBox/l0/l$i;
+"Lcn/manstep/phonemirrorBox/l0/l$j;
+"Lcn/manstep/phonemirrorBox/l0/l$k;
+"Lcn/manstep/phonemirrorBox/l0/l$l;
+"Lcn/manstep/phonemirrorBox/l0/l$m;
+"Lcn/manstep/phonemirrorBox/l0/l$n;
+"Lcn/manstep/phonemirrorBox/l0/l$o;
+"Lcn/manstep/phonemirrorBox/l0/l$p;
+"Lcn/manstep/phonemirrorBox/l0/m$a;
+"Lcn/manstep/phonemirrorBox/l0/m$b;
+"Lcn/manstep/phonemirrorBox/l0/o$a;
+"Lcn/manstep/phonemirrorBox/l0/o$b;
+"Lcn/manstep/phonemirrorBox/l0/o$c;
+"Lcn/manstep/phonemirrorBox/l0/o$d;
+"Lcn/manstep/phonemirrorBox/l0/o$e;
+"Lcn/manstep/phonemirrorBox/l0/o$f;
+"Lcn/manstep/phonemirrorBox/l0/o$g;
+"Lcn/manstep/phonemirrorBox/l0/o$h;
+"Lcn/manstep/phonemirrorBox/l0/p$a;
+"Lcn/manstep/phonemirrorBox/l0/p$b;
+"Lcn/manstep/phonemirrorBox/l0/p$c;
+"Lcn/manstep/phonemirrorBox/l0/q$a;
+"Lcn/manstep/phonemirrorBox/l0/q$b;
+"Lcn/manstep/phonemirrorBox/l0/q$c;
+"Lcn/manstep/phonemirrorBox/l0/q$d;
+"Lcn/manstep/phonemirrorBox/l0/r$a;
+"Lcn/manstep/phonemirrorBox/l0/t$a;
+"Lcn/manstep/phonemirrorBox/l0/t$b;
+"Lcn/manstep/phonemirrorBox/l0/t$c;
+"Lcn/manstep/phonemirrorBox/l0/t$d;
+"Lcn/manstep/phonemirrorBox/l0/t$e;
+"Lcn/manstep/phonemirrorBox/l0/v$a;
+"Lcn/manstep/phonemirrorBox/l0/v$b;
+"Lcn/manstep/phonemirrorBox/l0/v$c;
+"Lcn/manstep/phonemirrorBox/l0/v$d;
+"Lcn/manstep/phonemirrorBox/l0/v$e;
+"Lcn/manstep/phonemirrorBox/l0/v$f;
+"Lcn/manstep/phonemirrorBox/l0/w$a;
+"Lcn/manstep/phonemirrorBox/m0/a/a;
+"Lcn/manstep/phonemirrorBox/m0/a/b;
+"Lcn/manstep/phonemirrorBox/m0/a/c;
+"Lcn/manstep/phonemirrorBox/n0/a$a;
+"Lcn/manstep/phonemirrorBox/n0/a$b;
+"Lcn/manstep/phonemirrorBox/n0/a$c;
+"Lcn/manstep/phonemirrorBox/n0/a$d;
+"Lcn/manstep/phonemirrorBox/n0/a$e;
+"Lcn/manstep/phonemirrorBox/n0/a$f;
+"Lcn/manstep/phonemirrorBox/n0/a$g;
+"Lcn/manstep/phonemirrorBox/n0/a$h;
+"Lcn/manstep/phonemirrorBox/p0/c$a;
+"Lcn/manstep/phonemirrorBox/p0/c$b;
+"Lcn/manstep/phonemirrorBox/p0/c$c;
+"Lcn/manstep/phonemirrorBox/p0/c$d;
+"Lcn/manstep/phonemirrorBox/p0/c$e;
+"Lcn/manstep/phonemirrorBox/p0/c$f;
+"Lcn/manstep/phonemirrorBox/p0/c$g;
+"Lcn/manstep/phonemirrorBox/r0/a$a;
+"Lcn/manstep/phonemirrorBox/r0/b$a;
+"Lcn/manstep/phonemirrorBox/r0/c$a;
+"Lcn/manstep/phonemirrorBox/r0/d$a;
+"Lcn/manstep/phonemirrorBox/r0/e$a;
+"Lcn/manstep/phonemirrorBox/util/a;
+"Lcn/manstep/phonemirrorBox/util/b;
+"Lcn/manstep/phonemirrorBox/util/c;
+"Lcn/manstep/phonemirrorBox/util/d;
+"Lcn/manstep/phonemirrorBox/util/e;
+"Lcn/manstep/phonemirrorBox/util/f;
+"Lcn/manstep/phonemirrorBox/util/g;
+"Lcn/manstep/phonemirrorBox/util/h;
+"Lcn/manstep/phonemirrorBox/util/i;
+"Lcn/manstep/phonemirrorBox/util/j;
+"Lcn/manstep/phonemirrorBox/util/k;
+"Lcn/manstep/phonemirrorBox/util/l;
+"Lcn/manstep/phonemirrorBox/util/m;
+"Lcn/manstep/phonemirrorBox/util/n;
+"Lcn/manstep/phonemirrorBox/util/o;
+"Lcn/manstep/phonemirrorBox/util/p;
+"Lcn/manstep/phonemirrorBox/util/q;
+"Lcn/manstep/phonemirrorBox/util/r;
+"Lcn/manstep/phonemirrorBox/util/s;
+"Lcn/manstep/phonemirrorBox/util/t;
+"Lcn/manstep/phonemirrorBox/util/u;
+"Lcn/manstep/phonemirrorBox/util/v;
+"Lcn/manstep/phonemirrorBox/util/w;
+"Lcn/manstep/phonemirrorBox/util/x;
+"Lcn/manstep/phonemirrorBox/util/y;
+"Lcn/manstep/phonemirrorBox/util/z;
+"Lcn/manstep/phonemirrorBox/util/z<
+"Lcn/manstep/phonemirrorBox/v0/e$a;
+"Lcn/manstep/phonemirrorBox/v0/e$b;
+"Lcn/manstep/phonemirrorBox/v0/e$c;
+"Lcn/manstep/phonemirrorBox/v0/e$d;
+"Lcn/manstep/phonemirrorBox/w0/b$a;
+"Lcn/manstep/phonemirrorBox/x0/a$a;
+"Lcn/manstep/phonemirrorBox/x0/a$b;
+"Lcn/manstep/phonemirrorBox/x0/a$c;
+"Lcn/manstep/phonemirrorBox/x0/a$d;
+"Lcn/manstep/phonemirrorBox/x0/a$e;
+"Lcn/manstep/phonemirrorBox/x0/a$f;
+"Lcn/manstep/phonemirrorBox/x0/a$g;
+"Lcn/manstep/phonemirrorBox/x0/a$h;
+"Lcn/manstep/phonemirrorBox/x0/a$i;
+"Lcn/manstep/phonemirrorBox/x0/a$j;
+"Lcn/manstep/phonemirrorBox/x0/a$k;
+"Lcn/manstep/phonemirrorBox/x0/d$a;
+"Lcn/manstep/phonemirrorBox/x0/d$b;
+"Lcn/manstep/phonemirrorBox/x0/d$c;
+"Lcn/manstep/phonemirrorBox/x0/d$d;
+"Lcn/manstep/phonemirrorBox/x0/e$a;
+"Lcn/manstep/phonemirrorBox/x0/g$a;
+"Lcn/manstep/phonemirrorBox/x0/g$b;
+"Lcn/manstep/phonemirrorBox/x0/g$c;
+"Lcn/manstep/phonemirrorBox/x0/g$d;
+"Lcn/manstep/phonemirrorBox/x0/i$a;
+"Lcn/manstep/phonemirrorBox/x0/i$b;
+"Lcn/manstep/phonemirrorBox/x0/i$c;
+"Lcn/manstep/phonemirrorBox/x0/i$d;
+"Lcn/manstep/phonemirrorBox/x0/i$e;
+"Lcn/manstep/phonemirrorBox/x0/i$f;
+"Lcn/manstep/phonemirrorBox/x0/i$g;
+"Lcn/manstep/phonemirrorBox/x0/i$h;
+"Lcn/manstep/phonemirrorBox/x0/i$i;
+"Lcn/manstep/phonemirrorBox/x0/k$a;
+"Lcn/manstep/phonemirrorBox/x0/k$b;
+"Lcn/manstep/phonemirrorBox/x0/k$c;
+"Lcn/manstep/phonemirrorBox/x0/k$d;
+"Lcn/manstep/phonemirrorBox/x0/k$e;
+"Lcn/manstep/phonemirrorBox/x0/k$f;
+"Lcn/manstep/phonemirrorBox/x0/k$g;
+"Lcn/manstep/phonemirrorBox/x0/k$h;
+"Lcn/manstep/phonemirrorBox/x0/k$i;
+"Lcn/manstep/phonemirrorBox/x0/k$j;
+"Lcn/manstep/phonemirrorBox/x0/k$k;
+"Lcn/manstep/phonemirrorBox/x0/m$a;
+"Lcn/manstep/phonemirrorBox/x0/m$b;
+"Lcn/manstep/phonemirrorBox/x0/m$c;
+"Lcn/manstep/phonemirrorBox/x0/m$d;
+"MaterialCardView_checkedIconMargin
+"mCropRectCornerTouchAreaLineLength
+"mtrl_bottomappbar_fabOffsetEndMode
+"mtrl_edittext_rectangle_top_offset
+"onCmd: PHASE_LinkFailed phoneType=
+"requestDisallowInterceptTouchEvent
+(AutoBoxMirrorTextureView,destroy: ######
+(BoxCarPlay,saveSpsPpsIframeData: offset=
+(BoxProtocol,getBluetoothOnlineList: 1013
+(cn.manstep.phonemirrorBox.third.YqBtUtil
+(cn.manstep.phonemirrorBox.USB_PERMISSION
+(ConstraintSet_android_layout_marginRight
+(ConstraintSet_android_layout_marginStart
+(DISPLAY-------------------------------:[
+(Lcn/manstep/phonemirrorBox/customview/a;
+(Lcn/manstep/phonemirrorBox/MainActivity;
+(Lcn/manstep/phonemirrorBox/WaitFragment;
+(MainPresenter,onReceive: EVT_BACK_HOME: 
+(material_clock_period_toggle_margin_left
+(offset:
+)AutoBoxMirrorSoftView,ReSizeView: Screen:
+)AutoBoxMirrorView,onDetachedFromWindow: #
+)AutoBoxMirrorView,surfaceCreated: holder=
+)AutoBoxMirrorViewUtil,onRotationChanged: 
+)AutoBoxMirrorViewUtil,ReSizeView: screen:
+)BoxCarplay startThread, bServiceRuning = 
+)BoxProtocol,onCmd: recv  CMD_DEBUG_TEST: 
+)BoxProtocol,onCmd: recv  CMD_ENABLE_CRYPT
+)BoxProtocol,send_AndroidWorkMode: mode = 
+)BoxProtocol,showConnectionUrl: phoneType=
+)ConstraintSet_android_layout_marginBottom
+)Landroid/graphics/drawable/ScaleDrawable;
+)Landroid/view/WindowManager$LayoutParams;
+)Landroid/widget/AbsListView$LayoutParams;
+)Landroid/widget/FrameLayout$LayoutParams;
+)Landroid/widget/TableLayout$LayoutParams;
+)Lcn/manstep/phonemirrorBox/AssistTouch$a;
+)Lcn/manstep/phonemirrorBox/CheckActivity;
+)Lcn/manstep/phonemirrorBox/EmptyActivity;
+)Lcn/manstep/phonemirrorBox/floatwindow/a;
+)Lcn/manstep/phonemirrorBox/floatwindow/b;
+)Lcn/manstep/phonemirrorBox/floatwindow/c;
+)Lcn/manstep/phonemirrorBox/floatwindow/d;
+)Lcn/manstep/phonemirrorBox/floatwindow/e;
+)Lcn/manstep/phonemirrorBox/floatwindow/f;
+)Lcn/manstep/phonemirrorBox/Main1Activity;
+)Lcn/manstep/phonemirrorBox/MirrorService;
+)Lcn/manstep/phonemirrorBox/MyApplication;
+)Lcn/manstep/phonemirrorBox/util/d0$c$a$a;
+)Lcn/manstep/phonemirrorBox/util/JniTools;
+)material_time_picker_minimum_screen_width
+)MaterialCalendar_android_windowFullscreen
+)mtrl_calendar_header_toggle_margin_bottom
+)offset must be greater than or equal to 0
+)on_Box_Phase: EVT_MANUAL_DISCONNECT_PHONE
+)Theme_MaterialComponents_Light_LargeTouch
+)Widget_MaterialComponents_Toolbar_Surface
+@Landroid/view/ScaleGestureDetector$SimpleOnScaleGestureListener;
+*android.media.metadata.DISPLAY_DESCRIPTION
+*AutoBoxMirrorViewUtil,ReSizeView: Display 
+*BoxCarPlay,decode: bNeedDecodeRepeatFrame=
+*BoxCarPlay,sendDecoderReset: reset decoder
+*flush black surface, avoid show last frame
+*Landroid/widget/LinearLayout$LayoutParams;
+*Lcn/manstep/phonemirrorBox/BoxInterface/a;
+*Lcn/manstep/phonemirrorBox/BoxInterface/b;
+*Lcn/manstep/phonemirrorBox/BoxInterface/c;
+*Lcn/manstep/phonemirrorBox/BoxInterface/d;
+*Lcn/manstep/phonemirrorBox/BoxInterface/e;
+*Lcn/manstep/phonemirrorBox/BoxInterface/f;
+*Lcn/manstep/phonemirrorBox/BoxInterface/g;
+*Lcn/manstep/phonemirrorBox/BoxInterface/h;
+*Lcn/manstep/phonemirrorBox/BoxInterface/i;
+*Lcn/manstep/phonemirrorBox/BoxInterface/j;
+*Lcn/manstep/phonemirrorBox/customview/a$a;
+*Lcn/manstep/phonemirrorBox/customview/a$b;
+*Lcn/manstep/phonemirrorBox/customview/a$c;
+*Lcn/manstep/phonemirrorBox/customview/a$d;
+*Lcn/manstep/phonemirrorBox/customview/a$e;
+*Lcn/manstep/phonemirrorBox/customview/a$f;
+*Lcn/manstep/phonemirrorBox/customview/a$g;
+*Lcn/manstep/phonemirrorBox/MainActivity$a;
+*Lcn/manstep/phonemirrorBox/MainActivity$b;
+*Lcn/manstep/phonemirrorBox/MainActivity$c;
+*Lcn/manstep/phonemirrorBox/MainActivity$d;
+*Lcn/manstep/phonemirrorBox/MainActivity$e;
+*Lcn/manstep/phonemirrorBox/MainActivity$f;
+*Lcn/manstep/phonemirrorBox/MainActivity$g;
+*Lcn/manstep/phonemirrorBox/MainActivity$h;
+*Lcn/manstep/phonemirrorBox/MainActivity$i;
+*Lcn/manstep/phonemirrorBox/MainActivity$j;
+*Lcn/manstep/phonemirrorBox/MainActivity$k;
+*Lcn/manstep/phonemirrorBox/MainActivity$l;
+*Lcn/manstep/phonemirrorBox/MainActivity$m;
+*Lcn/manstep/phonemirrorBox/MainActivity$n;
+*Lcn/manstep/phonemirrorBox/MainActivity$o;
+*Lcn/manstep/phonemirrorBox/MainActivity$p;
+*Lcn/manstep/phonemirrorBox/MainActivity$q;
+*Lcn/manstep/phonemirrorBox/MainActivity$r;
+*Lcn/manstep/phonemirrorBox/MainActivity$s;
+*Lcn/manstep/phonemirrorBox/MainActivity$t;
+*Lcn/manstep/phonemirrorBox/MainActivity$u;
+*Lcn/manstep/phonemirrorBox/MainActivity$v;
+*Lcn/manstep/phonemirrorBox/MainActivity$w;
+*Lcn/manstep/phonemirrorBox/MainActivity$x;
+*Lcn/manstep/phonemirrorBox/MainActivity$y;
+*Lcn/manstep/phonemirrorBox/MainActivity$z;
+*Lcn/manstep/phonemirrorBox/MyFileProvider;
+*MainActivity,changeSingleWorkMode: mode = 
+*MainPresenter,onChangePage: EVT_ENT_PAGE: 
+*material_time_picker_minimum_screen_height
+*mtrl_navigation_item_shape_vertical_margin
+*on_Box_Phase: EVT_MANUAL_DISCONNECT_PHONE 
+/@@@AutoBoxMirrorSoftView surfaceCreated holder=
+/BoxProtocol,sendDevInfo: sendDevInfo() success 
+/ConstraintLayout_Layout_layout_goneMarginBottom
+/Lcn/manstep/phonemirrorBox/AndroidBackGround$a;
+/Lcn/manstep/phonemirrorBox/AndroidH264view$b$a;
+/Lcn/manstep/phonemirrorBox/AndroidH264view$b$b;
+/Lcn/manstep/phonemirrorBox/ecarx/ECarXUtil$b$a;
+/Lcn/manstep/phonemirrorBox/iPhoneOffscreenView;
+/Lcn/manstep/phonemirrorBox/MediaButtonReceiver;
+/Lcn/manstep/phonemirrorBox/ModeChangeService$a;
+/Lcn/manstep/phonemirrorBox/ModeChangeService$b;
+/Lcn/manstep/phonemirrorBox/ModeChangeService$c;
+/Lcn/manstep/phonemirrorBox/widget/WaveformView;
+/mtrl_calendar_header_content_padding_fullscreen
+/sdcard/carplay.png
+/setScrollingTouchSlop(): bad argument constant 
+/ThemeOverlay_MaterialComponents_Toolbar_Surface
+/tmp/screen_dpi
+&AndroidJpegView need RecaculateScaleWH
+&Base_TextAppearance_AppCompat_Display1
+&Base_TextAppearance_AppCompat_Display2
+&Base_TextAppearance_AppCompat_Display3
+&Base_TextAppearance_AppCompat_Display4
+&BoxProtocol,onCmd: ======Box Mic======
+&BoxProtocol,onCmd: ======Car Mic======
+&BoxProtocol,sendAutoConnect: cmd=1002,
+&BoxProtocol,sendCmd CMD_ENABLE_CRYPT: 
+&BoxProtocol,setBtPairedCount: count = 
+&cn.manstep.phonemirrorBox.fileprovider
+&cn.manstep.phonemirrorBox.third.NzUtil
+&cn.manstep.phonemirrorBox.third.YqUtil
+&Constraint_android_layout_marginBottom
+&ConstraintSet_android_layout_marginEnd
+&ConstraintSet_android_layout_marginTop
+&cradleVerticalOffset must be positive.
+&Landroid/widget/TableRow$LayoutParams;
+&Lcn/manstep/phonemirrorBox/widget/b$a;
+&material_on_surface_emphasis_high_type
+&MaterialAlertDialog_backgroundInsetTop
+&MaterialCalendarItem_android_insetLeft
+&mtrl_badge_text_horizontal_edge_offset
+&mtrl_calendar_header_height_fullscreen
+&mtrl_calendar_header_toggle_margin_top
+#[Lcn/manstep/phonemirrorBox/util/x;
+#android.media.metadata.DISPLAY_ICON
+#BoxProtocol,changeAndroidWorkMode: 
+#BoxProtocol,onCmd: Recv CMD_OPEN:  
+#BoxProtocol,saveBluetoothPairList: 
+#COMPRESS_METHORD_H264  boffscreen= 
+#Constraint_android_layout_marginEnd
+#Constraint_android_layout_marginTop
+#ConstraintSet_layout_goneMarginLeft
+#drawFrame: mOESSurfaceTexture==null
+#Freescale-CS11-cs11_19a_h-4.4.3(19)
+#GLFrameRenderer :: onSurfaceCreated
+#Landroid/view/ScaleGestureDetector;
+#Landroid/view/View$OnTouchListener;
+#Lcn/manstep/phonemirrorBox/ecarx/a;
+#Lcn/manstep/phonemirrorBox/ecarx/b;
+#Lcn/manstep/phonemirrorBox/ecarx/c;
+#Lcn/manstep/phonemirrorBox/ecarx/d;
+#Lcn/manstep/phonemirrorBox/ecarx/e;
+#Lcn/manstep/phonemirrorBox/util/a0;
+#Lcn/manstep/phonemirrorBox/util/b0;
+#Lcn/manstep/phonemirrorBox/util/c0;
+#Lcn/manstep/phonemirrorBox/util/d0;
+#Lcn/manstep/phonemirrorBox/util/e0;
+#MainActivity,exitFullScreen: ######
+#material_on_surface_emphasis_medium
+#MotionTelltales_telltales_tailScale
+#mtrl_bottomappbar_fab_bottom_margin
+#mtrl_bottomappbar_fab_cradle_margin
+#mtrl_btn_snackbar_margin_horizontal
+#mtrl_textinput_counter_margin_start
+#onSurfaceTextureAvailable: surface=
+#tooltip_precise_anchor_extra_offset
+%,ReSizeView: ViewGroup.LayoutParams: 
+%abc_screen_simple_overlay_action_mode
+%AutoBoxMirrorTextureView,setVideoWH: 
+%AutoBoxMirrorView,RecaculateScaleWH: 
+%AutoBoxMirrorView,ReSizeView: Screen:
+%AutoBoxMirrorViewCommon{scaled_width=
+%BoxInterface,stopMirror: boxProtocol=
+%BoxProtocol,onCmd: Recv CarPlay_CMD: 
+%BoxProtocol,sendCarManufacturerInfo: 
+%cn.manstep.phonemirror.USB_PERMISSION
+%cn.manstep.phonemirrorBox.AndroidAuto
+%cn.manstep.phonemirrorBox.third.HySdk
+%com.yalantis.ucrop.MaxScaleMultiplier
+%Constraint_android_layout_marginRight
+%Constraint_android_layout_marginStart
+%ConstraintLayout_Layout_barrierMargin
+%ConstraintSet_layout_goneMarginBottom
+%GLFrameRenderer :: onSurfaceChanged: 
+%glVertexAttribPointer maTextureHandle
+%Landroid/view/SurfaceHolder$Callback;
+%Landroid/view/ViewGroup$LayoutParams;
+%Lcn/manstep/phonemirrorBox/AssistCmd;
+%Lcn/manstep/phonemirrorBox/FirstPage;
+%Lcn/manstep/phonemirrorBox/util/a0$a;
+%Lcn/manstep/phonemirrorBox/util/b0$a;
+%Lcn/manstep/phonemirrorBox/util/b0$b;
+%Lcn/manstep/phonemirrorBox/util/b0$c;
+%Lcn/manstep/phonemirrorBox/util/b0$d;
+%Lcn/manstep/phonemirrorBox/util/b0$e;
+%Lcn/manstep/phonemirrorBox/util/d0$a;
+%Lcn/manstep/phonemirrorBox/util/d0$b;
+%Lcn/manstep/phonemirrorBox/util/d0$c;
+%Lcn/manstep/phonemirrorBox/util/d0$d;
+%Lcn/manstep/phonemirrorBox/util/e0$a;
+%Lcn/manstep/phonemirrorBox/util/e0$b;
+%Lcn/manstep/phonemirrorBox/util/e0$c;
+%Lcn/manstep/phonemirrorBox/util/e0$d;
+%Lcn/manstep/phonemirrorBox/util/e0$e;
+%Lcn/manstep/phonemirrorBox/util/e0$f;
+%Lcn/manstep/phonemirrorBox/util/e0$g;
+%MainPresenter,isFullScreenPage: page=
+%material_timepicker_textinput_display
+%MaterialCalendarItem_android_insetTop
+%onNoticePhoneDisconnected: PhoneType=
++abc_action_bar_subtitle_top_margin_material
++AppBarLayout_android_touchscreenBlocksFocus
++AutoBoxMirrorView,surfaceDestroyed: holder=
++BoxProtocol,onCmd: Recv CarPlay_SupportWifi
++BoxProtocol,onCmd: Recv CMD_BOX_WIFI_NAME: 
++BoxProtocol,onCmd: Recv CMD_PHASE iPhase = 
++BoxProtocol,StOpen,getBytes: phoneWorkMode=
++cn.manstep.phonemirrorBox.third.HsaeAutoSdk
++CollapsingToolbarLayout_expandedTitleMargin
++item_touch_helper_max_drag_scroll_per_frame
++item_touch_helper_swipe_escape_max_velocity
++Landroid/view/ViewGroup$MarginLayoutParams;
++Lcn/manstep/phonemirrorBox/AndroidH264view;
++Lcn/manstep/phonemirrorBox/AndroidJpegView;
++Lcn/manstep/phonemirrorBox/CarLifeDownload;
++Lcn/manstep/phonemirrorBox/CheckActivity$a;
++Lcn/manstep/phonemirrorBox/ecarx/ECarXUtil;
++Lcn/manstep/phonemirrorBox/EmptyActivity$a;
++Lcn/manstep/phonemirrorBox/floatwindow/c$a;
++Lcn/manstep/phonemirrorBox/floatwindow/f$a;
++Lcn/manstep/phonemirrorBox/floatwindow/f$b;
++Lcn/manstep/phonemirrorBox/floatwindow/f$c;
++Lcn/manstep/phonemirrorBox/floatwindow/f$d;
++Lcn/manstep/phonemirrorBox/MainActivity$a0;
++Lcn/manstep/phonemirrorBox/MainActivity$b0;
++Lcn/manstep/phonemirrorBox/MainActivity$c0;
++Lcn/manstep/phonemirrorBox/MirrorService$a;
++Lcn/manstep/phonemirrorBox/MirrorService$b;
++Lcn/manstep/phonemirrorBox/MyApplication$a;
++Lcn/manstep/phonemirrorBox/OpenH264Decoder;
++Ljavax/microedition/khronos/egl/EGLDisplay;
++Ljavax/microedition/khronos/egl/EGLSurface;
++ucrop_margin_horizontal_wheel_progress_line
++Widget_MaterialComponents_ActionBar_Surface
+<BoxProtocol,setBoxBluetoothName: Bluetooth name is too long.
+<Lcn/manstep/phonemirrorBox/floatwindow/FloatWindowService$a;
+<Lcn/manstep/phonemirrorBox/floatwindow/FloatWindowService$b;
+<Lcn/manstep/phonemirrorBox/floatwindow/FloatWindowService$c;
+<Lcn/manstep/phonemirrorBox/floatwindow/FloatWindowService$d;
+<Lcn/manstep/phonemirrorBox/floatwindow/FloatWindowService$e;
+<Lcn/manstep/phonemirrorBox/floatwindow/FloatWindowService$f;
+<Lcn/manstep/phonemirrorBox/floatwindow/FloatWindowService$g;
+<Lcom/yalantis/ucrop/view/GestureCropImageView$ScaleListener;
+<MainPresenter,onReceive: Uilogic: EVT_SET_PERMISSION_UILOG: 
+=AutoBoxMirrorTextureView,ReSizeView: ViewGroup.LayoutParams: 
+=AutoBoxMirrorView,onRotationChanged: ViewGroup.LayoutParams: 
+=BoxCarPlay,decode: RenderThread, is I frame coming: mSurface=
+=Lcn/manstep/phonemirrorBox/customview/SelectTextSettingsItem;
+=Widget_MaterialComponents_BottomNavigationView_PrimarySurface
+>Lcn/manstep/phonemirrorBox/floatwindow/FloatWindowService$g$a;
+>The tag for fragment_first_page_carplay is invalid. Received: 
+>Widget_MaterialComponents_TimePicker_Display_TextInputEditText
+$android.media.metadata.DISPLAY_TITLE
+$AssistTouch,onTouchEvent: change pos
+$AutoBoxMirrorView,setDisplaySize: w=
+$BottomAppBar_fabCradleVerticalOffset
+$BoxProtocol,box not support crypt!!!
+$cn.manstep.phonemirrorBox.file_share
+$Constraint_android_layout_marginLeft
+$ConstraintSet_layout_goneMarginRight
+$ConstraintSet_layout_goneMarginStart
+$design_dark_default_color_on_surface
+$item_touch_helper_previous_elevation
+$Landroid/graphics/Matrix$ScaleToFit;
+$Landroid/widget/ImageView$ScaleType;
+$layout/fragment_first_page_carplay_0
+$Lcn/manstep/phonemirrorBox/f0/c$a$a;
+$Lcn/manstep/phonemirrorBox/k0/f$b$a;
+$Lcn/manstep/phonemirrorBox/l0/l$a$a;
+$Lcn/manstep/phonemirrorBox/l0/l$e$a;
+$Lcn/manstep/phonemirrorBox/l0/l$i$a;
+$Lcn/manstep/phonemirrorBox/l0/l$k$a;
+$Lcn/manstep/phonemirrorBox/m0/a/a$a;
+$Lcn/manstep/phonemirrorBox/m0/a/b$a;
+$Lcn/manstep/phonemirrorBox/m0/a/c$a;
+$Lcn/manstep/phonemirrorBox/n0/a$c$a;
+$Lcn/manstep/phonemirrorBox/p0/c$g$a;
+$Lcn/manstep/phonemirrorBox/r0/a$a$a;
+$Lcn/manstep/phonemirrorBox/r0/b$a$a;
+$Lcn/manstep/phonemirrorBox/r0/c$a$a;
+$Lcn/manstep/phonemirrorBox/r0/e$a$a;
+$Lcn/manstep/phonemirrorBox/util/d$a;
+$Lcn/manstep/phonemirrorBox/util/d$b;
+$Lcn/manstep/phonemirrorBox/util/g$a;
+$Lcn/manstep/phonemirrorBox/util/g$b;
+$Lcn/manstep/phonemirrorBox/util/g$c;
+$Lcn/manstep/phonemirrorBox/util/j$a;
+$Lcn/manstep/phonemirrorBox/util/l$a;
+$Lcn/manstep/phonemirrorBox/util/l$b;
+$Lcn/manstep/phonemirrorBox/util/l$c;
+$Lcn/manstep/phonemirrorBox/util/l$d;
+$Lcn/manstep/phonemirrorBox/util/l$e;
+$Lcn/manstep/phonemirrorBox/util/l$f;
+$Lcn/manstep/phonemirrorBox/util/l$g;
+$Lcn/manstep/phonemirrorBox/util/l$h;
+$Lcn/manstep/phonemirrorBox/util/p$a;
+$Lcn/manstep/phonemirrorBox/util/p$b;
+$Lcn/manstep/phonemirrorBox/util/p$c;
+$Lcn/manstep/phonemirrorBox/util/p$d;
+$Lcn/manstep/phonemirrorBox/util/p$e;
+$Lcn/manstep/phonemirrorBox/util/p$f;
+$Lcn/manstep/phonemirrorBox/util/p$g;
+$Lcn/manstep/phonemirrorBox/util/q$a;
+$Lcn/manstep/phonemirrorBox/util/q$b;
+$Lcn/manstep/phonemirrorBox/util/q$c;
+$Lcn/manstep/phonemirrorBox/util/q$d;
+$Lcn/manstep/phonemirrorBox/util/r$a;
+$Lcn/manstep/phonemirrorBox/util/t$a;
+$Lcn/manstep/phonemirrorBox/util/w$a;
+$Lcn/manstep/phonemirrorBox/util/w$b;
+$Lcn/manstep/phonemirrorBox/util/x$a;
+$Lcn/manstep/phonemirrorBox/v0/e$c$a;
+$Lcn/manstep/phonemirrorBox/widget/a;
+$Lcn/manstep/phonemirrorBox/widget/b;
+$Lcn/manstep/phonemirrorBox/x0/d$a$a;
+$Lcn/manstep/phonemirrorBox/x0/k$a$a;
+$mtrl_textinput_end_icon_margin_start
+$mtrl_textinput_start_icon_margin_end
+$SCALE_WIDGET_SENSITIVITY_COEFFICIENT
+0AutoBoxMirrorViewUtil,onRotationChanged: screen:
+0BoxCarPlay,saveSpsPpsIframeData: iframeDataLen :
+0BoxCarPlay,saveSpsPpsIframeData: spsppsDataLen :
+0BoxProtocol,onCmd: Recv CMD_BOX_BLUETOOTH_NAME: 
+0CollapsingToolbarLayout_expandedTitleMarginStart
+0Lcn/manstep/phonemirrorBox/AdjustSizeActivity$a;
+0Lcn/manstep/phonemirrorBox/AdjustSizeActivity$b;
+0Lcn/manstep/phonemirrorBox/AdjustSizeActivity$c;
+0Lcn/manstep/phonemirrorBox/androidOffscreenView;
+0Lcn/manstep/phonemirrorBox/AssistTouchRoundRect;
+0Lcn/manstep/phonemirrorBox/FloatWindowService$a;
+0Lcn/manstep/phonemirrorBox/util/AutoFitTextView;
+0ListPopupWindow_android_dropDownHorizontalOffset
+0mtrl_exposed_dropdown_menu_popup_vertical_offset
+0Widget_MaterialComponents_Toolbar_PrimarySurface
+1@@@AutoBoxMirrorSoftView surfaceDestroyed holder=
+1AutoBoxMirrorView,surfaceChanged: touch set size=
+1AutoBoxMirrorViewUtil,onRotationChanged: Display 
+1BoxProtocol,onCmd: CMD_UPDATE_PROGRESS progress: 
+1BoxProtocol,sendCmd: CMD_BOX_REBOOT , ret = false
+1BoxProtocol,UploadLocalLogoPNGPublic: filePath = 
+1CollapsingToolbarLayout_expandedTitleMarginBottom
+1Landroid/view/TextureView$SurfaceTextureListener;
+1Lcn/manstep/phonemirrorBox/AndroidMirrorFragment;
+1Lcn/manstep/phonemirrorBox/AutoBoxMirrorFragment;
+1Lcn/manstep/phonemirrorBox/AutoBoxMirrorSoftView;
+1Lcn/manstep/phonemirrorBox/MediaButtonReceiver$a;
+1Lcn/manstep/phonemirrorBox/MediaButtonReceiver$b;
+1MainPresenter,handleNoticeMsg: EVT_NOTICE_INFO: (
+1ThemeOverlay_MaterialComponents_ActionBar_Surface
+2AutoBoxMirrorTextureView,on_Box_Phase: PLUG_OUT = 
+2BottomSheetBehavior_Layout_behavior_expandedOffset
+2BoxProtocol,onCmd: Recv CMD_BOX_SOFTWARE_VERSION: 
+2BoxProtocol,onCmd: Recv CMD_CARPLAY_MODE_CHANGE:  
+2BoxProtocol,setBoxWifiName: Wifi name is too long.
+2cn.manstep.phonemirror.MirrorService.INTENT_MSG_IN
+2cn.manstep.phonemirrorBox.AUTO_BOX_CONTROL_CMD_EVT
+2cn.manstep.phonemirrorBox.AUTO_BOX_MODE_CHANGE_EVT
+2enterFullScreen: setSystemUiVisibility->uiOptions=
+2Lcn/manstep/phonemirrorBox/AdjustSizeActivity$a$a;
+2Lcn/manstep/phonemirrorBox/AdjustSizeActivity$a$b;
+2Lcn/manstep/phonemirrorBox/androidOffscreenView$a;
+2Lcn/manstep/phonemirrorBox/AssistTouchRoundRect$a;
+2mtrl_calendar_selection_baseline_to_top_fullscreen
+2ThemeOverlay_MaterialComponents_TimePicker_Display
+2Widget_MaterialComponents_ActionBar_PrimarySurface
+2Widget_MaterialComponents_TabLayout_PrimarySurface
+3AutoBoxMirrorTextureView,onRotationChanged: Screen:
+3AutoBoxMirrorView,onAttachedToWindow: boxInterface=
+3BoxCarPlay,saveSpsPpsIframeData: I frame was found.
+3BoxCarPlay,sendNewTexture: RenderThread VideoSize: 
+3BoxProtocol,onCmd: Recv CMD_BLUETOOTH_ONLINE_LIST: 
+3BoxProtocol,onCmd: Recv CMD_OPEN: data exception!!!
+3BoxProtocol,sendDevInfo: Write device info data err
+3BoxProtocol,sendDevInfo: Write device info head err
+3cn.manstep.phonemirror.MirrorService.INTENT_MSG_OUT
+3cn.manstep.phonemirrorBox.AUTO_BOX_CONTROL_CMD_DATA
+3cn.manstep.phonemirrorBox.AUTO_BOX_MODE_CHANGE_DATA
+3Lcn/manstep/phonemirrorBox/ApplicationWeakReceiver;
+3Lcn/manstep/phonemirrorBox/AutoBoxMirrorFragment$a;
+3Lcn/manstep/phonemirrorBox/AutoBoxMirrorFragment$b;
+3Lcn/manstep/phonemirrorBox/AutoBoxMirrorFragment$c;
+3mtrl_badge_toolbar_action_menu_item_vertical_offset
+3mtrl_calendar_maximum_default_fullscreen_minor_axis
+4cn.manstep.phonemirrorBox.sdk.IVaStateChangeListener
+4Lcn/manstep/phonemirrorBox/AdvancedSettingsActivity;
+4Lcn/manstep/phonemirrorBox/AutoBoxMirrorTextureView;
+4Lcn/manstep/phonemirrorBox/LanguageSettingsActivity;
+4onCmd: #PHASE_CARPLAY_WORING/PHASE_NonAIRPLAY_WORING
+4resizeBuffer() only permitted for read/write buffers
+4ThemeOverlay_MaterialComponents_BottomAppBar_Surface
+5cn.manstep.phonemirrorBox.sdk.ICallInfoChangeListener
+5Lcn/manstep/phonemirrorBox/customview/AdjustSizeView;
+5Lcn/manstep/phonemirrorBox/service/BackgroundService;
+5mtrl_badge_toolbar_action_menu_item_horizontal_offset
+5ucrop_default_crop_rect_corner_touch_area_line_length
+5Widget_MaterialComponents_AppBarLayout_PrimarySurface
+5Widget_MaterialComponents_BottomAppBar_PrimarySurface
+5Widget_MaterialComponents_MaterialCalendar_Fullscreen
+6AssistTouch,onMsg: AndroidWorkUILogic.MSG_EXPAND val0=
+6AutoBoxMirrorView,ReSizeView: ViewGroup.LayoutParams: 
+6cn.manstep.phonemirrorBox.sdk.IMusicInfoChangeListener
+6CollapsingToolbarLayout_forceApplySystemWindowInsetTop
+6ComponentCallbacks->onConfigurationChanged: fontScale=
+6Lcn/manstep/phonemirrorBox/AutoBoxMirrorTextureView$a;
+6Lcn/manstep/phonemirrorBox/AutoBoxMirrorTextureView$b;
+6Lcn/manstep/phonemirrorBox/BoxInterface/BoxConnection;
+6Lcn/manstep/phonemirrorBox/customview/CustomImageView;
+6Lcn/manstep/phonemirrorBox/iPhoneMirrorNotSupportView;
+6Lcn/manstep/phonemirrorBox/LanguageSettingsActivity$a;
+6Lcn/manstep/phonemirrorBox/LanguageSettingsActivity$b;
+7BoxProtocol,onCmd: Recv CMD_OPEN: g_Open.iBoxversion = 
+7Lcn/manstep/phonemirrorBox/AutoKitHideSettingsActivity;
+7Lcn/manstep/phonemirrorBox/service/BackgroundService$a;
+7Lcn/manstep/phonemirrorBox/service/BackgroundService$b;
+7Lcn/manstep/phonemirrorBox/service/BackgroundService$c;
+7Lcn/manstep/phonemirrorBox/service/BackgroundService$d;
+7MainPresenter,onReceive: get EVT_TEST_QUIT, then finish
+8Lcn/manstep/phonemirrorBox/customview/CustomProgressBar;
+9AutoBoxMirrorViewCommon,resizeAndroidAutoView: screenWxH=
+9AutoBoxMirrorViewCommon,resizeAndroidAutoView: VideoSize:
+9BoxCarPlay,saveH264Data:new I frame coming, clear cache :
+9BoxProtocol,send_audio_record: Write audioRecord data err
+9BoxProtocol,send_audio_record: Write audioRecord head err
+9cn.manstep.phonemirrorBox.sdk.IConnectStateChangeListener
+9Lcn/manstep/phonemirrorBox/AutoKitHideSettingsActivity$a;
+9Lcn/manstep/phonemirrorBox/AutoKitHideSettingsActivity$b;
+9Lcn/manstep/phonemirrorBox/AutoKitHideSettingsActivity$c;
+9Lcn/manstep/phonemirrorBox/AutoKitHideSettingsActivity$d;
+9Lcn/manstep/phonemirrorBox/AutoKitHideSettingsActivity$e;
+9Lcn/manstep/phonemirrorBox/AutoKitHideSettingsActivity$f;
+9Lcn/manstep/phonemirrorBox/AutoKitHideSettingsActivity$g;
+9on_Box_Phase: EVT_BOX_WIFI_DISCONNECTED phoneIsConnected=
+abc_screen_content_include
+abc_screen_simple
+abc_screen_toolbar
+ACTION_SHOW_ON_SCREEN
+ActionBar_contentInsetLeft
+ActionBar_displayOptions
+AndroidAuto
+AndroidAuto Or CarLife(
+androidAutoSizeH
+androidAutoSizeW
+AndroidH264View surfaceChanged:
+AndroidH264View surfaceCreated:
+AndroidMirror
+AndroidMirror(
+AndroidMirrorFragment
+AssistTouch,AssistTouch: init
+AssistTouch,getSrcWH: W  H :
+AssistTouch,onMsg: getLeft=
+AssistTouch,onMsg: getTop=
+AssistTouch,onMsg: getWidth=
+AssistTouch,onMsg: getX=
+AssistTouch,onTouchEvent: w=
+AssistTouch,resetSelf: W  H :
+aTextureCoord
+aTextureCoordinate
+attribute vec4 aTextureCoord;
+attribute vec4 aTextureCoordinate;
+AutoBoxMirrorFragment
+AutoBoxMirrorTextureView
+AutoBoxMirrorViewCommon
+backgroundInsetTop
+Badge_horizontalOffset
+Badge_verticalOffset
+barrierMargin
+BBoxCarPlay,decode: mdecoder = null, should request Key frame!!!!!!
+behavior_expandedOffset
+BottomAppBar_fabCradleMargin
+BoxCarPlay
+BoxCarPlay,close decoder
+BoxInterfacestartMirror: ####
+BoxProtocol
+BoxProtocol destroy()
+BoxProtocol, saveFileFromBox: 
+BoxProtocol,checkBoxVersion: 
+BoxProtocol,initBoundSize: 
+BoxProtocol,onCmd->BoxInfo: 
+BoxProtocol,send_NightMode: 
+BoxProtocol,send_ScreenDPI: 
+BoxProtocol,sendBluetoothAddr: 
+BoxProtocol,sendChargeMode: 
+BoxProtocol,sendCmd: 
+BoxProtocol,sendCmd: cmd = 
+BoxProtocol,sendConfig: 
+BoxProtocol,sendDevInfo: 
+BoxProtocol,sendDevInfo: cmd=
+BoxProtocol,setBoxWifiName: 
+BoxProtocol,setUnauthorized: 
+C: <item> tag requires a 'color' attribute and a 'offset' attribute!
+calcTagOffset
+calculateImageScaleBounds
+CarLife(
+carplay
+CarPlay
+CarPlay_StartBleAdv
+CarPlay_StartNightMode
+CarPlay_StopBleAdv
+CarPlay_StopNightMode
+CarPlay(
+CarPlayLogoType
+CarPlayOEM
+CarPlayOEMIconName
+CarPlayOEMIconPath
+CAutoBoxMirrorTextureView,onSurfaceTextureAvailable: touch set size=
+CAutoBoxMirrorTextureView,onSurfaceTextureDestroyed: SurfaceTexture=
+CBoxCarPlay,decode: RenderThread, is SPS PPS frame coming: mSurface=
+CBoxProtocol,send_g_open: AutoPlay Video resolution and frame rate: 
+checkedIconMargin
+checkLayoutParams
+checkOffsetAndCount
+Chip_chipMinTouchTargetSize
+Chip_chipSurfaceColor
+Chip_ensureMinTouchTargetSize
+chipMinTouchTargetSize
+chipSurfaceColor
+clock_face_margin_start
+Cmd_
+Cmd_1
+Cmd_1_b
+Cmd_17
+Cmd_18
+Cmd_2
+Cmd_2_b
+Cmd_5
+Cmd_5_b
+Cmd_8
+CMD_MIC_START
+colorOnPrimarySurface
+colorOnSurface
+colorPrimarySurface
+computeHorizontalScrollOffset
+computeScrollOffset
+computeVerticalScrollOffset
+Constraint_android_scaleX
+Constraint_android_scaleY
+Constraint_barrierMargin
+Constraint_layout_goneMarginEnd
+Constraint_layout_goneMarginTop
+ConstraintSet_android_scaleX
+ConstraintSet_android_scaleY
+ConstraintSet_barrierMargin
+consumeDisplayCutout
+contentInsetLeft
+createScaledBitmap
+dateCharacterOffset
+decodeFrameOffset
+DEFAULT_MAX_SCALE_MULTIPLIER
+delimiterOffset
+design_bottom_navigation_margin
+design_default_color_on_surface
+design_default_color_surface
+dispatchTouchEvent
+DISPLAY
+Display:      
+DisplayCutoutCompat{
+displayName
+displayOptions
+dragScale
+DUilogic,register: cn.manstep.phonemirrorBox.AUTO_BOX_CONTROL_CMD_EVT
+EAutoBoxMirrorTextureView,onSurfaceTextureSizeChanged: touch set size=
+EGL_DEFAULT_DISPLAY
+EGL_NO_DISPLAY
+EGL_NO_SURFACE
+eglCreatePbufferSurface
+eglCreateWindowSurface
+eglDestroySurface
+eglGetDisplay
+eglGetDisplay failed! 
+eglQuerySurface
+ensureMinTouchTargetSize
+EventUtils.MCU_CMD_DATA
+EVT_ANDROID_PLUG_IN
+EVT_ANDROID_PLUG_OUT
+EVT_ANDROID_WORKING
+EVT_APP_LOG_GET
+EVT_APP_RESET
+EVT_APP_UPDATE
+EVT_BOX_BLUETOOTH_CONNECTED
+EVT_BOX_BLUETOOTH_DISCONNECTED
+EVT_BOX_BLUETOOTH_PAIR_START
+EVT_BOX_CONNECT_DEVICE_FAILED
+EVT_BOX_DEVICE_FOUND
+EVT_BOX_DEVICE_NOT_FOUND
+EVT_BOX_ENTER_U_MODE
+EVT_BOX_OTA_UPDATE
+EVT_BOX_OTA_UPDATE_FAILED
+EVT_BOX_OTA_UPDATE_SUCCESS
+EVT_BOX_READY
+EVT_BOX_RELEASE_VIDEO_FOCUS
+EVT_BOX_REQUEST_VIDEO_FOCUS
+EVT_BOX_SCANING_DEVICES
+EVT_BOX_SUPPORT_AUTO_CONNECT
+EVT_BOX_UPDATE
+EVT_BOX_UPDATE_FAILED
+EVT_BOX_UPDATE_SUCCESS
+EVT_BOX_VERSION_ERROR
+EVT_BOX_VERSION_SHOW
+EVT_BOX_WIFI_CONNECTED
+EVT_BOX_WIFI_DISCONNECTED
+EVT_BOXMIC_CONNECTED
+EVT_BOXMIC_DETECTED
+EVT_BOXMIC_DISCONNECTED
+EVT_CARLIFE_DOWNLOAD
+EVT_DECODE_CONFIGURE_ERR
+EVT_DECODE_OUTPUT_ERR
+EVT_FAKE_OTG_PLUG_IN
+EVT_FAKE_OTG_PLUG_OUT
+EVT_IPHONE_PLUG_IN
+EVT_IPHONE_PLUG_OUT
+EVT_IPHONE_WORKING
+EVT_MANUAL_DISCONNECT_PHONE
+EVT_MIC_RECORDING
+EVT_NOT_REGIST
+EVT_OTG_PLUG_IN
+EVT_OTG_PLUG_IN: startMirror
+EVT_OTG_PLUG_OUT
+EVT_OTG_PLUG_OUT: stopMirror
+EVT_PERMMISION_ASKING
+EVT_PHONE_PLUG_IN
+EVT_REG
+EVT_SCREEN_OFF
+EVT_SCREEN_ON
+EVT_SET_PERMISSION
+EVT_SETTINGS_PAGE_BACK
+EVT_SETTINGS_PAGE_ENTER
+EVT_UPDATE_BOX_BLUETOOTH_NAME
+EVT_UPDATE_CONNECTION_PIN_CODE
+EVT_UPDATE_CONNECTION_URL
+EVT_WAIT_AIRPLAY
+EVT_WAIT_HOTPOT
+EVT_WIFI_TRANS_ABNORMAL
+EVT_WIFI_TRANS_NORMAL
+EWaitFragment,startAnimation: ====B BoxProtocol.bWifiDeviceConected = 
+EWidget_MaterialComponents_MaterialCalendar_HeaderSelection_Fullscreen
+expandedTitleMargin
+expandedTitleMarginBottom
+expandedTitleMarginEnd
+expandedTitleMarginStart
+expandedTitleMarginTop
+EXTRA_MAX_SCALE_MULTIPLIER
+fabCradleMargin
+fabCradleVerticalOffset
+fastscroll_margin
+finishSurfaceSetup size=
+fontScale
+FontScaled
+forceApplySystemWindowInsetTop
+Freescale
+FUilogic,unregister: cn.manstep.phonemirrorBox.AUTO_BOX_CONTROL_CMD_EVT
+generateDefaultLayoutParams
+generateLayoutParams
+getActionBarHideOffset
+getBoundsInScreen
+getCheckedIconMargin
+getCloseIconTouchBounds
+getCloseIconTouchBoundsInt
+getContentInsetLeft
+getCradleVerticalOffset
+getCurrentContentInsetLeft
+getCurrentScale
+getCurrentTouchIndex
+getDefaultDisplay
+getDimensionPixelOffset
+getDisplay
+getDisplayCountry
+getDisplayCutout
+getDisplayLanguage
+getDisplayMetrics
+getDisplayName
+getDoubleTapScaleSteps
+getDoubleTapTargetScale
+getDropDownHorizontalOffset
+getDropDownVerticalOffset
+getFabCradleMargin
+getInsetTop
+getLayoutParams
+getLocationOnScreen
+getMargin
+getMarginStart
+getMatrixScale
+getMaxScale
+getMaxTextureEgl10
+getMaxTextureEgl14
+getMaxTextureSize
+getMinScale
+getOffset
+getOffsetForPosition
+getScaledHorizontalScrollFactor
+getScaledHoverSlop
+getScaledMaximumFlingVelocity
+getScaledMinimumFlingVelocity
+getScaledPagingTouchSlop
+getScaledScrollFactor
+getScaledTouchSlop
+getScaledVerticalScrollFactor
+getScaledWindowTouchSlop
+getScaleFactor
+getScaleX
+getScaleY
+getStableInsetLeft
+getStableInsetTop
+getSurface
+getSurface: surface=
+getSurfaceTexture
+getSystemWindowInsetLeft
+getSystemWindowInsetTop
+getTextScaleX
+getThumbOffset
+getTitleMarginBottom
+getTitleMarginEnd
+getTitleMarginStart
+getTitleMarginTop
+getTrimPathOffset
+getWindowVisibleDisplayFrame
+glActiveTexture
+glBindTexture
+glDeleteTextures
+glDeleteTextures U
+glDeleteTextures V
+glDeleteTextures Y
+glGenTextures
+glGenTextures U = 
+glGenTextures V = 
+glGenTextures Y = 
+hBoxProtocol,copyLocalFileToBox: The local file that needs to be sent to the box is larger than 100kb!!! 
+HBoxProtocol,onCmd: Recv CarPlay_SupportWifiNeedKo=======================
+HiCar
+HiCar(
+HiCarConnectMode
+horizontalOffset
+HWTouch.dex
+IBoxCarPlay,decode: Can't wait surface available, need request key frame!!
+IBoxProtocol,upload_file_to_box: Write carplay_cmd data err, boxFileName: 
+IBoxProtocol,upload_file_to_box: Write carplay_cmd head err, boxFileName: 
+iconScale
+Illegal tagValueOffset=
+image_view_state_scale
+ImageScale
+InputFragment,onTouch: 
+invalid scale 
+invalid surface: 
+iPhoneMirror(
+iPhoneMode
+iPhoneOffscreenView parse: 
+isAutoMirrored
+isInTouchMode
+isScaleEnabled
+isScreenReaderFocusable
+IsTextureView
+isTouchExplorationEnabled
+itemShapeInsetTop
+JBoxProtocol,upload_file_to_box: send_carplay_cmd() success , boxFileName: 
+KeyAttribute_android_scaleX
+KeyAttribute_android_scaleY
+KeyCycle_android_scaleX
+KeyCycle_android_scaleY
+KeyCycle_waveOffset
+KeyTimeCycle_android_scaleX
+KeyTimeCycle_android_scaleY
+KeyTimeCycle_waveOffset
+Landroid/opengl/EGLDisplay;
+Landroid/opengl/EGLSurface;
+Landroid/opengl/GLSurfaceView;
+Landroid/util/DisplayMetrics;
+Landroid/view/Display;
+Landroid/view/DisplayCutout;
+Landroid/view/Surface;
+Landroid/view/SurfaceHolder;
+Landroid/view/SurfaceView;
+Landroid/view/TextureView;
+Landroid/view/TouchDelegate;
+Layout_android_layout_marginEnd
+Layout_android_layout_marginTop
+Layout_barrierMargin
+layout_goneMarginBottom
+layout_goneMarginEnd
+layout_goneMarginLeft
+layout_goneMarginRight
+layout_goneMarginStart
+layout_goneMarginTop
+Layout_layout_goneMarginBottom
+Layout_layout_goneMarginEnd
+Layout_layout_goneMarginLeft
+Layout_layout_goneMarginRight
+Layout_layout_goneMarginStart
+Layout_layout_goneMarginTop
+layout_scale_wheel
+Lcn/manstep/phonemirrorBox/a;
+Lcn/manstep/phonemirrorBox/a$a;
+Lcn/manstep/phonemirrorBox/a$b;
+Lcn/manstep/phonemirrorBox/a0;
+Lcn/manstep/phonemirrorBox/b;
+Lcn/manstep/phonemirrorBox/b0;
+Lcn/manstep/phonemirrorBox/c;
+Lcn/manstep/phonemirrorBox/c$a;
+Lcn/manstep/phonemirrorBox/c0;
+Lcn/manstep/phonemirrorBox/d/a;
+Lcn/manstep/phonemirrorBox/e;
+Lcn/manstep/phonemirrorBox/f;
+Lcn/manstep/phonemirrorBox/g;
+Lcn/manstep/phonemirrorBox/h;
+Lcn/manstep/phonemirrorBox/i;
+Lcn/manstep/phonemirrorBox/i$a;
+Lcn/manstep/phonemirrorBox/j;
+Lcn/manstep/phonemirrorBox/j$a;
+Lcn/manstep/phonemirrorBox/k;
+Lcn/manstep/phonemirrorBox/k$a;
+Lcn/manstep/phonemirrorBox/k$b;
+Lcn/manstep/phonemirrorBox/l;
+Lcn/manstep/phonemirrorBox/l$a;
+Lcn/manstep/phonemirrorBox/l$b;
+Lcn/manstep/phonemirrorBox/l$c;
+Lcn/manstep/phonemirrorBox/m;
+Lcn/manstep/phonemirrorBox/n;
+Lcn/manstep/phonemirrorBox/n$a;
+Lcn/manstep/phonemirrorBox/n$b;
+Lcn/manstep/phonemirrorBox/n$c;
+Lcn/manstep/phonemirrorBox/o;
+Lcn/manstep/phonemirrorBox/o$a;
+Lcn/manstep/phonemirrorBox/p;
+Lcn/manstep/phonemirrorBox/q;
+Lcn/manstep/phonemirrorBox/q$a;
+Lcn/manstep/phonemirrorBox/q$b;
+Lcn/manstep/phonemirrorBox/r;
+Lcn/manstep/phonemirrorBox/s;
+Lcn/manstep/phonemirrorBox/t;
+Lcn/manstep/phonemirrorBox/t$a;
+Lcn/manstep/phonemirrorBox/u;
+Lcn/manstep/phonemirrorBox/v;
+Lcn/manstep/phonemirrorBox/v$a;
+Lcn/manstep/phonemirrorBox/w;
+Lcn/manstep/phonemirrorBox/x;
+Lcn/manstep/phonemirrorBox/x$a;
+Lcn/manstep/phonemirrorBox/y;
+Lcn/manstep/phonemirrorBox/z;
+Lcn/manstep/phonemirrorBox/z$a;
+Lcn/manstep/phonemirrorBox/z$b;
+Lcn/manstep/phonemirrorBox/z$c;
+Lcn/manstep/phonemirrorBox/z$d;
+Lcn/manstep/phonemirrorBox/z$e;
+Lcn/manstep/phonemirrorBox/z$f;
+Lcn/manstep/phonemirrorBox/z$g;
+Lcn/manstep/phonemirrorBox/z$h;
+Lcn/manstep/phonemirrorBox/z$i;
+Lcn/manstep/phonemirrorBox/z$j;
+Lcn/manstep/phonemirrorBox/z$k;
+Lcn/manstep/phonemirrorBox/z$l;
+Lcn/manstep/phonemirrorBox/z$m;
+leftMargin
+libscreencap100.so
+libscreencap40.so
+libscreencap41.so
+libscreencap422.so
+libscreencap43.so
+libscreencap442.so
+libscreencap50_x86.so
+libscreencap50.so
+libscreencap60.so
+libscreencap70.so
+libscreencap71.so
+libscreencap80.so
+libscreencap90.so
+LShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Window_Fullscreen
+MainActivity,setFullScreen: 
+MARGIN
+material_clock_display
+material_clock_display_divider
+material_clock_display_padding
+material_clock_face_margin_top
+material_on_surface_disabled
+material_on_surface_stroke
+MaterialButton_android_insetTop
+materialCalendarFullscreenTheme
+mCurrentScale
+mCurrentTouchCornerIndex
+mDeltaScale
+mDoubleTapScaleSteps
+measureChildWithMargins
+minTouchTargetSize
+Mirror
+MIRROR
+mirrorcoper.apk
+MirrorService 
+mIsFirstTouch
+mIsScaleEnabled
+mLastTouchedPosition
+mMaxScale
+mMaxScaleMultiplier
+mMinScale
+mOldScale
+mPreviousTouchX
+mPreviousTouchY
+mProgressLineMargin
+mScaleDetector
+mTextViewScalePercent
+mTouchPointThreshold
+mtrl_card_checked_icon_margin
+mtrl_chip_surface_color
+mtrl_fab_min_touch_target
+mtrl_large_touch_target
+mtrl_min_touch_target_size
+mtrl_navigation_rail_margin
+mtrl_on_surface_ripple_color
+mtrl_picker_fullscreen
+mtrl_picker_header_fullscreen
+mtrl_snackbar_margin
+mWrapperStateScale
+newTexture 
+notification_big_circle_margin
+NreadThreadRun: (phoneType == PHONE_TYPE_UNKNOWN), CMD_AUDIO_FRAME decode_type=
+offset
+offset: 
+offset=%s > size=%s
+offsetDescendantRectToMyCoords
+offsetLeftAndRight
+offsetLocation
+offsetRectIntoDescendantCoords
+offsetTo
+offsetTopAndBottom
+onCmd: 
+onCmd: #CMD_PLUGOUT.
+onCmd: PID ERROR
+onInterceptTouchEvent
+onScale
+onStartTrackingTouch
+onStopTrackingTouch
+onSurfaceChanged
+onSurfaceCreated
+onSurfaceTextureAvailable
+onSurfaceTextureDestroyed
+onSurfaceTextureSizeChanged
+onSurfaceTextureUpdated
+OnSwipe_dragScale
+OnSwipe_onTouchUp
+OnSwipe_touchAnchorId
+OnSwipe_touchAnchorSide
+OnSwipe_touchRegionId
+onTouch
+onTouchUp
+PAGE_CARLIFE_Download
+PbroadcastReceiverControl,AudioRecoder: Receive AUTO_BOX_CONTROL_CMD_RECORD_START
+phonemodel
+portColonOffset
+postScale
+recv  CarPlay_RequestHostUI...
+RenderThread surfaceChanged 
+RenderThread surfaceDestroyed
+requestChildRectangleOnScreen
+requestRectangleOnScreen
+resizeAndroidAutoView: 
+resizeAndroidAutoView: end x=
+resizeAndroidAutoView: left=
+resizeAndroidAutoView: start x=
+resizeAndroidAutoView: x=
+ReSizeView
+ReSizeView: Screen:
+rightMargin
+rightMargin= 
+SBoxProtocol,onCmd: CMD_PLUGOUT: Manually disconnected by the user on the phone end.
+scale
+SCALE
+scale_scroll_wheel
+SCALE_X
+scale_X = 
+SCALE_Y
+scaledDensity
+ScaleListener
+scaleM
+scaleX
+scaleY
+SCheckActivity,onCreate->getWindow().getWindowManager().getDefaultDisplay().getSize:
+schemeDelimiterOffset
+screen
+SCREEN
+Screen closed!
+screenHeightDp
+screenWidthDp
+Send multi touch data err
+Send multi touch head err
+Send touch data err
+Send touch head err
+send_carplay_cmd: 
+send_CarplayLogoType: type=
+sendAndroidAutoSize: 
+sendBoxAllSettings: 
+setActionBarHideOffset
+setAutoMirrored
+setAutoSize: AndroidAuto dpi=
+setBoundsInScreen
+setCanceledOnTouchOutside
+setCheckedIconMargin
+setCheckedIconMarginResource
+setClipToScreenEnabled
+setCradleVerticalOffset
+setDisplayedChild
+setDoubleTapScaleSteps
+setDpMargin
+setDropDownHorizontalOffset
+setDropDownVerticalOffset
+setEnsureMinTouchTargetSize
+setFabCradleMargin
+setFocusableInTouchMode
+setFullScreen: exitFullScreen 
+setHorizontalOffset
+setInsetTop
+setIsClippedToScreen
+setLayoutParams
+setLeft
+setLeftTopRightBottom
+setMargin
+setMargins
+setMarginStart
+setMaxScaleMultiplier
+setOnTouchListener
+setOutsideTouchable
+setScale
+setScaleEnabled
+setScaleX
+setScaleY
+setScreenReaderFocusable
+setScrollingTouchSlop
+setShouldDrawSurfaceColorStroke
+setSize: HiCar dpi=
+setSurfaceTexture
+setSurfaceTextureListener
+setTextScaleX
+setTitleMarginBottom
+setTitleMarginEnd
+setTitleMarginStart
+setTitleMarginTop
+setTop
+setTouchDelegate
+setTouchInterceptor
+setTouchModal
+setTrimPathOffset
+setupScaleWidget
+setVerticalOffset
+setVideoSize: 
+setWorkMode
+size=%s offset=%s byteCount=%s
+smallestScreenWidthDp
+softview init
+start: surface=
+startOffset
+state_scale
+surface already created
+surface was null
+surfaceChanged
+surfaceCreated
+surfaceDestroyed
+SurfaceView surfaceChanged: 
+SurfaceView surfaceCreated:
+SurfaceView surfaceDestroyed
+tag_screen_reader_focusable
+telltales_tailScale
+test_toolbar_surface
+text_view_scale
+TEXTURE_2D
+TEXTURE_EXT
+TEXTURE_EXT_BW
+TEXTURE_EXT_FILT
+TextureViewRenderer
+TextureViewRenderer,drawFrame: 
+titleMargin
+titleMarginBottom
+titleMarginEnd
+titleMarginStart
+titleMarginTop
+Toolbar_contentInsetLeft
+Toolbar_titleMargin
+Toolbar_titleMarginBottom
+Toolbar_titleMarginEnd
+Toolbar_titleMargins
+Toolbar_titleMarginStart
+Toolbar_titleMarginTop
+Tooltip_android_layout_margin
+tooltip_margin
+tooltip_y_offset_non_touch
+tooltip_y_offset_touch
+topMargin
+touch
+touch_outside
+touchAnchorId
+touchAnchorSide
+touchRegionId
+touchscreen
+Transform_android_scaleX
+Transform_android_scaleY
+trimPathOffset
+ucrop_ic_scale
+ucrop_layout_scale_wheel
+ucrop_loader_circle_scale
+ucrop_scale_text_view_selector
+ucrop_size_dot_scale_text_view
+unable to get EGL14 display
+uniform mat4 uTextureMatrix;
+uniform sampler2D sTexture;
+uniform samplerExternalOES sTexture;
+uniform samplerExternalOES uTextureSampler;
+uniform vec2 uTexOffset[KERNEL_SIZE];
+updateGeometry setScale=
+Use TextureView Render: 
+uTexOffset
+uTextureMatrix
+uTextureSampler
+val$offset
+vandroidautoh
+varying vec2 vTextureCoord;
+vCheckActivity,setFullScreen: Because the Android version number is lower than 4.4.4, there is no hidden NavigationBar.
+vec4 c = vec4((texture2D(tex_y, tc).r - 16./255.) * 1.164);
+vec4 U = vec4(texture2D(tex_u, tc).r - 128./255.);
+vec4 V = vec4(texture2D(tex_v, tc).r - 128./255.);
+verticalOffset
+VideoSize
+view_offset_helper
+WaitFragment,resetDisplaySize: 
+waveOffset
+WorkMode

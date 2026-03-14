@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:tag="layout/fragment_debug_settings_0" android:background="@drawable/APKTOOL_RENAMED_0x7f08006f" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:id="@id/APKTOOL_RENAMED_0x7f090270" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f10026e">
+        <ImageView android:id="@id/APKTOOL_RENAMED_0x7f090072" android:layout_centerVertical="true" style="@style/APKTOOL_RENAMED_0x7f10011b" />
+        <TextView android:textColor="#ffffff" android:text="Debug" android:layout_centerInParent="true" style="@style/APKTOOL_RENAMED_0x7f100271" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/APKTOOL_RENAMED_0x7f09014f" android:background="#222222" android:layout_width="match_parent" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f090270">
+        <View android:id="@id/APKTOOL_RENAMED_0x7f0902a6" android:background="@drawable/APKTOOL_RENAMED_0x7f08010e" android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_centerInParent="true" />
+        <View android:id="@id/APKTOOL_RENAMED_0x7f0902a7" android:background="@drawable/APKTOOL_RENAMED_0x7f08010d" android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_below="@id/APKTOOL_RENAMED_0x7f0902a6" android:layout_centerInParent="true" />
+    </RelativeLayout>
+    <ScrollView android:scrollbars="vertical" android:fadingEdge="vertical" android:layout_width="0.0dp" android:layout_height="0.0dp" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f09014f" app:APKTOOL_RENAMED_0x7f0401fb="0.0">
+        <LinearLayout android:orientation="vertical" android:paddingLeft="10.0dp" android:paddingRight="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:layout_width="wrap_content" android:minWidth="48.0dp" android:text="系统信息" android:layout_weight="0.0" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:gravity="start" android:tag="binding_1" android:layout_weight="2.0" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="wh" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:tag="binding_2" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="density" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:tag="binding_3" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="ro.product.cpu.abilist" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:tag="binding_4" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="MediaCodecList" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:tag="binding_5" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_6" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="vpid" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:tag="binding_7" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_8" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="usb" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:id="@id/APKTOOL_RENAMED_0x7f090297" android:tag="binding_9" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_10" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f005d" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <RadioGroup android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <RadioButton android:tag="binding_11" android:text="HiCar" style="@style/APKTOOL_RENAMED_0x7f10011d" />
+                    <RadioButton android:tag="binding_12" android:layout_marginLeft="4.0dp" android:text="Android Auto" style="@style/APKTOOL_RENAMED_0x7f10011d" />
+                    <RadioButton android:tag="binding_13" android:layout_marginLeft="4.0dp" android:text="Carlink" style="@style/APKTOOL_RENAMED_0x7f10011d" />
+                    <RadioButton android:tag="binding_14" android:layout_marginLeft="4.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f016b" style="@style/APKTOOL_RENAMED_0x7f10011d" />
+                </RadioGroup>
+            </LinearLayout>
+            <LinearLayout android:id="@id/APKTOOL_RENAMED_0x7f0900db" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f00f9" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:gravity="end" android:id="@id/APKTOOL_RENAMED_0x7f0900dc" android:minWidth="32.0dp" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout android:id="@id/APKTOOL_RENAMED_0x7f09022a" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="启动延迟" android:layout_weight="0.5" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <SeekBar android:id="@id/APKTOOL_RENAMED_0x7f09022e" style="@style/APKTOOL_RENAMED_0x7f100166" />
+                <TextView android:id="@id/APKTOOL_RENAMED_0x7f09022f" android:layout_width="44.0dp" android:text="0" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout android:id="@id/APKTOOL_RENAMED_0x7f0900c8" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f00e7" android:layout_weight="0.5" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <SeekBar android:id="@id/APKTOOL_RENAMED_0x7f0900d0" style="@style/APKTOOL_RENAMED_0x7f100166" />
+                <TextView android:id="@id/APKTOOL_RENAMED_0x7f0900cf" android:layout_width="44.0dp" android:text="999 dpi" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="蓝牙通话" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <androidx.appcompat.widget.SwitchCompat android:tag="binding_15" android:layout_width="wrap_content" android:layout_height="wrap_content" android:thumb="@drawable/APKTOOL_RENAMED_0x7f080112" app:APKTOOL_RENAMED_0x7f040371="@drawable/APKTOOL_RENAMED_0x7f080115" />
+            </LinearLayout>
+            <LinearLayout android:id="@id/APKTOOL_RENAMED_0x7f090101" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="GL渲染" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <androidx.appcompat.widget.SwitchCompat android:id="@id/APKTOOL_RENAMED_0x7f090100" android:tag="binding_16" android:layout_width="wrap_content" android:layout_height="wrap_content" android:thumb="@drawable/APKTOOL_RENAMED_0x7f080112" app:APKTOOL_RENAMED_0x7f040371="@drawable/APKTOOL_RENAMED_0x7f080115" />
+            </LinearLayout>
+            <LinearLayout android:id="@id/APKTOOL_RENAMED_0x7f09008e" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="保存录音" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <androidx.appcompat.widget.SwitchCompat android:id="@id/APKTOOL_RENAMED_0x7f09008d" android:tag="binding_17" android:layout_width="wrap_content" android:layout_height="wrap_content" android:thumb="@drawable/APKTOOL_RENAMED_0x7f080112" app:APKTOOL_RENAMED_0x7f040371="@drawable/APKTOOL_RENAMED_0x7f080115" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="保存视频" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <androidx.appcompat.widget.SwitchCompat android:tag="binding_18" android:layout_width="wrap_content" android:layout_height="wrap_content" android:thumb="@drawable/APKTOOL_RENAMED_0x7f080112" app:APKTOOL_RENAMED_0x7f040371="@drawable/APKTOOL_RENAMED_0x7f080115" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="保存数据" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <androidx.appcompat.widget.SwitchCompat android:tag="binding_19" android:layout_width="wrap_content" android:layout_height="wrap_content" android:thumb="@drawable/APKTOOL_RENAMED_0x7f080112" app:APKTOOL_RENAMED_0x7f040371="@drawable/APKTOOL_RENAMED_0x7f080115" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="应用版本" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:tag="binding_20" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_21" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="硬件版本" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <TextView android:tag="binding_22" style="@style/APKTOOL_RENAMED_0x7f10011f" />
+            </LinearLayout>
+            <LinearLayout android:id="@id/APKTOOL_RENAMED_0x7f09011d" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="图像调节" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <ImageView android:padding="4.0dp" android:layout_width="20.0dp" android:layout_height="20.0dp" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+            </LinearLayout>
+            <LinearLayout style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="缓存文件" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <ImageView android:tag="binding_23" android:padding="4.0dp" android:layout_width="20.0dp" android:layout_height="20.0dp" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_24" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="应用详情" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <ImageView android:padding="4.0dp" android:layout_width="20.0dp" android:layout_height="20.0dp" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_25" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="重置" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <ImageView android:padding="4.0dp" android:layout_width="20.0dp" android:layout_height="20.0dp" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+            </LinearLayout>
+            <LinearLayout android:tag="binding_26" style="@style/APKTOOL_RENAMED_0x7f10011c">
+                <TextView android:text="音频调试" style="@style/APKTOOL_RENAMED_0x7f10011e" />
+                <ImageView android:padding="4.0dp" android:layout_width="20.0dp" android:layout_height="20.0dp" app:APKTOOL_RENAMED_0x7f0402e3="@drawable/APKTOOL_RENAMED_0x7f0800da" />
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20.0dp" android:layout_marginBottom="20.0dp">
+                <Button android:textSize="20.0sp" android:textColor="@drawable/APKTOOL_RENAMED_0x7f080085" android:gravity="center" android:tag="binding_27" android:background="@drawable/APKTOOL_RENAMED_0x7f08008b" android:padding="15.0dp" android:layout_width="0.0dp" android:layout_height="match_parent" android:text="@string/APKTOOL_RENAMED_0x7f0f00a0" android:layout_weight="5.0" android:textAllCaps="false" />
+                <Button android:textSize="20.0sp" android:textColor="@drawable/APKTOOL_RENAMED_0x7f080085" android:gravity="center" android:id="@id/APKTOOL_RENAMED_0x7f090083" android:tag="binding_28" android:background="@drawable/APKTOOL_RENAMED_0x7f08008b" android:padding="15.0dp" android:layout_width="0.0dp" android:layout_height="match_parent" android:text="@string/APKTOOL_RENAMED_0x7f0f020d" android:layout_weight="5.0" android:textAllCaps="false" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <cn.manstep.phonemirrorBox.widget.WaveformView android:id="@id/APKTOOL_RENAMED_0x7f0900be" android:visibility="gone" android:layout_width="match_parent" android:layout_height="100.0dp" android:layout_marginBottom="96.0dp" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,863 @@
+.class Lc/c/a/h;
+.super Landroid/graphics/drawable/Drawable;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/MemberClasses;
+  value = {
+    Lc/c/a/h$a;
+  }
+.end annotation
+
+.field private final static q:D
+
+.field static r:Lc/c/a/h$a;
+
+.field private final a:I
+
+.field private b:Landroid/graphics/Paint;
+
+.field private c:Landroid/graphics/Paint;
+
+.field private d:Landroid/graphics/Paint;
+
+.field private final e:Landroid/graphics/RectF;
+
+.field private f:F
+
+.field private g:Landroid/graphics/Path;
+
+.field private h:F
+
+.field private i:F
+
+.field private j:F
+
+.field private k:Landroid/content/res/ColorStateList;
+
+.field private l:Z
+
+.field private final m:I
+
+.field private final n:I
+
+.field private o:Z
+
+.field private p:Z
+
+.method static constructor <clinit>()V
+  .registers 3
+    const-wide v0, 4631530004285489152L
+  .line 1
+    invoke-static { v0, v1 }, Ljava/lang/Math;->toRadians(D)D
+    move-result-wide v0
+    invoke-static { v0, v1 }, Ljava/lang/Math;->cos(D)D
+    move-result-wide v0
+    sput-wide v0, Lc/c/a/h;->q:D
+    return-void
+.end method
+
+.method private a(Landroid/graphics/Rect;)V
+  .registers 8
+  .line 1
+    iget v0, p0, Lc/c/a/h;->h:F
+    const/high16 v1, 16320
+    mul-float v1, v1, v0
+  .line 2
+    iget-object v2, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+    iget v3, p1, Landroid/graphics/Rect;->left:I
+    int-to-float v3, v3
+    add-float/2addr v3, v0
+    iget v4, p1, Landroid/graphics/Rect;->top:I
+    int-to-float v4, v4
+    add-float/2addr v4, v1
+    iget v5, p1, Landroid/graphics/Rect;->right:I
+    int-to-float v5, v5
+    sub-float/2addr v5, v0
+    iget p1, p1, Landroid/graphics/Rect;->bottom:I
+    int-to-float p1, p1
+    sub-float/2addr p1, v1
+    invoke-virtual { v2, v3, v4, v5, p1 }, Landroid/graphics/RectF;->set(FFFF)V
+  .line 3
+    invoke-direct { p0 }, Lc/c/a/h;->b()V
+    return-void
+.end method
+
+.method private b()V
+  .registers 26
+    move-object/from16 v0, p0
+  .line 1
+    new-instance v1, Landroid/graphics/RectF;
+    iget v2, v0, Lc/c/a/h;->f:F
+    neg-float v3, v2
+    neg-float v4, v2
+    invoke-direct { v1, v3, v4, v2, v2 }, Landroid/graphics/RectF;-><init>(FFFF)V
+  .line 2
+    new-instance v2, Landroid/graphics/RectF;
+    invoke-direct { v2, v1 }, Landroid/graphics/RectF;-><init>(Landroid/graphics/RectF;)V
+  .line 3
+    iget v3, v0, Lc/c/a/h;->i:F
+    neg-float v4, v3
+    neg-float v3, v3
+    invoke-virtual { v2, v4, v3 }, Landroid/graphics/RectF;->inset(FF)V
+  .line 4
+    iget-object v3, v0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    if-nez v3, :L0
+  .line 5
+    new-instance v3, Landroid/graphics/Path;
+    invoke-direct { v3 }, Landroid/graphics/Path;-><init>()V
+    iput-object v3, v0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    goto :L1
+  :L0
+  .line 6
+    invoke-virtual { v3 }, Landroid/graphics/Path;->reset()V
+  :L1
+  .line 7
+    iget-object v3, v0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    sget-object v4, Landroid/graphics/Path$FillType;->EVEN_ODD:Landroid/graphics/Path$FillType;
+    invoke-virtual { v3, v4 }, Landroid/graphics/Path;->setFillType(Landroid/graphics/Path$FillType;)V
+  .line 8
+    iget-object v3, v0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    iget v4, v0, Lc/c/a/h;->f:F
+    neg-float v4, v4
+    const/4 v5, 0
+    invoke-virtual { v3, v4, v5 }, Landroid/graphics/Path;->moveTo(FF)V
+  .line 9
+    iget-object v3, v0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    iget v4, v0, Lc/c/a/h;->i:F
+    neg-float v4, v4
+    invoke-virtual { v3, v4, v5 }, Landroid/graphics/Path;->rLineTo(FF)V
+  .line 10
+    iget-object v3, v0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    const/high16 v4, 17204
+    const/high16 v6, 17076
+    const/4 v7, 0
+    invoke-virtual { v3, v2, v4, v6, v7 }, Landroid/graphics/Path;->arcTo(Landroid/graphics/RectF;FFZ)V
+  .line 11
+    iget-object v2, v0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    const/high16 v3, 17287
+    const/high16 v4, -15692
+    invoke-virtual { v2, v1, v3, v4, v7 }, Landroid/graphics/Path;->arcTo(Landroid/graphics/RectF;FFZ)V
+  .line 12
+    iget-object v1, v0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    invoke-virtual { v1 }, Landroid/graphics/Path;->close()V
+  .line 13
+    iget v1, v0, Lc/c/a/h;->f:F
+    iget v2, v0, Lc/c/a/h;->i:F
+    add-float/2addr v2, v1
+    div-float/2addr v1, v2
+  .line 14
+    iget-object v2, v0, Lc/c/a/h;->c:Landroid/graphics/Paint;
+    new-instance v3, Landroid/graphics/RadialGradient;
+    const/4 v9, 0
+    const/4 v10, 0
+    iget v4, v0, Lc/c/a/h;->f:F
+    iget v6, v0, Lc/c/a/h;->i:F
+    add-float v11, v4, v6
+    const/4 v4, 3
+    new-array v12, v4, [I
+    iget v6, v0, Lc/c/a/h;->m:I
+    aput v6, v12, v7
+    const/4 v15, 1
+    aput v6, v12, v15
+    iget v6, v0, Lc/c/a/h;->n:I
+    const/16 v16, 2
+    aput v6, v12, v16
+    new-array v13, v4, [F
+    aput v5, v13, v7
+    aput v1, v13, v15
+    const/high16 v1, 16256
+    aput v1, v13, v16
+    sget-object v14, Landroid/graphics/Shader$TileMode;->CLAMP:Landroid/graphics/Shader$TileMode;
+    move-object v8, v3
+    invoke-direct/range { v8 .. v14 }, Landroid/graphics/RadialGradient;-><init>(FFF[I[FLandroid/graphics/Shader$TileMode;)V
+    invoke-virtual { v2, v3 }, Landroid/graphics/Paint;->setShader(Landroid/graphics/Shader;)Landroid/graphics/Shader;
+  .line 15
+    iget-object v1, v0, Lc/c/a/h;->d:Landroid/graphics/Paint;
+    new-instance v2, Landroid/graphics/LinearGradient;
+    const/16 v18, 0
+    iget v3, v0, Lc/c/a/h;->f:F
+    neg-float v5, v3
+    iget v6, v0, Lc/c/a/h;->i:F
+    add-float v19, v5, v6
+    const/16 v20, 0
+    neg-float v3, v3
+    sub-float v21, v3, v6
+    new-array v3, v4, [I
+    iget v5, v0, Lc/c/a/h;->m:I
+    aput v5, v3, v7
+    aput v5, v3, v15
+    iget v5, v0, Lc/c/a/h;->n:I
+    aput v5, v3, v16
+    new-array v4, v4, [F
+    fill-array-data v4, :L2
+    sget-object v24, Landroid/graphics/Shader$TileMode;->CLAMP:Landroid/graphics/Shader$TileMode;
+    move-object/from16 v17, v2
+    move-object/from16 v22, v3
+    move-object/from16 v23, v4
+    invoke-direct/range { v17 .. v24 }, Landroid/graphics/LinearGradient;-><init>(FFFF[I[FLandroid/graphics/Shader$TileMode;)V
+    invoke-virtual { v1, v2 }, Landroid/graphics/Paint;->setShader(Landroid/graphics/Shader;)Landroid/graphics/Shader;
+  .line 16
+    iget-object v1, v0, Lc/c/a/h;->d:Landroid/graphics/Paint;
+    invoke-virtual { v1, v7 }, Landroid/graphics/Paint;->setAntiAlias(Z)V
+    return-void
+  :L2
+  .array-data 4
+    0t 0t 0t 0t
+    0t 0t 0t 63t
+    0t 0t -128t 63t
+  .end array-data
+.end method
+
+.method static c(FFZ)F
+  .registers 9
+    if-eqz p2, :L0
+    float-to-double v0, p0
+    const-wide/high16 v2, 16368
+  .line 1
+    sget-wide v4, Lc/c/a/h;->q:D
+    sub-double/2addr v2, v4
+    float-to-double p0, p1
+    invoke-static { p0, p1 }, Ljava/lang/Double;->isNaN(D)Z
+    mul-double v2, v2, p0
+    invoke-static { v0, v1 }, Ljava/lang/Double;->isNaN(D)Z
+    add-double/2addr v0, v2
+    double-to-float p0, v0
+  :L0
+    return p0
+.end method
+
+.method static d(FFZ)F
+  .registers 9
+    const/high16 v0, 16320
+    if-eqz p2, :L0
+    mul-float p0, p0, v0
+    float-to-double v0, p0
+    const-wide/high16 v2, 16368
+  .line 1
+    sget-wide v4, Lc/c/a/h;->q:D
+    sub-double/2addr v2, v4
+    float-to-double p0, p1
+    invoke-static { p0, p1 }, Ljava/lang/Double;->isNaN(D)Z
+    mul-double v2, v2, p0
+    invoke-static { v0, v1 }, Ljava/lang/Double;->isNaN(D)Z
+    add-double/2addr v0, v2
+    double-to-float p0, v0
+    return p0
+  :L0
+    mul-float p0, p0, v0
+    return p0
+.end method
+
+.method private e(Landroid/graphics/Canvas;)V
+  .registers 14
+  .line 1
+    iget v0, p0, Lc/c/a/h;->f:F
+    neg-float v1, v0
+    iget v2, p0, Lc/c/a/h;->i:F
+    sub-float/2addr v1, v2
+  .line 2
+    iget v2, p0, Lc/c/a/h;->a:I
+    int-to-float v2, v2
+    add-float/2addr v0, v2
+    iget v2, p0, Lc/c/a/h;->j:F
+    const/high16 v3, 16384
+    div-float/2addr v2, v3
+    add-float/2addr v0, v2
+  .line 3
+    iget-object v2, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+    invoke-virtual { v2 }, Landroid/graphics/RectF;->width()F
+    move-result v2
+    mul-float v9, v0, v3
+    sub-float/2addr v2, v9
+    const/4 v3, 1
+    const/4 v4, 0
+    const/4 v5, 0
+    cmpl-float v2, v2, v5
+    if-lez v2, :L0
+    const/4 v2, 1
+    goto :L1
+  :L0
+    const/4 v2, 0
+  :L1
+  .line 4
+    iget-object v6, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+    invoke-virtual { v6 }, Landroid/graphics/RectF;->height()F
+    move-result v6
+    sub-float/2addr v6, v9
+    cmpl-float v5, v6, v5
+    if-lez v5, :L2
+    const/4 v10, 1
+    goto :L3
+  :L2
+    const/4 v10, 0
+  :L3
+  .line 5
+    invoke-virtual { p1 }, Landroid/graphics/Canvas;->save()I
+    move-result v11
+  .line 6
+    iget-object v3, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+    iget v4, v3, Landroid/graphics/RectF;->left:F
+    add-float/2addr v4, v0
+    iget v3, v3, Landroid/graphics/RectF;->top:F
+    add-float/2addr v3, v0
+    invoke-virtual { p1, v4, v3 }, Landroid/graphics/Canvas;->translate(FF)V
+  .line 7
+    iget-object v3, p0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    iget-object v4, p0, Lc/c/a/h;->c:Landroid/graphics/Paint;
+    invoke-virtual { p1, v3, v4 }, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
+    if-eqz v2, :L4
+    const/4 v4, 0
+  .line 8
+    iget-object v3, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+  .line 9
+    invoke-virtual { v3 }, Landroid/graphics/RectF;->width()F
+    move-result v3
+    sub-float v6, v3, v9
+    iget v3, p0, Lc/c/a/h;->f:F
+    neg-float v7, v3
+    iget-object v8, p0, Lc/c/a/h;->d:Landroid/graphics/Paint;
+    move-object v3, p1
+    move v5, v1
+  .line 10
+    invoke-virtual/range { v3 .. v8 }, Landroid/graphics/Canvas;->drawRect(FFFFLandroid/graphics/Paint;)V
+  :L4
+  .line 11
+    invoke-virtual { p1, v11 }, Landroid/graphics/Canvas;->restoreToCount(I)V
+  .line 12
+    invoke-virtual { p1 }, Landroid/graphics/Canvas;->save()I
+    move-result v11
+  .line 13
+    iget-object v3, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+    iget v4, v3, Landroid/graphics/RectF;->right:F
+    sub-float/2addr v4, v0
+    iget v3, v3, Landroid/graphics/RectF;->bottom:F
+    sub-float/2addr v3, v0
+    invoke-virtual { p1, v4, v3 }, Landroid/graphics/Canvas;->translate(FF)V
+    const/high16 v3, 17204
+  .line 14
+    invoke-virtual { p1, v3 }, Landroid/graphics/Canvas;->rotate(F)V
+  .line 15
+    iget-object v3, p0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    iget-object v4, p0, Lc/c/a/h;->c:Landroid/graphics/Paint;
+    invoke-virtual { p1, v3, v4 }, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
+    if-eqz v2, :L5
+    const/4 v4, 0
+  .line 16
+    iget-object v2, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+  .line 17
+    invoke-virtual { v2 }, Landroid/graphics/RectF;->width()F
+    move-result v2
+    sub-float v6, v2, v9
+    iget v2, p0, Lc/c/a/h;->f:F
+    neg-float v2, v2
+    iget v3, p0, Lc/c/a/h;->i:F
+    add-float v7, v2, v3
+    iget-object v8, p0, Lc/c/a/h;->d:Landroid/graphics/Paint;
+    move-object v3, p1
+    move v5, v1
+  .line 18
+    invoke-virtual/range { v3 .. v8 }, Landroid/graphics/Canvas;->drawRect(FFFFLandroid/graphics/Paint;)V
+  :L5
+  .line 19
+    invoke-virtual { p1, v11 }, Landroid/graphics/Canvas;->restoreToCount(I)V
+  .line 20
+    invoke-virtual { p1 }, Landroid/graphics/Canvas;->save()I
+    move-result v2
+  .line 21
+    iget-object v3, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+    iget v4, v3, Landroid/graphics/RectF;->left:F
+    add-float/2addr v4, v0
+    iget v3, v3, Landroid/graphics/RectF;->bottom:F
+    sub-float/2addr v3, v0
+    invoke-virtual { p1, v4, v3 }, Landroid/graphics/Canvas;->translate(FF)V
+    const/high16 v3, 17287
+  .line 22
+    invoke-virtual { p1, v3 }, Landroid/graphics/Canvas;->rotate(F)V
+  .line 23
+    iget-object v3, p0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    iget-object v4, p0, Lc/c/a/h;->c:Landroid/graphics/Paint;
+    invoke-virtual { p1, v3, v4 }, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
+    if-eqz v10, :L6
+    const/4 v4, 0
+  .line 24
+    iget-object v3, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+  .line 25
+    invoke-virtual { v3 }, Landroid/graphics/RectF;->height()F
+    move-result v3
+    sub-float v6, v3, v9
+    iget v3, p0, Lc/c/a/h;->f:F
+    neg-float v7, v3
+    iget-object v8, p0, Lc/c/a/h;->d:Landroid/graphics/Paint;
+    move-object v3, p1
+    move v5, v1
+  .line 26
+    invoke-virtual/range { v3 .. v8 }, Landroid/graphics/Canvas;->drawRect(FFFFLandroid/graphics/Paint;)V
+  :L6
+  .line 27
+    invoke-virtual { p1, v2 }, Landroid/graphics/Canvas;->restoreToCount(I)V
+  .line 28
+    invoke-virtual { p1 }, Landroid/graphics/Canvas;->save()I
+    move-result v2
+  .line 29
+    iget-object v3, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+    iget v4, v3, Landroid/graphics/RectF;->right:F
+    sub-float/2addr v4, v0
+    iget v3, v3, Landroid/graphics/RectF;->top:F
+    add-float/2addr v3, v0
+    invoke-virtual { p1, v4, v3 }, Landroid/graphics/Canvas;->translate(FF)V
+    const/high16 v0, 17076
+  .line 30
+    invoke-virtual { p1, v0 }, Landroid/graphics/Canvas;->rotate(F)V
+  .line 31
+    iget-object v0, p0, Lc/c/a/h;->g:Landroid/graphics/Path;
+    iget-object v3, p0, Lc/c/a/h;->c:Landroid/graphics/Paint;
+    invoke-virtual { p1, v0, v3 }, Landroid/graphics/Canvas;->drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
+    if-eqz v10, :L7
+    const/4 v4, 0
+  .line 32
+    iget-object v0, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+  .line 33
+    invoke-virtual { v0 }, Landroid/graphics/RectF;->height()F
+    move-result v0
+    sub-float v6, v0, v9
+    iget v0, p0, Lc/c/a/h;->f:F
+    neg-float v7, v0
+    iget-object v8, p0, Lc/c/a/h;->d:Landroid/graphics/Paint;
+    move-object v3, p1
+    move v5, v1
+  .line 34
+    invoke-virtual/range { v3 .. v8 }, Landroid/graphics/Canvas;->drawRect(FFFFLandroid/graphics/Paint;)V
+  :L7
+  .line 35
+    invoke-virtual { p1, v2 }, Landroid/graphics/Canvas;->restoreToCount(I)V
+    return-void
+.end method
+
+.method private n(Landroid/content/res/ColorStateList;)V
+  .registers 5
+    if-nez p1, :L0
+    const/4 p1, 0
+  .line 1
+    invoke-static { p1 }, Landroid/content/res/ColorStateList;->valueOf(I)Landroid/content/res/ColorStateList;
+    move-result-object p1
+  :L0
+    iput-object p1, p0, Lc/c/a/h;->k:Landroid/content/res/ColorStateList;
+  .line 2
+    iget-object v0, p0, Lc/c/a/h;->b:Landroid/graphics/Paint;
+    invoke-virtual { p0 }, Landroid/graphics/drawable/Drawable;->getState()[I
+    move-result-object v1
+    iget-object v2, p0, Lc/c/a/h;->k:Landroid/content/res/ColorStateList;
+    invoke-virtual { v2 }, Landroid/content/res/ColorStateList;->getDefaultColor()I
+    move-result v2
+    invoke-virtual { p1, v1, v2 }, Landroid/content/res/ColorStateList;->getColorForState([II)I
+    move-result p1
+    invoke-virtual { v0, p1 }, Landroid/graphics/Paint;->setColor(I)V
+    return-void
+.end method
+
+.method private s(FF)V
+  .registers 6
+    const-string v0, ". Must be >= 0"
+    const/4 v1, 0
+    cmpg-float v2, p1, v1
+    if-ltz v2, :L4
+    cmpg-float v1, p2, v1
+    if-ltz v1, :L3
+  .line 1
+    invoke-direct { p0, p1 }, Lc/c/a/h;->t(F)I
+    move-result p1
+    int-to-float p1, p1
+  .line 2
+    invoke-direct { p0, p2 }, Lc/c/a/h;->t(F)I
+    move-result p2
+    int-to-float p2, p2
+    const/4 v0, 1
+    cmpl-float v1, p1, p2
+    if-lez v1, :L1
+  .line 3
+    iget-boolean p1, p0, Lc/c/a/h;->p:Z
+    if-nez p1, :L0
+  .line 4
+    iput-boolean v0, p0, Lc/c/a/h;->p:Z
+  :L0
+    move p1, p2
+  :L1
+  .line 5
+    iget v1, p0, Lc/c/a/h;->j:F
+    cmpl-float v1, v1, p1
+    if-nez v1, :L2
+    iget v1, p0, Lc/c/a/h;->h:F
+    cmpl-float v1, v1, p2
+    if-nez v1, :L2
+    return-void
+  :L2
+  .line 6
+    iput p1, p0, Lc/c/a/h;->j:F
+  .line 7
+    iput p2, p0, Lc/c/a/h;->h:F
+    const/high16 p2, 16320
+    mul-float p1, p1, p2
+  .line 8
+    iget p2, p0, Lc/c/a/h;->a:I
+    int-to-float p2, p2
+    add-float/2addr p1, p2
+    const/high16 p2, 16128
+    add-float/2addr p1, p2
+    float-to-int p1, p1
+    int-to-float p1, p1
+    iput p1, p0, Lc/c/a/h;->i:F
+  .line 9
+    iput-boolean v0, p0, Lc/c/a/h;->l:Z
+  .line 10
+    invoke-virtual { p0 }, Landroid/graphics/drawable/Drawable;->invalidateSelf()V
+    return-void
+  :L3
+  .line 11
+    new-instance p1, Ljava/lang/IllegalArgumentException;
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "Invalid max shadow size "
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, p2 }, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, v0 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p2
+    invoke-direct { p1, p2 }, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    throw p1
+  :L4
+  .line 12
+    new-instance p2, Ljava/lang/IllegalArgumentException;
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "Invalid shadow size "
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, p1 }, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, v0 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    invoke-direct { p2, p1 }, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    throw p2
+.end method
+
+.method private t(F)I
+  .registers 4
+    const/high16 v0, 16128
+    add-float/2addr p1, v0
+    float-to-int p1, p1
+  .line 1
+    rem-int/lit8 v0, p1, 2
+    const/4 v1, 1
+    if-ne v0, v1, :L0
+    sub-int/2addr p1, v1
+  :L0
+    return p1
+.end method
+
+.method public draw(Landroid/graphics/Canvas;)V
+  .registers 6
+  .line 1
+    iget-boolean v0, p0, Lc/c/a/h;->l:Z
+    if-eqz v0, :L0
+  .line 2
+    invoke-virtual { p0 }, Landroid/graphics/drawable/Drawable;->getBounds()Landroid/graphics/Rect;
+    move-result-object v0
+    invoke-direct { p0, v0 }, Lc/c/a/h;->a(Landroid/graphics/Rect;)V
+    const/4 v0, 0
+  .line 3
+    iput-boolean v0, p0, Lc/c/a/h;->l:Z
+  :L0
+  .line 4
+    iget v0, p0, Lc/c/a/h;->j:F
+    const/high16 v1, 16384
+    div-float/2addr v0, v1
+    const/4 v2, 0
+    invoke-virtual { p1, v2, v0 }, Landroid/graphics/Canvas;->translate(FF)V
+  .line 5
+    invoke-direct { p0, p1 }, Lc/c/a/h;->e(Landroid/graphics/Canvas;)V
+  .line 6
+    iget v0, p0, Lc/c/a/h;->j:F
+    neg-float v0, v0
+    div-float/2addr v0, v1
+    invoke-virtual { p1, v2, v0 }, Landroid/graphics/Canvas;->translate(FF)V
+  .line 7
+    sget-object v0, Lc/c/a/h;->r:Lc/c/a/h$a;
+    iget-object v1, p0, Lc/c/a/h;->e:Landroid/graphics/RectF;
+    iget v2, p0, Lc/c/a/h;->f:F
+    iget-object v3, p0, Lc/c/a/h;->b:Landroid/graphics/Paint;
+    invoke-interface { v0, p1, v1, v2, v3 }, Lc/c/a/h$a;->a(Landroid/graphics/Canvas;Landroid/graphics/RectF;FLandroid/graphics/Paint;)V
+    return-void
+.end method
+
+.method f()Landroid/content/res/ColorStateList;
+  .registers 2
+  .line 1
+    iget-object v0, p0, Lc/c/a/h;->k:Landroid/content/res/ColorStateList;
+    return-object v0
+.end method
+
+.method g()F
+  .registers 2
+  .line 1
+    iget v0, p0, Lc/c/a/h;->f:F
+    return v0
+.end method
+
+.method public getOpacity()I
+  .registers 2
+    const/4 v0, -3
+    return v0
+.end method
+
+.method public getPadding(Landroid/graphics/Rect;)Z
+  .registers 6
+  .line 1
+    iget v0, p0, Lc/c/a/h;->h:F
+    iget v1, p0, Lc/c/a/h;->f:F
+    iget-boolean v2, p0, Lc/c/a/h;->o:Z
+    invoke-static { v0, v1, v2 }, Lc/c/a/h;->d(FFZ)F
+    move-result v0
+    float-to-double v0, v0
+    invoke-static { v0, v1 }, Ljava/lang/Math;->ceil(D)D
+    move-result-wide v0
+    double-to-int v0, v0
+  .line 2
+    iget v1, p0, Lc/c/a/h;->h:F
+    iget v2, p0, Lc/c/a/h;->f:F
+    iget-boolean v3, p0, Lc/c/a/h;->o:Z
+    invoke-static { v1, v2, v3 }, Lc/c/a/h;->c(FFZ)F
+    move-result v1
+    float-to-double v1, v1
+    invoke-static { v1, v2 }, Ljava/lang/Math;->ceil(D)D
+    move-result-wide v1
+    double-to-int v1, v1
+  .line 3
+    invoke-virtual { p1, v1, v0, v1, v0 }, Landroid/graphics/Rect;->set(IIII)V
+    const/4 p1, 1
+    return p1
+.end method
+
+.method h(Landroid/graphics/Rect;)V
+  .registers 2
+  .line 1
+    invoke-virtual { p0, p1 }, Lc/c/a/h;->getPadding(Landroid/graphics/Rect;)Z
+    return-void
+.end method
+
+.method i()F
+  .registers 2
+  .line 1
+    iget v0, p0, Lc/c/a/h;->h:F
+    return v0
+.end method
+
+.method public isStateful()Z
+  .registers 2
+  .line 1
+    iget-object v0, p0, Lc/c/a/h;->k:Landroid/content/res/ColorStateList;
+    if-eqz v0, :L0
+    invoke-virtual { v0 }, Landroid/content/res/ColorStateList;->isStateful()Z
+    move-result v0
+    if-nez v0, :L1
+  :L0
+    invoke-super { p0 }, Landroid/graphics/drawable/Drawable;->isStateful()Z
+    move-result v0
+    if-eqz v0, :L2
+  :L1
+    const/4 v0, 1
+    goto :L3
+  :L2
+    const/4 v0, 0
+  :L3
+    return v0
+.end method
+
+.method j()F
+  .registers 6
+  .line 1
+    iget v0, p0, Lc/c/a/h;->h:F
+    iget v1, p0, Lc/c/a/h;->f:F
+    iget v2, p0, Lc/c/a/h;->a:I
+    int-to-float v2, v2
+    add-float/2addr v1, v2
+    const/high16 v2, 16320
+    mul-float v3, v0, v2
+    const/high16 v4, 16384
+    div-float/2addr v3, v4
+    add-float/2addr v1, v3
+    invoke-static { v0, v1 }, Ljava/lang/Math;->max(FF)F
+    move-result v0
+    mul-float v0, v0, v4
+  .line 2
+    iget v1, p0, Lc/c/a/h;->h:F
+    mul-float v1, v1, v2
+    iget v2, p0, Lc/c/a/h;->a:I
+    int-to-float v2, v2
+    add-float/2addr v1, v2
+    mul-float v1, v1, v4
+    add-float/2addr v0, v1
+    return v0
+.end method
+
+.method k()F
+  .registers 5
+  .line 1
+    iget v0, p0, Lc/c/a/h;->h:F
+    iget v1, p0, Lc/c/a/h;->f:F
+    iget v2, p0, Lc/c/a/h;->a:I
+    int-to-float v2, v2
+    add-float/2addr v1, v2
+    const/high16 v2, 16384
+    div-float v3, v0, v2
+    add-float/2addr v1, v3
+  .line 2
+    invoke-static { v0, v1 }, Ljava/lang/Math;->max(FF)F
+    move-result v0
+    mul-float v0, v0, v2
+  .line 3
+    iget v1, p0, Lc/c/a/h;->h:F
+    iget v3, p0, Lc/c/a/h;->a:I
+    int-to-float v3, v3
+    add-float/2addr v1, v3
+    mul-float v1, v1, v2
+    add-float/2addr v0, v1
+    return v0
+.end method
+
+.method l()F
+  .registers 2
+  .line 1
+    iget v0, p0, Lc/c/a/h;->j:F
+    return v0
+.end method
+
+.method m(Z)V
+  .registers 2
+  .line 1
+    iput-boolean p1, p0, Lc/c/a/h;->o:Z
+  .line 2
+    invoke-virtual { p0 }, Landroid/graphics/drawable/Drawable;->invalidateSelf()V
+    return-void
+.end method
+
+.method o(Landroid/content/res/ColorStateList;)V
+  .registers 2
+  .line 1
+    invoke-direct { p0, p1 }, Lc/c/a/h;->n(Landroid/content/res/ColorStateList;)V
+  .line 2
+    invoke-virtual { p0 }, Landroid/graphics/drawable/Drawable;->invalidateSelf()V
+    return-void
+.end method
+
+.method protected onBoundsChange(Landroid/graphics/Rect;)V
+  .registers 2
+  .line 1
+    invoke-super { p0, p1 }, Landroid/graphics/drawable/Drawable;->onBoundsChange(Landroid/graphics/Rect;)V
+    const/4 p1, 1
+  .line 2
+    iput-boolean p1, p0, Lc/c/a/h;->l:Z
+    return-void
+.end method
+
+.method protected onStateChange([I)Z
+  .registers 4
+  .line 1
+    iget-object v0, p0, Lc/c/a/h;->k:Landroid/content/res/ColorStateList;
+    invoke-virtual { v0 }, Landroid/content/res/ColorStateList;->getDefaultColor()I
+    move-result v1
+    invoke-virtual { v0, p1, v1 }, Landroid/content/res/ColorStateList;->getColorForState([II)I
+    move-result p1
+  .line 2
+    iget-object v0, p0, Lc/c/a/h;->b:Landroid/graphics/Paint;
+    invoke-virtual { v0 }, Landroid/graphics/Paint;->getColor()I
+    move-result v0
+    if-ne v0, p1, :L0
+    const/4 p1, 0
+    return p1
+  :L0
+  .line 3
+    iget-object v0, p0, Lc/c/a/h;->b:Landroid/graphics/Paint;
+    invoke-virtual { v0, p1 }, Landroid/graphics/Paint;->setColor(I)V
+    const/4 p1, 1
+  .line 4
+    iput-boolean p1, p0, Lc/c/a/h;->l:Z
+  .line 5
+    invoke-virtual { p0 }, Landroid/graphics/drawable/Drawable;->invalidateSelf()V
+    return p1
+.end method
+
+.method p(F)V
+  .registers 5
+    const/4 v0, 0
+    cmpg-float v0, p1, v0
+    if-ltz v0, :L1
+    const/high16 v0, 16128
+    add-float/2addr p1, v0
+    float-to-int p1, p1
+    int-to-float p1, p1
+  .line 1
+    iget v0, p0, Lc/c/a/h;->f:F
+    cmpl-float v0, v0, p1
+    if-nez v0, :L0
+    return-void
+  :L0
+  .line 2
+    iput p1, p0, Lc/c/a/h;->f:F
+    const/4 p1, 1
+  .line 3
+    iput-boolean p1, p0, Lc/c/a/h;->l:Z
+  .line 4
+    invoke-virtual { p0 }, Landroid/graphics/drawable/Drawable;->invalidateSelf()V
+    return-void
+  :L1
+  .line 5
+    new-instance v0, Ljava/lang/IllegalArgumentException;
+    new-instance v1, Ljava/lang/StringBuilder;
+    invoke-direct { v1 }, Ljava/lang/StringBuilder;-><init>()V
+    const-string v2, "Invalid radius "
+    invoke-virtual { v1, v2 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1, p1 }, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
+    const-string p1, ". Must be >= 0"
+    invoke-virtual { v1, p1 }, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual { v1 }, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object p1
+    invoke-direct { v0, p1 }, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+    throw v0
+.end method
+
+.method q(F)V
+  .registers 3
+  .line 1
+    iget v0, p0, Lc/c/a/h;->j:F
+    invoke-direct { p0, v0, p1 }, Lc/c/a/h;->s(FF)V
+    return-void
+.end method
+
+.method r(F)V
+  .registers 3
+  .line 1
+    iget v0, p0, Lc/c/a/h;->h:F
+    invoke-direct { p0, p1, v0 }, Lc/c/a/h;->s(FF)V
+    return-void
+.end method
+
+.method public setAlpha(I)V
+  .registers 3
+  .line 1
+    iget-object v0, p0, Lc/c/a/h;->b:Landroid/graphics/Paint;
+    invoke-virtual { v0, p1 }, Landroid/graphics/Paint;->setAlpha(I)V
+  .line 2
+    iget-object v0, p0, Lc/c/a/h;->c:Landroid/graphics/Paint;
+    invoke-virtual { v0, p1 }, Landroid/graphics/Paint;->setAlpha(I)V
+  .line 3
+    iget-object v0, p0, Lc/c/a/h;->d:Landroid/graphics/Paint;
+    invoke-virtual { v0, p1 }, Landroid/graphics/Paint;->setAlpha(I)V
+    return-void
+.end method
+
+.method public setColorFilter(Landroid/graphics/ColorFilter;)V
+  .registers 3
+  .line 1
+    iget-object v0, p0, Lc/c/a/h;->b:Landroid/graphics/Paint;
+    invoke-virtual { v0, p1 }, Landroid/graphics/Paint;->setColorFilter(Landroid/graphics/ColorFilter;)Landroid/graphics/ColorFilter;
+    return-void
+.end method

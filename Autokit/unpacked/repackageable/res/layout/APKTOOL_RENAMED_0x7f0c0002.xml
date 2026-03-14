@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.view.menu.ActionMenuItemView android:textAppearance="?APKTOOL_RENAMED_0x7f04000e" android:textColor="?APKTOOL_RENAMED_0x7f04000f" android:gravity="center" android:layout_gravity="center" android:paddingLeft="8.0dp" android:paddingTop="4.0dp" android:paddingRight="8.0dp" android:paddingBottom="4.0dp" android:focusable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" style="?APKTOOL_RENAMED_0x7f04000b"
+  xmlns:android="http://schemas.android.com/apk/res/android" />

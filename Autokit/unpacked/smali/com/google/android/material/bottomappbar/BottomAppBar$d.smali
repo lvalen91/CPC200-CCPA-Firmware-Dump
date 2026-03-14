@@ -1,0 +1,70 @@
+.class Lcom/google/android/material/bottomappbar/BottomAppBar$d;
+.super Landroid/animation/AnimatorListenerAdapter;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/EnclosingMethod;
+  value = Lcom/google/android/material/bottomappbar/BottomAppBar;->k0(IZLjava/util/List;)V
+.end annotation
+.annotation system Ldalvik/annotation/InnerClass;
+  accessFlags = 0
+  name = null
+.end annotation
+
+.field public a:Z
+
+.field final synthetic b:Landroidx/appcompat/widget/ActionMenuView;
+
+.field final synthetic c:I
+
+.field final synthetic d:Z
+
+.field final synthetic e:Lcom/google/android/material/bottomappbar/BottomAppBar;
+
+.method constructor <init>(Lcom/google/android/material/bottomappbar/BottomAppBar;Landroidx/appcompat/widget/ActionMenuView;IZ)V
+  .registers 5
+  .line 1
+    iput-object p1, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->e:Lcom/google/android/material/bottomappbar/BottomAppBar;
+    iput-object p2, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->b:Landroidx/appcompat/widget/ActionMenuView;
+    iput p3, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->c:I
+    iput-boolean p4, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->d:Z
+    invoke-direct { p0 }, Landroid/animation/AnimatorListenerAdapter;-><init>()V
+    return-void
+.end method
+
+.method public onAnimationCancel(Landroid/animation/Animator;)V
+  .registers 2
+    const/4 p1, 1
+  .line 1
+    iput-boolean p1, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->a:Z
+    return-void
+.end method
+
+.method public onAnimationEnd(Landroid/animation/Animator;)V
+  .registers 6
+  .line 1
+    iget-boolean p1, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->a:Z
+    if-nez p1, :L2
+  .line 2
+    iget-object p1, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->e:Lcom/google/android/material/bottomappbar/BottomAppBar;
+    invoke-static { p1 }, Lcom/google/android/material/bottomappbar/BottomAppBar;->W(Lcom/google/android/material/bottomappbar/BottomAppBar;)I
+    move-result p1
+    if-eqz p1, :L0
+    const/4 p1, 1
+    goto :L1
+  :L0
+    const/4 p1, 0
+  :L1
+  .line 3
+    iget-object v0, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->e:Lcom/google/android/material/bottomappbar/BottomAppBar;
+    invoke-static { v0 }, Lcom/google/android/material/bottomappbar/BottomAppBar;->W(Lcom/google/android/material/bottomappbar/BottomAppBar;)I
+    move-result v1
+    invoke-virtual { v0, v1 }, Lcom/google/android/material/bottomappbar/BottomAppBar;->u0(I)V
+  .line 4
+    iget-object v0, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->e:Lcom/google/android/material/bottomappbar/BottomAppBar;
+    iget-object v1, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->b:Landroidx/appcompat/widget/ActionMenuView;
+    iget v2, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->c:I
+    iget-boolean v3, p0, Lcom/google/android/material/bottomappbar/BottomAppBar$d;->d:Z
+    invoke-static { v0, v1, v2, v3, p1 }, Lcom/google/android/material/bottomappbar/BottomAppBar;->X(Lcom/google/android/material/bottomappbar/BottomAppBar;Landroidx/appcompat/widget/ActionMenuView;IZZ)V
+  :L2
+    return-void
+.end method

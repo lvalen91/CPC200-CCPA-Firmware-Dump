@@ -1,0 +1,60 @@
+.class final Landroid/support/v4/media/session/g$a;
+.super Ljava/lang/Object;
+.source "SourceFile"
+
+.annotation system Ldalvik/annotation/EnclosingClass;
+  value = Landroid/support/v4/media/session/g;
+.end annotation
+.annotation system Ldalvik/annotation/InnerClass;
+  accessFlags = 24
+  name = "a"
+.end annotation
+
+.method public static a(Ljava/lang/Object;)Ljava/lang/String;
+  .registers 1
+  .line 1
+    check-cast p0, Landroid/media/session/PlaybackState$CustomAction;
+    invoke-virtual { p0 }, Landroid/media/session/PlaybackState$CustomAction;->getAction()Ljava/lang/String;
+    move-result-object p0
+    return-object p0
+.end method
+
+.method public static b(Ljava/lang/Object;)Landroid/os/Bundle;
+  .registers 1
+  .line 1
+    check-cast p0, Landroid/media/session/PlaybackState$CustomAction;
+    invoke-virtual { p0 }, Landroid/media/session/PlaybackState$CustomAction;->getExtras()Landroid/os/Bundle;
+    move-result-object p0
+    return-object p0
+.end method
+
+.method public static c(Ljava/lang/Object;)I
+  .registers 1
+  .line 1
+    check-cast p0, Landroid/media/session/PlaybackState$CustomAction;
+    invoke-virtual { p0 }, Landroid/media/session/PlaybackState$CustomAction;->getIcon()I
+    move-result p0
+    return p0
+.end method
+
+.method public static d(Ljava/lang/Object;)Ljava/lang/CharSequence;
+  .registers 1
+  .line 1
+    check-cast p0, Landroid/media/session/PlaybackState$CustomAction;
+    invoke-virtual { p0 }, Landroid/media/session/PlaybackState$CustomAction;->getName()Ljava/lang/CharSequence;
+    move-result-object p0
+    return-object p0
+.end method
+
+.method public static e(Ljava/lang/String;Ljava/lang/CharSequence;ILandroid/os/Bundle;)Ljava/lang/Object;
+  .registers 5
+  .line 1
+    new-instance v0, Landroid/media/session/PlaybackState$CustomAction$Builder;
+    invoke-direct { v0, p0, p1, p2 }, Landroid/media/session/PlaybackState$CustomAction$Builder;-><init>(Ljava/lang/String;Ljava/lang/CharSequence;I)V
+  .line 2
+    invoke-virtual { v0, p3 }, Landroid/media/session/PlaybackState$CustomAction$Builder;->setExtras(Landroid/os/Bundle;)Landroid/media/session/PlaybackState$CustomAction$Builder;
+  .line 3
+    invoke-virtual { v0 }, Landroid/media/session/PlaybackState$CustomAction$Builder;->build()Landroid/media/session/PlaybackState$CustomAction;
+    move-result-object p0
+    return-object p0
+.end method

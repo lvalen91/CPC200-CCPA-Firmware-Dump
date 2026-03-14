@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:layout_width="match_parent" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f0700fe"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:layout_gravity="center|top" android:orientation="horizontal" android:paddingLeft="@dimen/APKTOOL_RENAMED_0x7f0700fb" android:paddingTop="@dimen/APKTOOL_RENAMED_0x7f0700fb" android:paddingRight="@dimen/APKTOOL_RENAMED_0x7f0700fb" android:layout_width="match_parent" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f0700fe" style="?APKTOOL_RENAMED_0x7f040234">
+        <com.google.android.material.button.MaterialButton android:gravity="center" android:layout_gravity="top" android:id="@id/APKTOOL_RENAMED_0x7f090090" android:padding="12.0dp" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070141" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070141" android:insetTop="0.0dp" android:insetBottom="0.0dp" android:contentDescription="@string/APKTOOL_RENAMED_0x7f0f0174" app:APKTOOL_RENAMED_0x7f04019b="@drawable/APKTOOL_RENAMED_0x7f0800c0" app:APKTOOL_RENAMED_0x7f0402b9="@color/APKTOOL_RENAMED_0x7f060119" style="?APKTOOL_RENAMED_0x7f040231" />
+        <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f090199" android:paddingLeft="@dimen/APKTOOL_RENAMED_0x7f070100" android:layout_width="0.0dp" android:layout_height="match_parent" android:layout_weight="1.0">
+            <TextView android:gravity="start|bottom" android:layout_gravity="start|top" android:id="@id/APKTOOL_RENAMED_0x7f09019e" android:layout_width="match_parent" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f040160="@dimen/APKTOOL_RENAMED_0x7f070111" style="?APKTOOL_RENAMED_0x7f040236" />
+            <TextView android:gravity="start|bottom" android:layout_gravity="start|top" android:id="@id/APKTOOL_RENAMED_0x7f090198" android:paddingBottom="@dimen/APKTOOL_RENAMED_0x7f07010a" android:layout_width="match_parent" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f040160="@dimen/APKTOOL_RENAMED_0x7f07010b" app:APKTOOL_RENAMED_0x7f040213="@dimen/APKTOOL_RENAMED_0x7f0700ff" style="?APKTOOL_RENAMED_0x7f040235" />
+        </FrameLayout>
+        <LinearLayout android:orientation="@integer/APKTOOL_RENAMED_0x7f0a0018" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <com.google.android.material.button.MaterialButton android:layout_gravity="end|top" android:id="@id/APKTOOL_RENAMED_0x7f0900ab" android:layout_width="wrap_content" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f070141" android:text="@string/APKTOOL_RENAMED_0x7f0f0185" android:contentDescription="@string/APKTOOL_RENAMED_0x7f0f0185" style="?APKTOOL_RENAMED_0x7f040232" />
+            <include layout="@layout/APKTOOL_RENAMED_0x7f0c0083" />
+        </LinearLayout>
+    </LinearLayout>
+    <View android:layout_gravity="bottom" android:layout_width="match_parent" android:layout_height="@dimen/APKTOOL_RENAMED_0x7f0700fc" style="?APKTOOL_RENAMED_0x7f040233" />
+</merge>
