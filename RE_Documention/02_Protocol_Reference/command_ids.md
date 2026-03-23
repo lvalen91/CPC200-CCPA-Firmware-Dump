@@ -2,7 +2,10 @@
 
 **Status:** Documented from binary analysis
 **Source:** ARMadb-driver_unpacked binary analysis
-**Last Updated:** 2026-01-18
+**Firmware Version:** 2025.10.15.1127 (binary analysis reference version)
+**Last Updated:** 2026-02-19 (Added 14 new commands: 400-403, 410-412, 600-601, 700-702; renamed 502/503; updated gap ranges)
+
+> **Context:** Command IDs are 4-byte little-endian payloads carried in Command (0x08) messages over the USB protocol between the Android host app and the CPC200-CCPA adapter firmware. Commands 1-31 are universal (both CarPlay and Android Auto sessions). Commands 100-314 and 400-702 are CarPlay-specific. Commands 500-509 are Android Auto focus commands.
 
 ---
 
@@ -62,72 +65,84 @@ call fcn.000197a8(r6, r5);               // Command name lookup and dispatch
 
 ## Command Direction Reference
 
-### Commands: Host → Adapter → Phone (Forwarded to Phone)
+This section classifies commands by flow direction. For per-ID details, see the [Command ID Reference Tables](#command-id-reference-tables) below.
 
-These commands are sent by the host and **forwarded to the connected phone** via CarPlay/Android Auto protocol:
+### Host → Adapter → Phone (H→A→P) — Forwarded to Phone
 
-| ID | Action | Purpose | Phone Receives |
-|----|--------|---------|----------------|
-| 5 | SiriButtonDown | Activate Siri/Assistant | Voice assistant trigger |
-| 6 | SiriButtonUp | Release Siri button | Voice assistant release |
-| 100-106 | CtrlButton* | D-Pad navigation | UI navigation events |
-| 111-114 | CtrlKnob* | Rotary knob input | Knob rotation events |
-| 200-205 | Music* | Media control | Playback commands |
-| 300-314 | Phone* | Call control, DTMF | Phone call events |
+These commands are sent by the host and **forwarded to the connected phone** via CarPlay/Android Auto protocol.
 
 **Firmware handler:** `0x2047e` - logs "Forward CarPlay control cmd!" then dispatches
 
-### Commands: Host → Adapter (Handled by Adapter Only)
+| ID Range | Group | Summary |
+|----------|-------|---------|
+| 1-2 | Mic Recording | StartRecordMic, StopRecordMic |
+| 5-6 | Siri/Assistant | SiriButtonDown/Up — initiates voice assistant from host side |
+| 100-106 | CtrlButton_* | D-Pad navigation (Left, Right, Up, Down, Enter, Release, Back) |
+| 111-114 | CtrlKnob_* | Rotary knob input (Left, Right, Up, Down) |
+| 200-205 | Music* | Media control (Home, Play, Pause, Toggle, Next, Prev) |
+| 300-314 | PhoneCall/PhoneKey_* | Call control (Answer, HangUp) + DTMF tones (0-9, *, #) + HookSwitch |
+| 400-403 | LaunchApp* | App launch (Maps, Phone, Music, NowPlaying) — CarPlay only |
+| 410-412 | UI Control | ShowUI, StopUI, SuggestUI — CarPlay only |
+| 700-702 | CusCommand_* | Volume forwarding, HFP call start/stop — CarPlay only |
 
-These commands are processed by the adapter firmware and **NOT forwarded** to the phone:
+### Host → Adapter (H→A) — Handled by Adapter Only
 
-| ID | Action | Adapter Behavior |
-|----|--------|------------------|
-| 7 | UseCarMic | Configure audio routing to use car microphone |
-| 8 | UseBoxMic | Configure audio routing to use adapter microphone |
-| 12 | RequestKeyFrame | Trigger IDR frame insertion in video stream |
-| 15 | UseBoxI2SMic | Configure I2S microphone input |
-| 16 | StartNightMode | Enable dark theme in CarPlay UI |
-| 17 | StopNightMode | Disable dark theme |
-| 21 | UsePhoneMic | Configure audio routing to phone microphone |
-| 22 | UseBluetoothAudio | Route audio via Bluetooth |
-| 23 | UseBoxTransAudio | Route audio via adapter transmitter |
-| 24 | Use24GWiFi | Switch to 2.4 GHz WiFi band |
-| 25 | Use5GWiFi | Switch to 5 GHz WiFi band |
-| 26 | RefreshFrame | Force video frame refresh |
-| 28 | StartStandbyMode | Enter low-power standby |
-| 29 | StopStandbyMode | Exit standby mode |
-| 30 | StartBleAdv | Start BLE advertising for wireless pairing |
-| 31 | StopBleAdv | Stop BLE advertising |
-| 1000 | SupportWifi | Enable WiFi mode |
-| 1002 | StartAutoConnect | Initiate auto-connect sequence |
-| 1012 | WiFiPair | Enter WiFi pairing mode |
+These commands are processed by the adapter firmware and **NOT forwarded** to the phone.
 
-### Commands: Phone → Adapter → Host (Forwarded from Phone)
+| ID Range | Group | Summary |
+|----------|-------|---------|
+| 7-8, 15, 21 | Mic Routing | UseCarMic, UseBoxMic, UseBoxI2SMic, UsePhoneMic |
+| 12, 26 | Video | RequestKeyFrame, RefreshFrame |
+| 16-17 | Night Mode | StartNightMode, StopNightMode |
+| 18-19 | GNSS | StartGNSSReport, StopGNSSReport |
+| 22-23 | Audio Routing | UseBluetoothAudio, UseBoxTransAudio |
+| 24-25 | WiFi Band | Use24GWiFi, Use5GWiFi |
+| 28-29 | Standby | StartStandbyMode, StopStandbyMode |
+| 30-31 | BLE | StartBleAdv, StopBleAdv |
+| 600-601 | DVR | DVRCommand_RequestPreview, ScanAndConnect — dead code, no hardware |
+| 1000-1002, 1012-1013 | Connection Control | SupportWifi, SupportAutoConnect, StartAutoConnect, WiFiPair, GetBluetoothOnlineList |
 
-These commands **originate from the phone** (CarPlay/Android Auto) and are forwarded to the host:
-
-| ID | Action | Trigger | Host Should |
-|----|--------|---------|-------------|
-| 3 | RequestHostUI | User taps phone/car icon in CarPlay | Show native host UI |
-| 14 | Hide | User minimizes CarPlay | Hide projection view |
+### Phone → Adapter → Host (P→A→H) — Forwarded from Phone
 
 **Firmware handler:** `fcn.0001d2fe` at `0x1da50` - receives via D-Bus from iAP handler
 
-### Commands: Adapter → Host (Adapter Originated)
+| ID | Action | Host Should |
+|----|--------|-------------|
+| 3 | RequestHostUI | Show native host UI (user tapped car/phone icon in CarPlay) |
+| 14 | Hide | Hide projection view (user minimized CarPlay) |
 
-These commands are **generated by the adapter** to notify the host of state changes:
+### Adapter → Host (A→H) — Adapter Originated
 
-| ID | Action | Trigger | Host Should |
-|----|--------|---------|-------------|
-| 1010 | ProjectionDisconnected | Phone disconnects from CarPlay/AA | Handle session end |
-| 1003-1011 | Connection status | WiFi/BT state changes | Update connection UI |
+These commands are **generated by the adapter** to notify the host of state changes. All are pure informational — **do NOT trigger session management actions**.
+
+| ID Range | Group | Summary |
+|----------|-------|---------|
+| 500-509 | Focus (AA only) | RequestVideoFocus, ReleaseVideoFocus, audio focus variants, navi focus — Android Auto only |
+| 1003-1011 | Connection Status | WiFi/BT scan results, connect/disconnect notifications |
+
+**⚠️ CRITICAL: Command 1010 Clarification (Binary Verified Feb 2026)**
+
+Command 1010 (`DeviceWifiNotConnected`) is a **WiFi hotspot status notification**, NOT a session termination signal.
+
+- **Correct name:** `DeviceWifiNotConnected` (verified via `ARMadb-driver` binary disassembly at `0x19a64`)
+- **Meaning:** The adapter's WiFi hotspot currently has no phone connected
+- **When sent:** During initialization, periodically while idle, or when WiFi link drops
+- **Host should:** Log status, update UI indicator, but **do NOT terminate active sessions**
+
+For **USB CarPlay**: This command is completely irrelevant - data flows over USB, not WiFi. Ignore it.
+
+For **Wireless CarPlay**: WiFi dropping doesn't mean the session has ended. Wait for:
+- `Unplugged` (0x04) message for definitive session end
+- `OnCarPlayPhase 0` for session termination
+- Heartbeat timeout for connection loss
 
 ---
 
 ## IMPORTANT: Voice/Call Events Use AudioData, NOT Command
 
 **Siri, phone calls, and navigation audio events are signaled via AudioData (0x07), not Command (0x08).**
+
+For the authoritative audio command table with `decode_type` and `audio_type` per command, see `audio_protocol.md`.
 
 ### AudioData (0x07) Audio Commands
 
@@ -177,14 +192,17 @@ The Command IDs `SiriButtonDown(5)` and `SiriButtonUp(6)` are for the **host to 
 
 ## Command ID Reference Tables
 
-### Basic Commands (1-31)
+**Source:** Direct disassembly of `ARMadb-driver.unpacked` function at `0x19744` (binary verified Feb 2026)
+**Method:** Traced switch table comparisons to string load targets
+
+### Basic Commands (1-31) — Universal (CarPlay + Android Auto)
 
 | ID | Hex | Action | Direction | Description |
 |----|-----|--------|-----------|-------------|
 | 1 | 0x01 | StartRecordMic | H→A→P | Begin microphone recording |
 | 2 | 0x02 | StopRecordMic | H→A→P | Stop microphone recording |
 | 3 | 0x03 | RequestHostUI | P→A→H | Phone requests host UI |
-| 4 | 0x04 | DisableBluetooth | H→A | Disable Bluetooth |
+| 4 | 0x04 | DisableBluetooth / PhoneBtMacNotify | H→A / A→H | Disable Bluetooth (H→A) or Phone BT MAC notification (A→H, extended) |
 | 5 | 0x05 | SiriButtonDown | H→A→P | Siri button pressed |
 | 6 | 0x06 | SiriButtonUp | H→A→P | Siri button released |
 | 7 | 0x07 | UseCarMic | H→A | Use car's microphone |
@@ -207,7 +225,7 @@ The Command IDs `SiriButtonDown(5)` and `SiriButtonUp(6)` are for the **host to 
 | 30 | 0x1E | StartBleAdv | H→A | Start BLE advertising |
 | 31 | 0x1F | StopBleAdv | H→A | Stop BLE advertising |
 
-### Control Button Commands (100-106) - All H→A→P
+### Control Button Commands (100-106) - All H→A→P — CarPlay
 
 | ID | Hex | Action | Description |
 |----|-----|--------|-------------|
@@ -219,7 +237,7 @@ The Command IDs `SiriButtonDown(5)` and `SiriButtonUp(6)` are for the **host to 
 | 105 | 0x69 | CtrlButtonRelease | Button release - forwarded to phone |
 | 106 | 0x6A | CtrlButtonBack | Back button - forwarded to phone |
 
-### Rotary Knob Commands (111-114) - All H→A→P
+### Rotary Knob Commands (111-114) - All H→A→P — CarPlay
 
 | ID | Hex | Action | Description |
 |----|-----|--------|-------------|
@@ -228,7 +246,7 @@ The Command IDs `SiriButtonDown(5)` and `SiriButtonUp(6)` are for the **host to 
 | 113 | 0x71 | CtrlKnobUp | Knob tilt up - forwarded to phone |
 | 114 | 0x72 | CtrlKnobDown | Knob tilt down - forwarded to phone |
 
-### Media Control Commands (200-205) - All H→A→P
+### Media Control Commands (200-205) - All H→A→P — CarPlay
 
 | ID | Hex | Action | Description |
 |----|-----|--------|-------------|
@@ -239,7 +257,7 @@ The Command IDs `SiriButtonDown(5)` and `SiriButtonUp(6)` are for the **host to 
 | 204 | 0xCC | MusicNext | Next track - forwarded to phone |
 | 205 | 0xCD | MusicPrev | Previous track - forwarded to phone |
 
-### Phone Call Commands (300-314) - All H→A→P
+### Phone Call Commands (300-314) - All H→A→P — CarPlay
 
 | ID | Hex | Action | Description |
 |----|-----|--------|-------------|
@@ -247,6 +265,77 @@ The Command IDs `SiriButtonDown(5)` and `SiriButtonUp(6)` are for the **host to 
 | 301 | 0x12D | PhoneHungUp | End call - forwarded to phone |
 | 302-313 | 0x12E-0x139 | PhoneKey0-9,*,# | DTMF - forwarded to phone |
 | 314 | 0x13A | CarPlay_PhoneHookSwitch | Hook toggle - forwarded to phone |
+
+### Android Auto Focus Commands (500-509) - Android Auto Only — Verified Jan 2026
+
+These commands manage audio/video/navigation focus for Android Auto sessions only (not used in CarPlay):
+
+| ID | Hex | Action | Direction | Description |
+|----|-----|--------|-----------|-------------|
+| 500 | 0x1F4 | RequestVideoFocus | A→H | Adapter requests host show video |
+| 501 | 0x1F5 | ReleaseVideoFocus | A→H | Adapter releases video focus |
+| 502 | 0x1F6 | **RequestAudioFocus** | A→H | Request audio focus (binary-verified Feb 2026) |
+| 503 | 0x1F7 | **RequestAudioFocusTransient** | A→H | Request transient audio focus (binary-verified Feb 2026) |
+| 504 | 0x1F8 | RequestAudioFocusDuck | A→H | Request audio ducking (lower other audio) |
+| 505 | 0x1F9 | ReleaseAudioFocus | A→H | Release audio focus |
+| 506 | 0x1FA | RequestNaviFocus | A→H | Request navigation audio focus |
+| 507 | 0x1FB | ReleaseNaviFocus | A→H | Release navigation focus |
+| 508 | 0x1FC | RequestNaviScreenFocus | BOTH | Navigation screen focus handshake (echo back to adapter) |
+| 509 | 0x1FD | ReleaseNaviScreenFocus | H→A | Release navigation screen focus |
+
+**Audio Focus Types (from OpenAuto TTY logs):**
+
+| Type Value | Meaning | Command Triggered |
+|------------|---------|-------------------|
+| 3 | Duck | RequestAudioFocusDuck (504) |
+| 4 | Release | ReleaseAudioFocus (505) |
+
+**Firmware Log Evidence:**
+```
+[I] requested audio focus, type: 3
+[OpenAuto] [BoxAudioOutput] onAudioFocusChanned: 3
+[D] _SendPhoneCommandToCar: RequestAudioFocusDuck(504)
+```
+
+### App Launch Commands (400-403) - All H→A→P — CarPlay Only (Binary Verified Feb 2026)
+
+| ID | Hex | Action | Direction | Description |
+|----|-----|--------|-----------|-------------|
+| 400 | 0x190 | LaunchAppMaps | H→A→P | Launch Apple Maps on phone |
+| 401 | 0x191 | LaunchAppPhone | H→A→P | Launch Phone app on phone |
+| 402 | 0x192 | LaunchAppMusic | H→A→P | Launch Apple Music on phone |
+| 403 | 0x193 | LaunchAppNowPlaying | H→A→P | Launch Now Playing on phone |
+
+**Binary Evidence:** Strings found in `_SendPhoneCommandToCar` at `0x19244`. Forwarded to phone via MiddleMan IPC to AppleCarPlay.
+
+### UI Control Commands (410-412) - All H→A→P — CarPlay Only (Binary Verified Feb 2026)
+
+| ID | Hex | Action | Direction | Description |
+|----|-----|--------|-----------|-------------|
+| 410 | 0x19A | ShowUI | H→A→P | Show CarPlay UI (URL payload via HU_SHOWUI_URL) |
+| 411 | 0x19B | StopUI | H→A→P | Hide/stop CarPlay UI |
+| 412 | 0x19C | SuggestUI | H→A→P | Siri suggestions (altScreenSuggestUIURLs) |
+
+**Binary Evidence:** Strings found in `_SendPhoneCommandToCar`. Related config keys: `HU_SHOWUI_URL`, `HU_SUGGESTUI_URLS`.
+
+### DVR Commands (600-601) - Dead Code (Binary Verified Feb 2026)
+
+| ID | Hex | Action | Direction | Description |
+|----|-----|--------|-----------|-------------|
+| 600 | 0x258 | DVRCommand_RequestPreview | H→A | Request DVR camera preview |
+| 601 | 0x259 | DVRCommand_ScanAndConnect | H→A | Scan and connect to DVR camera |
+
+**Note:** Dead code — no camera hardware on CPC200-CCPA. DVRServer binary not shipped on live firmware.
+
+### Custom Commands (700-702) - H→A→P — CarPlay Only (Binary Verified Feb 2026)
+
+| ID | Hex | Action | Direction | Description |
+|----|-----|--------|-----------|-------------|
+| 700 | 0x2BC | CusCommand_UpdateAudioVolume | H→A→P | Forward HU volume to CarPlay (HU_AUDIOVOLUME_INFO) |
+| 701 | 0x2BD | CusCommand_HFPCallStart | H→A→P | Notify CarPlay of HFP call start |
+| 702 | 0x2BE | CusCommand_HFPCallStop | H→A→P | Notify CarPlay of HFP call end |
+
+**Binary Evidence:** Strings found in `_SendPhoneCommandToCar`. CusCommand_UpdateAudioVolume forwards the host's volume level to the CarPlay session.
 
 ### Connection Status Commands (1000-1013) - Mixed Directions
 
@@ -261,8 +350,8 @@ The Command IDs `SiriButtonDown(5)` and `SiriButtonUp(6)` are for the **host to 
 | 1006 | 0x3EE | DeviceConnectFailed | A→H | Connection failed |
 | 1007 | 0x3EF | DeviceBluetoothConnected | A→H | BT connected |
 | 1008 | 0x3F0 | DeviceBluetoothNotConnected | A→H | BT disconnected |
-| 1009 | 0x3F1 | DeviceWifiConnected | A→H | WiFi connected |
-| 1010 | 0x3F2 | ProjectionDisconnected | A→H | **Session ended** |
+| 1009 | 0x3F1 | DeviceWifiConnected | A→H | WiFi hotspot: phone connected |
+| 1010 | 0x3F2 | DeviceWifiNotConnected | A→H | WiFi hotspot: no phone connected (**NOT session end**) |
 | 1011 | 0x3F3 | DeviceBluetoothPairStart | A→H | Pairing started |
 | 1012 | 0x3F4 | WiFiPair | H→A | Enter pairing mode |
 | 1013 | 0x3F5 | GetBluetoothOnlineList | H→A | Request BT device list |
@@ -290,79 +379,133 @@ The Command IDs `SiriButtonDown(5)` and `SiriButtonUp(6)` are for the **host to 
 
 ---
 
-## GPS/GNSS Commands (Binary Verified Jan 2026)
+## GPS/GNSS Commands
 
-Commands 18 and 19 control GPS data forwarding from the head unit to the connected phone.
+Commands 18 (StartGNSSReport) and 19 (StopGNSSReport) control GPS data forwarding from the head unit to the connected phone. See the [Command ID Reference Tables](#command-id-reference-tables) for their basic entries.
 
-### StartGNSSReport (18 / 0x12)
+See `command_details.md` for StartGNSSReport/StopGNSSReport implementation details (binary evidence, prerequisites, firmware behavior) and `usb_protocol.md` > GnssData (0x29) for the complete GPS pipeline analysis (NMEA format, iAP2 conversion, GNSSCapability configuration, end-to-end data flow).
 
-**Direction:** Host → Adapter
+---
 
-**Purpose:** Enables the adapter to read GPS data from `/tmp/gnss_info` and forward it to the phone via iAP2LocationEngine (CarPlay) or equivalent (Android Auto).
+## Extended Command Formats
 
-**Prerequisites:**
-- `HudGPSSwitch` must be enabled in riddle.conf (set to 1)
-- Or `/tmp/gnss_switch` file contains value 1
+*Verified via USB capture (Jan 2026)*
 
-**Firmware Behavior:**
-1. Adapter starts monitoring `/tmp/gnss_info` for NMEA data
-2. Parses NMEA sentences ($GPGGA, $GPRMC, $GPGSV)
-3. Forwards location to phone via iAP2 LocationInformation message
-4. Phone's CarPlay Maps uses HU location instead of phone GPS
+Some Command packets (type 8) use extended payloads beyond the standard 4-byte command ID. These are identified by packet length > 20 bytes.
 
-**Usage:**
+### Command 4 Extended: Phone Bluetooth MAC Notification (A→H)
+
+When a phone connects, the adapter sends an extended Command 4 with the phone's Bluetooth MAC address:
+
+| Offset | Size | Content | Description |
+|--------|------|---------|-------------|
+| 0 | 4 | `04 00 00 00` | Command ID 4 (little-endian) |
+| 4 | 17 | `XX:XX:XX:XX:XX:XX` | Bluetooth MAC address (ASCII, null-padded) |
+| 21 | 3 | `e8 07 00` | Additional data (possibly year: 2024) |
+
+**Captured Example (40-byte Command):**
 ```
-Host sends: Command 0x08 with payload = 18
-Adapter: Starts GPS forwarding loop
-```
-
-### StopGNSSReport (19 / 0x13)
-
-**Direction:** Host → Adapter
-
-**Purpose:** Stops GPS data forwarding to the phone.
-
-**Firmware Behavior:**
-1. Adapter stops monitoring `/tmp/gnss_info`
-2. Phone reverts to using its internal GPS
-
-**Usage:**
-```
-Host sends: Command 0x08 with payload = 19
-Adapter: Stops GPS forwarding
+Header: aa 55 aa 55 18 00 00 00 08 00 00 00 f7 ff ff ff
+Payload: 04 00 00 00 36 34 3a 33 31 3a 33 35 3a 38 43 3a  |....64:31:35:8C:|
+         32 39 3a 36 39 e8 07 00                          |29:69...|
 ```
 
-### GPS Data Format
+**Context:** Sent by adapter after CarPlay phone connects to notify host of the phone's Bluetooth address for pairing/identification.
 
-The host writes NMEA 0183 sentences to `/tmp/gnss_info`:
+---
+
+## Command 1010 Binary Analysis Evidence (Feb 2026)
+
+**Status:** VERIFIED via direct binary disassembly and TTY log correlation
+
+### Previous Incorrect Documentation
+
+The command 1010 was previously documented with conflicting names:
+- "ConnectionComplete" (connection established) - **WRONG**
+- "projectionDisconnected" (session ended) - **WRONG**
+
+### Correct Name: `DeviceWifiNotConnected`
+
+**Binary Evidence (ARMadb-driver.unpacked):**
+
+The function at `0x19744` is a command ID → string name mapper. Disassembly shows:
+
+```asm
+; Command ID comparison for 0x3f1 (1009)
+0x00019922      movw r3, 0x3f1
+0x00019926      cmp r1, r3
+0x00019928      beq.w 0x19a60
+
+; Command ID comparison for 0x3f2 (1010)
+0x0001992c      movw r3, 0x3f2
+0x00019930      cmp r1, r3
+0x00019932      beq.w 0x19a64
+
+; Handler for 0x3f1 (1009) - loads "DeviceWifiConnected" string
+0x00019a60      ldr r3, str.DeviceWifiConnected    ; [0x6bc73] = "DeviceWifiConnected"
+0x00019a62      b 0x19a6e
+
+; Handler for 0x3f2 (1010) - loads "DeviceWifiNotConnected" string
+0x00019a64      ldr r3, str.DeviceWifiNotConnected ; [0x6bc87] = "DeviceWifiNotConnected"
+0x00019a66      b 0x19a6e
+
+; Log output with format string
+0x00019a72      ldr r2, str._SendPhoneCommandToCar:__s__d__n ; "_SendPhoneCommandToCar: %s(%d)\n"
+0x00019a76      bl sym.BoxLog
+```
+
+**String locations in binary:**
+```
+0x0006bc73  "DeviceWifiConnected"      (19 bytes)
+0x0006bc87  "DeviceWifiNotConnected"   (22 bytes)
+```
+
+### TTY Log Correlation
+
+Captured firmware logs confirm the mapping:
 
 ```
-$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,47.0,M,,*47
-$GPRMC,123519,A,4807.038,N,01131.000,E,022.4,084.4,230394,003.1,W*6A
+[D]2020-01-02 00:08:01.770 ARMadb-driver[Accessory_fd]: _SendPhoneCommandToCar: DeviceWifiConnected(1009)
+[D]2020-01-02 00:08:00.769 ARMadb-driver[Accessory_fd]: _SendPhoneCommandToCar: DeviceWifiNotConnected(1010)
 ```
 
-| Sentence | Required | Purpose |
-|----------|----------|---------|
-| `$GPGGA` | Yes | Position, altitude, fix quality |
-| `$GPRMC` | Yes | Position, speed, course, date |
-| `$GPGSV` | Optional | Satellite visibility info |
+See the [Connection Status Commands (1000-1013)](#connection-status-commands-1000-1013---mixed-directions) table for the complete per-ID listing.
 
-### Related Configuration
+### Behavioral Analysis
 
-| Config Key | File | Purpose |
-|------------|------|---------|
-| `HudGPSSwitch` | riddle.conf | Enable/disable GPS forwarding (0/1) |
-| `GNSSCapability` | riddle.conf | GPS capabilities bitmask |
-| `/tmp/gnss_switch` | Runtime | Runtime enable (overrides config) |
-| `/tmp/gnss_info` | Runtime | NMEA data input file |
+**When 1010 is sent:**
+1. During adapter initialization (no phone connected yet)
+2. Periodically while idle/waiting for connection (~12s interval)
+3. When WiFi link drops during wireless CarPlay session
 
-See `04_Implementation/host_app_guide.md` for complete GPS implementation guide.
+**When 1010 is NOT a session termination:**
+- For USB CarPlay: WiFi status is completely irrelevant (data flows over USB)
+- For Wireless CarPlay: WiFi dropping doesn't immediately end session; may reconnect
+
+**Actual session termination signals:**
+- `Unplugged` (message type 0x04) - definitive phone disconnect
+- `OnCarPlayPhase 0` - session ended
+- Heartbeat timeout - USB connection lost
+
+### Multi-Device Tracking
+
+The adapter maintains a `DevList` array of known devices:
+```json
+"DevList": [
+  {"id":"14:1B:A0:1E:DE:28", "type":"CarPlay", "name":"lePhone"},
+  {"id":"F0:04:E1:81:0E:06", "type":"CarPlay", "name":"Matt"}
+]
+```
+
+Command 1010 is a **general WiFi hotspot status**, not tied to a specific device. It indicates "no device currently connected to WiFi hotspot" regardless of which devices are in the DevList.
 
 ---
 
 ## Related Documentation
 
-- `usb_protocol.md` - Main USB protocol reference
-- `../04_Implementation/session_examples.md` - **Real captured session examples (CarPlay & Android Auto)**
+- **`command_details.md`** - Detailed usage documentation for each command (binary-verified)
+- **`audio_protocol.md`** - Audio command table with decode_type and audio_type per command
+- `usb_protocol.md` - Main USB protocol reference (includes GnssData 0x29 pipeline)
+- `../04_Implementation/session_examples.md` - Real captured session examples (CarPlay & Android Auto)
 - `../03_Audio_Processing/audio_formats.md` - Audio format analysis and processing pipeline
 - `../01_Firmware_Architecture/initialization.md` - Session setup

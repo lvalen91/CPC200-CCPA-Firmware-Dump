@@ -69,13 +69,20 @@ codec.start();
 ### Method 2: Via Input Buffers
 
 ```java
+// Option A: Single buffer with SPS+PPS concatenated
 int index = codec.dequeueInputBuffer(timeout);
 ByteBuffer buffer = codec.getInputBuffer(index);
+byte[] csd = concatenate(spsData, ppsData);  // Combine BEFORE putting
+buffer.put(csd);
+codec.queueInputBuffer(index, 0, csd.length, 0, MediaCodec.BUFFER_FLAG_CODEC_CONFIG);
 
-buffer.put(spsData);  // With start code
-buffer.put(ppsData);  // With start code
-
-codec.queueInputBuffer(index, 0, totalSize, 0, MediaCodec.BUFFER_FLAG_CODEC_CONFIG);
+// Option B: Two separate buffers (used by carlink_native H264Renderer.feedSplitCsd)
+int idx1 = codec.dequeueInputBuffer(timeout);
+codec.getInputBuffer(idx1).put(concatenate(spsData, ppsData));
+codec.queueInputBuffer(idx1, 0, spsSize + ppsSize, 0, MediaCodec.BUFFER_FLAG_CODEC_CONFIG);
+int idx2 = codec.dequeueInputBuffer(timeout);
+codec.getInputBuffer(idx2).put(idrData);
+codec.queueInputBuffer(idx2, 0, idrSize, 0, 0);  // IDR as regular frame
 ```
 
 ### Mid-Stream Configuration Changes

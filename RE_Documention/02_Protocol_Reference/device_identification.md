@@ -45,6 +45,9 @@ Offset  Size  Field        Description
 
 | Value | Type | Verification |
 |-------|------|--------------|
+| -2 | Unknown / Reset | AutoKit app default — used internally as "no phone detected" state |
+| -1 | Android (generic) | AutoKit app — Android phone detected but link type not yet determined |
+| 0 | Invalid | AutoKit app — explicitly invalid / uninitialized |
 | 1 | AndroidMirror | pi-carplay enum |
 | 2 | Carlife | Firmware strings |
 | 3 | CarPlay | ✓ **VERIFIED** (USB + Wireless, Jan 2026) |
@@ -52,6 +55,31 @@ Offset  Size  Field        Description
 | 5 | AndroidAuto | ✓ **VERIFIED** (session_examples.md) |
 | 6 | HiCar | pi-carplay enum |
 | 7 | ICCOA | Firmware ActionSession class |
+| 8 | CarPlay (wireless) | Older firmware / alt interpretation (see note below) |
+
+**Note:** `phoneType=8` may appear in older firmware versions for wireless CarPlay. Current firmware (2025.10) uses `phoneType=3` + `wifi=1` instead.
+
+### RiddleLinkType Enum (Internal — Distinct from phoneType)
+
+The firmware maintains an internal `RiddleLinkType` enum (global at `0x11f4d0`) that differs from the Plugged message `phoneType`. This enum is used in the MDLinkType JSON reporter (`fcn.00019978`), session enter/exit handlers, and connection success logger:
+
+| Value | String | Used In |
+|-------|--------|---------|
+| 1 | `"Android Mirror"` | Session handlers, MDLinkType JSON |
+| 2 | `"AirPlay"` | Session handlers, MDLinkType JSON |
+| 3 | `"CarPlay"` | Session handlers, MDLinkType JSON |
+| 4 | `"iPhone Mirror"` | Session handlers, MDLinkType JSON |
+| 5 | `"AndroidAuto"` | Session handlers, MDLinkType JSON |
+| 6 | `"HiCar"` | Session handlers, MDLinkType JSON |
+| 7 | `"ICCOA"` | Session handlers, MDLinkType JSON |
+| 8 | `"CarLife"` | Session handlers, MDLinkType JSON |
+| 0x1E | `"Control-InternalUse"` | Internal control channel |
+| other | `"RiddleLinktype_UNKOWN?"` | Fallback (0x0006da49) |
+
+**Three distinct type systems exist in the firmware:**
+- **iPhoneWorkMode** (0-4): Daemon selector for iPhone protocols (persisted to `/tmp/iphone_work_mode`)
+- **AndroidWorkMode** (0-5): Daemon selector for Android protocols (persisted to `/etc/android_work_mode`)
+- **RiddleLinkType** (1-8, 0x1E): Active session link type (runtime global at `0x11f4d0`, wireless flag at `0x11f4cc`)
 
 ### wifi Field (Transport Indicator)
 
@@ -87,12 +115,24 @@ Accessory_ActionSession_Link_AnroidAdbMirror_Wire
 
 ```
 iPhone Plug In!!! Unknown iPhone Mode!!
-Android Auto Device Plug In!!!
-Android Carlife Device Plug In!!!
-Android ICCOA Device Plug In!!!
-Huawei Device Plug In!!!
-Device Plug In!!! Unknown Android Mode!!
+Android Auto Device Plug In!!!               (androidMode == 1)
+Android Carlife Device Plug In!!!             (androidMode == 2)
+Huawei Device Plug In!!!                      (androidMode == 4, VID check: 0x12d1 or 0x339b)
+Android ICCOA Device Plug In!!!               (androidMode == 5)
+Device Plug In!!! Unknown Android Mode!!      (androidMode not in {1,2,3,4,5,0xFF})
 ```
+
+**Huawei VID Check (HiCar):** For `androidMode == 4`, the USB hotplug handler at `aav.0x00025895` probes the USB device descriptor and validates `idVendor` against `0x12d1` (Huawei Technologies) and `0x339b` (Huawei Device). If neither VID matches, the plug event is silently ignored. Other Android modes do not perform VID filtering.
+
+### HULinkType Mismatch Detection
+
+When a USB device plugs in, the firmware compares the detected device type against the current HU link type. On mismatch:
+- `"Detect HULinktype changed by usb device plugin!!"` (0x00071653) — logged when USB device type ≠ current link type
+- `"ResetConnection by HULink not match!!!"` (0x0006f901) — triggers connection reset via `fcn.000234ac`
+
+### First HU Connection Sentinel
+
+On first connection to the host unit, the firmware creates `/tmp/.FisrtConnectHU` (firmware typo preserved). A configurable delay (`"delay %d scecond connect HU!"` at 0x00070a8f) is applied before proceeding. Subsequent connections skip the delay when the sentinel exists.
 
 ---
 
@@ -120,7 +160,7 @@ BoxSettings is bidirectional and contains the richest device information.
     {
       "id": "64:31:35:8C:29:69",
       "type": "CarPlay",
-      "name": "PiPhone",
+      "name": "Luis",
       "index": "2",
       "time": "2026-01-19 11:54:58",
       "rfcomm": "1"
@@ -148,28 +188,7 @@ BoxSettings is bidirectional and contains the richest device information.
 }
 ```
 
-### Field Reference
-
-| Field | Description | Source |
-|-------|-------------|--------|
-| `uuid` | Adapter unique identifier (32 hex chars) | Adapter |
-| `MFD` | Manufacturing date (YYYYMMDD) | Adapter |
-| `boxType` | Box type code | Adapter |
-| `OemName` | OEM/brand name | Adapter config |
-| `productType` | Product model (A15W, U2W, etc.) | Adapter |
-| `HiCar` | HiCar support flag (0/1) | Adapter |
-| `supportLinkType` | Comma-separated supported link types | Adapter |
-| `supportFeatures` | Comma-separated feature flags | Adapter |
-| `hwVersion` | Hardware revision string | Adapter |
-| `WiFiChannel` | Current WiFi channel | Adapter |
-| `DevList` | Array of previously paired devices | Adapter |
-| `ChannelList` | Available WiFi channels | Adapter |
-| `MDLinkType` | Active link type (CarPlay/AndroidAuto/HiCar) | Phone |
-| `MDModel` | Phone model identifier | Phone |
-| `MDOSVersion` | Phone OS build version | Phone |
-| `MDLinkVersion` | CarPlay/AA protocol version | Phone |
-| `btName` | Phone Bluetooth name | Phone |
-| `cpuTemp` | **Adapter** CPU temperature (°C) | Adapter |
+For complete BoxSettings field documentation, see `01_Firmware_Architecture/configuration.md` > BoxSettings JSON Mapping.
 
 ### cpuTemp Source (Binary Verified)
 
@@ -195,7 +214,7 @@ Encrypted JSON telemetry sent once during session establishment.
 | Property | Value |
 |----------|-------|
 | Algorithm | AES-128-CBC |
-| Key | `W2EC1X1NbZ58TXtn` (USB Communication Key) |
+| Key | `W2EC1X1NbZ58TXtn` (SessionToken 0xA3 key ONLY — distinct from USB protocol payload key `SkBRDy3gmrw1ieH0`) |
 | IV | First 16 bytes of Base64-decoded payload |
 | Format | Base64-encoded → AES-CBC encrypted JSON |
 

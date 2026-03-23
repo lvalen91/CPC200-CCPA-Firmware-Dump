@@ -103,7 +103,7 @@ First-time pairing uses **SRP-6a** (Secure Remote Password) with a PIN code disp
 POST /pair-setup RTSP/1.0
 X-Apple-AbsoluteTime: 788587167
 X-Apple-HKP: 0
-X-Apple-Client-Name: PiPhone
+X-Apple-Client-Name: Luis
 Content-Length: 6
 Content-Type: application/x-apple-binary-plist
 CSeq: 0
@@ -182,7 +182,7 @@ After initial pairing, subsequent connections use stored Ed25519 keys for quick 
 POST /pair-verify RTSP/1.0
 X-Apple-AbsoluteTime: 788538962
 X-Apple-HKP: 2
-X-Apple-Client-Name: PiPhone
+X-Apple-Client-Name: Luis
 X-Apple-PD: 1
 Content-Length: 37
 Content-Type: application/octet-stream
@@ -437,11 +437,11 @@ For USB transport encryption:
 
 | Property | Value |
 |----------|-------|
-| **Algorithm** | AES-128-CTR |
-| **Key** | `W2EC1X1NbZ58TXtn` (hardcoded) |
+| **Algorithm** | Firmware binary: AES-128-CBC (`AES_cbc_encrypt`); AutoKit app: AES-128-CFB (`AES/CFB/NoPadding`). See `crypto_stack.md` § CBC vs CFB. |
+| **Key** | `SkBRDy3gmrw1ieH0` (hardcoded at `0x6d0d4`; note: `W2EC1X1NbZ58TXtn` is the SessionToken 0xA3 key only) |
 | **Payload** | 4-byte seed (must be > 0) |
 
-**Security Note:** All adapters share the same hardcoded AES key.
+**Security Note:** All adapters share the same hardcoded AES key. See `../03_Security_Analysis/crypto_stack.md` for the complete two-key system.
 
 ---
 

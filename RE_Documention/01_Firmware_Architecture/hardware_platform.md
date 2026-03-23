@@ -97,6 +97,30 @@ iphoneRoleSwitch_test 0x05ac 0x12a8
 | `cdc_ncm.ko` | USB NCM networking |
 | `storage_common.ko` | USB mass storage |
 
+### Android Open Accessory (AOA) Mode
+
+When an Android phone connects for Android Auto, the adapter configures it into AOA mode:
+
+| Property | Value | Description |
+|----------|-------|-------------|
+| idVendor | 0x18d1 | Google Inc. |
+| idProduct | 0x2d00 or 0x4ee1 | AOA accessory (0x2d00) or AOA+ADB composite (0x4ee1, seen with Pixel 10) |
+| Protocol | AOA 2.0 | USB Accessory Protocol |
+
+**Observed Devices (TTY log Jan 2026):**
+```
+usb 1-1: New USB device found, idVendor=18d1, idProduct=4ee1
+usb 1-1: Product: Pixel 10
+usb 1-1: Manufacturer: Google
+usb 1-1: SerialNumber: 57281FDCR00673
+```
+
+**AOA Configuration Process:**
+1. Adapter detects USB device arrival via libusb hotplug
+2. `ConfigAoa` class configures phone into AOA mode
+3. Phone re-enumerates with AOA USB identifiers
+4. OpenAuto SDK establishes Android Auto session
+
 ## Key Hardware Interfaces
 
 | Path | Purpose |

@@ -204,14 +204,14 @@ async function pushFirmwareUpdate(device: UsbDevice, firmwareData: Buffer): Prom
 | `/var/log/box_update.log` | Detailed update log |
 | `/data/update/software_version` | Installed version after success |
 
-**Status codes:**
+**Status codes (firmware 2025.10.15 — from `update_box_ota.sh`):**
 | Code | Meaning |
 |------|---------|
-| 0 | Update starting |
-| 1 | Downloading/copying |
-| 2 | Verifying |
-| 3 | Installing |
-| 4 | Complete / No update file |
+| 5 | Decompressing/extracting |
+| 6 | Success/complete |
+| 7 | Error/failed |
+
+> **Note:** Older firmware (pre-2025) used status codes 0-4 (0=starting, 1=downloading, 2=verifying, 3=installing, 4=complete). Current firmware (2025.10.15) uses codes 5, 6, 7 as shown above.
 
 ### Post-Update Reboot
 

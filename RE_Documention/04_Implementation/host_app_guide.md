@@ -2,7 +2,87 @@
 
 **Purpose:** Guide for implementing a CarPlay/Android Auto host application
 **Consolidated from:** GM_research implementation docs, carlink_native
-**Last Updated:** 2026-01-19
+**Last Updated:** 2026-02-17 (added direct USB 0x29 GPS method, GNSSCapability prerequisites, dual-path architecture)
+
+---
+
+## Critical: Host App Responsibility
+
+**The adapter is a protocol tunnel. The host app owns all correctness.**
+
+```
+Phone ──▶ Adapter (tunnel) ──▶ Host App (policy) ──▶ Decoder ──▶ Display
+              │                      │
+              │                      └── YOU decide: drop, buffer, reset
+              └── Just forwards data, makes no decisions
+```
+
+The adapter does NOT:
+- Buffer or pace video
+- Drop late frames
+- Reset decoder on errors
+- Compensate for jitter
+- Enforce timing
+
+**If video corrupts or latency grows, the problem is in your host app's policy.**
+
+---
+
+## Video: Projection Model (NOT Playback)
+
+**CarPlay/Android Auto video is live UI projection, not video playback.**
+
+Think of it like VNC or screen sharing: you're seeing the phone's screen in real-time. The user is touching, swiping, and interacting. They need immediate visual feedback.
+
+### The Common Mistake
+
+Treating projection video like a media file:
+```
+WRONG: Receive → Buffer → Decode in order → Render smoothly
+RIGHT: Receive → Is it late? → Yes: DROP / No: Decode NOW → Render ASAP
+```
+
+### Projection Video Rules
+
+| Rule | Rationale |
+|------|-----------|
+| Drop late frames (>30-40ms) | Late frames poison decoder reference state. Balance needed: too long causes corruption, too short drops valid frames |
+| Keep buffers shallow (~150ms) | Deep buffers create input latency |
+| Reset decoder on corruption | Decoders don't self-heal from reference errors |
+| Accept frame drops as normal | Drops are harmless; latency is harmful |
+| Don't enforce FPS targets | Stream is variable rate by design |
+| Don't "catch up" via backlog | Playing old frames makes latency worse |
+
+### What Happens If You Ignore This
+
+| Wrong Policy | Symptom |
+|--------------|---------|
+| Deep buffering | Touch lag, UI feels unresponsive |
+| Decoding late frames | Ghosting, smearing, visual trails |
+| Not resetting on corruption | Artifacts persist and worsen |
+| Enforcing fixed FPS | Stuttering, artificial pacing delays |
+| Trying to "catch up" | Latency grows until unusable |
+
+### Recommended Video Architecture
+
+```
+USB Read Thread
+    │
+    ▼
+Jitter Buffer (shallow: 100-200ms max, ~10-12 packets)
+    │
+    ├── Frame arrives late? → DROP (unless IDR)
+    │
+    ├── Buffer full? → Skip to newest IDR
+    │
+    ▼
+Decoder (feed immediately, don't wait)
+    │
+    ├── Corruption detected? → RESET + request keyframe
+    │
+    ▼
+Render ASAP (don't pace to PTS)
+```
 
 ---
 
@@ -22,9 +102,10 @@ A host application communicates with the CPC200-CCPA adapter via USB to:
 ### 1. Adapter Discovery
 
 ```
-1. Scan USB devices for:
-   - VID: 0x1314
-   - PID: 0x1521
+1. Scan USB devices for any of:
+   - VID: 0x1314, PID: 0x1520 (primary)
+   - VID: 0x1314, PID: 0x1521 (alternate)
+   - VID: 0x08E4, PID: 0x01C0 (alternate)
 
 2. Open USB interface (bulk transfer)
 
@@ -35,6 +116,8 @@ A host application communicates with the CPC200-CCPA adapter via USB to:
 
 ### 2. Initialization Sequence (CRITICAL)
 
+**IMPORTANT:** The adapter has a ~10-second watchdog timer from USB connection. Both init messages AND the first heartbeat must complete within this window.
+
 ```
 1. USB Reset (clear partially configured state)
 
@@ -44,12 +127,13 @@ A host application communicates with the CPC200-CCPA adapter via USB to:
 
 4. Open USB connection
 
-5. START HEARTBEAT FIRST (CRITICAL!)
-   - Must start BEFORE sending init messages
+5. START HEARTBEAT TIMER (but do NOT send immediately!)
+   - Start timer BEFORE sending init messages
    - Interval: 2 seconds
-   - Message: HeartBeat (0xAA)
+   - First heartbeat will fire at t=2000ms (AFTER init completes)
+   - Do NOT send heartbeat at t=0
 
-6. Send initialization messages:
+6. Send initialization messages (~1.5s total with 120ms delays):
    a. SendFile /tmp/screen_dpi
    b. Open (resolution, fps, format)
    c. SendFile /tmp/night_mode
@@ -58,6 +142,19 @@ A host application communicates with the CPC200-CCPA adapter via USB to:
    f. Command messages as needed
 
 7. Start reading loop
+
+8. First heartbeat fires automatically at t=2000ms
+```
+
+**Timeline:**
+```
+t=0ms     → USB open, heartbeat timer started
+t=0ms     → SendFile /tmp/screen_dpi
+t=120ms   → Open message
+...
+t=~1500ms → Init complete
+t=2000ms  → First heartbeat (timer fires)
+t=4000ms  → Second heartbeat
 ```
 
 ### 3. Message Processing Loop
@@ -107,11 +204,15 @@ heartbeatTimer.cancel()
 
 **IMPORTANT:** The adapter does NOT decode or transcode video. It forwards H.264 passthrough with USB headers prepended. Your host application MUST perform H.264 decoding.
 
+**CRITICAL:** This is projection video (live UI), not media playback. See "Video: Projection Model" section above.
+
 ### Video Architecture (Binary Verified)
 
 ```
-Phone (CarPlay/AA)  →  Adapter (Forward Only)  →  Host App (Decode)
+Phone (CarPlay/AA)  →  Adapter (Forward Only)  →  Host App (Decode + Policy)
      H.264 stream       Add 36-byte header          MediaCodec/FFmpeg
+                        No buffering                Drop late frames
+                        No policy                   Reset on corruption
 ```
 
 The adapter:
@@ -119,20 +220,36 @@ The adapter:
 - Parses NAL units for keyframe detection only
 - Prepends USB header (16 bytes) + video metadata (20 bytes)
 - Forwards unchanged H.264 payload to USB
+- **Makes no timing or quality decisions**
 
-### Receiving Video Frames
+### Receiving Video Frames (Projection Model)
 
-```
+```kotlin
 if (msg_type == 0x06) {
     width = payload[0:4]
     height = payload[4:8]
     pts = payload[12:16]
     h264_data = payload[20:]  // Raw H.264 NAL units (Annex B format)
 
-    // Host MUST decode H.264 - adapter does NOT decode
+    // PROJECTION MODEL: Check staleness before decoding
+    val frameAge = measureFrameAge(pts)  // Time since frame was sent
+
+    if (frameAge > STALE_THRESHOLD_MS && !isIdrFrame(h264_data)) {
+        // Late P-frame: DROP IT - decoding would poison references
+        return
+    }
+
+    // IDR frames: Always decode (they reset reference state)
+    // Current frames: Decode immediately
     decoder.decode(h264_data, pts)
 }
+
+// Recommended thresholds:
+// STALE_THRESHOLD_MS = 30-40ms (based on jitter analysis: 85% of frames within ±40ms)
+// Balance needed: too long causes decoder poisoning, too short drops valid frames
 ```
+
+**Warning:** The PTS in the header is stream-relative (starts near 0 when session begins), NOT wall-clock time. To measure staleness, track arrival time separately or establish a PTS-to-wallclock offset on first frame.
 
 ### Keyframe Recovery
 
@@ -249,7 +366,7 @@ var micDecodeType = 5  // Default to 16kHz, but use adapter's value
 // When INPUT_START/PHONECALL_START received with audio command
 fun handleAudioCommand(decodeType: Int, cmd: Byte) {
     when (cmd) {
-        0x04 -> {  // PHONECALL_START
+        0x04 -> {  // PHONECALL_START (note: audio_protocol.md labels byte 5 as PHONECALL_START using capture-derived names; carlink_native enum maps this to id=4 — both refer to the same active phone call signal)
             micDecodeType = decodeType  // Use adapter's requested format
             startMicCapture(sampleRate = if (decodeType == 3) 8000 else 16000)
         }
@@ -276,6 +393,8 @@ fun startMicCapture(sampleRate: Int) {
 - `decodeType=5` → 16000 Hz (wideband)
 - Other sample rates will cause WebRTC initialization failure on the adapter
 
+> **Manufacturer reference (PhoneMirrorBox r5889):** The reference app adds a mode-specific `Thread.sleep()` before starting mic capture: 500ms for CarPlay (avoids recording Siri's activation chime), 100ms for Android Auto. This is an **app-level implementation choice**, not a protocol requirement from the adapter. It is separate from the per-platform hardware latency compensation documented in the table below.
+
 ---
 
 ## Touch Input
@@ -283,26 +402,32 @@ fun startMicCapture(sampleRate: Int) {
 ### Sending Touch Events
 
 ```kotlin
+// Single-touch (0x05) — CarPlay uses action codes 14/15/16, coords as 0-10000 ints
 fun sendTouch(action: Int, x: Float, y: Float) {
-    val payload = ByteBuffer.allocate(16)
-        .putInt(action)      // 0=Down, 1=Move, 2=Up
-        .putFloat(x / screenWidth)   // Normalized 0.0-1.0
-        .putFloat(y / screenHeight)  // Normalized 0.0-1.0
-        .putInt(0)           // Flags
+    val actionCode = when (action) {
+        0 -> 14  // Down
+        1 -> 15  // Move
+        2 -> 16  // Up
+        else -> 15
+    }
+    val payload = ByteBuffer.allocate(16).order(ByteOrder.LITTLE_ENDIAN)
+        .putInt(actionCode)                          // 14=Down, 15=Move, 16=Up
+        .putInt((x / screenWidth * 10000).toInt())   // 0-10000 normalized int
+        .putInt((y / screenHeight * 10000).toInt())  // 0-10000 normalized int
+        .putInt(0)                                   // Flags (encoderType | offScreen<<16)
 
     send(Touch: 0x05, payload)
 }
 
-// For multi-touch (0x17)
+// Multi-touch (0x17) — NO count header, adapter infers from dataSize/16
 fun sendMultiTouch(points: List<TouchPoint>) {
-    val payload = ByteBuffer.allocate(4 + points.size * 16)
-        .putInt(points.size)
+    val payload = ByteBuffer.allocate(points.size * 16).order(ByteOrder.LITTLE_ENDIAN)
 
     for (point in points) {
-        payload.putInt(point.action)
-        payload.putFloat(point.x)
-        payload.putFloat(point.y)
-        payload.putInt(point.id)
+        payload.putFloat(point.x)     // 0.0-1.0 normalized float
+        payload.putFloat(point.y)     // 0.0-1.0 normalized float
+        payload.putInt(point.action)  // 0=Up, 1=Down, 2=Move
+        payload.putInt(point.id)      // 0-4 finger index
     }
 
     send(MultiTouch: 0x17, payload)
@@ -351,19 +476,7 @@ fun sendInitWithInjection() {
 }
 ```
 
-#### Supported Fields
-
-| Category | Fields |
-|----------|--------|
-| **Core** | `mediaDelay`, `syncTime`, `autoConn`, `autoPlay`, `autoDisplay`, `bgMode`, `startDelay`, `syncMode`, `lang` |
-| **Display** | `androidAutoSizeW`, `androidAutoSizeH`, `screenPhysicalW`, `screenPhysicalH`, `drivePosition` |
-| **Audio** | `mediaSound`, `mediaVol`, `navVol`, `callVol`, `ringVol`, `speechVol`, `otherVol`, `echoDelay`, `callQuality` |
-| **Network** | `wifiName`⚠️, `wifiFormat`, `WiFiChannel`, `btName`⚠️, `btFormat`, `boxName`, `iAP2TransMode` |
-| **Branding** | `oemName`, `productType`, `lightType` |
-| **Navigation** | `naviScreenInfo` (nested: `width`, `height`, `fps`) |
-| **Android Auto** | `androidWorkMode` |
-
-See `02_Protocol_Reference/usb_protocol.md` for complete field documentation.
+See `02_Protocol_Reference/usb_protocol.md` for complete BoxSettings field documentation.
 
 ```kotlin
 fun sendBoxSettings() {
@@ -372,7 +485,7 @@ fun sendBoxSettings() {
         put("mediaDelay", 300)
         put("syncTime", System.currentTimeMillis() / 1000)
         put("autoConn", true)
-        put("autoPlay", false)
+        // put("autoPlay", false)  // ⚠️ NOT MAPPED — ignored by ARMadb-driver (mapping missing)
         put("bgMode", 0)
         put("startDelay", 0)
 
@@ -397,7 +510,8 @@ fun sendBoxSettings() {
         put("btName", "carlink")      // ⚠️ CMD INJECTION RISK
         put("boxName", "carlink")
 
-        // For iOS 13+ navigation video (requires AdvancedFeatures=1 in riddle.conf)
+        // For iOS 13+ navigation video — sending naviScreenInfo is all that's needed
+        // (AdvancedFeatures=1 is NOT required when naviScreenInfo is provided)
         put("naviScreenInfo", JSONObject().apply {
             put("width", 480)
             put("height", 272)
@@ -454,7 +568,13 @@ fun enableAndroidAutoMode() {
 
 ### Advanced File Operations (SendFile 0x99)
 
-SendFile has **no path validation** - any writable path is accessible. The root filesystem is mounted read-write.
+**⚠️ SECURITY WARNING:** SendFile has **no path validation or sanitization**:
+- Any writable path is accessible (root filesystem is mounted read-write)
+- No path traversal (`../`) filtering
+- No whitelist enforcement
+- If your host application is compromised, an attacker could overwrite system files
+
+**Secure Implementation Note:** If accepting user-provided paths, validate them thoroughly before passing to SendFile.
 
 #### Writable Paths (Live Verified Jan 2026)
 
@@ -517,32 +637,27 @@ See `03_Security_Analysis/vulnerabilities.md` for complete security implications
 
 ### Navigation Video Setup (iOS 13+)
 
-To enable CarPlay Dashboard/navigation video:
+Include `naviScreenInfo` in BoxSettings to activate navigation video (type 0x2C). `AdvancedFeatures=1` is NOT required when `naviScreenInfo` is provided. See `02_Protocol_Reference/video_protocol.md` for complete firmware analysis of the navigation video activation path.
 
-1. **One-time setup** (via SSH or first connection):
-   ```bash
-   riddleBoxCfg -s AdvancedFeatures 1
-   riddleBoxCfg --upConfig
-   ```
+**Note:** Only include `naviScreenInfo` when your host app handles NaviVideoData (Type 0x2C). This causes a second H.264 video stream that increases USB bandwidth and processing load.
 
-2. **Include naviScreenInfo in BoxSettings** (see BoxSettings JSON above)
-
-3. **Handle Command 508 handshake**:
+1. **Optionally handle Command 508**:
    ```kotlin
-   // When receiving Command 508 from adapter
+   // When receiving Command 508 from adapter — echo it back (recommended precaution)
+   // Testing was INCONCLUSIVE on whether this is strictly required.
+   // The pi-carplay reference implementation does echo 508 back.
    if (commandId == 508) {
-       // MUST respond with 508 back to enable navigation video
        send(Command: 0x08, payload = 508)
    }
    ```
 
-4. **Handle NaviVideoData (Type 0x2C)**:
+2. **Handle NaviVideoData (Type 0x2C)**:
    ```kotlin
    // Navigation video uses SAME header structure as main video (20-byte header)
    if (msg_type == 0x2C) {
        width = payload[0:4]      // e.g., 1200
        height = payload[4:8]     // e.g., 500
-       unknown1 = payload[8:12]  // Always 1 (purpose unknown, NOT frame type)
+       encoderState = payload[8:12]  // EncoderState — typically 1 for nav video (varies for main video)
        pts = payload[12:16]      // Presentation timestamp
        flags = payload[16:20]    // Usually 0
        h264_data = payload[20:]
@@ -554,6 +669,57 @@ To enable CarPlay Dashboard/navigation video:
 
 ---
 
+### Media AutoPlay Implementation
+
+AutoPlay has two distinct mechanisms: **firmware-side** (config key) and **host-side** (reconnect resume).
+
+#### 1. Firmware-Side: `AutoPlauMusic` Config Key (CarPlay Only)
+
+The firmware config key `AutoPlauMusic` (index 20) controls auto-play. When set to 1, after CarPlay session establishment the adapter sends an iAP2 NowPlaying play command targeting `com.apple.Music` via `FUN_0002812c` in ARMiPhoneIAP2. This is CarPlay-only — Android Auto is unaffected.
+
+**⚠️ CRITICAL: BoxSettings `autoPlay` is NOT mapped.** The `autoPlay` JSON key string is absent from ARMadb-driver's BoxSettings parser string table — the mapping was never implemented (confirmed via binary strings analysis and independent memory dump, Mar 2026). Sending `"autoPlay": true` in BoxSettings JSON over USB has **no effect**.
+
+**How to actually set it:**
+- **Web UI:** The boa web interface sets `AutoPlauMusic` directly in riddle.conf (works)
+- **SendFile workaround:** Write directly to `/etc/riddle.conf` via SendFile (0x99) — untested but architecturally valid
+- **Host-side:** Use the reconnect resume pattern below (recommended for host apps)
+
+See `05_Reference/binary_analysis/config_key_analysis.md` [20] for firmware binary analysis.
+
+#### 2. Host-Side: Reconnect Auto-Resume (AutoKit Pattern)
+
+**Source:** AutoKit decompilation (Mar 2026) — this mechanism is entirely host-side, not sent to the adapter.
+
+The manufacturer's app implements reconnect-based media resume using two SharedPreferences flags:
+
+| Flag | Scope | Purpose |
+|------|-------|---------|
+| `IsAutoPlayMusic` | Global | User preference: enable/disable reconnect resume |
+| `MediaPlaying_<deviceId>` | Per-device | Was media playing when this device last disconnected? |
+
+**Flow:**
+1. While streaming, host tracks whether media audio is active
+2. On disconnect, host saves `MediaPlaying_<deviceId> = true` if media was playing
+3. On reconnect, if **both** `IsAutoPlayMusic` and `MediaPlaying_<deviceId>` are true:
+   - Host requests audio focus
+   - Host sends Command 201 (`MusicPlay`, type `0x08`) to resume playback
+
+```kotlin
+// On reconnect — host-side logic only
+fun onDeviceReconnected(deviceId: String) {
+    val autoResume = prefs.getBoolean("IsAutoPlayMusic", false)
+    val wasPlaying = prefs.getBoolean("MediaPlaying_$deviceId", false)
+    if (autoResume && wasPlaying) {
+        requestAudioFocus()
+        sendCommand(0x08, 201)  // MusicPlay — forwarded to phone
+    }
+}
+```
+
+**Key distinction:** `IsAutoPlayMusic` is NOT sent to the adapter. It is purely a host-app preference that controls whether the host sends Command 201 on reconnect. Since the BoxSettings `autoPlay` → `AutoPlauMusic` mapping is broken (see above), this host-side mechanism is the **only reliable way** for a host app to implement auto-play over USB.
+
+---
+
 ## Error Handling
 
 ### Connection Errors
@@ -561,9 +727,14 @@ To enable CarPlay Dashboard/navigation video:
 | Error | Recovery |
 |-------|----------|
 | USB disconnect | Stop heartbeat, close interface, retry |
-| projectionDisconnected (0x3F2) | Full restart sequence |
+| Unplugged (0x04) | Full restart sequence (phone disconnected) |
 | Phase stuck at 7 | Wait or timeout and retry |
 | No heartbeat response | Reset USB and restart |
+
+**⚠️ CRITICAL (Binary Verified Feb 2026):** Do NOT treat Command 1010 (DeviceWifiNotConnected) as a disconnect signal. This is a WiFi hotspot status notification only - it means no phone is connected to the adapter's WiFi. For USB CarPlay sessions, this message is irrelevant since all video/audio flows over USB, not WiFi. The correct session termination signals are:
+- `Unplugged` (0x04) - Phone disconnected from adapter
+- `Phase` (0x03) with value 0 - Session ended
+- Heartbeat timeout - Communication lost
 
 ### Video Errors
 
@@ -572,6 +743,22 @@ To enable CarPlay Dashboard/navigation video:
 | Decode failure | Send Frame (0x0C) for IDR |
 | No video data | Check Phase is 8 |
 | Resolution mismatch | Re-send Open message |
+
+### Video Corruption (Projection-Specific)
+
+| Symptom | Cause | Recovery |
+|---------|-------|----------|
+| Ghosting/smearing | Decoder reference poisoning | Reset decoder + request IDR |
+| Progressive degradation | Late frames being decoded | Tighten staleness threshold |
+| Corruption persists after IDR | Decoder state fully poisoned | Full decoder recreation |
+| Latency grows over time | Buffer accumulation | Drop more aggressively |
+| Artifacts "stick" to motion | Reference contamination | Immediate reset |
+
+**Key Rule:** If corruption survives one IDR frame, the decoder state is poisoned. Reset immediately — don't wait for it to heal.
+
+**Decoder Reset Strategy (Platform-Specific):**
+- Most decoders: `flush()` + wait for next IDR
+- Intel VPU (OMX.Intel.hw_vd.h264): Requires full codec recreation (flush is insufficient)
 
 ### Audio Errors
 
@@ -589,9 +776,10 @@ To enable CarPlay Dashboard/navigation video:
 
 ### Android (AAOS)
 
-- Use `AudioTrack` with appropriate `AudioAttributes`
+- Use `AudioTrack` with appropriate `AudioAttributes` (see audio_protocol.md for focus manager mapping)
 - Map audio_type to Android audio buses
 - Handle `AUDIOFOCUS_*` events
+- Duck media to 0.8f for AA, 0.2f for CarPlay (manufacturer's values)
 
 ### Linux (Pi, Embedded)
 
@@ -604,31 +792,129 @@ To enable CarPlay Dashboard/navigation video:
 - Would require MFi program access
 - USB communication via ExternalAccessory framework
 
+### OEM Platform Quirk Table (AutoKit Decompilation, Mar 2026)
+
+**Source:** Carlinkit AutoKit app v2025.03.19.1126 — manufacturer's reference implementation. The app contains extensive per-OEM behavioral overrides detected via `Build.MANUFACTURER`, `Build.MODEL`, and `ro.board.platform`:
+
+#### Microphone Source Selection
+
+| Platform | AudioRecord Source | Notes |
+|----------|--------------------|-------|
+| Qualcomm msmnile_gvmq | VOICE_COMMUNICATION (7) | AAOS Qualcomm |
+| Leapmotor C10 | VOICE_COMMUNICATION (7) | |
+| Qualcomm (generic) | VOICE_COMMUNICATION (7) | |
+| Qualcomm MSM8996 (JMEV) | UNPROCESSED (10) | Bypasses platform AEC |
+| Default (all others) | MIC (1) | Standard mic source |
+
+#### Microphone Recording Delay Compensation
+
+| Platform | Delay (ms) | Notes |
+|----------|-----------|-------|
+| Rockchip RK3399 | 530 | |
+| Allwinner T3 | 1320 | Highest latency |
+| ATC AC8317 (at8317_1537) | 844 | Specific product variant |
+| ATC AC8317 (other) | 150 | |
+| Spreadtrum SP7731E (sp7731e_1h10) | 1081 | Specific variant |
+| Rockchip RK3368 (PX5) | 540 | PX5 variant |
+| MediaTek MT6753 (land_rover) | 1079 | Specific variant |
+| Rockchip RK3188 | 580 | |
+| Default | 150 | |
+
+#### Display/Orientation Quirks
+
+| Platform | Behavior |
+|----------|----------|
+| BYD, NIO (ET5/ET7), Freescale | Portrait orientation mode (`v()=1`) |
+| alps-changan, Great Wall, JIDU | Widescreen mode (`v()=2`) |
+| QTI-FAW (Hong Qi) | Custom mode (`v()=4`), view area inset `Rect(0,96,720,0)` |
+| NIO ET5/ET7, HUAWEI ICHU | Force max video height to 1080 |
+| hozon EP36, NIO, Renesas G6SH | Use saved `vmaxwh` preference for video sizing |
+| Renesas, Intel | Display rotation (10° or 90°) |
+
+#### Safe Area Insets (Per-OEM)
+
+| OEM | Safe Area Rect (left, top, right, bottom) |
+|-----|-------------------------------------------|
+| Changan | `(0, 0, 0, 72)` — 72px bottom inset |
+| Great Wall | `(130, 0, 0, 0)` — 130px left inset |
+| JIDU | `(0, 96, 0, 128)` — 96px top + 128px bottom |
+
+#### Fixed Window Sizes
+
+| Platform | Window Dimensions | Notes |
+|----------|-------------------|-------|
+| hozon | 1230w × display height | Fixed width |
+| QTI (Qualcomm) | display width × 1750h | Fixed height |
+| BYD | display width × 2200h or 1780w × display height | Model-dependent |
+
+#### Video Decoder Configuration
+
+| Platform | Setting |
+|----------|---------|
+| Soft decode mode | Forces FPS to 25 (down from 60), DPI to 160 |
+| Default | 60 FPS, DPI from calculation formula |
+
 ---
 
-## GPS/GNSS Data (Binary Verified Jan 2026)
+## GPS/GNSS Data (Binary Verified Feb 2026)
+
+**Finding:** The CPC200-CCPA has a **fully implemented GPS forwarding pipeline**. GPS data from the Android head unit is relayed to the iPhone for CarPlay use via the iAP2 LocationInformation protocol. The pipeline involves ARMadb-driver (USB reception/validation), ARMiPhoneIAP2 (`CiAP2LocationEngine` — NMEA→iAP2 conversion), and delivery to the iPhone.
 
 If your head unit has GPS hardware, you can forward location data to the phone for CarPlay navigation. This allows CarPlay Maps to use the vehicle's GPS instead of the phone's.
 
 ### Prerequisites
 
-1. **Enable GPS forwarding in adapter config:**
-   ```kotlin
-   // Via SendFile (0x99) - Write to /tmp/gnss_switch
-   sendFile("/tmp/gnss_switch", byteArrayOf(1))
-
-   // Or via command injection (one-time):
-   // wifiName = "a\"; riddleBoxCfg -s HudGPSSwitch 1; riddleBoxCfg --upConfig; echo \""
+1. **Enable GPS capability on adapter** (one-time, requires SSH or command injection):
+   ```bash
+   # Via SSH:
+   ssh root@192.168.43.1
+   /usr/sbin/riddleBoxCfg -s GNSSCapability 3    # Enable GPGGA (bit 0) + GPRMC (bit 1)
+   rm -f /etc/RiddleBoxData/AIEIPIEREngines.datastore
+   busybox reboot
    ```
+
+   ```kotlin
+   // Or via command injection (one-time):
+   // wifiName = "a\"; /usr/sbin/riddleBoxCfg -s GNSSCapability 3; rm -f /etc/RiddleBoxData/AIEIPIEREngines.datastore; echo \""
+   ```
+
+   **⚠️ CRITICAL:** `GNSSCapability` defaults to `0`. When `GNSSCapability=0`, the GPS pipeline is blocked at **two** points: iAP2 identification (`CiAP2IdentifyEngine.virtual_8` at `0x240e4`) and session init (`fcn.00015ee4` at `0x15fa4`). The iPhone never learns the adapter can provide location data, so it never sends `StartLocationInformation`.
+
+   **GNSSCapability bitmask:** bit 0=GPGGA(1), bit 1=GPRMC(2), bit 3=PASCD(8). Use value `3` for GPGGA+GPRMC. `HudGPSSwitch` defaults to `1` (already correct). `DashboardInfo` does NOT need to be changed for GPS — it controls vehicleInfo/vehicleStatus/routeGuidance, not location.
 
 2. **Send StartGNSSReport command** when CarPlay session starts:
    ```kotlin
    send(Command: 0x08, payload = 18)  // StartGNSSReport
    ```
 
-### Sending GPS Data
+### Sending GPS Data — Two Methods
 
-GPS data is sent via SendFile (0x99) to `/tmp/gnss_info` in standard **NMEA 0183** format:
+The adapter supports two paths for receiving GPS data. Both converge at `CiAP2LocationEngine` in ARMiPhoneIAP2 for iAP2 delivery to the phone.
+
+#### Method 1: Direct USB Message Type 0x29 (Recommended)
+
+Send GPS data directly as USB message type 0x29 (`GNSS_DATA`). This is the lower-latency path.
+
+```kotlin
+fun sendGnssData(nmeaSentences: String) {
+    val nmeaBytes = nmeaSentences.toByteArray(Charsets.US_ASCII)
+    val payload = ByteBuffer.allocate(4 + nmeaBytes.size)
+        .order(ByteOrder.LITTLE_ENDIAN)
+        .putInt(nmeaBytes.size)       // 4-byte NMEA data length
+        .put(nmeaBytes)               // NMEA sentence data
+    send(GnssData: 0x29, payload.array())
+}
+
+// Usage at ~1 Hz:
+fun onLocationUpdate(location: Location) {
+    val nmea = formatNmea(location)  // See NMEA formatting below
+    sendGnssData(nmea)
+}
+```
+
+#### Method 2: SendFile to /tmp/gnss_info (Fallback)
+
+Write GPS data via SendFile (0x99) to `/tmp/gnss_info` in standard **NMEA 0183** format. Higher latency due to file I/O.
 
 ```kotlin
 fun sendGpsData(lat: Double, lon: Double, alt: Double, speed: Float, heading: Float) {
@@ -709,16 +995,27 @@ fun sendVehicleHeading(degrees: Float) {
 }
 ```
 
-### GPS Data Flow
+### GPS Data Flow and iPhone Fusion Behavior
 
-```
-Host App (HU GPS)  →  SendFile /tmp/gnss_info  →  Adapter
-                                                    │
-                                                    ▼
-                                           iAP2LocationEngine
-                                                    │
-                                                    ▼
-                                           Phone (CarPlay Maps)
+The iPhone does NOT blindly use vehicle GPS -- it applies a **best-accuracy-wins fusion model** via CoreLocation's `CL-fusion` engine. Vehicle GPS is most valuable when the iPhone's own GPS is degraded (phone in pocket/bag, metal console, tunnels) or during cold start. See `02_Protocol_Reference/usb_protocol.md` > GnssData (0x29) for the complete iPhone GPS fusion analysis, including the end-to-end data flow, observed iPhone syslog behavior, and when vehicle GPS wins.
+
+#### Debugging iPhone GPS Usage
+
+To check if the iPhone is receiving and processing vehicle GPS:
+
+```bash
+# Install libimobiledevice (macOS)
+brew install libimobiledevice
+
+# Stream iPhone syslog filtered for location/GPS
+idevicesyslog -m "Location\|fusion\|NMEA\|accessory\|LocationInformation"
+
+# Key indicators:
+# ✅ "sending nmea sentence to location client" — accessoryd forwarding NMEA
+# ✅ "EAAccessoryDidReceiveNMEASentenceNotification" — locationd received it
+# ✅ "numHypothesis,2" — vehicle GPS is a competing position source (good!)
+# ⚠️ "numHypothesis,1" + "isPassthrough,1" — phone GPS winning, vehicle GPS is metadata only
+# ❌ No "nmea sentence" logs — NMEA not reaching iPhone (check GNSSCapability)
 ```
 
 ### Stopping GPS Reports
@@ -748,12 +1045,7 @@ fun enableSlowCharge() {
 }
 ```
 
-### GPIO Behavior
-
-| `/tmp/charge_mode` | GPIO6 | GPIO7 | Effect |
-|--------------------|-------|-------|--------|
-| 0 (or missing) | 1 | 1 | **SLOW** charge (default) |
-| 1 | 1 | 0 | **FAST** charge |
+See `02_Protocol_Reference/usb_protocol.md` > SendFile for GPIO charge mode behavior table.
 
 ---
 

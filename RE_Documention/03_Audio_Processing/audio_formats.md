@@ -1,8 +1,11 @@
 # CPC200-CCPA Audio Format Analysis
 
+> **[Firmware]** This document covers firmware-level audio format support derived from binary analysis of the CPC200-CCPA adapter. For the capture-verified protocol-level reference (wire format, command sequences, stream routing), see `../02_Protocol_Reference/audio_protocol.md`.
+
 **Status:** Documented from binary analysis
 **Source:** ARMadb-driver_unpacked, ARMiPhoneIAP2_unpacked binary analysis
-**Last Updated:** 2026-01-20 (added CallQuality bug documentation)
+**Firmware Version:** 2025.10.15.1127 (binary analysis reference version)
+**Last Updated:** 2026-02-19
 
 ---
 
@@ -16,15 +19,17 @@ The CPC200-CCPA adapter performs **active audio processing** rather than simple 
 
 The adapter uses a `decodeType` value (4-byte LE integer) in AudioData messages to specify audio format:
 
-| decodeType | Sample Rate | Channels | Bits | Use Case |
-|------------|-------------|----------|------|----------|
-| 1 | 44100 Hz | 2 (stereo) | 16 | Media playback (44.1kHz CD quality) |
-| 2 | 44100 Hz | 2 (stereo) | 16 | Navigation / Stop commands |
-| 3 | 8000 Hz | 1 (mono) | 16 | Phone call (narrow-band) |
-| 4 | 48000 Hz | 2 (stereo) | 16 | Media HD / Standard CarPlay |
-| 5 | 16000 Hz | 1 (mono) | 16 | Siri / Phone / Mic input |
-| 6 | 24000 Hz | 1 (mono) | 16 | Voice recognition |
-| 7 | 16000 Hz | 2 (stereo) | 16 | Stereo voice |
+> **[Firmware Binary Analysis]** The following values were extracted from firmware binary analysis. Only decodeType 2, 4, and 5 have been verified in USB captures. See `../02_Protocol_Reference/audio_protocol.md` for the capture-verified subset.
+
+| decodeType | Sample Rate | Channels | Bits | Use Case | Capture Status |
+|------------|-------------|----------|------|----------|----------------|
+| 1 | 44100 Hz | 2 (stereo) | 16 | Media playback (44.1kHz CD quality) | **[Not observed on USB]** |
+| 2 | 44100 Hz | 2 (stereo) | 16 | 44.1kHz media OR stop/cleanup commands (dual-purpose) | Capture-verified |
+| 3 | 8000 Hz | 1 (mono) | 16 | Phone call narrow-band — active for AA phone calls (HFP/SCO 8kHz). Not used by CarPlay (uses 16kHz). | Verified (AA, Mar 2026) |
+| 4 | 48000 Hz | 2 (stereo) | 16 | Media HD / Standard CarPlay | Capture-verified |
+| 5 | 16000 Hz | 1 (mono) | 16 | Siri / Phone / Mic input | Capture-verified |
+| 6 | 24000 Hz | 1 (mono) | 16 | Voice recognition | **[Not observed on USB]** |
+| 7 | 16000 Hz | 2 (stereo) | 16 | Stereo voice | **[Not observed on USB]** |
 
 ### Semantic Context (from firmware analysis)
 
@@ -50,7 +55,7 @@ Audio Types:
 - Media: 48kHz stereo (decodeType=4) or 44.1kHz stereo (decodeType=1,2)
 - Navigation: 48kHz stereo (decodeType=4) or 44.1kHz stereo (decodeType=2)
 - Alerts: 48kHz stereo (decodeType=4)
-- Phone Call: 8kHz or 16kHz mono (decodeType=3 or 5)
+- Phone Call: 16kHz mono (decodeType=5) for CarPlay; 8kHz mono (decodeType=3) for Android Auto phone calls (HFP/SCO narrowband).
 
 Processing: Minimal - primarily pass-through with format signaling
 ```
@@ -82,8 +87,8 @@ Processing Applied:
 
 Expected Mic Format (WebRTC validated):
 - Siri: 16kHz mono (decodeType=5)
-- Phone Call: 8kHz or 16kHz mono (decodeType=3 or 5)
-- NOTE: Only 8kHz and 16kHz are accepted by WebRTC AECM
+- Phone Call: 16kHz mono (decodeType=5) for CarPlay; 8kHz mono (decodeType=3) for Android Auto phone calls (HFP/SCO). Host must use decodeType from adapter's INPUT_CONFIG.
+- NOTE: Only 8kHz and 16kHz pass WebRTC AECM validation. Both are actively used: 16kHz for CarPlay/Siri, 8kHz for AA phone calls
 ```
 
 ---
@@ -91,6 +96,8 @@ Expected Mic Format (WebRTC validated):
 ## WebRTC Audio Processing (Firmware Evidence)
 
 ### Supported Sample Rates (Binary Analysis)
+
+> This is the definitive binary evidence for the 8kHz/16kHz microphone requirement. Other documents reference this section.
 
 **CRITICAL FINDING:** The WebRTC AECM initialization function at `0x2dfa2` explicitly validates the sample rate parameter:
 
@@ -109,7 +116,7 @@ Expected Mic Format (WebRTC validated):
 - **8000 Hz** (0x1F40) - narrowband voice
 - **16000 Hz** (0x3E80) - wideband voice
 
-Any other sample rate will cause WebRTC AECM initialization to fail.
+**FAILURE MODE:** Using any sample rate other than 8kHz or 16kHz for microphone input will cause WebRTC AECM initialization to fail. This is a **HARD REQUIREMENT** - the firmware will reject the audio and may cause session termination or silent mic failure.
 
 ### Dynamic Sample Rate Configuration
 
@@ -224,25 +231,32 @@ The firmware's `ConfigFileUtils` fails to translate the host app's `callQuality`
 
 ### 1. Phone Call Sample Rate
 
-**Finding:** The firmware WebRTC processing supports **both** 8kHz and 16kHz for phone calls.
+**Update (Mar 2026):** Both 8kHz and 16kHz are actively used. Android Auto phone calls use 8kHz (decodeType=3) via HFP/SCO. CarPlay uses 16kHz exclusively. See `microphone_processing.md` § AA Phone Call Microphone — FIXED.
+
+**Finding:** The firmware WebRTC binary accepts both 8kHz and 16kHz.
 
 **Binary evidence (0x2dfa2):**
-- WebRtcAecm_Init explicitly accepts 8000 Hz OR 16000 Hz
-- Both rates are equally valid from a firmware perspective
-- The sample rate is determined dynamically based on audio context
+- WebRtcAecm_Init code paths accept 8000 Hz OR 16000 Hz
+- 4 AEC call sites pass 8000, 20 call sites pass 16000
+- The 8kHz code paths are active for AA phone calls; vestigial for CarPlay only
 
-**Observation from carlink_native:**
+**Why 8kHz is not used for CarPlay:**
+1. The `CallQuality→VoiceQuality` translation has a firmware bug (see above), so configuring for 8kHz has no effect on CarPlay
+2. Modern iPhones (iOS 16+) always negotiate 16kHz (wideband) for CarPlay telephony
+3. Attempting to configure `CallQuality=0` (which would theoretically request narrowband 8kHz) produces the error `"apk callQuality value transf box value error"` and is never applied
+
+**Current carlink_native implementation (Mar 2026):**
 ```kotlin
 AudioCommand.AUDIO_PHONECALL_START -> {
-    startMicrophoneCapture(decodeType = 5, audioType = 3)  // 16kHz
+    val micDecodeType = lastIncomingDecodeType  // Dynamic: 5 for CarPlay, 3 for AA
+    startMicrophoneCapture(decodeType = micDecodeType, audioType = 3)
 }
-// decodeType=3 (8kHz) is also valid for phone calls
 ```
 
 **Implications:**
-- Using 16kHz for phone calls is **supported** by the firmware
-- The choice between 8kHz and 16kHz may depend on phone/CarPlay negotiation
-- Host apps should use the `decodeType` specified in the adapter's AudioData command
+- Host apps should use the `decodeType` from the adapter's `INPUT_CONFIG` command to set mic sample rate
+- CarPlay phone calls use 16kHz mono (decodeType=5); Android Auto phone calls use 8kHz mono (decodeType=3)
+- See `microphone_processing.md` § AA Phone Call Microphone for the complete fix and verification
 
 ### 2. Audio Format from Adapter Must Be Used
 
@@ -314,7 +328,7 @@ The firmware can write debug PCM files:
 **Answer: Minimal processing / Pass-through**
 - Audio is received from CarPlay/AndroidAuto via iAP2
 - Format is signaled to host via decodeType
-- Host must handle the format (44.1kHz, 48kHz stereo for media; 8kHz, 16kHz mono for voice)
+- Host must handle the format (44.1kHz, 48kHz stereo for media; 16kHz mono for CarPlay voice; 8kHz mono for AA phone calls)
 
 ### Host → Phone (Microphone)
 **Answer: YES - Active processing**
@@ -328,8 +342,9 @@ The firmware can write debug PCM files:
 
 **Host app should send microphone audio:**
 - **Siri/Voice Recognition:** 16000 Hz, 1 channel, 16-bit PCM (decodeType=5)
-- **Phone Calls:** 8000 Hz OR 16000 Hz, 1 channel, 16-bit PCM (decodeType=3 or 5)
-- **IMPORTANT:** Use the `decodeType` from the adapter's AudioData command message
+- **Phone Calls (CarPlay):** 16000 Hz, 1 channel, 16-bit PCM (decodeType=5)
+- **Phone Calls (Android Auto):** 8000 Hz, 1 channel, 16-bit PCM (decodeType=3) — HFP/SCO narrowband
+- **IMPORTANT:** Use the `decodeType` from the adapter's AudioData/INPUT_CONFIG command message — do not hardcode
 
 **Firmware-supported mic sample rates (binary verified):**
 - 8000 Hz (0x1F40) - narrowband
@@ -366,6 +381,8 @@ The firmware can write debug PCM files:
 
 ## Related Documentation
 
+- `../02_Protocol_Reference/audio_protocol.md` - **Canonical** AudioData (0x07) protocol reference (capture-verified commands, stream routing, packet sizes)
 - `../02_Protocol_Reference/command_ids.md` - Audio command IDs
 - `../02_Protocol_Reference/usb_protocol.md` - AudioData message format
 - `../01_Firmware_Architecture/initialization.md` - Audio initialization sequence
+- `microphone_processing.md` - Firmware microphone pipeline (WebRTC, I2S, format conversion)

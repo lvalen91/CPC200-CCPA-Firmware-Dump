@@ -165,12 +165,15 @@ rm temp_plain.bin
 
 ## ARMimg_maker Binary Analysis
 
+> **Note:** ARMimg_maker is present in firmware 2025.02 (`/usr/sbin/ARMimg_maker`, 21,056 bytes). Its presence in firmware 2025.10.15 has not been independently verified — earlier analysis claimed removal, but the binary was confirmed in 2025.02 extracted rootfs. The on-device update flow (`update_box_ota.sh`) calls this binary for decryption.
+
 | Property | Value |
 |----------|-------|
 | **Location** | `/usr/sbin/ARMimg_maker` |
 | **Size (packed)** | 21,056 bytes |
 | **Size (unpacked)** | 37,696 bytes |
 | **Packing** | Modified UPX (Carlinkit-specific) |
+| **Availability** | Present in all firmware versions prior to 2025.10.15; removed in 2025.10.15 |
 
 ### Key Strings (from unpacked binary)
 ```

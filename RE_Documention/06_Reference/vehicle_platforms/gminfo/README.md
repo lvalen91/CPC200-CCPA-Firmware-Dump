@@ -23,7 +23,8 @@ This document provides hardware specifications for the GM Infotainment 3.7 syste
 | Model | IoT CPU 1.0 (Model 92) |
 | Architecture | x86_64 |
 | Cores | 4 |
-| Base Frequency | 1881.6 MHz |
+| Base Frequency | 800 MHz (physical); 1881.6 MHz (hypervisor-visible nominal under GHS Integrity) |
+| Boost Frequency | 2.4 GHz |
 | Cache | 1024 KB per core |
 
 **Key Features:** SSE4.2, AES-NI, SHA-NI, RDRAND
@@ -58,7 +59,8 @@ This document provides hardware specifications for the GM Infotainment 3.7 syste
 |------------|-----------|
 | 720x480 | 830-1020 |
 | 1280x720 | 460-590 |
-| 1920x1080 | 320-360 |
+| 1920x1088 | 320-360 |
+| 2400x960 | ~280-320 (native display resolution, estimated from 1920x1088 scaling) |
 
 ### H.265 Hardware Decode
 

@@ -195,12 +195,12 @@ if (FastConnect && mac_matches(LastConnectedDevice)) {
 
 | Web API Name | riddleBoxCfg Name | Range | Default | Firmware Hook |
 |--------------|-------------------|-------|---------|---------------|
-| `autoPlay` | `AutoPlauMusic` | 0-1 | 0 | Auto-play music on HiCar |
+| `autoPlay` | `AutoPlauMusic` | 0-1 | 0 | Auto-play music on CarPlay connect. ⚠️ Settable via web UI only — BoxSettings JSON `autoPlay` is NOT mapped in ARMadb-driver. |
 | `HudGPSSwitch` | `HudGPSSwitch` | 0-1 | 1 | Pass car GPS to phone |
 | `HiCarConnectMode` | `HiCarConnectMode` | 0-1 | 0 | HiCar connection method |
 | `AndroidAutoWidth` | `AndroidAutoWidth` | 0-4096 | 0 | AA display width |
 | `AndroidAutoHeight` | `AndroidAutoHeight` | 0-4096 | 0 | AA display height |
-| `AndroidWorkMode` | `AndroidWorkMode` | 1-5 | 1 | Android connection mode |
+| `AndroidWorkMode` | `AndroidWorkMode` | 0-5 | 1 | Android connection mode (0=Idle, 1=AA, 2=CarLife, 3=Mirror, 4=HiCar, 5=ICCOA) |
 
 ---
 
@@ -213,7 +213,7 @@ if (FastConnect && mac_matches(LastConnectedDevice)) {
 | `UDiskPassThrough` | `UDiskPassThrough` | 0-1 | 1 | Pass-through USB storage |
 | `CarDrivePosition` | `CarDrivePosition` | 0-1 | 0 | 0=LHD, 1=RHD |
 | `SendHeartBeat` | `SendHeartBeat` | 0-1 | 1 | Send 0xAA heartbeat |
-| `ImprovedFluency` | `ImprovedFluency` | 0-1 | 0 | Increase USB buffers |
+| `ImprovedFluency` | `ImprovedFluency` | 0-1 | 0 | ~~Increase USB buffers~~ **DEAD KEY** — stored in riddle.conf but never read by any firmware binary at runtime. Intended to increase USB bulk transfer buffers and adjust pcm_get_buffer_size per advanced.html, but never implemented in fw 2025.10.15.1127 (confirmed via exhaustive Ghidra decompilation of all 7 binaries) |
 | `LogMode` | `LogMode` | 0-1 | 1 | Enable debug logging |
 
 ---
@@ -226,7 +226,7 @@ if (FastConnect && mac_matches(LastConnectedDevice)) {
 | `TtsPacketLen` | `TtsPacketLen` | 200-40000 | 200 | Nav voice USB bulk size |
 | `VrPacketLen` | `VrPacketLen` | 200-40000 | 200 | Siri mic USB bulk size |
 | `TtsVolumGain` | `TtsVolumGain` | 0-1 | 0 | Boost nav voice gain |
-| `VrVolumGain` | `VrVolumGain` | 0-1 | 0 | Boost call voice gain |
+| `VrVolumGain` | `VrVolumGain` | 0-1 | 0 | Boost VR (voice recognition) mic gain |
 
 ---
 
@@ -250,12 +250,12 @@ if (FastConnect && mac_matches(LastConnectedDevice)) {
 
 ### Settings Returned by `infos` Command
 
-The `infos` API only returns a **limited subset** of 13 settings:
+The `infos` API only returns a **limited subset** of 14 settings:
 
 ```
 startDelay, mediaDelay, autoConn, wifi5GSwitch, wifiChannel,
 mediaSound, CallQuality, bitRate, autoPlay, backRecording,
-naviVolume, displaySize, ScreenDPI
+naviVolume, displaySize, ScreenDPI, Udisk
 ```
 
 ### Settings NOT Returned by `infos`
@@ -270,10 +270,10 @@ The following settings must be queried directly via `riddleBoxCfg -g <key>`:
 | GPS from HU | `HudGPSSwitch` | 0=Off, 1=On |
 | USB Passthrough | `UDiskPassThrough` | 0=Off, 1=On |
 | Fast Connect | `FastConnect` | 0=Off, 1=On |
-| Improved Fluency | `ImprovedFluency` | 0=Off, 1=On |
+| Improved Fluency | `ImprovedFluency` | 0=Off, 1=On | **DEAD KEY** — no runtime effect (see firmware hook column above) |
 | Knob Mode | `KnobMode` | 0=Off, 1=On |
 | Mouse Mode | `MouseMode` | 0=Touch, 1=Cursor |
-| Advanced Features | `AdvancedFeatures` | 0=Off, 1=On (Unknown effect) |
+| Advanced Features | `AdvancedFeatures` | 0=Off, 1=On (enables naviScreen — extra 0x2C video stream for instrument cluster). Boolean, NOT bitmask. |
 | Custom Car Logo | `CustomCarLogo` | 0=Default, 1=Custom |
 
 ### Replacement Web Interface Solution

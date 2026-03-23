@@ -8,12 +8,17 @@
 
 ## Executive Summary
 
-The heartbeat mechanism serves as a **connection supervision watchdog**. The firmware monitors incoming heartbeat messages and resets the USB connection if no heartbeat is received within **15 seconds**.
+The heartbeat mechanism serves as a **connection supervision watchdog**. The firmware monitors incoming heartbeat messages and resets the USB connection if no heartbeat is received within the timeout window.
 
 **Key Findings:**
-- Firmware enforces a **15-second maximum gap**, not a specific send interval
-- Heartbeat must start **BEFORE** initialization messages on cold start
-- Recommended interval: **2000ms** (provides 7+ heartbeats within timeout window)
+- **Three timeout values documented:**
+  - Binary constant: **15,000ms** (0x3a98 at address 0x21112)
+  - Practical testing: **~10 seconds** from USB connection
+  - Observed disconnect: **~11.7 seconds** with `SendHeartBeat=1`
+- Testing shows **~10 seconds is when to expect issues**, even though binary shows 15s. Design for 10-second budget.
+- Heartbeat timer must start **BEFORE** initialization messages, but first heartbeat sent **AFTER interval** (not immediately)
+- Recommended interval: **2000ms** (provides multiple heartbeats within timeout window)
+- **Both initialization AND first heartbeat must complete within ~10 seconds of USB connection**
 
 ---
 
@@ -21,29 +26,50 @@ The heartbeat mechanism serves as a **connection supervision watchdog**. The fir
 
 ### Cold Start Timing (CRITICAL)
 
-**Problem discovered November 2025:** Starting heartbeat AFTER initialization causes cold start failures.
+**Problem discovered January 2026:** The firmware watchdog timer starts when USB connection is established. Both initialization AND the first heartbeat must complete within ~10 seconds.
 
-| Sequence | Heartbeat Timing | Result |
-|----------|------------------|--------|
-| **Wrong** | After init messages | Fails ~11.7 seconds with `projectionDisconnected` |
-| **Correct** | Before init messages | Stable for 30+ minutes (tested) |
+| Sequence | First Heartbeat Timing | Result |
+|----------|------------------------|--------|
+| **Wrong** | Immediately at t=0 (before init) | May confuse firmware, unstable |
+| **Wrong** | After init completes + 2s delay | May exceed watchdog timeout |
+| **Correct** | Timer starts before init, first HB fires after interval | Stable |
 
-**Correct initialization sequence:**
+**Correct initialization sequence (matches pi-carplay & carlink_native):**
 ```
 1. USB Reset
 2. 3-second mandatory wait
 3. Open USB connection
-4. START HEARTBEAT IMMEDIATELY  ← Critical
-5. Send initialization messages
+4. START HEARTBEAT TIMER (do NOT send immediately)  ← Timer starts, first HB in 2s
+5. Send initialization messages (~1.5s total)
 6. Start reading loop
+7. First heartbeat fires at t=2000ms (after init complete)
 ```
 
-**Why:** The firmware requires active supervision during boot. Heartbeat serves as a stabilization signal, not just keepalive.
+**Timeline for correct implementation:**
+```
+t=0ms     → USB connection opened, heartbeat timer started
+t=0ms     → Begin sending init messages
+t=~1500ms → Init messages complete
+t=2000ms  → FIRST heartbeat sent (timer fires)
+t=4000ms  → Second heartbeat
+...
+```
 
-| Condition | Heartbeat Timing | Result |
-|-----------|------------------|--------|
-| Cold Start (USB Reset) | Must start BEFORE init | Stable |
-| Warm Reconnect | Can start AFTER init | Stable |
+**Why this works:**
+- The firmware watchdog expects activity within ~10 seconds of USB connection
+- Init messages provide activity during the first ~1.5 seconds
+- First heartbeat arrives at t=2s, well within the timeout
+- Subsequent heartbeats maintain the connection
+
+**Why sending heartbeat immediately (t=0) is WRONG:**
+- Sending heartbeat before any init messages may confuse the firmware
+- The adapter may not be ready to process heartbeat before session parameters (Open message)
+- Creates race conditions between heartbeat and init message processing
+
+| Condition | Implementation | Result |
+|-----------|----------------|--------|
+| Cold Start | Timer before init, first HB after interval | Stable |
+| Warm Reconnect | Same pattern | Stable |
 
 ---
 
@@ -74,16 +100,28 @@ Hex: AA 55 AA 55 00 00 00 00 AA 00 00 00 55 FF FF FF
 | Timing Unit | `0x3e8` | **1,000 ms** | 0x18e6e | Base timing calculation |
 | Min Spacing | `0x1f4` | **500 ms** | 0x18e82 | Minimum message spacing |
 
+**Practical Observation (January 2026):**
+Three different timeout values exist in documentation:
+- **Binary constant:** 15,000ms (0x3a98) at address 0x21112
+- **Practical testing:** Watchdog triggers at ~10 seconds from USB connection
+- **Observed behavior:** 11.7s disconnect when heartbeat is late
+
+Testing has shown that **~10 seconds is when to expect issues**. The discrepancy between the binary 15s value and practical 10s observation suggests the timer may start before the first message is received, or there's additional overhead in the USB stack. **Design for a 10-second budget to be safe.**
+
 ---
 
 ## Recommended Intervals
 
-| Interval | Heartbeats per 15s | Safety Margin |
-|----------|-------------------|---------------|
-| 1000 ms | 15 | High |
-| **2000 ms** | 7-8 | **Good (recommended)** |
-| 5000 ms | 3 | Minimal |
-| 10000 ms | 1-2 | Risky |
+| Interval | First HB Time | Within 10s Budget? | Safety Margin |
+|----------|---------------|-------------------|---------------|
+| 1000 ms | t=1000ms | ✅ Yes | High |
+| **2000 ms** | t=2000ms | ✅ Yes | **Good (recommended)** |
+| 3000 ms | t=3000ms | ✅ Yes | Acceptable |
+| 5000 ms | t=5000ms | ✅ Yes | Minimal |
+| 8000 ms | t=8000ms | ⚠️ Marginal | Risky |
+| 10000 ms | t=10000ms | ❌ No | **Will fail** |
+
+**Calculation:** Init takes ~1.5s, so first heartbeat at interval X arrives at t=X. Must be < 10s.
 
 Timer constants at `0x71150` contain value `0x07d0` (2000ms), suggesting this as the intended interval.
 
@@ -230,27 +268,58 @@ The firmware implements a watchdog pattern: if no heartbeat is seen within the 1
 
 ## Developer Guidelines
 
-### DO NOT MODIFY WITHOUT TESTING
+### Timing Requirements
 
-1. **NEVER** move heartbeat start to after initialization - causes cold start failures
-2. **NEVER** add delays between heartbeat start and initialization
-3. **Test BOTH scenarios:**
-   - Cold start (app restart with adapter connected)
-   - Warm reconnect (adapter disconnect/reconnect while app running)
+**The ~10-second watchdog window requires:**
+1. USB connection established
+2. Init messages sent (~1.5s)
+3. First heartbeat received by adapter (at t=2s if using 2000ms interval)
+
+**Total time budget:** ~10 seconds from USB open to stable heartbeat
+
+### Implementation Pattern (Matches pi-carplay & carlink_native)
+
+```python
+def start():
+    # 1. Start heartbeat timer FIRST (but don't send immediately!)
+    heartbeat_timer = Timer(interval=2000ms, callback=send_heartbeat)
+    heartbeat_timer.start()  # First callback fires in 2000ms
+
+    # 2. Send init messages (takes ~1.5s with 120ms delays)
+    for msg in init_messages:
+        send(msg)
+        sleep(120ms)
+
+    # 3. Start read loop
+    start_read_loop()
+
+    # 4. First heartbeat fires automatically at t=2000ms
+```
+
+### DO NOT
+
+1. **NEVER** send heartbeat immediately at t=0 before init messages
+2. **NEVER** start heartbeat timer AFTER init messages complete
+3. **NEVER** use intervals longer than 5000ms (risk of timeout)
 
 ### Failure Indicators
 
-- `projectionDisconnected` message ~11-12 seconds after connection
+- `Host No Response, we will reset connection!!!` in TTY log
+- `projectionDisconnected` message ~10-12 seconds after connection
 - Session terminating before stable streaming state
-- TTY log showing "Host No Response" message
+- Wireless connection never established (USB-only works)
 
 ### Expected Log Pattern (Correct)
 
 ```
 14:53:47.834 > [DONGLE] Starting dongle connection sequence
-14:53:47.835 > [DONGLE] Heartbeat started before initialization
-14:53:48.147 > [DONGLE] Initialization sequence completed in 313ms
-14:53:48.148 > [DONGLE] Starting message reading loop
+14:53:47.835 > [DONGLE] Heartbeat timer started (first HB in 2000ms)
+14:53:47.840 > [DONGLE] Sending init message 1/12
+14:53:47.960 > [DONGLE] Sending init message 2/12
+...
+14:53:49.147 > [DONGLE] Initialization sequence completed
+14:53:49.835 > [DONGLE] First heartbeat sent (t=2000ms)
+14:53:51.835 > [DONGLE] Heartbeat sent (t=4000ms)
 ```
 
 ---

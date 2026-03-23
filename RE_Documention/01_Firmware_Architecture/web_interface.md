@@ -179,16 +179,16 @@ The `infos` command returns comprehensive adapter information:
     "ScreenDPI": 0,
     "Udisk": 0
   },
-  // NOTE: Settings object only contains 13 keys!
+  // NOTE: Settings object only contains 14 keys (including Udisk)!
   // Many settings (MicType, BtAudio, BackgroundMode, HudGPSSwitch,
-  // UDiskPassThrough, FastConnect, ImprovedFluency, KnobMode, MouseMode,
+  // UDiskPassThrough, FastConnect, ImprovedFluency (DEAD KEY - unimplemented), KnobMode, MouseMode,
   // AdvancedFeatures, CustomCarLogo) are NOT returned.
   // Use `riddleBoxCfg -g <key>` to query these directly.
   "DevList": [
     {
       "id": "64:31:35:8C:29:69",
       "type": "CarPlay",
-      "name": "PiPhone",
+      "name": "Luis",
       "index": "2",
       "time": "2026-01-20 03:43:05",
       "rfcomm": "1"
@@ -197,7 +197,18 @@ The `infos` command returns comprehensive adapter information:
   "LangList": [],
   "WifiChannelList": [
     {"id": 1, "wifiFreq": 2412},
-    {"id": 36, "wifiFreq": 5180}
+    {"id": 2, "wifiFreq": 2417},
+    {"id": 3, "wifiFreq": 2422},
+    {"id": 4, "wifiFreq": 2427},
+    {"id": 5, "wifiFreq": 2432},
+    {"id": 6, "wifiFreq": 2437},
+    {"id": 7, "wifiFreq": 2442},
+    {"id": 36, "wifiFreq": 5180},
+    {"id": 40, "wifiFreq": 5200},
+    {"id": 44, "wifiFreq": 5220},
+    {"id": 149, "wifiFreq": 5745},
+    {"id": 157, "wifiFreq": 5785},
+    {"id": 161, "wifiFreq": 5805}
   ]
 }
 ```
@@ -210,6 +221,7 @@ The `infos` command returns comprehensive adapter information:
 | `wifi` | WiFi SSID |
 | `boxName` | Box display name |
 | `MDLinkType` | Active phone link type (CarPlay/AndroidAuto/HiCar) |
+| `HULinkType` | Host unit link type (AutoPlay, etc.) |
 | `MDModel` | Connected phone model |
 | `MDOSVersion` | Phone OS version |
 | `MDLinkVersion` | CarPlay/AA protocol version |
@@ -224,24 +236,61 @@ The `infos` command returns comprehensive adapter information:
 | `upTime` | Seconds since boot |
 | `needActive` | Activation required flag |
 
-### Settings Fields (Web UI Configurable)
+**Active Android Auto Session Example (Jan 2026 Capture):**
 
-| Field | Range | Default | Description |
-|-------|-------|---------|-------------|
-| `startDelay` | 0-120 | 0 | Startup delay in seconds |
-| `mediaDelay` | 300-2000 | 1000 | Audio buffer latency (ms) |
-| `autoConn` | 0-1 | 1 | Auto-connect to last device |
-| `wifi5GSwitch` | 0-1 | 1 | Enable 5GHz WiFi |
-| `wifiChannel` | 1-165 | 36 | WiFi channel |
-| `mediaSound` | 0-1 | 1 | Audio quality mode |
-| `CallQuality` | 0-2 | 1 | 0=Normal, 1=Clear, 2=HD |
-| `bitRate` | 0-20 | 0 | Video bitrate hint |
-| `autoPlay` | 0-1 | 0 | Auto-play music on HiCar connect |
-| `backRecording` | 0-1 | 0 | Allow background recording |
-| `naviVolume` | 0-100 | 0 | Navigation volume |
-| `displaySize` | 0-3 | 0 | Icon size mode |
-| `ScreenDPI` | 0-480 | 0 | Screen DPI (0=auto) |
-| `Udisk` | 0-1 | 0 | USB storage mode |
+When a device is connected, the `infos` response includes real-time session data:
+
+```json
+{
+  "BoxInfo": {
+    "bt": "pi-carplay",
+    "wifi": "pi-carplay",
+    "boxName": "pi-carplay",
+    "MDLinkType": "AndroidAuto",
+    "HULinkType": "AutoPlay",
+    "MDModel": "Google Pixel 10",
+    "MDOSVersion": "",
+    "MDLinkVersion": "1.7",
+    "hardwareVer": "YMA0-WR2C-0003",
+    "ver": "2025.10.15.1127",
+    "cgiVer": "Sep  5 2025 11:05:47",
+    "mfd": "20240119",
+    "uuid": "651ede982f0a99d7f9138131ec5819fe",
+    "productType": "A15W",
+    "mac": "00:e0:4c:98:0a:6c",
+    "wifiChipType": 6,
+    "upTime": 855199
+  },
+  "Settings": {
+    "bitRate": 5,
+    "ScreenDPI": 160
+  },
+  "DevList": [
+    {
+      "id": "64:31:35:8C:29:69",
+      "type": "CarPlay",
+      "name": "Luis",
+      "index": "2",
+      "time": "2026-01-22 01:04:58",
+      "rfcomm": "1"
+    },
+    {
+      "id": "B0:D5:FB:A3:7E:AA",
+      "type": "AndroidAuto",
+      "name": "Pixel 10",
+      "index": "1"
+    }
+  ]
+}
+```
+
+**Key Observations:**
+- `MDLinkVersion: "1.7"` indicates Android Auto protocol version 1.7
+- `bitRate: 5` corresponds to `maxVideoBitRate = 5000 Kbps`
+- `DevList` contains both CarPlay and Android Auto paired devices
+- Android Auto entries lack `time` and `rfcomm` fields (no BT profile data)
+
+For complete settings field documentation with firmware hooks, see `web_settings_reference.md`.
 
 ---
 

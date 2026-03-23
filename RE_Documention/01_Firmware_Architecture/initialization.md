@@ -1,8 +1,8 @@
 # CPC200-CCPA Firmware Initialization & Boot Sequence
 
 **Source:** Extracted firmware analysis
-**Firmware:** 2025.10.XX
-**Last Updated:** 2026-01-20
+**Firmware Version:** 2025.10.15.1127 (binary analysis reference version)
+**Last Updated:** 2026-02-02
 
 ---
 
@@ -14,28 +14,44 @@ This document covers the adapter's boot process and host initialization message 
 
 ## Host Initialization Sequence
 
-The host application sends the following messages after USB connection:
+The host application sends the following messages after USB connection.
+
+**CRITICAL:** The adapter has a ~10-second watchdog timer. Both init AND first heartbeat must complete within this window.
 
 ```
 1. USB Reset (clear partially configured state)
 2. 3-second mandatory wait
 3. Open USB connection
-4. START HEARTBEAT (see heartbeat_analysis.md)
-5. Send initialization messages (below)
+4. START HEARTBEAT TIMER (do NOT send heartbeat immediately!)
+   - Timer starts, first heartbeat fires after 2000ms interval
+   - See heartbeat_analysis.md for details
+5. Send initialization messages (below) - takes ~1.5s
 6. Start reading loop
+7. First heartbeat fires at t=2000ms (after init completes)
 ```
+
+**Note:** Do NOT send heartbeat at t=0. The timer should start before init, but the first heartbeat should fire AFTER the init messages are sent. This matches the working pattern in pi-carplay and carlink_native.
 
 ### Initialization Messages
 
 | Order | Type | Name | Content |
 |-------|------|------|---------|
-| 1 | 153 | SendFile | `/tmp/screen_dpi` - Display DPI |
-| 2 | 1 | Open | Session parameters |
-| 3 | 153 | SendFile | `/tmp/night_mode` - Night mode flag |
-| 4 | 153 | SendFile | `/tmp/hand_drive_mode` - Drive mode |
-| 5 | 25 | BoxSettings | JSON configuration |
-| 6 | 8 | Command | Control commands |
-| 7-12 | Various | Config | Additional configuration |
+| 1 | 160 | AppInfo | JSON: app version, device model, platform, uuid, screen size (host identification) |
+| 2 | 240 | EnableCrypt | CMD_ENABLE_CRYPT — 4-byte random nonce for AES session key derivation |
+| 3 | 153 | SendFile | `/tmp/screen_dpi` - Display DPI |
+| 4 | 153 | SendFile | `/etc/android_work_mode` - Android work mode (1=AA, 2=CarLife, 3=Mirror, 4=HiCar, 5=ICCOA) |
+| 5 | 1 | Open | Session parameters (28 bytes: width, height, fps, format, bitrate, boxVersion, phoneWorkMode) |
+| — | — | *Wait* | *Wait for Open response from adapter before proceeding* |
+| 6 | 25 | BoxSettings | JSON configuration (syncTime, mediaDelay, drivePosition, androidAutoSizeW/H, GNSSCapability, DashboardInfo, UseBTPhone) |
+| 7 | 160 | AppInfo | JSON: full app/device info (second send, post-Open) |
+| 8 | 153 | SendFile | CarPlay icons (`/etc/icon_120x120.png`, `/etc/icon_180x180.png`, `/etc/icon_256x256.png`) |
+| 9 | 153 | SendFile | `/tmp/night_mode` - Night mode flag (0=day, 1=night, 2=auto) |
+| 10 | 153 | SendFile | `/tmp/charge_mode` - Charge mode (0/1/2) |
+| 11 | 13/14 | BT/WiFi Name | Set adapter Bluetooth name (type 0x0D) and WiFi name (type 0x0E) |
+| 12 | 153 | SendFile | `/etc/box_name` - Adapter display name |
+| 13 | 8 | Command | Set mic type (cmd 7/15/21), WiFi type (cmd 24/25), audio mode (cmd 22/23) |
+
+**Source:** Carlinkit AutoKit app decompilation (v2025.03.19.1126, Mar 2026). The manufacturer's app sends CMD_ENABLE_CRYPT **before** the Open message, and sends AppInfo (type 0xA0) as the very first message. This differs from the observed capture sequences where encryption was not active.
 
 ### Open Message Structure
 
@@ -191,10 +207,39 @@ The firmware supports a user-defined initialization script at `/script/custom_in
 | **ARMadb-driver** | Main USB protocol handler | start_main_service.sh |
 | **mdnsd** | CarPlay mDNS/Bonjour discovery | start_main_service.sh |
 | **boxNetworkService** | Network management | start_main_service.sh |
-| **colorLightDaemon** | RGB LED control | start_main_service.sh |
-| **boa** | Web server for configuration UI | start_main_service.sh |
+| **colorLightDaemon** | Red/Blue LED status control | start_main_service.sh |
+| **boa** | Web server for configuration UI (v0.94.101wk) | start_main_service.sh |
 | **hfpd** | Bluetooth HFP daemon | init_bluetooth_wifi.sh |
 | **bluetoothDaemon** | Bluetooth management | init_bluetooth_wifi.sh |
+
+---
+
+## Service Registration Order
+
+*Verified via TTY log capture (Jan 2026)*
+
+During initialization, ARMadb-driver registers the following Bluetooth services in order:
+
+| Order | Service | Purpose |
+|-------|---------|---------|
+| 1 | IAP2 | Apple iAP2 protocol for CarPlay |
+| 2 | NearBy | Proximity-based device discovery |
+| 3 | HiChain | Huawei HiCar authentication/trust chain |
+| 4 | AAP | Android Auto Protocol |
+| 5 | Serial Port | Generic Bluetooth serial (RFCOMM) |
+
+**Log pattern:**
+```
+IAP2 service registered
+NearBy service registered
+HiChain service registered
+AAP service registered
+Serial Port service registered
+```
+
+These services are started by the CarPlay/AndroidAuto link daemons:
+- `Start Link Deamon: CarPlay` → Starts IAP2/NearBy/HiChain
+- `Start Link Deamon: AndroidAuto` → Starts AAP
 
 ---
 
