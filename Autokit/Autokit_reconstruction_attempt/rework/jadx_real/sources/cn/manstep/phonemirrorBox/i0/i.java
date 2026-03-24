@@ -1,0 +1,15 @@
+package cn.manstep.phonemirrorBox.i0;
+
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.constraintlayout.widget.Guideline;
+import androidx.databinding.ViewDataBinding;
+
+/* JADX INFO: loaded from: /Volumes/stuff/macbook/misc/CPC200-CCPA/rework/dumped_real_classes.dex */
+public abstract class i extends ViewDataBinding {
+    protected i(Object obj, View view, int i, Button button, Guideline guideline, Guideline guideline2, ImageView imageView, TextView textView) {
+        super(obj, view, i);
+    }
+}

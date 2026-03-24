@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="APKTOOL_RENAMED_0x7f0f003d">Navegar para a página inicial</string>
+    <string name="APKTOOL_RENAMED_0x7f0f003e">Navegar para cima</string>
+    <string name="APKTOOL_RENAMED_0x7f0f003f">Mais opções</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0040">Concluído</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0041">Ver tudo</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0042">Selecionar um app</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0043">DESATIVADO</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0044">ATIVADO</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0045">Alt+</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0046">Ctrl+</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0047">delete</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0048">enter</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0049">Function+</string>
+    <string name="APKTOOL_RENAMED_0x7f0f004a">Meta+</string>
+    <string name="APKTOOL_RENAMED_0x7f0f004b">Shift+</string>
+    <string name="APKTOOL_RENAMED_0x7f0f004c">espaço</string>
+    <string name="APKTOOL_RENAMED_0x7f0f004d">Sym+</string>
+    <string name="APKTOOL_RENAMED_0x7f0f004e">Menu+</string>
+    <string name="APKTOOL_RENAMED_0x7f0f004f">Pesquisar…</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0050">Limpar consulta</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0051">Consulta de pesquisa</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0052">Pesquisar</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0053">Enviar consulta</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0054">Pesquisa por voz</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0055">Compartilhar com</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0056">Compartilhar com %s</string>
+    <string name="APKTOOL_RENAMED_0x7f0f0057">Recolher</string>
+    <string name="APKTOOL_RENAMED_0x7f0f01de">Pesquisar</string>
+    <string name="APKTOOL_RENAMED_0x7f0f01ef">999+</string>
+</resources>

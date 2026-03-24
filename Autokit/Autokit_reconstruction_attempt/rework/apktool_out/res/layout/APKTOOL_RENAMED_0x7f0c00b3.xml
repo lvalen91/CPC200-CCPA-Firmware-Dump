@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/APKTOOL_RENAMED_0x7f09025b" android:text="100%" style="@style/APKTOOL_RENAMED_0x7f10034d" />
+    <com.yalantis.ucrop.view.widget.HorizontalProgressWheelView android:id="@id/APKTOOL_RENAMED_0x7f0901f1" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@id/APKTOOL_RENAMED_0x7f09025b" />
+</RelativeLayout>

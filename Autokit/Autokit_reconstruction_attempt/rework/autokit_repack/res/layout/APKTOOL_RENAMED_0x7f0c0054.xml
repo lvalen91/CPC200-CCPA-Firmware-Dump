@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:background="@color/APKTOOL_RENAMED_0x7f0601a3" android:padding="10.0dp" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Button android:textColor="#ffffff" android:id="@id/APKTOOL_RENAMED_0x7f09007c" android:layout_width="0.0dp" android:layout_height="50.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f01a3" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f040201="0.5" />
+    <Button android:textColor="#ffffff" android:id="@id/APKTOOL_RENAMED_0x7f090074" android:layout_width="0.0dp" android:layout_height="50.0dp" android:text="@string/APKTOOL_RENAMED_0x7f0f00a6" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f040201="0.5" />
+    <EditText android:textSize="14.0sp" android:textColor="#000000" android:id="@id/APKTOOL_RENAMED_0x7f090137" android:layout_width="match_parent" android:layout_height="50.0dp" app:APKTOOL_RENAMED_0x7f0401de="@id/APKTOOL_RENAMED_0x7f09007c" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f090267" />
+    <TextView android:textSize="16.0sp" android:textColor="@color/APKTOOL_RENAMED_0x7f06002c" android:gravity="center" android:id="@id/APKTOOL_RENAMED_0x7f090267" android:layout_width="match_parent" android:layout_height="40.0dp" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

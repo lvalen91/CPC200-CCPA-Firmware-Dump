@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="b">24.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070001">80.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070002">64.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070003">8.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070004">8.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070017">580.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f07004e">16.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070050">20.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f07007b">320.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f07007e">0.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070080">2.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070082">24.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070083">576.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070084">320.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f070087">@dimen/APKTOOL_RENAMED_0x7f070086</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f07008a">160.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f0700d4">64.0dp</dimen>
+    <dimen name="APKTOOL_RENAMED_0x7f07017e">64.0dp</dimen>
+</resources>

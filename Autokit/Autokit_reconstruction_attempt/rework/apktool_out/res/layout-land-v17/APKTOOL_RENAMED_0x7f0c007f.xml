@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge android:layout_width="wrap_content" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_gravity="start" android:orientation="vertical" android:id="@id/APKTOOL_RENAMED_0x7f090197" android:paddingLeft="@dimen/APKTOOL_RENAMED_0x7f0700fa" android:paddingRight="@dimen/APKTOOL_RENAMED_0x7f0700fa" android:paddingBottom="@dimen/APKTOOL_RENAMED_0x7f0700fa" android:layout_width="wrap_content" android:layout_height="match_parent" android:paddingStart="@dimen/APKTOOL_RENAMED_0x7f0700fa" android:paddingEnd="@dimen/APKTOOL_RENAMED_0x7f0700fa" style="?APKTOOL_RENAMED_0x7f040234">
+        <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f090199" android:paddingLeft="@dimen/APKTOOL_RENAMED_0x7f070100" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f070103" android:layout_height="0.0dp" android:layout_weight="1.0" android:paddingStart="@dimen/APKTOOL_RENAMED_0x7f070100">
+            <include layout="@layout/APKTOOL_RENAMED_0x7f0c0082" />
+            <include layout="@layout/APKTOOL_RENAMED_0x7f0c0081" />
+        </FrameLayout>
+        <include layout="@layout/APKTOOL_RENAMED_0x7f0c0083" />
+    </LinearLayout>
+    <View android:layout_gravity="end" android:layout_width="@dimen/APKTOOL_RENAMED_0x7f0700fc" android:layout_height="match_parent" style="?APKTOOL_RENAMED_0x7f040233" />
+</merge>

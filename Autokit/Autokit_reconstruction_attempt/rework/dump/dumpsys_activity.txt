@@ -1,0 +1,86 @@
+  *APP* UID 1010252 ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}
+    user #10 uid=1010252 gids={3002, 3003, 3001, 50252, 20252, 1009997}
+    mRequiredAbi=arm64-v8a instructionSet=arm64
+    class=com.stub.StubApp
+    dir=/data/app/~~96FLiqmwo2Ex6jLhe_0kvg==/cn.manstep.phonemirrorBox-TB3ZOPXKE3YAjSFoO8cGdQ==/base.apk publicDir=/data/app/~~96FLiqmwo2Ex6jLhe_0kvg==/cn.manstep.phonemirrorBox-TB3ZOPXKE3YAjSFoO8cGdQ==/base.apk data=/data/user/10/cn.manstep.phonemirrorBox
+    packageList={cn.manstep.phonemirrorBox}
+    compat={229dpi overrideInvScale=1.0 overrideDensityInvScale=1.4285715 always-compat}
+    thread=com.android.server.am.ApplicationThreadDeferred@5a0f37
+    pid=3622
+    lastActivityTime=-9m14s4ms    startUpTime=-9m46s869ms    startElapsedTime=-9m46s869ms
+    startSeq=89
+--
+      - ServiceRecord{10d4f7e u10 cn.manstep.phonemirrorBox/.service.BackgroundService c:cn.manstep.phonemirrorBox}
+      - ServiceRecord{3aae58a u10 cn.manstep.phonemirrorBox/.ModeChangeService c:cn.manstep.phonemirrorBox}
+      - ServiceRecord{7fe1f01 u10 cn.manstep.phonemirrorBox/.AutoStartService c:cn.manstep.phonemirrorBox}
+      - ServiceRecord{9cb73da u10 cn.manstep.phonemirrorBox/.ForegroundService c:cn.manstep.phonemirrorBox}
+    mConnections:
+      - ConnectionRecord{4bead39 u10 CR cn.manstep.phonemirrorBox/.service.BackgroundService:@e65100 flags=0x1}
+      - ConnectionRecord{c53e3f5 u10 CR cn.manstep.phonemirrorBox/.ModeChangeService:@ddf7d2c flags=0x1}
+      - ConnectionRecord{fe8cce8 u10 CR cn.manstep.phonemirrorBox/.AutoStartService:@b11760b flags=0x1}
+    scheduleServiceTimeoutPending=false
+    Published Providers:
+      - androidx.lifecycle.ProcessLifecycleOwnerInitializer
+        -> ContentProviderRecord{2856ca4 u10 cn.manstep.phonemirrorBox/androidx.lifecycle.ProcessLifecycleOwnerInitializer}
+      - androidx.core.content.FileProvider
+        -> ContentProviderRecord{4c16a0d u10 cn.manstep.phonemirrorBox/androidx.core.content.FileProvider}
+      - cn.manstep.phonemirrorBox.MyFileProvider
+        -> ContentProviderRecord{7b84dc2 u10 cn.manstep.phonemirrorBox/.MyFileProvider}
+    Connected Providers:
+      - b63aad9/com.android.providers.settings/.SettingsProvider->3622:cn.manstep.phonemirrorBox/u10a252 s4/4 u0/0 +9m46s695ms
+    mReceivers:
+      - ReceiverList{2d331e1 3622 cn.manstep.phonemirrorBox/1010252/u10 remote:22cdf48}
+      - ReceiverList{8914232 3622 cn.manstep.phonemirrorBox/1010252/u10 remote:7acaa3d}
+      - ReceiverList{ab9e194 3622 cn.manstep.phonemirrorBox/1010252/u10 remote:5d481e7}
+      - ReceiverList{bb3395d 3622 cn.manstep.phonemirrorBox/1010252/u10 remote:a0aa734}
+      - ReceiverList{c7a9846 3622 cn.manstep.phonemirrorBox/1010252/u10 remote:133fc21}
+      - ReceiverList{ced862b 3622 cn.manstep.phonemirrorBox/1010252/u10 remote:f6a0e7a}
+      - ReceiverList{d27780f 3622 cn.manstep.phonemirrorBox/1010252/u10 remote:d16c96e}
+      - ReceiverList{e632901 3622 cn.manstep.phonemirrorBox/1010252/u10 remote:ff3bee8}
+    lastCompactTime=0 lastCompactProfile=null
+    hasPendingCompaction=false    isFreezeExempt=false isPendingFreeze=false isFrozen=false
+    earliestFreezableTimeMs=--
+    Activities:
+      - ActivityRecord{f7917ba u10 cn.manstep.phonemirrorBox/.MainActivity t1000046}
+    Recent Tasks:
+      - Task{fa5f66b #1000046 type=standard A=1010252:cn.manstep.phonemirrorBox isResizeable=false minWidth=-1 minHeight=-1}
+    BoundClientUids:[1010252]
+     Configuration={1.0 ?mcc0mnc [en_US] ldltr sw960dp w2400dp h864dp 160dpi xlrg long land car finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 2400, 960) mAppBounds=Rect(0, 0 - 2400, 864) mMaxBounds=Rect(0, 0 - 2400, 960) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.6 fontWeightAdjustment=0}
+     OverrideConfiguration={1.0 ?mcc0mnc [en_US] ldltr sw960dp w2400dp h864dp 160dpi xlrg long land car finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 2400, 960) mAppBounds=Rect(0, 0 - 2400, 864) mMaxBounds=Rect(0, 0 - 2400, 960) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0} s.4 fontWeightAdjustment=0}
+     mLastReportedConfiguration={1.0 ?mcc0mnc [en_US] ldltr sw960dp w2400dp h864dp 160dpi xlrg long land car finger qwerty/v/v dpad/v winConfig={ mBounds=Rect(0, 0 - 2400, 960) mAppBounds=Rect(0, 0 - 2400, 864) mMaxBounds=Rect(0, 0 - 2400, 960) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.6 fontWeightAdjustment=0}
+     mActivityStateFlags=W|V|R|VT|taskLayer=1
+--
+    Proc # 0: fg     T/A/TOP  LCMNFUA  t: 0 3622:cn.manstep.phonemirrorBox/u10a252 (top-activity)
+        oom: max=1001 curRaw=0 setRaw=0 cur=0 set=0
+        state: cur=TOP  set=TOP  lastRss=0.00 lastCachedRss=0.00
+        cached=false empty=false hasAboveClient=false
+    Proc # 4: vis    F/ /FGS  LCMNFUA  t: 0 1655:com.google.android.gms.persistent/u10a213 (service)
+        com.google.android.gms/.chimera.PersistentApiService<=Proc{1341:com.google.android.carassistant:interactor/u10a212}
+--
+      proc=ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}
+
+  UID validation:
+    UID 1000: UidRecord{c642738 1000 PER  procs:0 seq(0,0)} caps=LCMNFUA
+      curProcState=0 curCapability=LCMNFUA
+    UID 1001: UidRecord{7e7f311 1001 PER  procs:0 seq(0,0)} caps=LCMNFUA
+--
+    #62: fg     TOP  LCMNFUA 3622:cn.manstep.phonemirrorBox/u10a252 act:activities|recents
+    #61: vis    BFGS ---NFU- 1414:com.android.car.carlauncher/u10a163 act:activities|recents
+    #60: cch    LAST ------- 2383:com.android.car.mapsplaceholder/u10a189 act:activities
+    Other:
+    #59: vis    BFGS ---NFU- 1706:com.google.android.gms.persistent/u0a213
+    #58: vis    FGS  LCMNFUA 1655:com.google.android.gms.persistent/u10a213
+--
+    Proc # 0: fg     T/A/TOP  LCMNFUA  t: 0 3622:cn.manstep.phonemirrorBox/u10a252 (top-activity)
+    Proc # 4: vis    F/ /FGS  LCMNFUA  t: 0 1655:com.google.android.gms.persistent/u10a213 (service)
+        com.google.android.gms/.chimera.PersistentApiService<=Proc{1341:com.google.android.carassistant:interactor/u10a212}
+    Proc #53: vis    F/ /BFGS LCMNFUA  t: 0 1190:com.google.android.ext.services/u10a231 (service)
+        com.google.android.ext.services/android.ext.services.autofill.InlineSuggestionRenderServiceImpl<=Proc{646:system/1000}
+    Proc #51: vis    F/ /BFGS LCMNFUA  t: 0 1341:com.google.android.carassistant:interactor/u10a212 (service)
+--
+    PID #3622: ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}
+    PID #3823: ProcessRecord{67c894c 3823:com.google.android.photopicker/u0a234}
+    PID #3844: ProcessRecord{9183d81 3844:com.google.android.photopicker/u10a234}
+
+  Active process infos:
+    Pinfo PID #1190:

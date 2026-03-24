@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:id="@id/APKTOOL_RENAMED_0x7f0902ad" android:drawable="@drawable/APKTOOL_RENAMED_0x7f080094" />
+    <item android:id="@id/APKTOOL_RENAMED_0x7f09015f" android:drawable="@drawable/APKTOOL_RENAMED_0x7f080093" />
+    <transition android:drawable="@drawable/APKTOOL_RENAMED_0x7f080067" android:toId="@id/APKTOOL_RENAMED_0x7f0902ad" android:fromId="@id/APKTOOL_RENAMED_0x7f09015f" />
+    <transition android:drawable="@drawable/APKTOOL_RENAMED_0x7f080068" android:toId="@id/APKTOOL_RENAMED_0x7f09015f" android:fromId="@id/APKTOOL_RENAMED_0x7f0902ad" />
+</animated-selector>

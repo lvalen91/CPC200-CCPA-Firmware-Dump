@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/APKTOOL_RENAMED_0x7f09025a" android:text="100°" style="@style/APKTOOL_RENAMED_0x7f10034d" />
+    <com.yalantis.ucrop.view.widget.HorizontalProgressWheelView android:id="@id/APKTOOL_RENAMED_0x7f0901ea" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_toLeftOf="@id/APKTOOL_RENAMED_0x7f0902c4" android:layout_toRightOf="@id/APKTOOL_RENAMED_0x7f0902c3" android:layout_below="@id/APKTOOL_RENAMED_0x7f09025a" android:layout_toStartOf="@id/APKTOOL_RENAMED_0x7f0902c4" android:layout_toEndOf="@id/APKTOOL_RENAMED_0x7f0902c3" />
+    <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f0902c3" android:layout_centerVertical="true" style="@style/APKTOOL_RENAMED_0x7f10034f">
+        <ImageView android:src="@drawable/APKTOOL_RENAMED_0x7f080123" style="@style/APKTOOL_RENAMED_0x7f10034b" />
+    </FrameLayout>
+    <FrameLayout android:id="@id/APKTOOL_RENAMED_0x7f0902c4" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_alignParentEnd="true" style="@style/APKTOOL_RENAMED_0x7f10034f">
+        <ImageView android:src="@drawable/APKTOOL_RENAMED_0x7f08011e" style="@style/APKTOOL_RENAMED_0x7f10034b" />
+    </FrameLayout>
+</RelativeLayout>

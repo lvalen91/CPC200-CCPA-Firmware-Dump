@@ -1,0 +1,13 @@
+package c.f;
+
+/* JADX INFO: loaded from: /Volumes/stuff/macbook/misc/CPC200-CCPA/rework/dumped_real_classes.dex */
+public final class b {
+    public static final int TextAppearance_Compat_Notification = 2131755462;
+    public static final int TextAppearance_Compat_Notification_Info = 2131755463;
+    public static final int TextAppearance_Compat_Notification_Line2 = 2131755465;
+    public static final int TextAppearance_Compat_Notification_Time = 2131755468;
+    public static final int TextAppearance_Compat_Notification_Title = 2131755470;
+    public static final int Widget_Compat_NotificationActionContainer = 2131755714;
+    public static final int Widget_Compat_NotificationActionText = 2131755715;
+    public static final int Widget_Support_CoordinatorLayout = 2131755847;
+}

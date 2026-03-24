@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="horizontal" android:padding="10.0dp" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:id="@id/APKTOOL_RENAMED_0x7f09000b" android:background="#10ffffff" android:layout_width="wrap_content" android:layout_height="40.0dp">
+        <TextView android:textSize="18.0sp" android:textStyle="bold" android:id="@id/APKTOOL_RENAMED_0x7f0900f8" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_centerVertical="true" android:layout_marginStart="5.0dp" />
+        <CheckBox android:id="@id/APKTOOL_RENAMED_0x7f09009b" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_marginEnd="5.0dp" />
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView android:id="@id/APKTOOL_RENAMED_0x7f0900ea" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@id/APKTOOL_RENAMED_0x7f09000b" />
+</RelativeLayout>

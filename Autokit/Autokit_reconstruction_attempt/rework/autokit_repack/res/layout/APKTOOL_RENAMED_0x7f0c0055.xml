@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:tag="layout/input_fragment_0" style="@style/APKTOOL_RENAMED_0x7f100136"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/APKTOOL_RENAMED_0x7f090270" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f10026e">
+        <Button android:id="@id/APKTOOL_RENAMED_0x7f090072" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f10026f" />
+        <TextView android:tag="binding_1" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100271" />
+        <Button android:id="@id/APKTOOL_RENAMED_0x7f09007c" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="@string/APKTOOL_RENAMED_0x7f0f01a3" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100270" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText android:theme="@style/APKTOOL_RENAMED_0x7f100135" android:textSize="18.0sp" android:textColor="@color/APKTOOL_RENAMED_0x7f0601a3" android:id="@id/APKTOOL_RENAMED_0x7f090137" android:tag="binding_2" android:layout_width="match_parent" android:layout_height="50.0dp" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f090270" />
+</androidx.constraintlayout.widget.ConstraintLayout>

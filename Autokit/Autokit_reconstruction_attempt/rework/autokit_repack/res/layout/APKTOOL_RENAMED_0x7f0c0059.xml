@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewAnimator android:id="@id/APKTOOL_RENAMED_0x7f0901be" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <fragment android:name="cn.manstep.phonemirrorBox.FirstPage" android:id="@id/APKTOOL_RENAMED_0x7f0900f2" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <fragment android:name="cn.manstep.phonemirrorBox.WaitFragment" android:id="@id/APKTOOL_RENAMED_0x7f0902ba" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <fragment android:name="cn.manstep.phonemirrorBox.AndroidMirrorFragment" android:id="@id/APKTOOL_RENAMED_0x7f090053" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <fragment android:name="cn.manstep.phonemirrorBox.AutoBoxMirrorFragment" android:id="@id/APKTOOL_RENAMED_0x7f09013a" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <fragment android:name="cn.manstep.phonemirrorBox.CarLifeDownload" android:id="@id/APKTOOL_RENAMED_0x7f090093" android:layout_width="match_parent" android:layout_height="match_parent" />
+</ViewAnimator>

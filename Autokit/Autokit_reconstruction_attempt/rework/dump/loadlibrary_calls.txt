@@ -1,0 +1,7 @@
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/jadx_real/sources/net/iwebrtc/audioprocess/sdk/AudioProcess.java:19:                System.loadLibrary("htlog");
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/jadx_real/sources/cn/manstep/phonemirrorBox/OpenH264Decoder.java:20:            System.loadLibrary("openH264decoder");
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/jadx_real/sources/cn/manstep/phonemirrorBox/util/JniTools.java:9:            System.loadLibrary("tools2.1");
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/jadx_real/sources/cn/manstep/phonemirrorBox/util/s.java:25:            System.loadLibrary("util");
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/jadx_real/sources/cn/manstep/phonemirrorBox/BoxInterface/BoxConnection.java:10:            System.loadLibrary("connection");
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/jadx_real/sources/cn/manstep/phonemirrorBox/Dtmf.java:9:            System.loadLibrary("dtmf");
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/jadx_real/sources/com/tencent/mars/xlog/Xlog.java:72:            System.loadLibrary("util");

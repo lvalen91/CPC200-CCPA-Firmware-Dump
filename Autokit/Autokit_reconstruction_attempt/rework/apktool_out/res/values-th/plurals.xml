@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="b">
+        <item quantity="one">การแจ้งเตือนใหม่ %d รายการ</item>
+        <item quantity="other">การแจ้งเตือนใหม่ %d รายการ</item>
+    </plurals>
+</resources>

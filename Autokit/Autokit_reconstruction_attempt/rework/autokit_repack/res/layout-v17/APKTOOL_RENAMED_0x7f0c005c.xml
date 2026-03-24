@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:id="@id/APKTOOL_RENAMED_0x7f090160" android:background="?APKTOOL_RENAMED_0x7f0400c9" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" android:baselineAligned="false" android:layoutDirection="ltr" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include android:id="@id/APKTOOL_RENAMED_0x7f090167" layout="@layout/APKTOOL_RENAMED_0x7f0c0064" />
+    <include layout="@layout/APKTOOL_RENAMED_0x7f0c005d" />
+    <include android:id="@id/APKTOOL_RENAMED_0x7f09016a" layout="@layout/APKTOOL_RENAMED_0x7f0c0064" />
+</LinearLayout>

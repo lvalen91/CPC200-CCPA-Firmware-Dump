@@ -1,0 +1,219 @@
+================================================================================
+cn.manstep.phonemirrorBox (AutoKit) — x86_64 RECONSTRUCTION BRIEFING
+================================================================================
+Date: 2026-03-24
+Source: Memory dump from ARM64 Android Automotive emulator
+
+PROBLEM: APK ships arm64-v8a, armeabi, x86 native libs. NO x86_64.
+The x86_64 emulator on Mac Pro cannot run the arm64 native code.
+
+================================================================================
+1. APK METADATA
+================================================================================
+Package: cn.manstep.phonemirrorBox
+App Label: AutoKit
+Version: 2025.03.19.1126 (code: 2112232222)
+SDK: min=16, target=29, compile=29
+Platform: Android 10 (Q)
+
+================================================================================
+2. DEX / PACKING
+================================================================================
+PACKER: 360/Qihoo Jiagu (libjiagu_64.so / libjiagu.so)
+  - DEX is NOT encrypted (same SHA256 in APK and VDEX)
+  - Jiagu does runtime anti-tamper/anti-debug, NOT dex encryption
+  - StubApp.java is the jiagu entry point (Application class)
+  - Real app classes loaded via DtcLoader at runtime
+
+STUB DEX (classes.dex in APK): 1,209,004 bytes, 4 classes
+  com.stub.StubApp, com.tianyu.util.DtcLoader, 
+  com.tianyu.util.Configuration, com.tianyu.util.a
+
+REAL DEX (dumped from rwxp memory): 3,550,576 bytes, 2,828 classes
+  -> File: dumped_real_classes.dex
+  -> Decompiled: smali_real/ (2828 .smali), jadx_real/ (1215 .java)
+
+EXTRA DEX: 93,504 bytes, 79 classes
+  -> File: dumped_extra.dex (smali_extra/)
+
+HWTouch.dex: 11,764 bytes (from assets/)
+  -> com.hewei.phonemirror.touch.HWTouch
+
+================================================================================
+3. NATIVE LIBRARIES — THE x86_64 GAP
+================================================================================
+
+Library             arm64-v8a   armeabi     x86        x86_64
+-------             ---------   -------     ---        ------
+libAudioProcess.so  2,645,680   MISSING     MISSING    MISSING  *** CRITICAL ***
+libconnection.so      100,504    83,692      91,820    MISSING
+libdtmf.so             83,904    58,900      75,304    MISSING
+libhtlog.so           103,840    66,756      99,416    MISSING
+libopenH264decoder    456,272   419,140     496,924    MISSING
+libtools2.1.so         26,912    26,432      22,272    MISSING
+libutil.so            797,176   399,392     874,540    MISSING
+
+ASSET LIBS (bundled, deployed at runtime):
+  libjiagu.so (arm32), libjiagu_a64.so (arm64)
+  libjiagu_x86.so, libjiagu_x64.so (x86_64!) <-- jiagu HAS x64
+  libby265n.so (arm), libby265n_x86.so
+  libscreencap*.so (various API levels, arm + x86)
+
+KEY FINDING: libjiagu_x64.so EXISTS in assets — jiagu packer has x86_64.
+The blocking libs are the 6 app-specific ones, especially libAudioProcess.
+
+================================================================================
+4. NATIVE METHOD MAP (53 total native methods)
+================================================================================
+
+libconnection.so (JNI_OnLoad — dynamic registration):
+  BoxConnection.init()I
+  BoxConnection.openDevice(II)I
+  BoxConnection.bulkTransferIn([BII)I
+  BoxConnection.bulkTransferOut([BII)I
+  BoxConnection.getDeviceList([Ljava/lang/String;)I
+  BoxConnection.getError(I)Ljava/lang/String; (static)
+  BoxConnection.release()V
+  
+libtools2.1.so (JNI_OnLoad — dynamic registration):
+  JniTools.amplifyPcmData([BIII)V
+  JniTools.box(Ljava/lang/String;)Z
+  JniTools.check()I
+  JniTools.checkSignature(Ljava/lang/String;)Z
+  JniTools.mono2Stereo([BII[B)V
+  JniTools.open(Ljava/lang/String;)Z
+  JniTools.test()V
+
+libopenH264decoder.so (static JNI names):
+  OpenH264Decoder.nativeInit()V
+  OpenH264Decoder.nativeDestroy()V
+  OpenH264Decoder.decodeFrameOffset([BII[BI)I  [NOTE: no decodeFrame in x86]
+  OpenH264Decoder.getWidth()I
+  OpenH264Decoder.getHeight()I
+
+libdtmf.so (static JNI name):
+  Dtmf.dtmfDoAec([B)I
+
+libhtlog.so (static JNI names):
+  AudioProcess.create()I
+  AudioProcess.destroy()Z
+  AudioProcess.destroyAgc(J)Z
+  AudioProcess.init()I
+  AudioProcess.initAgc(II)J
+  AudioProcess.processData([BI[BI[B)Z
+  AudioProcess.processDataAgc(J[BI)Z
+  AudioProcess.set_config(II)I
+
+libutil.so (Tencent Mars XLog — JNI_OnLoad + static):
+  Xlog.newXlogInstance(XLogConfig)J
+  Xlog.getXlogInstance(String)J
+  Xlog.releaseXlogInstance(String)V
+  Xlog.appenderOpen(XLogConfig)V
+  Xlog.appenderClose()V
+  Xlog.appenderFlush(JZ)V
+  Xlog.logWrite(XLoggerInfo, String)V
+  Xlog.logWrite2(JIStringStringStringIIJJString)V
+  Xlog.getLogLevel(J)I
+  Xlog.setLogLevel(JI)V
+  Xlog.setAppenderMode(JI)V
+  Xlog.setConsoleLogOpen(JZ)V
+  Xlog.setMaxFileSize(JJ)V
+  Xlog.setMaxAliveTime(JJ)V
+
+libAudioProcess.so (arm64 ONLY — static JNI names):
+  NativeAdapter.stringFromJNI()  
+  NativeAdapter.initializeEngine()
+  NativeAdapter.notifyStart()
+  NativeAdapter.notifyStop()
+  NativeAdapter.processData()
+  NativeAdapter.processDataSingle()
+  NEEDED: liblog.so, libm.so, libdl.so, libc.so, libstdc++.so
+
+NOTE: Many Activity.onCreate and onRequestPermissionsResult are 
+marked native — these are jiagu hooks that wrap the real implementations.
+They are NOT real native methods; jiagu registers them dynamically to 
+intercept lifecycle calls for anti-tamper checks.
+
+================================================================================
+5. RECONSTRUCTION STRATEGY FOR x86_64
+================================================================================
+
+TIER 1 — Easy (open source, rebuild from source):
+  * libopenH264decoder.so — Cisco OpenH264 (BSD). Rebuild with x86_64 NDK.
+  * libutil.so — Tencent Mars XLog. GitHub: Tencent/mars. Rebuild.
+  * libhtlog.so — WebRTC audio processing. Build from WebRTC source.
+
+TIER 2 — Medium (x86 exists, try recompile or thunk):
+  * libconnection.so — USB bulk transfer wrapper. x86 version exists.
+    Try: load x86 .so with NativeBridge/houdini on x86_64 emu.
+    Or: rewrite JNI shim around Android USB Host API.
+  * libdtmf.so — DTMF + AEC. x86 version exists.
+  * libtools2.1.so — Utility (PCM amplify, mono2stereo, signature check).
+    x86 version exists. Signature check may need patching.
+
+TIER 3 — Hard (arm64-only, proprietary):
+  * libAudioProcess.so — com.xtour.audioprocess. 2.5MB. WebRTC-based
+    audio engine (AEC, AGC, noise suppression). Only arm64.
+    NOT loaded at runtime in current session — may be optional or
+    activated only during active calls.
+    Strategy: stub it out (return success) or replace with standard
+    WebRTC audio processing module.
+
+JIAGU BYPASS:
+  libjiagu_x64.so exists in assets/ — the packer already supports x86_64.
+  But the real DEX is not encrypted, so you can:
+  1. Replace StubApp with direct app launch
+  2. Use dumped_real_classes.dex as the main classes.dex
+  3. Strip jiagu entirely
+
+================================================================================
+6. SHARED PREFERENCES (runtime config)
+================================================================================
+BoxVersion: BOX:2025.10.15.1127CAYW
+UiVersion: 37
+WirelessConnectMode: 0
+UsedWirelessMode: true
+mediaDelay: 300
+BootDelay: 0
+density: 3.333
+MicGain: 0
+ATP: true (Android Touch Protocol)
+
+================================================================================
+7. FILES IN THIS DUMP
+================================================================================
+base.apk                  — Original APK (9.6MB)
+base.vdex                 — VDEX from device
+base.odex                 — ODEX from device
+classes.dex               — Stub DEX from VDEX
+HWTouch.dex               — Secondary DEX from assets
+dumped_real_classes.dex    — *** UNPACKED REAL DEX (3.5MB, 2828 classes) ***
+dumped_stub_classes.dex    — Stub (same as classes.dex)
+dumped_extra.dex           — Extra runtime DEX (79 classes)
+smali_real/               — Full smali of real DEX
+smali_extra/              — Smali of extra DEX
+smali/                    — Smali of stub DEX
+smali_hwtouch/            — Smali of HWTouch.dex
+jadx_real/                — Decompiled Java source (1215 files)
+jadx_out/                 — Decompiled Java of stub
+apktool_out/              — Full apktool decode (manifest, resources, smali)
+native_libs/lib/          — All native .so files (arm64, armeabi, x86)
+native_libs/assets/       — Asset .so files (jiagu, screencap, by265n)
+dump/symbols_all.txt      — Dynamic symbol tables
+dump/full_elf_info.txt    — Complete ELF analysis
+dump/native_lib_analysis.txt — NEEDED libs, exports per arch
+dump/libAudioProcess_analysis.txt — Deep analysis of arm64-only lib
+dump/native_methods.txt   — All 53 native method declarations
+dump/jni_wrapper_classes.txt — Java JNI wrapper source
+dump/loadlibrary_calls.txt — System.loadLibrary calls
+dump/dynamic_jni_classes.txt — Dynamic JNI registration analysis
+dump/strings/             — String dumps from all .so files
+dump/AndroidManifest.xml  — Decoded manifest
+dump/AndroidManifest_tree.txt — aapt xmltree output
+dump/badging.txt          — aapt badging
+dump/resources.txt        — Resource table dump
+dump/dumpsys_package.txt  — Package manager state
+dump/dumpsys_services.txt — Running services
+dump/dumpsys_activity.txt — Activity state
+dump/app_data/            — Runtime data (shared_prefs, jiagu, files)
+dump/dexfinder.c          — Memory DEX scanner source

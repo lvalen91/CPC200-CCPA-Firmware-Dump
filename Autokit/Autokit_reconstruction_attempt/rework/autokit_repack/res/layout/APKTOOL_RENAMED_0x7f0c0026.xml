@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:background="#eceeef" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView android:textColor="@color/APKTOOL_RENAMED_0x7f06002c" android:id="@id/APKTOOL_RENAMED_0x7f09028d" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="音频参数" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" />
+    <View android:id="@id/APKTOOL_RENAMED_0x7f0902a6" android:background="#dedfdf" android:layout_width="match_parent" android:layout_height="1.0dp" android:layout_marginTop="5.0dp" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f09028d" />
+    <ScrollView android:id="@id/APKTOOL_RENAMED_0x7f0901f7" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" app:APKTOOL_RENAMED_0x7f0401e3="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f0902a6">
+        <TableLayout android:id="@id/APKTOOL_RENAMED_0x7f09023c" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

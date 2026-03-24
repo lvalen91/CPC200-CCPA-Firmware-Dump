@@ -1,0 +1,180 @@
+ACTIVITY MANAGER SERVICES (dumpsys activity services)
+  User 10 active services:
+  * ServiceRecord{7fe1f01 u10 cn.manstep.phonemirrorBox/.AutoStartService c:cn.manstep.phonemirrorBox}
+    intent={cmp=cn.manstep.phonemirrorBox/.AutoStartService}
+    packageName=cn.manstep.phonemirrorBox
+    processName=cn.manstep.phonemirrorBox
+    targetSdkVersion=29
+    baseDir=/data/app/~~96FLiqmwo2Ex6jLhe_0kvg==/cn.manstep.phonemirrorBox-TB3ZOPXKE3YAjSFoO8cGdQ==/base.apk
+    dataDir=/data/user/10/cn.manstep.phonemirrorBox
+    app=ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}
+    useNewWiuLogic_forCapabilities()=false
+    useNewWiuLogic_forStart()=false
+    useNewBfslLogic()=false
+    mAllowWiu_noBinding=PROC_STATE_TOP
+    mAllowWiu_inBindService=PROC_STATE_TOP
+    mAllowWiu_byBindings=DENIED
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=PROC_STATE_TOP
+    getFgsAllowWiu_forStart=PROC_STATE_TOP
+    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP
+    allowUiJobScheduling=true
+    recentCallingPackage=cn.manstep.phonemirrorBox
+    recentCallingUid=1010252
+    mAllowStart_noBinding=PROC_STATE_TOP
+    mAllowStart_inBindService=PROC_STATE_TOP
+    mAllowStart_byBindings=DENIED
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=PROC_STATE_TOP
+    getFgsAllowStart=PROC_STATE_TOP
+    startForegroundCount=1
+    infoAllowStartForeground=[callingPackage: cn.manstep.phonemirrorBox; callingUid: 1010252; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=cn.manstep.phonemirrorBox/.AutoStartService }; code:PROC_STATE_TOP; tempAllowListReason:<MediaSessionRecord:android.support.v4.media.session.command.GET_EXTRA_BINDER,reasonCode:MEDIA_SESSION_CALLBACK,duration:10000,callingUid:1000>; targetSdkVersion:29; callerTargetSdkVersion:29; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+    isForeground=true foregroundId=1 types=0x00000000 foregroundNoti=Notification(channel=ForegroundService shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=NO_CLEAR|FOREGROUND_SERVICE color=0x00000000 vis=PRIVATE)
+    createTime=-9m46s631ms startingBgTimeout=--
+    lastActivity=-9m45s224ms restartTime=-9m46s631ms createdFromFg=true
+    startRequested=true delayedStop=false stopIfKilled=false callStart=true lastStartId=2
+ startCommandResult=1
+    Bindings:
+    * IntentBindRecord{7d7712 CREATE}:
+      intent={cmp=cn.manstep.phonemirrorBox/.AutoStartService}
+      binder=android.os.BinderProxy@99f5ee3
+      requested=true received=true hasBound=true doRebind=false
+      * Client AppBindRecord{e56c0e0 ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}}
+        Per-process Connections:
+          ConnectionRecord{fe8cce8 u10 CR cn.manstep.phonemirrorBox/.AutoStartService:@b11760b flags=0x1}
+    All Connections:
+      ConnectionRecord{fe8cce8 u10 CR cn.manstep.phonemirrorBox/.AutoStartService:@b11760b flags=0x1}
+
+  * ServiceRecord{10d4f7e u10 cn.manstep.phonemirrorBox/.service.BackgroundService c:cn.manstep.phonemirrorBox}
+    intent={cmp=cn.manstep.phonemirrorBox/.service.BackgroundService}
+    packageName=cn.manstep.phonemirrorBox
+    processName=cn.manstep.phonemirrorBox
+    targetSdkVersion=29
+    baseDir=/data/app/~~96FLiqmwo2Ex6jLhe_0kvg==/cn.manstep.phonemirrorBox-TB3ZOPXKE3YAjSFoO8cGdQ==/base.apk
+    dataDir=/data/user/10/cn.manstep.phonemirrorBox
+    app=ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}
+    useNewWiuLogic_forCapabilities()=false
+    useNewWiuLogic_forStart()=false
+    useNewBfslLogic()=false
+    mAllowWiu_noBinding=PROC_STATE_TOP
+    mAllowWiu_inBindService=PROC_STATE_TOP
+    mAllowWiu_byBindings=PROC_STATE_TOP
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=PROC_STATE_TOP
+    getFgsAllowWiu_forStart=PROC_STATE_TOP
+    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP
+    allowUiJobScheduling=true
+    recentCallingPackage=cn.manstep.phonemirrorBox
+    recentCallingUid=1010252
+    mAllowStart_noBinding=PROC_STATE_TOP
+    mAllowStart_inBindService=PROC_STATE_TOP
+    mAllowStart_byBindings=PROC_STATE_TOP
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=PROC_STATE_TOP
+    getFgsAllowStart=PROC_STATE_TOP
+    startForegroundCount=1
+    infoAllowStartForeground=[callingPackage: cn.manstep.phonemirrorBox; callingUid: 1010252; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=cn.manstep.phonemirrorBox/.service.BackgroundService }; code:PROC_STATE_TOP; tempAllowListReason:<MediaSessionRecord:android.support.v4.media.session.command.GET_EXTRA_BINDER,reasonCode:MEDIA_SESSION_CALLBACK,duration:10000,callingUid:1000>; targetSdkVersion:29; callerTargetSdkVersion:29; startForegroundCount:1; bindFromPackage:null: isBindService:false]
+    isForeground=true foregroundId=1 types=0x00000000 foregroundNoti=Notification(channel=ForegroundService shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=NO_CLEAR|FOREGROUND_SERVICE color=0x00000000 vis=PRIVATE)
+    createTime=-9m46s630ms startingBgTimeout=--
+    lastActivity=-9m45s228ms restartTime=-9m46s630ms createdFromFg=true
+    startRequested=true delayedStop=false stopIfKilled=false callStart=true lastStartId=1
+ startCommandResult=1
+    Bindings:
+    * IntentBindRecord{6f48f99 CREATE}:
+      intent={cmp=cn.manstep.phonemirrorBox/.service.BackgroundService}
+      binder=android.os.BinderProxy@337f25e
+      requested=true received=true hasBound=true doRebind=false
+      * Client AppBindRecord{d5f063f ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}}
+        Per-process Connections:
+          ConnectionRecord{4bead39 u10 CR cn.manstep.phonemirrorBox/.service.BackgroundService:@e65100 flags=0x1}
+    All Connections:
+      ConnectionRecord{4bead39 u10 CR cn.manstep.phonemirrorBox/.service.BackgroundService:@e65100 flags=0x1}
+
+  * ServiceRecord{3aae58a u10 cn.manstep.phonemirrorBox/.ModeChangeService c:cn.manstep.phonemirrorBox}
+    intent={cmp=cn.manstep.phonemirrorBox/.ModeChangeService}
+    packageName=cn.manstep.phonemirrorBox
+    processName=cn.manstep.phonemirrorBox
+    targetSdkVersion=29
+    baseDir=/data/app/~~96FLiqmwo2Ex6jLhe_0kvg==/cn.manstep.phonemirrorBox-TB3ZOPXKE3YAjSFoO8cGdQ==/base.apk
+    dataDir=/data/user/10/cn.manstep.phonemirrorBox
+    app=ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}
+    useNewWiuLogic_forCapabilities()=false
+    useNewWiuLogic_forStart()=false
+    useNewBfslLogic()=false
+    mAllowWiu_noBinding=DENIED
+    mAllowWiu_inBindService=PROC_STATE_TOP
+    mAllowWiu_byBindings=DENIED
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=DENIED
+    getFgsAllowWiu_forStart=PROC_STATE_TOP
+    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP
+    allowUiJobScheduling=false
+    recentCallingPackage=cn.manstep.phonemirrorBox
+    recentCallingUid=1010252
+    mAllowStart_noBinding=DENIED
+    mAllowStart_inBindService=PROC_STATE_TOP
+    mAllowStart_byBindings=DENIED
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=DENIED
+    getFgsAllowStart=PROC_STATE_TOP
+    startForegroundCount=0
+    infoAllowStartForeground=[callingPackage: cn.manstep.phonemirrorBox; callingUid: 1010252; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=cn.manstep.phonemirrorBox/.ModeChangeService }; code:PROC_STATE_TOP; tempAllowListReason:<MediaSessionRecord:android.support.v4.media.session.command.GET_EXTRA_BINDER,reasonCode:MEDIA_SESSION_CALLBACK,duration:10000,callingUid:1000>; targetSdkVersion:29; callerTargetSdkVersion:29; startForegroundCount:0; bindFromPackage:null: isBindService:true]
+    createTime=-9m46s620ms startingBgTimeout=--
+    lastActivity=-9m46s620ms restartTime=-9m46s620ms createdFromFg=true
+    Bindings:
+    * IntentBindRecord{9170b0c CREATE}:
+      intent={cmp=cn.manstep.phonemirrorBox/.ModeChangeService}
+      binder=android.os.BinderProxy@b758c55
+      requested=true received=true hasBound=true doRebind=false
+      * Client AppBindRecord{8cd66a ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}}
+        Per-process Connections:
+          ConnectionRecord{c53e3f5 u10 CR cn.manstep.phonemirrorBox/.ModeChangeService:@ddf7d2c flags=0x1}
+    All Connections:
+      ConnectionRecord{c53e3f5 u10 CR cn.manstep.phonemirrorBox/.ModeChangeService:@ddf7d2c flags=0x1}
+
+  * ServiceRecord{9cb73da u10 cn.manstep.phonemirrorBox/.ForegroundService c:cn.manstep.phonemirrorBox}
+    intent={cmp=cn.manstep.phonemirrorBox/.ForegroundService}
+    packageName=cn.manstep.phonemirrorBox
+    processName=cn.manstep.phonemirrorBox
+    targetSdkVersion=29
+    baseDir=/data/app/~~96FLiqmwo2Ex6jLhe_0kvg==/cn.manstep.phonemirrorBox-TB3ZOPXKE3YAjSFoO8cGdQ==/base.apk
+    dataDir=/data/user/10/cn.manstep.phonemirrorBox
+    app=ProcessRecord{a90f586 3622:cn.manstep.phonemirrorBox/u10a252}
+    useNewWiuLogic_forCapabilities()=false
+    useNewWiuLogic_forStart()=false
+    useNewBfslLogic()=false
+    mAllowWiu_noBinding=PROC_STATE_TOP
+    mAllowWiu_inBindService=DENIED
+    mAllowWiu_byBindings=DENIED
+    getFgsAllowWiu_legacy=PROC_STATE_TOP
+    getFgsAllowWiu_new=PROC_STATE_TOP
+    getFgsAllowWiu_forStart=PROC_STATE_TOP
+    getFgsAllowWiu_forCapabilities=PROC_STATE_TOP
+    allowUiJobScheduling=false
+    recentCallingPackage=cn.manstep.phonemirrorBox
+    recentCallingUid=1010252
+    mAllowStart_noBinding=PROC_STATE_TOP
+    mAllowStart_inBindService=DENIED
+    mAllowStart_byBindings=DENIED
+    getFgsAllowStart_legacy=PROC_STATE_TOP
+    getFgsAllowStart_new=PROC_STATE_TOP
+    getFgsAllowStart=PROC_STATE_TOP
+    startForegroundCount=1
+    infoAllowStartForeground=[callingPackage: cn.manstep.phonemirrorBox; callingUid: 1010252; uidState: TOP ; uidBFSL: [BFSL]; intent: Intent { cmp=cn.manstep.phonemirrorBox/.ForegroundService }; code:PROC_STATE_TOP; tempAllowListReason:<null>; targetSdkVersion:29; callerTargetSdkVersion:29; startForegroundCount:0; bindFromPackage:null: isBindService:false]
+    isForeground=true foregroundId=1 types=0x00000000 foregroundNoti=Notification(channel=ForegroundService shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=NO_CLEAR|FOREGROUND_SERVICE color=0x00000000 vis=PRIVATE)
+    createTime=-8m44s724ms startingBgTimeout=--
+    lastActivity=-8m44s719ms restartTime=-8m44s723ms createdFromFg=true
+    startRequested=true delayedStop=false stopIfKilled=false callStart=true lastStartId=2
+ startCommandResult=1
+
+  Connection bindings to services:
+  * ConnectionRecord{4bead39 u10 CR cn.manstep.phonemirrorBox/.service.BackgroundService:@e65100 flags=0x1}
+    binding=AppBindRecord{d5f063f cn.manstep.phonemirrorBox/.service.BackgroundService:cn.manstep.phonemirrorBox}
+    conn=android.os.BinderProxy@e65100 flags=0x1
+  * ConnectionRecord{fe8cce8 u10 CR cn.manstep.phonemirrorBox/.AutoStartService:@b11760b flags=0x1}
+    binding=AppBindRecord{e56c0e0 cn.manstep.phonemirrorBox/.AutoStartService:cn.manstep.phonemirrorBox}
+    conn=android.os.BinderProxy@b11760b flags=0x1
+  * ConnectionRecord{c53e3f5 u10 CR cn.manstep.phonemirrorBox/.ModeChangeService:@ddf7d2c flags=0x1}
+    binding=AppBindRecord{8cd66a cn.manstep.phonemirrorBox/.ModeChangeService:cn.manstep.phonemirrorBox}
+    activity=ActivityRecord{f7917ba u10 cn.manstep.phonemirrorBox/.MainActivity t1000046}
+    conn=android.os.BinderProxy@ddf7d2c flags=0x1

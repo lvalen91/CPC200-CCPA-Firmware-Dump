@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout android:layout_width="wrap_content" android:layout_height="wrap_content" app:APKTOOL_RENAMED_0x7f04013e="@null" app:APKTOOL_RENAMED_0x7f040194="false" app:APKTOOL_RENAMED_0x7f0402c8="?APKTOOL_RENAMED_0x7f0402ca" app:APKTOOL_RENAMED_0x7f0402cb="@null" style="@style/APKTOOL_RENAMED_0x7f100336"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditText android:id="@id/APKTOOL_RENAMED_0x7f09016e" android:paddingBottom="6.0dp" android:layout_width="96.0dp" android:layout_height="80.0dp" android:textCursorDrawable="@drawable/APKTOOL_RENAMED_0x7f0800be" style="@style/APKTOOL_RENAMED_0x7f10033f" />
+    <TextView android:textAppearance="?APKTOOL_RENAMED_0x7f040328" android:id="@id/APKTOOL_RENAMED_0x7f090168" android:focusable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+</com.google.android.material.textfield.TextInputLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="b">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050001">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050002">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050003">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050004">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050005">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050006">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050007">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050008">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050009">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f05000a">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f05000b">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f05000c">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f05000d">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f05000e">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f05000f">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050010">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050011">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050012">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050013">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050014">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050015">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050016">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050017">true</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050018">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f050019">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f05001a">false</bool>
+    <bool name="APKTOOL_RENAMED_0x7f05001b">true</bool>
+</resources>

@@ -1,0 +1,53 @@
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/net/iwebrtc/audioprocess/sdk/AudioProcess.smali:166:.method private native create()I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/net/iwebrtc/audioprocess/sdk/AudioProcess.smali:396:.method public native destroy()Z
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/net/iwebrtc/audioprocess/sdk/AudioProcess.smali:399:.method public native destroyAgc(J)Z
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/net/iwebrtc/audioprocess/sdk/AudioProcess.smali:402:.method public native init()I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/net/iwebrtc/audioprocess/sdk/AudioProcess.smali:405:.method public native initAgc(II)J
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/net/iwebrtc/audioprocess/sdk/AudioProcess.smali:408:.method public native processData([BI[BI[B)Z
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/net/iwebrtc/audioprocess/sdk/AudioProcess.smali:411:.method public native processDataAgc(J[BI)Z
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/net/iwebrtc/audioprocess/sdk/AudioProcess.smali:414:.method public native set_config(II)I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/KeyLearnActivity.smali:1677:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/AdvancedSettingsActivity.smali:40:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/EmptyActivity.smali:105:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/LauncherActivity.smali:94:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/util/JniTools.smali:67:.method public static native amplifyPcmData([BIII)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/util/JniTools.smali:70:.method public static native box(Ljava/lang/String;)Z
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/util/JniTools.smali:73:.method public static native check()I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/util/JniTools.smali:76:.method public static native checkSignature(Ljava/lang/String;)Z
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/util/JniTools.smali:79:.method public static native mono2Stereo([BII[B)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/util/JniTools.smali:82:.method public static native open(Ljava/lang/String;)Z
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/util/JniTools.smali:85:.method public static native test()V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/MainActivity.smali:5328:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/MainActivity.smali:6124:.method public native onRequestPermissionsResult(I[Ljava/lang/String;[I)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/BoxInterface/BoxConnection.smali:67:.method public static native getError(I)Ljava/lang/String;
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/BoxInterface/BoxConnection.smali:133:.method public native bulkTransferIn([BII)I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/BoxInterface/BoxConnection.smali:136:.method public native bulkTransferOut([BII)I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/BoxInterface/BoxConnection.smali:139:.method public native getDeviceList([Ljava/lang/String;)I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/BoxInterface/BoxConnection.smali:142:.method public native init()I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/BoxInterface/BoxConnection.smali:145:.method public native openDevice(II)I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/BoxInterface/BoxConnection.smali:162:.method public native release()V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/AdjustSizeActivity.smali:138:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/CheckActivity.smali:182:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/Dtmf.smali:53:.method public native dtmfDoAec([B)I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/Main1Activity.smali:238:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/LanguageSettingsActivity.smali:135:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/OpenH264Decoder.smali:83:.method private native nativeDestroy()V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/OpenH264Decoder.smali:86:.method private native nativeInit()V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/OpenH264Decoder.smali:291:.method public native decodeFrameOffset([BII[BI)I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/OpenH264Decoder.smali:294:.method public native getHeight()I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/OpenH264Decoder.smali:297:.method public native getWidth()I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/cn/manstep/phonemirrorBox/AutoKitHideSettingsActivity.smali:3238:.method protected native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/yalantis/ucrop/UCropActivity.smali:2048:.method public native onCreate(Landroid/os/Bundle;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:72:.method private static native appenderOpen(Lcom/tencent/mars/xlog/Xlog$XLogConfig;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:81:.method public static native logWrite(Lcom/tencent/mars/xlog/Xlog$XLoggerInfo;Ljava/lang/String;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:113:.method public static native logWrite2(JILjava/lang/String;Ljava/lang/String;Ljava/lang/String;IIJJLjava/lang/String;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:169:.method public native appenderClose()V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:172:.method public native appenderFlush(JZ)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:257:.method public native getLogLevel(J)I
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:260:.method public native getXlogInstance(Ljava/lang/String;)J
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:449:.method public native newXlogInstance(Lcom/tencent/mars/xlog/Xlog$XLogConfig;)J
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:496:.method public native releaseXlogInstance(Ljava/lang/String;)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:499:.method public native setAppenderMode(JI)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:502:.method public native setConsoleLogOpen(JZ)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:505:.method public native setMaxAliveTime(JJ)V
+/Volumes/stuff/macbook/misc/CPC200-CCPA/rework/smali_real/com/tencent/mars/xlog/Xlog.smali:508:.method public native setMaxFileSize(JJ)V

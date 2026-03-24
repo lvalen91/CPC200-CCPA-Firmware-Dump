@@ -1,0 +1,815 @@
+qQwT<
+-O%a
+^$E_K
+{Lw`
+n`/F
+__cxa_finalize
+__cxa_atexit
+JNI_OnLoad
+JNI_OnUnLoad
+__stack_chk_fail
+libusb_attach_kernel_driver
+libusb_bulk_transfer
+libusb_claim_interface
+libusb_close
+libusb_detach_kernel_driver
+libusb_exit
+libusb_free_config_descriptor
+libusb_free_device_list
+libusb_get_active_config_descriptor
+libusb_get_device_descriptor
+libusb_get_device_list
+libusb_init
+libusb_kernel_driver_active
+libusb_open
+libusb_release_interface
+libusb_strerror
+vsnprintf
+__android_log_write
+atoi
+calloc
+clock_gettime
+getenv
+libusb_alloc_streams
+libusb_clear_halt
+libusb_control_transfer
+libusb_dev_mem_alloc
+libusb_dev_mem_free
+libusb_error_name
+libusb_free_ss_endpoint_companion_descriptor
+libusb_free_streams
+libusb_get_bus_number
+libusb_get_configuration
+libusb_get_device
+libusb_get_device_address
+libusb_get_device_speed
+libusb_get_max_alt_packet_size
+libusb_get_max_iso_packet_size
+libusb_get_max_packet_size
+libusb_get_parent
+libusb_get_port_number
+libusb_get_port_numbers
+libusb_get_port_path
+libusb_get_ss_endpoint_companion_descriptor
+libusb_get_version
+libusb_has_capability
+libusb_init_context
+libusb_lock_events
+libusb_open_device_with_vid_pid
+libusb_ref_device
+libusb_reset_device
+libusb_set_auto_detach_kernel_driver
+libusb_set_configuration
+libusb_set_debug
+libusb_set_interface_alt_setting
+libusb_set_log_cb
+libusb_set_option
+libusb_unlock_events
+libusb_unref_device
+libusb_wrap_sys_device
+malloc
+memmove
+pthread_getspecific
+pthread_mutex_destroy
+pthread_mutex_init
+pthread_mutex_lock
+pthread_mutex_unlock
+realloc
+libusb_free_bos_descriptor
+libusb_free_container_id_descriptor
+libusb_free_interface_association_descriptors
+libusb_free_platform_descriptor
+libusb_free_ss_usb_device_capability_descriptor
+libusb_free_usb_2_0_extension_descriptor
+libusb_get_active_interface_association_descriptors
+libusb_get_bos_descriptor
+libusb_get_config_descriptor
+libusb_get_config_descriptor_by_value
+libusb_get_container_id_descriptor
+libusb_get_interface_association_descriptors
+libusb_get_platform_descriptor
+libusb_get_ss_usb_device_capability_descriptor
+libusb_get_string_descriptor_ascii
+libusb_get_usb_2_0_extension_descriptor
+memcpy
+libusb_hotplug_deregister_callback
+libusb_hotplug_get_user_data
+libusb_hotplug_register_callback
+libusb_alloc_transfer
+libusb_cancel_transfer
+libusb_event_handler_active
+libusb_event_handling_ok
+libusb_free_pollfds
+libusb_free_transfer
+libusb_get_next_timeout
+libusb_get_pollfds
+libusb_handle_events
+libusb_handle_events_completed
+libusb_handle_events_locked
+libusb_handle_events_timeout
+libusb_handle_events_timeout_completed
+libusb_interrupt_event_handler
+libusb_lock_event_waiters
+libusb_pollfds_handle_timeouts
+libusb_set_pollfd_notifiers
+libusb_submit_transfer
+libusb_transfer_get_stream_id
+libusb_transfer_set_stream_id
+libusb_try_lock_events
+libusb_unlock_event_waiters
+libusb_wait_for_event
+pthread_cond_broadcast
+pthread_cond_destroy
+pthread_cond_wait
+pthread_key_create
+pthread_key_delete
+pthread_mutex_trylock
+pthread_setspecific
+libusb_interrupt_transfer
+libusb_setlocale
+strlen
+tolower
+__errno
+__open_2
+__vsnprintf_chk
+asprintf
+closedir
+ioctl
+lseek
+memcmp
+memset
+mmap
+munmap
+nanosleep
+opendir
+read
+readdir
+readlink
+sscanf
+statfs
+strchr
+strcmp
+strdup
+strncmp
+strrchr
+strtol
+uname
+fcntl
+pipe2
+poll
+gettid
+pthread_cond_init
+pthread_cond_timedwait
+pthread_self
+abort
+pthread_create
+pthread_once
+liblog.so
+libc.so
+libm.so
+libstdc++.so
+libdl.so
+_edata
+__bss_start
+__bss_start__
+__bss_end__
+__end__
+_end
+libconnection.so
+LIBC
+M@8S
++ih8J
+*c`'
+K)}@
+db@9ej@9b
+e@9J
+Kb~@
+Rj)
+h@9B
+db@9ej@9B
+3@9B
+)@9i
+R+i*
+j@9A
+Th.@
++ih8J
+@9?#
+M@8
+$@xJ
+3@9B
+RLyhx
+lj(8
+#@9Z
+N@8(
+h"@9h
+"B9(
+"B9B
+hBG9H
+*`NA
+i@9"
+id8)
+jh8?)
+f@9"
+#7k`
+bG9)
+(?A8
+h?A8
+a@9f
+5h"@
+&A9I
+5i"@
+(%A9
+4h"@
+Th"@
+id8)
+9h&B9A
+9hZ@
+i&B9{
+Th&@
+5h*B9
+hsA9
+(aG9
+5h&A9h
+#A)"
++ih8J
+Th"@
+Rh&@
+h*B9
+9h>@
+9h&B9
+9hZ@
+Th"B9
+5h&@
+*U|@
+h*B9
+Th&@
+d*B9
+Tv>@
+Tu>@
+Th&@
+4h&@
+Ti&@
+TiZ@
+Ti&@
+4h&@
+Th&@
+Th&@
+Th&@
+Th&@
+4h&@
+4h&@
+Th&@
+Th&@
+Th&@
+Th&@
+Th&@
+Th&@
+4h&@
+Th&@
+Th&@
+cn/manstep/phonemirrorBox/BoxInterface/BoxConnection
+release
+getDeviceList
+([Ljava/lang/String;)I
+openDevice
+(II)I
+getError
+(I)Ljava/lang/String;
+bulkTransferIn
+([BII)I
+bulkTransferOut
+%d,%d
+Unknown error
+ #=&),/258discovered_devs_append
+need to increase capacity
+usbi_sanitize_device
+invalid device descriptor
+too many configurations
+zero configurations, maybe an unauthorized device
+libusb_get_device_list
+libusb_get_port_numbers
+port numbers array is too small
+libusb_get_max_packet_size
+could not retrieve active config descriptor
+libusb_get_max_iso_packet_size
+libusb_get_max_alt_packet_size
+libusb_unref_device
+destroy device %d.%d
+libusb_wrap_sys_device
+wrap_sys_device 0x%lx
+wrap_sys_device 0x%lx returns %d
+libusb_open
+open %d.%d
+open %d.%d returns %d
+libusb_close
+libusb_get_configuration
+falling back to control message
+zero bytes returned in ctrl transfer?
+control failed, error %d
+active config %u
+libusb_set_configuration
+configuration %d
+libusb_claim_interface
+interface %d
+libusb_release_interface
+libusb_set_interface_alt_setting
+interface %d altsetting %d
+libusb_clear_halt
+endpoint 0x%x
+libusb_reset_device
+libusb_alloc_streams
+streams %u eps %d
+libusb_free_streams
+libusb_kernel_driver_active
+libusb_detach_kernel_driver
+libusb_attach_kernel_driver
+libusb_init_context
+reusing default context
+LIBUSB_DEBUG
+created default context
+libusb v%u.%u.%u.%u%s
+installing new context as implicit default
+libusb_exit
+no default context, not initialized?
+not destroying default context
+device %d.%d still referenced
+application left some devices open
+LIBUSB_ERROR_IO
+LIBUSB_ERROR_INVALID_PARAM
+LIBUSB_ERROR_ACCESS
+LIBUSB_ERROR_NO_DEVICE
+LIBUSB_ERROR_NOT_FOUND
+LIBUSB_ERROR_BUSY
+LIBUSB_ERROR_TIMEOUT
+LIBUSB_ERROR_OVERFLOW
+LIBUSB_ERROR_PIPE
+LIBUSB_ERROR_INTERRUPTED
+LIBUSB_ERROR_NO_MEM
+LIBUSB_ERROR_NOT_SUPPORTED
+LIBUSB_ERROR_OTHER
+LIBUSB_TRANSFER_ERROR
+LIBUSB_TRANSFER_TIMED_OUT
+LIBUSB_TRANSFER_CANCELLED
+LIBUSB_TRANSFER_STALL
+LIBUSB_TRANSFER_NO_DEVICE
+LIBUSB_TRANSFER_OVERFLOW
+LIBUSB_SUCCESS / LIBUSB_TRANSFER_COMPLETED
+**UNKNOWN**
+usbi_get_context
+API misuse! Using non-default context as implicit default.
+do_close
+Device handle closed while transfer was still being processed, but the device is still connected as far as we know
+A cancellation for an in-flight transfer hasn't completed but closing the device handle
+A cancellation hasn't even been scheduled on the transfer for which the device is closing
+Removed transfer %p from the in-flight list because device handle %p closed
+https://libusb.info
+warning
+debug
+unknown
+[timestamp] [threadID] facility level [function call] <message>
+--------------------------------------------------------------------------------
+[%2ld.%06ld] [%08x] libusb: %s [%s] 
+libusb
+libusb_get_device_descriptor
+libusb_get_config_descriptor
+libusb_get_config_descriptor_by_value
+value %u
+libusb_get_ss_endpoint_companion_descriptor
+invalid descriptor length %u
+invalid ss-ep-comp-desc length %u
+short ss-ep-comp-desc read %d/%u
+bbbbw
+libusb_get_bos_descriptor
+failed to read BOS (%d)
+short BOS read %d/%d
+found BOS descriptor: size %u bytes, %u capabilities
+short BOS read %d/%u
+libusb_get_usb_2_0_extension_descriptor
+unexpected bDevCapabilityType 0x%x (expected 0x%x)
+short dev-cap descriptor read %u/%d
+bbbd
+libusb_get_ss_usb_device_capability_descriptor
+bbbbwbbw
+libusb_get_container_id_descriptor
+bbbbu
+libusb_get_platform_descriptor
+libusb_get_string_descriptor_ascii
+suspicious bLength %u for language ID string descriptor
+suspicious bLength %u for string descriptor (read %d)
+libusb_get_interface_association_descriptors
+IADs for config index %u
+short config descriptor read %d/%d
+raw_desc_to_config
+parse_configuration failed with error %d
+still %d bytes of descriptor data left
+parse_configuration
+bbwbbbbb
+unexpected descriptor 0x%x (expected 0x%x)
+invalid config bLength (%u)
+short config descriptor read %d/%u
+too many interfaces (%u)
+invalid extra config desc len (%u)
+short extra config desc read %d/%u
+skipping descriptor 0x%x
+bbbbbbbbb
+parse_interface
+invalid interface bLength (%u)
+short intf descriptor read %d/%u
+too many endpoints (%u)
+invalid extra intf desc len (%u)
+short extra intf desc read %d/%u
+parse_endpoint
+short endpoint descriptor read %d/%d
+invalid endpoint bLength (%u)
+short endpoint descriptor read %d/%u
+bbbbwbbb
+bbbbwb
+invalid extra ep desc len (%u)
+short extra ep desc read %d/%u
+parse_bos
+short bos descriptor read %d/%d
+invalid bos bLength (%u)
+short bos descriptor read %d/%u
+short dev-cap descriptor read %d/%d
+invalid dev-cap bLength (%u)
+short dev-cap descriptor read %d/%u
+raw_desc_to_iad_array
+parse_iad_array failed with error %d
+parse_iad_array
+invalid descriptor bLength %d
+usbi_hotplug_notification
+error allocating hotplug message
+usbi_hotplug_process
+freeing hotplug cb %p with handle %d
+libusb_hotplug_register_callback
+new hotplug cb %p with handle %d
+libusb_hotplug_deregister_callback
+deregister hotplug cb %d
+libusb_hotplug_get_user_data
+get hotplug cb %d user data
+libusb_free_transfer
+transfer %p
+libusb_submit_transfer
+libusb_cancel_transfer
+cancel transfer failed error %d
+usbi_handle_transfer_completion
+interpreting short transfer as error
+transfer %p has callback %p
+usbi_handle_transfer_cancellation
+detected timeout cancellation
+libusb_try_lock_events
+someone else is closing a device
+libusb_event_handling_ok
+libusb_event_handler_active
+libusb_interrupt_event_handler
+libusb_handle_events_timeout_completed
+doing our own event handling
+event handler was active but went away, retrying
+another thread is doing event handling
+libusb_get_next_timeout
+no URBs, no timeout!
+no URB with timeout or all handled by OS; no timeout!
+first timeout already expired
+next timeout in %ld.%06lds
+usbi_add_event_source
+add fd %d events %d
+usbi_remove_event_source
+remove fd %d
+couldn't find fd %d to remove
+usbi_handle_disconnect
+cancelling transfer %p from disconnect
+handle_timeout
+async cancel failed %d
+event sources modified, reallocating event data
+backend handle_events failed with error %d
+handle_event_trigger
+event triggered
+someone updated the event sources
+someone purposefully interrupted
+someone unregistered a hotplug cb
+someone is closing a device
+hotplug message received
+backend handle_transfer_completion failed with error %d
+ "libusb_control_transfer
+unrecognised status code %d
+sync_transfer_cb
+sync_transfer_wait_for_completion
+libusb_handle_events failed: %s, cancelling transfer and retrying
+do_sync_bulk_transfer
+Success
+Input/Output Error
+Invalid parameter
+Access denied (insufficient permissions)
+No such device (it may have been disconnected)
+Entity not found
+Resource busy
+Operation timed out
+Overflow
+Pipe error
+System call interrupted (perhaps due to signal)
+Insufficient memory
+Operation not supported or unimplemented on this platform
+Other error
+Gelukt
+Invoer-/uitvoerfout
+Ongeldig argument
+Toegang geweigerd (onvoldoende toegangsrechten)
+Apparaat bestaat niet (verbinding met apparaat verbroken?)
+Niet gevonden
+Apparaat of hulpbron is bezig
+Bewerking verlopen
+Waarde is te groot
+Gebroken pijp
+Onderbroken systeemaanroep
+Onvoldoende geheugen beschikbaar
+Bewerking wordt niet ondersteund
+Andere fout
+Succ
+Erreur d'entr
+e/sortie
+Param
+tre invalide
+s refus
+ (permissions insuffisantes)
+riph
+rique introuvable (peut-
+tre d
+connect
+ment introuvable
+Resource d
+ occup
+Operation expir
+bordement
+Erreur de pipe
+Appel syst
+me abandonn
+ (peut-
+tre 
+ cause d
+un signal)
+moire insuffisante
+ration non support
+e or non impl
+ment
+e sur cette plateforme
+Autre erreur
+Erfolgreich
+Eingabe-/Ausgabefehler
+ltiger Parameter
+Keine Berechtigung (Zugriffsrechte fehlen)
+Kein passendes Ger
+t gefunden (es k
+nnte entfernt worden sein)
+Entit
+t nicht gefunden
+Die Ressource ist belegt
+Die Wartezeit f
+r die Operation ist abgelaufen
+Mehr Daten empfangen als erwartet
+Daten
+bergabe unterbrochen (broken pipe)
+Unterbrechung w
+hrend des Betriebssystemaufrufs
+Nicht gen
+gend Hauptspeicher verf
+gbar
+Die Operation wird nicht unterst
+tzt oder ist auf dieser Platform nicht implementiert
+Allgemeiner Fehler
+Sikeres
+Be-/kimeneti hiba
+nytelen param
+Hozz
+s megtagadva
+Az eszk
+z nem tal
+lhat
+ (elt
+tott
+Nem tal
+lhat
+Az er
+forr
+s foglalt
+lcsordul
+tt adatcsatorna
+Rendszerh
+s megszak
+Nincs el
+g mem
+velet nem t
+mogatott ezen a rendszeren
+ltal
+nos hiba
+linux_get_device_address
+getting address for device: %s detached: %d
+/proc/self/fd/%d
+/dev/bus/usb
+/dev/bus/usb/%hhu/%hhu
+scan %s
+busnum
+devnum
+bus=%u dev=%u
+linux_enumerate_device
+busnum %u devaddr %u session_id %lu
+session_id %lu already exists
+allocating new device for %u/%u (session %lu)
+linux_device_disconnected
+device not found for session %lx
+Linux usbfs
+read_sysfs_attr
+attribute %s read failed, errno=%zd
+attribute %s doesn't have numeric value?
+attribute %s doesn't end with newline?
+attribute %s contains an invalid value: '%s'
+/sys/bus/usb/devices/%s/%s
+open_sysfs_attr
+open %s failed, errno=%d
+initialize_device
+unknown device speed: %d Mbps
+lseek failed, errno=%d
+read descriptor failed, errno=%d
+short descriptor read (%zu)
+Missing rw usbfs access; cannot determine active configuration descriptor
+usbfs_get_speed
+Error getting device speed: %d
+/dev/usbdev%u.%u
+/dev/bus/usb/%03u/%03u
+get_usbfs_fd
+File doesn't exist, wait %ld ms and try again
+libusb couldn't open USB device %s, errno=%d
+libusb requires write access to USB device nodes
+parse_config_descriptors
+short descriptor read %zu/%d
+descriptor is not a config desc (type 0x%02x)
+invalid descriptor bLength %u
+invalid wTotalLength %u
+config length mismatch wTotalLength %u real %u
+short descriptor read %zu/%u
+device has configuration 0
+seek_to_next_config
+remaining descriptor length too small %zu/2
+invalid descriptor bLength %hhu
+bLength overflow by %zu bytes
+config descriptor not found
+usbfs_get_active_config
+get configuration failed, errno=%d
+linux_get_parent_info
+Can not parse sysfs_dir: %s, no parent info
+usb%s
+parent_dev %s not enumerated yet, enumerating now
+dev %p (%s) has parent %p (%s) port %u
+op_init
+kernel version is too old (reported as %d.%d.%d)
+found usbfs at %s
+max iso packet length is (likely) %u bytes
+/sys
+sysfs is available
+sysfs not mounted
+get_kernel_version
+uname failed, errno=%d
+%d.%d.%d
+failed to parse uname release '%s'
+reported kernel version is %s
+/dev
+usbdev%d.%d
+is_usbdev_entry
+invalid usbdev format '%s'
+found: %s
+/sys/bus/usb/devices
+sysfs_get_device_list
+opendir devices failed, errno=%d
+failed to enumerate dir entry %s
+usbfs_get_device_list
+opendir buses failed, errno=%d
+unknown dir entry %s
+/dev/bus/usb/%03u
+usbfs_scan_busdir
+opendir '%s' failed, errno=%d
+op_set_option
+no device discovery will be performed
+op_wrap_sys_device
+connectinfo failed, errno=%d
+allocating new device for fd %d
+initialize_handle
+getcap not available
+getcap failed, errno=%d
+op_open
+open failed with no device, but device still attached
+op_get_active_config_descriptor
+device unconfigured
+bConfigurationValue
+op_get_configuration
+op_set_configuration
+set configuration failed, errno=%d
+detach_kernel_driver_and_claim
+disconnect-and-claim failed, errno=%d
+claim interface failed, errno=%d
+release interface failed, errno=%d
+op_set_interface
+set interface failed, errno=%d
+op_clear_halt
+clear halt failed, errno=%d
+op_reset_device
+reset failed, errno=%d
+failed to re-claim interface %u after reset: %s
+do_streams_ioctl
+streams-ioctl failed, errno=%d
+op_dev_mem_alloc
+alloc dev mem failed, errno=%d
+op_dev_mem_free
+free dev mem failed, errno=%d
+op_kernel_driver_active
+get driver failed, errno=%d
+op_detach_kernel_driver
+detach failed, errno=%d
+op_attach_kernel_driver
+attach failed, errno=%d
+op_submit_transfer
+unknown transfer type %u
+submit_control_transfer
+submiturb failed, errno=%d
+submit_bulk_transfer
+need %d urbs for new transfer with length %d
+first URB failed, easy peasy
+reporting successful submission but waiting for %d discards before reporting error
+discard_urbs
+URB not found --> assuming ready to be reaped
+Device not found for URB --> assuming ready to be reaped
+unrecognised discard errno %d
+submit_iso_transfer
+iso packet length of %u bytes exceeds maximum of %u bytes
+submiturb failed, transfer too large
+submiturb failed, iso packet length too large
+op_clear_transfer_priv
+op_handle_events
+cannot find handle for fd %d
+reap_for_handle
+reap failed, errno=%d
+urb type=%u status=%d transferred=%d
+unrecognised transfer type %u
+handle_iso_completion
+could not locate urb!
+handling completion status %d of iso urb %d/%d
+packet %d - device removed
+packet %d - detected endpoint stall
+packet %d - overflow error
+packet %d - low-level USB error %d
+packet %d - unrecognised urb status %d
+CANCEL: urb status %d
+CANCEL: last URB handled, reporting
+all URBs in transfer reaped --> complete!
+handle_bulk_completion
+handling completion status %d of bulk urb %d/%d
+abnormal reap: urb status %d
+received %d bytes of surplus data
+moving surplus data from offset %zu to offset %zu
+abnormal reap: last URB handled, reporting
+overflow, actual_length=%d
+low-level bus error %d
+short transfer %d/%d --> complete!
+handle_control_completion
+handling completion status %d
+cancel: unrecognised urb status %d
+unsupported control request
+usbi_create_event
+failed to create pipe, errno=%d
+failed to get pipe fd status flags, errno=%d
+failed to set pipe fd status flags, errno=%d
+usbi_destroy_event
+failed to close pipe write end, errno=%d
+failed to close pipe read end, errno=%d
+usbi_signal_event
+event write failed
+usbi_clear_event
+event read failed
+usbi_wait_for_events
+poll() %u fds with timeout in %dms
+poll() returned %d
+poll() failed, errno=%d
+fd %d was removed, ignoring raised events
+Android
+6113669
+Android (5900059 based on r365631c) clang version 9.0.8 (https://android.googlesource.com/toolchain/llvm-project 207d7abc1a2abf3ef8d4301736d6a7ebc224a290) (based on LLVM 9.0.8svn)
+GCC: (GNU) 4.9.x 20150123 (prerelease)
+.fini_array
+.text
+.got
+.comment
+.note.android.ident
+.rela.plt
+.bss
+.dynstr
+.eh_frame_hdr
+.gnu.version_r
+.data.rel.ro
+.rela.dyn
+.gnu.version
+.dynsym
+.gnu.hash
+.eh_frame
+.note.gnu.build-id
+.dynamic
+.shstrtab
+.rodata
+.data

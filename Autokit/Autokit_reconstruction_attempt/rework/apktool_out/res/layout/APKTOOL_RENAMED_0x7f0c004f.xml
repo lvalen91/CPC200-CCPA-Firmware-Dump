@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:tag="layout/fragment_permission_request_0" android:background="@drawable/APKTOOL_RENAMED_0x7f08006f" android:focusable="true" android:clickable="true" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/APKTOOL_RENAMED_0x7f090270" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f10026e">
+        <ImageView android:id="@id/APKTOOL_RENAMED_0x7f090134" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/APKTOOL_RENAMED_0x7f080105" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f6="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" />
+        <TextView android:layout_marginLeft="16.0dp" android:text="权限设置" app:APKTOOL_RENAMED_0x7f0401dd="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f5="@id/APKTOOL_RENAMED_0x7f090134" app:APKTOOL_RENAMED_0x7f0401fa="APKTOOL_RENAMED_0x7f0901c0" style="@style/APKTOOL_RENAMED_0x7f100271" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout android:id="@id/APKTOOL_RENAMED_0x7f090159" android:layout_marginLeft="16.0dp" android:layout_marginRight="16.0dp" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f090270" style="@style/APKTOOL_RENAMED_0x7f10016a">
+        <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f0169" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+        <androidx.appcompat.widget.SwitchCompat android:id="@id/APKTOOL_RENAMED_0x7f09017d" android:layout_width="54.0dp" android:layout_height="30.0dp" android:thumb="@drawable/APKTOOL_RENAMED_0x7f080112" app:APKTOOL_RENAMED_0x7f040301="50.0dp" app:APKTOOL_RENAMED_0x7f040371="@drawable/APKTOOL_RENAMED_0x7f080115" />
+    </LinearLayout>
+    <LinearLayout android:id="@id/APKTOOL_RENAMED_0x7f090158" android:layout_marginLeft="16.0dp" android:layout_marginRight="16.0dp" app:APKTOOL_RENAMED_0x7f0401f0="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f4="APKTOOL_RENAMED_0x7f0901c0" app:APKTOOL_RENAMED_0x7f0401f9="@id/APKTOOL_RENAMED_0x7f090159" style="@style/APKTOOL_RENAMED_0x7f10016a">
+        <TextView android:text="@string/APKTOOL_RENAMED_0x7f0f0145" style="@style/APKTOOL_RENAMED_0x7f10016f" />
+        <androidx.appcompat.widget.SwitchCompat android:id="@id/APKTOOL_RENAMED_0x7f090156" android:layout_width="54.0dp" android:layout_height="30.0dp" android:thumb="@drawable/APKTOOL_RENAMED_0x7f080112" app:APKTOOL_RENAMED_0x7f040301="50.0dp" app:APKTOOL_RENAMED_0x7f040371="@drawable/APKTOOL_RENAMED_0x7f080115" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
