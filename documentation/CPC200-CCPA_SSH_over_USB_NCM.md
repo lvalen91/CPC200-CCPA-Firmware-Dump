@@ -21,8 +21,12 @@ The adapter has **two USB device controllers** (ChipIdea) and **two Android‑ga
 
 | sysfs gadget class | controller | role | default state |
 |---|---|---|---|
-| `/sys/class/android_usb_accessory/android0` | `ci_hdrc.1` | **external** port (the plug that goes into the car / your host) | AOA "accessory" gadget, VID `1314` PID `1521` ("Auto Box") |
-| `/sys/class/android_usb/android0` | `ci_hdrc.0` | phone‑side port | `iap2,ncm` composite, VID `08e4` PID `01c0` (only active with a phone) |
+| `/sys/class/android_usb_accessory/android0` | `ci_hdrc.1` | **external** MALE cable (into the car / your host) — always CCPA-as-gadget | AOA "accessory" gadget, VID `0x1314` PID `0x1521` ("Auto Box") |
+| `/sys/class/android_usb/android0` | `ci_hdrc.0` | the single **FEMALE** USB‑A port — **OTG dual‑role** | `iap2,ncm` composite, VID `0x08e4` PID `0x01c0` (only in peripheral mode, i.e. with a phone) |
+
+> **Two physical ports (verified live 2026‑07‑08).** `ci_hdrc.1` is the host‑facing MALE cable (Type‑C female on some models) where the CCPA is *always* a USB gadget. `ci_hdrc.0` is the single FEMALE USB‑A socket and is **OTG dual‑role**: it is a **USB host by default** (EHCI, for USB storage / hosting) and **switches to peripheral mode** to present the `iap2,ncm` gadget (VID `0x08e4`) when a wired phone connects. It is this peripheral‑mode `android_usb` gadget that owns `ncm0` — hence step 3.2 disables it. See [`01_Firmware_Architecture/hardware_platform.md`](01_Firmware_Architecture/hardware_platform.md) § Physical Ports & Controller Roles.
+
+> **VID/PID radix + PID note:** the sysfs `idVendor`/`idProduct` files hold **hex** strings with no `0x` prefix, so `1314`/`1521` mean **0x1314 / 0x1521**. `USBPID` is a configurable riddle.conf value: a separate stripped test unit measured **PID 0x1520** (not 0x1521) in *both* ncm and accessory modes on 2026‑07‑08 — likely a per‑unit/per‑build config difference, not a contradiction. For the accessory‑mode descriptors observed on the wire (interface class 0xFF, bulk **IN 0x83 / OUT 0x02**, 512‑byte MPS, USB 2.0 HS), measured throughput, and the operational hazard of `echo 0 > .../enable` while transfers are pending, see [`01_Firmware_Architecture/hardware_platform.md`](01_Firmware_Architecture/hardware_platform.md) § Host‑Facing Gadget.
 
 A userspace daemon, **`ARMadb-driver`** (started by `/script/start_main_service.sh`, which spawns `/script/phone_link_deamon.sh CarPlay start`), continuously **cycles the external gadget** looking for a CarPlay head unit or an Android Auto host. A generic computer is neither, so the port stays in accessory/AOA mode and your host never sees an Ethernet interface.
 
@@ -39,7 +43,7 @@ So the job is simply: **stop the cycler, switch the external gadget to NCM, hand
 
 - A **control channel to the adapter** to issue the setup commands the first time. Easiest is the adapter's own Wi‑Fi AP:
   - SSH: `ssh root@192.168.43.1` (password is **blank** — just press Enter). On macOS, non‑interactive: `sshpass -p '' ssh -o StrictHostKeyChecking=no root@192.168.43.1`.
-  - Or a serial/UART console if you have one.
+  - Or a serial/UART console if you have one — solder to the board's `TX1`/`RX1` pads (i.MX6UL UART1 = `ttymxc0`, 3.3 V). It runs an always‑on passwordless root shell, but at **9600 8N1** by default (**not** 115200), and nothing prints there during U‑Boot/kernel boot (console is redirected to `ttyLogFile0`). See [`01_Firmware_Architecture/hardware_platform.md`](01_Firmware_Architecture/hardware_platform.md) § Serial Console (UART).
 - The adapter connected to your host via the **USB data cable** (the normal connector that plugs into the car).
 - `sshpass` is optional but handy for the blank password (`brew install hudochenkov/sshpass/sshpass`).
 

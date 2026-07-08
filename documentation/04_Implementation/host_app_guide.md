@@ -109,10 +109,13 @@ A host application communicates with the CPC200-CCPA adapter via USB to:
 
 2. Open USB interface (bulk transfer)
 
-3. Claim interface and configure endpoints:
-   - Endpoint OUT: Host → Adapter
-   - Endpoint IN: Adapter → Host
+3. Claim interface 0 and configure endpoints:
+   - Interface 0: bInterfaceClass 0xFF (vendor-specific), 2 bulk endpoints
+   - Endpoint OUT 0x02: Host → Adapter (wMaxPacketSize 512)
+   - Endpoint IN  0x83: Adapter → Host (wMaxPacketSize 512)
 ```
+
+> **No AOA handshake needed (verified live 2026-07-08):** the stock transport rides the adapter's `f_accessory` gadget function (`/dev/usb_accessory` on the box side), but the host does **not** send the Android Open Accessory control requests (51/52/53) — just claim interface 0 and bulk-transfer. macOS loads no driver for IF 0, so libusb / Android `UsbManager` can claim it directly. The 512-byte MPS confirms USB 2.0 high-speed; measured bulk rates are ~339 Mbps IN (adapter→host) and ~90 Mbps OUT. Post the device-side read **before** the host writes. Full gadget-side mechanism, descriptors, throughput, and an `echo 0 > enable` hang hazard: see [`../01_Firmware_Architecture/hardware_platform.md`](../01_Firmware_Architecture/hardware_platform.md) § Host-Facing Gadget.
 
 ### 2. Initialization Sequence (CRITICAL)
 

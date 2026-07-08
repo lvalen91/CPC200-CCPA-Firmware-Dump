@@ -103,9 +103,20 @@ The cert is identical between the two; the signatures differ because the input c
 
 ## USB Interfaces
 
-### iPhone-Facing (Gadget Mode)
+### Physical Ports & Controller Roles (verified live 2026-07-08)
 
-The adapter presents itself to the iPhone as an Apple-compatible accessory:
+The CCPA has **two physical USB ports**, driven by the two ChipIdea (`ci_hdrc`) controllers. They are **not** the same role, and `ci_hdrc.0` is dual-role — the source of an earlier "host vs gadget" doc ambiguity that is actually one OTG port:
+
+| Controller | Physical port | Role |
+|------------|---------------|------|
+| **`ci_hdrc.1`** | Host-facing **MALE** USB-A cable (Type-C female on some models) — plugs into the car / head unit / your laptop | **Always CCPA-as-gadget** (the car is the host). Presents `ncm`/`accessory`, **VID 0x1314** "Auto Box". This is the "Head Unit-Facing" gadget and the [Host-Facing Gadget](#host-facing-gadget-mechanism-descriptors-and-bulk-transport) below. |
+| **`ci_hdrc.0`** | Single **FEMALE** USB-A port — where a phone **or** USB storage plugs in | **OTG dual-role**, negotiated by what is plugged in. **Host by default** (EHCI root hub `usb1`, `SerialNumber: ci_hdrc.0`, `USB 2.0 started, EHCI 1.00`) for USB storage / hosting; **switches to peripheral mode** to present the `android_usb` gadget = `iap2,ncm`, **VID 0x08e4** "Auto Box", when a phone connects for wired projection. |
+
+> **OTG evidence.** The boot OTG state machine on `ci_hdrc.0` shows `fsm->id=0 → a_idle → host (protocol 1) → EHCI` (cable/host side), then `fsm->id=1 → b_peripheral (protocol 2)` (phone connected). `ci_hdrc.0` registers **both** an EHCI host controller and a UDC (idle state `not attached`) and flips between them by OTG ID. So the "iPhone-Facing (Gadget Mode)" descriptors below and the "Type-A USB host enumerating storage" description in [`../06_Reference/ncm_carplay_relay_feasibility.md`](../06_Reference/ncm_carplay_relay_feasibility.md) are **two facets of the same single female port**, not a contradiction.
+
+### iPhone-Facing (Gadget Mode — `ci_hdrc.0` peripheral role)
+
+When a phone is connected, the female `ci_hdrc.0` port switches to peripheral mode and the adapter presents itself to the iPhone as an Apple-compatible accessory:
 
 | Parameter | Value | Description |
 |-----------|-------|-------------|
@@ -126,12 +137,16 @@ echo "iap2,ncm" > /sys/class/android_usb/android0/functions
 echo 1 > /sys/class/android_usb/android0/enable
 ```
 
-### Head Unit-Facing (Host Mode)
+### Head Unit-Facing (`ci_hdrc.1`, always CCPA-as-gadget)
+
+The head unit / car is the USB host; the CCPA is always the gadget on this MALE cable (Type-C female on some models).
 
 | Parameter | Value | Description |
 |-----------|-------|-------------|
-| VID | 0x1314 (4884) | Configurable in riddle.conf |
-| PID | 0x1521 (5409) | Configurable in riddle.conf |
+| VID | 0x1314 (4884) | Configurable in riddle.conf (`USBVID`) |
+| PID | 0x1521 (5409) | Configurable in riddle.conf (`USBPID`) — **but 0x1520 measured live on the stripped test unit, see PID note below** |
+
+> **Values are hex.** The sysfs `idVendor`/`idProduct` files (and `USBVID`/`USBPID` in riddle.conf) store the value as a bare hex string with no `0x` prefix (`config_key_analysis.md` `USBPID` handler formats `"%x"`). "1314"/"1521" therefore mean **0x1314 / 0x1521**, not decimal. See the Host-Facing Gadget section below for the descriptors observed on the wire.
 
 ### iPhone Detection
 ```bash
@@ -151,6 +166,8 @@ iphoneRoleSwitch_test 0x05ac 0x12a8
 | `g_android_accessory.ko` | Android AOA gadget |
 | `cdc_ncm.ko` | USB NCM networking |
 | `storage_common.ko` | USB mass storage |
+
+> **Fixed legacy function set (verified live 2026-07-08):** on the host-facing gadget the only functions available at runtime are the kernel-compiled `f_accessory`, `f_adb`, `f_mtp`, `f_mass_storage`, `f_ncm` — there is no configfs/gadgetfs to add more. See the **Host-Facing Gadget** section below.
 
 ### Android Open Accessory (AOA) Mode
 
@@ -175,6 +192,79 @@ usb 1-1: SerialNumber: 57281FDCR00673
 2. `ConfigAoa` class configures phone into AOA mode
 3. Phone re-enumerates with AOA USB identifiers
 4. OpenAuto SDK establishes Android Auto session
+
+## Host-Facing Gadget: Mechanism, Descriptors, and Bulk Transport
+
+> **Verified live on-device 2026-07-08** (method: root shell via SSH-over-USB-CDC-NCM to `192.168.50.2` + soldered UART console; macOS acting as libusb host on the adapter's gadget port). Unit under test: a heavily stripped "MFi/NCM appliance" build (projection binaries `ARMadb-driver`/`AppleCarPlay`/`ARMiPhoneIAP2` removed). Companion how-to: [`../CPC200-CCPA_SSH_over_USB_NCM.md`](../CPC200-CCPA_SSH_over_USB_NCM.md).
+
+**Gadget controller & control interface.** The host-facing port (the plug that goes into the car / head unit / your laptop) is UDC `ci_hdrc.1`, driven by a **legacy monolithic `android_usb_accessory` gadget** controlled through sysfs at `/sys/class/android_usb_accessory/android0` (`enable`, `functions`, `idVendor`, `idProduct`, `state`, `bDeviceClass`, …). Switch the function at runtime:
+
+```sh
+A=/sys/class/android_usb_accessory/android0
+echo 0 > $A/enable
+echo <funcs> > $A/functions      # e.g. accessory | ncm | ncm,accessory
+echo 1 > $A/enable
+```
+
+Composite is supported (comma-separated, e.g. `ncm,accessory`, mirroring the phone-side `iap2,ncm`).
+
+**Fixed, kernel-compiled function set.** Only five legacy functions are compiled in: `f_accessory`, `f_adb`, `f_mtp`, `f_mass_storage`, `f_ncm`. Each exposes a misc (major 10) char device on the gadget side:
+
+| Function | Gadget char device | Node (major, minor) |
+|----------|--------------------|---------------------|
+| f_accessory | `/dev/usb_accessory` | (10, 56) |
+| f_adb | `/dev/android_adb` | (10, 57) |
+| f_mtp | `/dev/mtp_usb` | (10, 58) |
+
+**No arbitrary gadgets — the kernel is locked.** `functionfs` is listed in `/proc/filesystems` but is **not** usably bound to this gadget; there is **no `gadgetfs`** (`/dev/gadget` absent) and **no configfs `usb_gadget`** (`/sys/kernel/config/usb_gadget/` does not exist). You therefore **cannot** define arbitrary interfaces/endpoints/descriptors, and the kernel cannot be replaced (HAB-closed secure boot + per-chip OTPMK-encrypted kernel — see [`secure_boot_hab.md`](secure_boot_hab.md) and [`../05_Security_Analysis/kernel_encryption.md`](../05_Security_Analysis/kernel_encryption.md)). A custom host-facing bulk transport is limited to **repurposing one of the fixed function char-devices**.
+
+**Stock bulk transport = f_accessory / `/dev/usb_accessory`.** The stock `ARMadb-driver` opens `/dev/usb_accessory` — confirmed by strings in the unpacked binary (`/dev/usb_accessory`, `/script/start_accessory.sh`, `echo 0 > /sys/class/android_usb_accessory/android0/enable`, `rmmod g_android_accessory && rmmod storage_common`, `fd_usb_accessory_wraper`). So the `0x55AA55AA` USB-bulk protocol (see [`../02_Protocol_Reference/usb_protocol.md`](../02_Protocol_Reference/usb_protocol.md)) rides the **f_accessory** function's bulk endpoints. The kernel driver is a raw byte pipe; all framing is application-defined.
+
+**Accessory-mode descriptors (observed from a macOS libusb host):**
+
+| Field | Value |
+|-------|-------|
+| idVendor | **0x1314** (sysfs `idVendor` reads "1314") |
+| idProduct | **0x1520** (sysfs `idProduct` reads "1520") — see PID note below |
+| iManufacturer | "Magic Communication Tec." |
+| iProduct | "Auto Box" |
+| bDeviceClass | 0xEF (Miscellaneous / IAD) |
+| Configuration | high-speed config #1, "android_accessory" |
+| Interface 0 | bInterfaceClass 0xFF (vendor-specific), bInterfaceSubClass 0xF0, bInterfaceProtocol 0, 2 endpoints |
+| Bulk IN | **0x83**, wMaxPacketSize 512 |
+| Bulk OUT | **0x02**, wMaxPacketSize 512 |
+
+macOS loads **no** kernel driver for interface 0, so libusb (and Android `UsbManager`) can claim it directly. **No Android Open Accessory (AOA) control handshake (requests 51/52/53) is required** — just claim IF 0 and bulk-transfer. The 512-byte max packet size confirms **USB 2.0 high-speed**.
+
+> **PID discrepancy (flagged, not overwritten).** This stripped unit measured **idProduct 0x1520** in *both* ncm and accessory modes, whereas other CCPA material records the head-unit-facing default as **0x1521** (the `Head Unit-Facing` table above, [`../CPC200-CCPA_SSH_over_USB_NCM.md`](../CPC200-CCPA_SSH_over_USB_NCM.md), and `configuration.md`/`config_key_analysis.md`, where `USBPID` defaults to "1521"). `USBPID` is a configurable riddle.conf value, so 0x1520 vs 0x1521 is most likely a per-unit / per-build configuration difference rather than a contradiction. [`../04_Implementation/host_app_guide.md`](../04_Implementation/host_app_guide.md) already scans for both PIDs.
+
+**Measured throughput** (macOS libusb host ↔ box `dd`, accessory-only, **no** NCM active):
+
+| Direction | Endpoint | Box command | Rate |
+|-----------|----------|-------------|------|
+| Read (adapter → host) | IN 0x83 | `dd if=/dev/zero of=/dev/usb_accessory bs=65536` | **339 Mbps** (254 MB / 6.0 s) |
+| Write (host → adapter) | OUT 0x02 | `dd if=/dev/usb_accessory of=/dev/null bs=65536` | **90 Mbps** (65.6 MB / 5.8 s; box confirms 12.2 MB/s) |
+
+Both directions far exceed CarPlay's needs (video 8–30 Mbps). Coordination notes: the device-side read must be posted **before** the host writes; use `bs=64K` on the box (`bs=512` collapses write throughput to ~10 Mbps — the box read block size dominates). The read/write asymmetry (339 vs 90) reflects the i.MX6UL ChipIdea receive/`acc_read` path being less optimized than transmit.
+
+> **⚠ Operational hazard (live-verified).** Disabling the accessory gadget (`echo 0 > $A/enable`) while OUT transfers are pending/undrained **hangs the gadget-disable in an uninterruptible kernel wait**, wedging the box: the console shell goes to D-state, USB drops, and there is **no software recovery** — only a physical power-cycle. Safe practice: post the device read *before* writing; revert with `reboot -f`, **never** `echo 0`; and wrap experiments in a cancelable reboot-watchdog, e.g. `(sleep N; [ -e /tmp/keep ] || reboot -f) &`, so any hang self-recovers.
+
+## Serial Console (UART)
+
+> **Verified live on-device 2026-07-08** (method: soldered wires on the board's `TX1`/`RX1` pads).
+
+- Board silkscreen pads **`TX1` / `RX1`** (+ GND) = i.MX6UL **UART1 = `ttymxc0` = MMIO `0x02020000`** (the "UART (serial)" row in [`flash_layout.md`](flash_layout.md) § Key I/O Regions). **3.3 V logic.**
+- An **always-on passwordless root shell** runs on these pads (inittab `ttymxc0::respawn`).
+- **Default baud is 9600 8N1, NOT 115200.** A CFW inittab comment claiming 115200 is aspirational/wrong for the running default. 115200 can be made persistent via an inittab wrapper that runs `stty 115200` before spawning the shell.
+- **U-Boot is 2015.04**, and its console is **silenced on the pins** in the *active* environment: the saved env sets `console=ttyLogFile0` (a write-only RAM log device), so **nothing prints on the UART pins during U-Boot or kernel boot** — only the post-boot Linux inittab shell appears. The compiled-in default env in mtd0 says `console=ttymxc0,115200` / `baudrate=115200`, but the saved env overrides it (consistent with the "norargs is stale" note in [`flash_layout.md`](flash_layout.md)).
+
+**i.MX6UL UART map (this board):**
+
+| UART | Node | MMIO | Role |
+|------|------|------|------|
+| UART1 | `ttymxc0` | 0x02020000 | Console pads `TX1`/`RX1` — passwordless root shell (9600 8N1) |
+| UART2 | `ttymxc1` | 0x021E8000 | Unused spare |
+| UART3 | `ttymxc2` | 0x021EC000 | Bluetooth HCI |
 
 ## Key Hardware Interfaces
 

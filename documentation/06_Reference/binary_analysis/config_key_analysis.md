@@ -5519,7 +5519,9 @@ FUN_000183d0(cJSON *json_root, uint param_2, ...) {
 
 #### Host-Side Enumeration Impact
 
-When these values are changed via cmd 0x70, they are persisted to riddleBoxCfg. The USB gadget driver reads them on the next USB device reset/reconnect cycle. The actual sysfs paths for the USB gadget are not visible in the decompiled code (likely in a kernel module or `/sys/kernel/config/usb_gadget/` configfs), but the adapter's USB descriptor is composed from these stored values. The host then sees the new VID:PID:manufacturer:product:serial during enumeration.
+When these values are changed via cmd 0x70, they are persisted to riddleBoxCfg. The USB gadget driver reads them on the next USB device reset/reconnect cycle. The adapter's USB descriptor is composed from these stored values, so the host then sees the new VID:PID:manufacturer:product:serial during enumeration.
+
+> **Correction (verified live on-device 2026-07-08):** the sysfs path is **not** modern configfs. This device uses the **legacy monolithic Android gadget** driver; the host-facing (head-unit) gadget is controlled through `/sys/class/android_usb_accessory/android0` (`idVendor`, `idProduct`, `iManufacturer`, `functions`, `enable`, …) and the phone-side gadget through `/sys/class/android_usb/android0`. There is **no `/sys/kernel/config/usb_gadget/` configfs, no gadgetfs, and no usably-bound functionfs** on this kernel — only a fixed, kernel-compiled function set (`f_accessory`, `f_adb`, `f_mtp`, `f_mass_storage`, `f_ncm`). See `../../01_Firmware_Architecture/hardware_platform.md` § Host-Facing Gadget for the full mechanism, descriptors, and constraints.
 
 | Config Key | USB Descriptor Field | Format | JSON Source |
 |-----------|---------------------|--------|-------------|

@@ -115,6 +115,7 @@ radio/MFi front-end (the real goal, large effort).
 ## Wired CarPlay + the Type-A port
 
 - The Type-A port is a working **USB host** (EHCI, `ci_hdrc.0`; verified enumerating storage).
+  > **Note (verified live 2026-07-08):** this Type-A (female) port `ci_hdrc.0` is **OTG dual-role**, not host-only — it is a USB host by default but switches to peripheral mode to present the `iap2,ncm` gadget (VID 0x08e4) for a wired phone. The always-gadget host-facing MALE cable is the *other* controller, `ci_hdrc.1` (VID 0x1314). See `../01_Firmware_Architecture/hardware_platform.md` § Physical Ports & Controller Roles.
 - **Stock wired CarPlay** runs the *same* AirPlay session **over USB-CDC-NCM (IPv6), TCP 5000**
   — i.e. a cabled iPhone reaches the adapter's AirPlay server over an NCM link, then the
   adapter terminates it exactly as in wireless and emits the proprietary bulk stream.

@@ -79,6 +79,8 @@ norboot=echo Booting from nor flash ...;run norargs;sf probe 0;sf read 0x8080000
 ```
 
 > **Note (norargs is stale):** Although `norboot` runs `norargs` before `bootz`, the live system does **not** boot with the `norargs` values — the running kernel shows `console=ttyLogFile0 root=/dev/mtdblock2` (see captured cmdline above), which is authoritative. The `norargs` `root=/dev/mtdblock3` / `console=ttymxc0,115200` are vestigial template defaults (no 4th MTD partition exists) that are overridden at boot.
+>
+> **Physical-pin corollary (verified live 2026-07-08):** because both U-Boot's saved env and the kernel cmdline point the console at `ttyLogFile0` (a write-only RAM log), **nothing prints on the `TX1`/`RX1` UART pins during U-Boot or kernel boot.** U-Boot itself is **2015.04**. The only thing that appears on the physical pins is the **post-boot Linux inittab shell (`ttymxc0::respawn`), a passwordless root shell at 9600 8N1** — not 115200, despite the `console=ttymxc0,115200` default-env string. See `hardware_platform.md` § Serial Console (UART).
 
 ### Boot Process
 
@@ -121,7 +123,7 @@ Linux version 3.14.52+g94d07bb (hcw@ubuntu) (gcc version 4.9.2 (GCC))
 
 | Address | Device |
 |---------|--------|
-| 0x02020000 | UART (serial) |
+| 0x02020000 | UART1 / `ttymxc0` — serial console pads `TX1`/`RX1` (root shell, **9600 8N1**; see `hardware_platform.md` § Serial Console) |
 | 0x02184000 | USB OTG |
 | 0x02190000 | MMC/SD (mmc0) |
 | 0x021e0000 | QSPI Flash |

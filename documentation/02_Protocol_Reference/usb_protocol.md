@@ -33,6 +33,8 @@ All USB messages use a common 16-byte header:
 - Length must be ≤ 1048576 bytes
 - Total message size = 16 + payload_length
 
+**USB Transport Layer (verified live 2026-07-08):** This `0x55AA55AA` framing rides the adapter's **`f_accessory` gadget function** on the host-facing UDC `ci_hdrc.1` (on the box side, the raw byte pipe `/dev/usb_accessory` that stock `ARMadb-driver` opens). On the wire, the host claims **interface 0** (bInterfaceClass 0xFF vendor-specific) and uses **bulk IN `0x83` / bulk OUT `0x02`**, both wMaxPacketSize 512 (USB 2.0 high-speed). No Android Open Accessory control handshake (51/52/53) is involved — all framing above is application-defined on top of a raw bulk pipe. For the full gadget mechanism, descriptors, measured throughput, and a gadget-disable hang hazard, see [`../01_Firmware_Architecture/hardware_platform.md`](../01_Firmware_Architecture/hardware_platform.md) § Host-Facing Gadget.
+
 **Dual Magic System (Binary Verified Feb 2026):**
 
 | Magic | Meaning | When Used |
