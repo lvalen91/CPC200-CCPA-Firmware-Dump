@@ -4,6 +4,12 @@
 **Consolidated:** 2026-01-16
 **Sources:** Firmware extraction, session captures, and live RE
 
+> [!NOTE]
+> **Scope.** Every document here describes the **NXP i.MX6UL (ARM)** adapter family unless it
+> says otherwise. One exception: `01_Firmware_Architecture/c2air_v821_platform.md` covers a
+> **C2Air** adapter built on **Allwinner V821 / 32-bit RISC-V** — a separate platform with no
+> shared silicon, ODM, or firmware lineage. Findings do not transfer between the two.
+
 ---
 
 ## Overview
@@ -92,7 +98,8 @@ RE_Documention/
 │   ├── configuration.md                # riddleBoxCfg reference + Box Code Taxonomy
 │   ├── version_comparison.md           # Firmware version differences (2022-2025)
 │   ├── web_interface.md                # Web UI API and settings (2025.10 firmware release; the live unit's build datestamp 2025.09.26 belongs to this 2025.10 release line)
-│   └── web_settings_reference.md       # Web settings quick reference
+│   ├── web_settings_reference.md       # Web settings quick reference
+│   └── c2air_v821_platform.md          # C2Air — Allwinner V821 / RISC-V. SEPARATE PLATFORM, not an A15W
 ├── 02_Protocol_Reference/
 │   ├── usb_protocol.md                 # USB message types and payloads
 │   ├── device_identification.md        # phoneType, BoxSettings, SessionToken analysis

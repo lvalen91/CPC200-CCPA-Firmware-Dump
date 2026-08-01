@@ -36,6 +36,19 @@ WiFi silicon, firmware lineage, and HAB signing-key era.
 | Kernel | Linux 3.14.52+g94d07bb SMP |
 | ODM | DongGuan HeWei |
 
+> [!IMPORTANT]
+> **"2air" branding is not platform-specific — do not read this table as covering every device
+> sold under that name.** Everything in this document describes the **HeWei / i.MX6UL / ARM**
+> family only. A separate adapter sold as a **C2Air** has been dumped and is built on an
+> entirely unrelated platform: **Allwinner V821, 32-bit RISC-V, Tina Linux 5.0 (kernel 5.4.220),
+> AIC8800 WiFi 6, ODM Liaoyuan**. It shares no SoC, no instruction set, no ODM, and no firmware
+> lineage with the U2AC_AUTOKIT "2air" row above. None of the findings in this document —
+> HAB/SRK fuses, vermagic rules, `CheckBoxManuDateSign`, partition portability, encryption keys,
+> board-marking eras — apply to it.
+>
+> See [`c2air_v821_platform.md`](c2air_v821_platform.md) and
+> [`../../hardware/c2air_v821_spec.md`](../../hardware/c2air_v821_spec.md).
+
 ### SRK fuses are identical across the whole family
 
 Direct OTP-fuse comparison across U2W, U2AC ("2air"), A15W, and the Carlinkit-brand devices
