@@ -1,0 +1,635 @@
+Warning: Permanently added '192.168.50.100' (ED25519) to the list of known hosts.
+[    0.000000] Linux version 5.4.220 (tenc@ubuntu) (gcc version 10.4.0 (2024-02-02_nds32le-linux-glibc-v5d-bbc31ec98)) #2 PREEMPT Sat May 9 12:29:51 CST 2026
+[    0.000000] ly_project_id=6239
+[    0.000000] Malformed early option 'func_det_mode'
+[    0.000000] Reserved memory: created CMA memory pool at 0x0000000083c00000, size 4 MiB
+[    0.000000] OF: reserved mem: initialized node linux,cma, compatible id shared-dma-pool
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000080000000-0x0000000083ffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000080000000-0x0000000080ffefff]
+[    0.000000]   node   0: [mem 0x0000000081000000-0x0000000083ffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000080000000-0x0000000083ffffff]
+[    0.000000] On node 0 totalpages: 16383
+[    0.000000]   Normal zone: 128 pages used for memmap
+[    0.000000]   Normal zone: 0 pages reserved
+[    0.000000]   Normal zone: 16383 pages, LIFO batch:3
+[    0.000000] SBI specification v0.3 detected
+[    0.000000] SBI implementation ID=0x1 Version=0x10000
+[    0.000000] SBI v0.2 TIME extension detected
+[    0.000000] SBI v0.2 IPI extension detected
+[    0.000000] SBI v0.2 RFENCE extension detected
+[    0.000000] SBI SRST extension detected
+[    0.000000] riscv: base ISA extensions acdfim
+[    0.000000] riscv: ELF capabilities acdfim
+[    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[    0.000000] pcpu-alloc: [0] 0 
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 16255
+[    0.000000] Kernel command line: earlyprintk=sunxi-uart,0x42500000 initcall_debug=0 console=ttyS0,115200 loglevel=3 root=/dev/mtdblock3 rootwait rootfstype=squashfs init=/init rdinit=/rdinit partitions=boot@mtdblock1:recovery@mtdblock2:rootfs@mtdblock3:customer@mtdblock4:env@mtdblock5:env-redund@mtdblock6:private@mtdblock7:logo@mtdblock8:UDISK@mtdblock9 cma=1M coherent_pool= led_mode=6 sdcard_mode=0 project=ly6239 ly_boot_mode=normal func_det_mode= custom_name=VehiConn ly_efex_mode=0 sys_mode=0 boot_partition=boot rgb_mode=0xff0000 ly_flash_clock=100000000 ly_bt_bdrate=500000 led_update_mode=1 ly_test=0 androidboot.hardware=sun300iw1p1 boot_type=3 androidboot.boot_type=3 gpt=1 uboot_message=2018.07(05/09/2026-04:18:41) mbr_offset=376832 androidboot.dramfreq=520 androidboot.dramsize=64 uboot_backup=ubootA spi_max_hz=50000000 
+[    0.000000] Dentry cache hash table entries: 8192 (order: 3, 32768 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 4096 (order: 2, 16384 bytes, linear)
+[    0.000000] Sorting __ex_table...
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 54276K/65532K available (3120K kernel code, 180K rwdata, 1475K rodata, 116K init, 1138K bss, 7160K reserved, 4096K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] 	Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000] NR_IRQS: 72, nr_irqs: 72, preallocated irqs: 0
+[    0.000000] plic: mapped 187 interrupts with 1 handlers for 2 contexts.
+[    0.000000] sunxi:ccu-ng:[INFO]: Current HOSC rate is 40000000HZ
+[    0.000000] AW BSP version: UNKNOWN, 2026-05-09 12:29:41
+[    0.000000] sunxi:ccu-ng:[INFO]: aon_ccu: sunxi ccu init OK
+[    0.000000] sunxi:ccu-ng:[INFO]: sunxi ccu common driver version: 1.2.4
+[    0.000000] sunxi:ccu-ng:[INFO]: ccu: sunxi ccu init OK
+[    0.000000] sunxi:ccu-ng:[INFO]: sunxi app ccu driver version: 0.7.2
+[    0.000000] riscv_timer_init_dt: Registering clocksource cpuid [0] hartid [0]
+[    0.000000] clocksource: riscv_clocksource: mask: 0xffffffffffffffff max_cycles: 0x939a85c40, max_idle_ns: 440795202120 ns
+[    0.000010] sched_clock: 64 bits at 40MHz, resolution 25ns, wraps every 4398046511100ns
+[    0.000368] Calibrating delay loop (skipped), value calculated using timer frequency.. 80.00 BogoMIPS (lpj=160000)
+[    0.000388] pid_max: default: 32768 minimum: 301
+[    0.000586] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.000605] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.002264] rcu: Hierarchical SRCU implementation.
+[    0.002382] sunxi:sunxi_chips chip is:v821b
+[    0.002741] devtmpfs: initialized
+[    0.019952] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.019977] futex hash table entries: 256 (order: -1, 3072 bytes, linear)
+[    0.020195] pinctrl core: initialized pinctrl subsystem
+[    0.026829] phys:80000000 low vir:c0000000 non-cache:dfc80000~e3c80000
+[    0.027823] NET: Registered protocol family 16
+[    0.031845] sunxi:ccu-ng:[INFO]: sunxi prcm ccu driver version: 0.0.4
+[    0.038084] sunxi:pin-42000000.pinctrl:[INFO]: pinctrl withstand voltage config mode=auto_hard
+[    0.038095] sunxi:pin:[INFO]: sunxi pinctrl core driver version: 1.4.8
+[    0.038468] sunxi:pin:[INFO]: sunxi rtc-pinctrl version: 0.0.2
+[    0.040142] sunxi:pin-42000540.pinctrl:[INFO]: pinctrl withstand voltage config mode=auto_hard
+[    0.062059] ly_cdc_ncm_init
+[    0.062208] usbcore: registered new interface driver usbfs
+[    0.062274] usbcore: registered new interface driver hub
+[    0.062336] usbcore: registered new device driver usb
+[    0.062674] Advanced Linux Sound Architecture Driver Initialized.
+[    0.065437] sun6i-dma 43002000.dma-controller: sunxi dma probed, driver version: 1.2.11
+[    0.066494] Bluetooth: Core ver 2.22
+[    0.066541] NET: Registered protocol family 31
+[    0.066548] Bluetooth: HCI device and connection manager initialized
+[    0.066565] Bluetooth: HCI socket layer initialized
+[    0.066575] Bluetooth: L2CAP socket layer initialized
+[    0.066588] Bluetooth: SCO socket layer initialized
+[    0.067171] sunxi:pin-42000000.pinctrl:[INFO]: Auto power withstand voltage configuration detected, automatically exit!
+[    0.067688] sunxi:twi-42502400.twi1:[INFO]: v2.7.9 probe success
+[    0.068179] ly_dev_probe
+[    0.068208] get wifi_pwr_gpio fail
+[    0.068315] get bt_rst_gpio fail
+[    0.068323] ly_led_gpio_init
+[    0.068414] get func_mode_gpio fail
+[    0.068421] ly_func_mode=0
+[    0.068996] ly_led_init
+[    0.069183] ly_led_rgb_init
+[    0.069442] matrix_led_probe
+[    0.069456] matrix_led_dts_parse not find default pinctrl
+[    0.070067] ly_encry_init
+[    0.071429] clocksource: Switched to clocksource riscv_clocksource
+[    0.073058] sunxi_usb_udc 44100000.udc-controller: sunxi:sunxi_usb_udc UDC Inner DMA Feature - wordaddr: -1, extend: disabled
+[    0.073566] NET: Registered protocol family 2
+[    0.073840] IP idents hash table entries: 2048 (order: 2, 16384 bytes, linear)
+[    0.074564] matrix_led_init_handle
+[    0.076291] tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+[    0.076330] TCP established hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.076352] TCP bind hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[    0.076370] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.076495] UDP hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.076518] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes, linear)
+[    0.076721] NET: Registered protocol family 1
+[    0.077767] sunxi:spi-44026000.spi:[WARN]: failed to get sunxi,spi-cs-mode property, use default value 0
+[    0.077785] sunxi:spi-44026000.spi:[INFO]: spi manual set sample type_0, mode_1, delay_0
+[    0.077890] sunxi:spi-44026000.spi:[INFO]: bus num_1 mode_1 freq_48000000
+[    0.077899] sunxi:spi-44026000.spi:[INFO]: cs num_2 mode_0
+[    0.078999] ly_led_rgb_probe
+[    0.079016] ly_led_rgb_probe,led_max_num=12 max_speed_hz=3000000hz
+[    0.079233] sunxi:spi-44026000.spi:[INFO]: probe success (Version 2.5.4)
+[    0.081777] workingset: timestamp_bits=30 max_order=14 bucket_order=0
+[    0.086976] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.086987] jffs2: version 2.2. (NAND) Â© 2001-2006 Red Hat, Inc.
+[    0.144195] cdc_ncm_driver_init
+[    0.144205] ly_cdc_ncm_driver_init
+[    0.144209] ly_usbnet_init
+[    0.144338] usbcore: registered new interface driver cdc_ncm
+[    0.144595] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    0.144604] ehci-platform: EHCI generic platform driver
+[    0.144892] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    0.144901] ohci-platform: OHCI generic platform driver
+[    0.145155] usbcore: registered new interface driver iap
+[    0.145330] i2c /dev entries driver
+[    0.145570] Bluetooth: HCI UART driver ver 2.3
+[    0.145583] Bluetooth: HCI UART protocol H4 registered
+[    0.146489] logger: created 2048K log 'log_main'
+[    0.147296] sunxi:uart-ng-uart-ng0:[INFO]: cannot get the TX DMA channel!
+[    0.147308] sunxi:uart-ng-uart-ng0:[INFO]: cannot get the RX DMA channel!
+[    0.147364] sunxi:uart-ng:[INFO]: sunxi uart-ng driver version: 1.1.10
+[    0.147414] uart-ng0: ttyS0 at MMIO 0x42500000 (irq = 134, base_baud = 12000000) is a SUNXI
+[    0.147561] sunxi:uart-ng-uart-ng0:[INFO]: console setup baud 115200 parity n bits 8, flow n
+[    0.147580] sunxi:uart-ng-uart-ng0:[INFO]: uart0, select set 0, baud 115200, uartclk 192000000 beyond rance[24000000, 120000000]
+[    0.147641] printk: console [ttyS0] enabled
+[    0.148443] sunxi:uart-ng-uart-ng1:[INFO]: cannot get the TX DMA channel!
+[    0.148454] sunxi:uart-ng-uart-ng1:[INFO]: cannot get the RX DMA channel!
+[    0.148548] uart-ng1: ttyS1 at MMIO 0x42500400 (irq = 135, base_baud = 12000000) is a SUNXI
+[    0.149910] sunxi-wdt 4a001000.watchdog: Watchdog enabled (timeout=300 sec, nowayout=0), driver version: 1.0.5
+[    0.151273] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: SD/MMC/SDIO Host Controller Driver(v5.55 2024-08-26 15:32)
+[    0.151583] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: ctl-spec-caps 8
+[    0.151601] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: No vmmc regulator found
+[    0.151607] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: No vqmmc regulator found
+[    0.151613] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: No vdmmc regulator found
+[    0.151619] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: No vd33sw regulator found
+[    0.151625] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: No vd18sw regulator found
+[    0.151630] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: No vq33sw regulator found
+[    0.151636] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: No vq18sw regulator found
+[    0.151642] sunxi:sunxi_mmc_host-44021000.sdmmc:[ERR]: manual set ocr
+[    0.151676] sunxi:sunxi_mmc_host-44021000.sdmmc:[WARN]: Cann't get pin bias hs pinstate,check if needed
+[    0.151757] sunxi:sunxi_mmc_host-44021000.sdmmc:[ERR]: Could not get store clock
+[    0.151768] sunxi:sunxi_mmc_host-44021000.sdmmc:[ERR]: Could not get msi_lite clock
+[    0.152051] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: ***set host ocr***
+[    0.152555] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: sdc set ios:clk 0Hz bm PP pm UP vdd 21 width 1 timing LEGACY(SDR12) dt B
+[    0.163472] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: sdc set ios:clk 400000Hz bm PP pm ON vdd 21 width 1 timing LEGACY(SDR12) dt B
+[    0.176386] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: detmode:manually by software
+[    0.177191] sunxi:sunxi_mmc_host-44021000.sdmmc:[ERR]: smc 0 p1 err, cmd 52, RTO !!
+[    0.177869] sunxi:sunxi_spifFlash spi CLOCK usage ly_flash_clock=50000000 !!!!
+[    0.177884] sunxi:sunxi_spif-44f00000.spif:[INFO]: sample_mode:0 sample_delay:11
+[    0.178048] sunxi:sunxi_mmc_host-44021000.sdmmc:[ERR]: smc 0 p1 err, cmd 52, RTO !!
+[    0.178092] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: sdc set ios:clk 400000Hz bm PP pm ON vdd 21 width 1 timing LEGACY(SDR12) dt B
+[    0.178363] sunxi:sunxi_spif-44f00000.spif:[INFO]: [spi-flash0] mclk 24000000
+[    0.178373] sunxi:sunxi_spif-44f00000.spif:[ERR]: sunxi_spif_soft_reset timeout
+[    0.180267] sunxi:sunxi_spif-44f00000.spif:[INFO]: [spi-flash0] working clk 50000000
+[    0.181326] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: sdc set ios:clk 400000Hz bm PP pm ON vdd 21 width 1 timing LEGACY(SDR12) dt B
+[    0.181749] sunxi_spif 44f00000.spif: xt25p1288 (16384 Kbytes) IO DTR
+[    0.181808] ly_spi_nor_init flash_id=000b4018
+[    0.181876] unique_id=4150344a303837ffffffff0d0008003b
+[    0.182121] ly_spi_nor_init flash_id=000b4018,ok
+[    0.182718] 10 sunxipart partitions found on MTD device spif
+[    0.182727] Creating 10 MTD partitions on "spif":
+[    0.182751] 0x000000000000-0x000000060000 : "uboot"
+[    0.183941] 0x000000060000-0x000000370000 : "boot"
+[    0.184963] 0x000000370000-0x000000680000 : "recovery"
+[    0.185985] 0x000000680000-0x000000b00000 : "rootfs"
+[    0.186980] 0x000000b00000-0x000000ea0000 : "customer"
+[    0.188065] 0x000000ea0000-0x000000eb0000 : "env"
+[    0.189110] 0x000000eb0000-0x000000ec0000 : "env-redund"
+[    0.190134] 0x000000ec0000-0x000000ed0000 : "private"
+[    0.191162] 0x000000ed0000-0x000000f80000 : "logo"
+[    0.192300] 0x000000f80000-0x000001000000 : "UDISK"
+[    0.193072] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: sdc set ios:clk 400000Hz bm PP pm ON vdd 21 width 1 timing SD-HS(SDR25) dt B
+[    0.193297] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: sdc set ios:clk 50000000Hz bm PP pm ON vdd 21 width 1 timing SD-HS(SDR25) dt B
+[    0.193836] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: sdc set ios:clk 48000000Hz bm PP pm ON vdd 21 width 4 timing SD-HS(SDR25) dt B
+[    0.195771] mmc0: new high speed SDIO card at address 390b
+[    0.196246] sunxi:sunxi_spif-44f00000.spif:[INFO]: probe succeed (Version 1.0.2)
+[    0.196883] Bluetooth: HCI UART protocol (null) registered
+[    0.196894] Bluetooth: RTKBT_RELEASE_NAME: 20220818_LINUX_BT_DRIVER
+[    0.196899] Bluetooth: HCI Realtek H5 protocol initialized
+[    0.196906] ly_console_init
+[    0.197879] NET: Registered protocol family 10
+[    0.199238] Segment Routing with IPv6
+[    0.199385] mip6: Mobile IPv6
+[    0.200324] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    0.201832] NET: Registered protocol family 17
+[    0.201871] NET: Registered protocol family 15
+[    0.202058] Bluetooth: RFCOMM TTY layer initialized
+[    0.202077] Bluetooth: RFCOMM socket layer initialized
+[    0.202083] Bluetooth: RFCOMM ver 1.11
+[    0.204838] sunxi:sound-common:[WARN]: 326 pacfg_level_trig_init(): pa-pin-msleep1-0 get failed, default 0
+[    0.205660] sunxi:sound-mach:[WARN]: 372 asoc_simple_parse_ucfmt(): set data late to default
+[    0.205974] sunxi-snd-mach soc@2002000:codec_mach: 42030000.codec <-> soc@2002000:codec_plat mapping ok
+[    0.209054] aicbsp_init
+[    0.209065] aicbsp_init, Driver Release Tag: aic-bsp-compatible(sdio)-20250410-002
+[    0.209442] -->aicbt_rfkill_init
+[    0.209450] <--aicbt_rfkill_init
+[    0.210222] ALSA device list:
+[    0.210235]   #0: audiocodec
+[    0.210282] ly module loader initializing
+[    0.210291] Loading module from memory: awbase.ko, size: 6416
+[    0.210583] awbase: unknown parameter 'awbase.ko' ignored
+[    0.211224] sunxi:uart-ng-uart-ng0:[INFO]: uart0, select set 0, baud 115200, uartclk 192000000 beyond rance[24000000, 120000000]
+[    0.211585] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    0.211598] cfg80211: failed to load regulatory.db
+[    0.212299] >>> rwnx_mod_init()
+[    0.212308] rwnx 20250410-008-6.4.3.0 - - 241c091M (master)
+[    0.212314] Driver Release Tag: aic-rwnx-compatible(sdio)-20250410-008
+[    0.212324] aicbsp: aicbsp_set_subsys, subsys: AIC_WIFI, state to: 1
+[    0.212332] aicbsp: aicbsp_set_subsys, power state change to 1 dure to AIC_WIFI
+[    0.212464] aicbsp: aicbsp_platform_power_on disable MMC_CAP_UHS_DDR50 for host (ptrval)
+[    0.255970] VFS: Mounted root (squashfs filesystem) readonly on device 31:3.
+[    0.279658] aicbsp: aicbsp_sdio_probe:2
+[    0.279668] aicbsp: aicbsp_sdio_probe:2, matched chip: aic8800d80
+[    0.279675] aicbsp: aicbsp_sdio_probe after replace:1
+[    0.279687] aicbsp: aicbsp_sdio_probe host max clock frequecy: 50000000
+[    0.279693] aicbsp: aicwf_sdio_reg_init
+[    0.282492] devtmpfs: mounted
+[    0.282672] Freeing unused kernel memory: 116K
+[    0.282680] This architecture does not have kernel memory protection.
+[    0.282687] Run /init as init process
+[    0.291514] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: sdc set ios:clk 50000000Hz bm PP pm ON vdd 21 width 4 timing SD-HS(SDR25) dt B
+[    0.291889] aicbsp: Set SDIO Clock 48 MHz
+[    0.300196] aicbsp:sdio_f1_flag 0
+[    0.300620] aicbsp: aicbsp_8800d80_fw_init, rev id: 0x7, subrev id: 0x82, is_chip_id_h: 1
+[    0.300634] rwnx_request_firmware, name: aic8800d80/fw_patch_table_8800d80_u02.bin
+[    0.300659] aicbt_patch_info_unpack head->len:6 base_len:4 
+[    0.300666] aicbt_patch_info_unpack memcpy_len:5 
+[    0.300674] aicbt_patch_info_unpack adid_addrinf:1e7d20 addr_adid:201940 
+[    0.300682] aicbt_patch_info_unpack id:0 addr:20b43c 
+[    0.300689] rwnx_request_firmware, name: aic8800d80/fw_adid_8800d80_u02.bin
+[    0.301455] rwnx_request_firmware, name: aic8800d80/fw_patch_8800d80_u02.bin
+[    0.312278] aicbt_ext_patch_data_load ext_patch_file_name:aic8800d80/fw_patch_8800d80_u02_ext0.bin ext_patch_id:0 ext_patch_addr:20b43c 
+[    0.312292] rwnx_request_firmware, name: aic8800d80/fw_patch_8800d80_u02_ext0.bin
+[    0.317657] aicbt_patch_table_load bt uart baud: 500000, flowctrl: 1, lpm_enable: 0, tx_pwr: 28463, bt mode:5.
+[    0.348328] aicbsp: bt patch version: - May 21 2025 10:02:21 - git ac9438e
+[    0.348354] rwnx_request_firmware, name: aic8800d80/fmacfw_8800d80_h_u02.bin
+[    0.443518] rd_version_val=06090101
+[    0.444844] patch_tbl[0]={0x170,0x0100000a}
+[    0.445223] patch_tbl[1]={0x188,0x00000183}
+[    0.445600] patch_tbl[2]={0x1a4,0x03ff03ff}
+[    0.445986] patch_tbl[3]={0x1a8,0x03ff03ff}
+[    0.446384] patch_tbl[4]={0x1ac,0x03ff03ff}
+[    0.446763] patch_tbl[5]={0x1b0,0x0f0f0f0f}
+[    0.447660] patch_tbl[6]={0x1b4,0x00000f0f}
+[    0.469903] sunxi:sunxi_mmc_host-44021000.sdmmc:[INFO]: sdc set ios:clk 50000000Hz bm PP pm ON vdd 21 width 4 timing SD-HS(SDR25) dt B
+[    0.475417] aicbsp: aicbsp_resv_mem_alloc_skb, alloc resv_mem_txdata succuss, id: 0, size: 98304
+[    0.483493] aicbsp: err:<aicwf_sdio_bus_pwrctl,1332>: bus down
+[    0.483837] >>> rwnx_platform_init()
+[    0.483844] >>> rwnx_cfg80211_init()
+[    0.483892] rwnx_cfg80211_init sizeof(struct rwnx_hw):14904 
+[    0.483936] >>> rwnx_init_aic()
+[    0.483945] >>> rwnx_cmd_mgr_init()
+[    0.484305] tcp_ack_init 
+[    0.484320] aicwf_prealloc_txq_alloc, enter
+[    0.484326] aicwf_prealloc_txq_alloc size is diff will to be kzalloc 
+[    0.484363] aicwf_prealloc_txq_alloc txq kzalloc successful 
+[    0.487572] >>> rwnx_send_set_stack_start_req()
+[    0.488141] is 5g support = 1, vendor_info = 0x21
+[    0.488376] Firmware Version: la Oct 25 2025 19:45:30 - g2147552f
+[    0.488385] >>> rwnx_platform_on()
+[    0.488391] >>> rwnx_plat_fmac_load()
+[    0.488401] userconfig file path:aic8800d80/aic_userconfig_8800d80.txt 
+[    0.488906] rwnx_plat_userconfig_parsing, enable = 1
+[    0.488929] rwnx_plat_userconfig_parsing, lvl_11b_11ag_1m_2g4 = 13
+[    0.488953] rwnx_plat_userconfig_parsing, lvl_11b_11ag_2m_2g4 = 13
+[    0.488979] rwnx_plat_userconfig_parsing, lvl_11b_11ag_5m5_2g4 = 13
+[    0.489008] rwnx_plat_userconfig_parsing, lvl_11b_11ag_11m_2g4 = 13
+[    0.489037] rwnx_plat_userconfig_parsing, lvl_11b_11ag_6m_2g4 = 13
+[    0.489069] rwnx_plat_userconfig_parsing, lvl_11b_11ag_9m_2g4 = 13
+[    0.489102] rwnx_plat_userconfig_parsing, lvl_11b_11ag_12m_2g4 = 13
+[    0.489137] rwnx_plat_userconfig_parsing, lvl_11b_11ag_18m_2g4 = 13
+[    0.489174] rwnx_plat_userconfig_parsing, lvl_11b_11ag_24m_2g4 = 12
+[    0.489213] rwnx_plat_userconfig_parsing, lvl_11b_11ag_36m_2g4 = 12
+[    0.489253] rwnx_plat_userconfig_parsing, lvl_11b_11ag_48m_2g4 = 11
+[    0.489294] rwnx_plat_userconfig_parsing, lvl_11b_11ag_54m_2g4 = 11
+[    0.489337] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs0_2g4 = 13
+[    0.489382] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs1_2g4 = 13
+[    0.489429] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs2_2g4 = 13
+[    0.489478] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs3_2g4 = 13
+[    0.489528] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs4_2g4 = 12
+[    0.489580] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs5_2g4 = 12
+[    0.489634] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs6_2g4 = 11
+[    0.489690] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs7_2g4 = 11
+[    0.489747] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs8_2g4 = 10
+[    0.489807] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs9_2g4 = 10
+[    0.489861] rwnx_plat_userconfig_parsing, lvl_11ax_mcs0_2g4 = 13
+[    0.489917] rwnx_plat_userconfig_parsing, lvl_11ax_mcs1_2g4 = 13
+[    0.489975] rwnx_plat_userconfig_parsing, lvl_11ax_mcs2_2g4 = 13
+[    0.490034] rwnx_plat_userconfig_parsing, lvl_11ax_mcs3_2g4 = 13
+[    0.490095] rwnx_plat_userconfig_parsing, lvl_11ax_mcs4_2g4 = 12
+[    0.490157] rwnx_plat_userconfig_parsing, lvl_11ax_mcs5_2g4 = 12
+[    0.490221] rwnx_plat_userconfig_parsing, lvl_11ax_mcs6_2g4 = 11
+[    0.490287] rwnx_plat_userconfig_parsing, lvl_11ax_mcs7_2g4 = 11
+[    0.490355] rwnx_plat_userconfig_parsing, lvl_11ax_mcs8_2g4 = 10
+[    0.490423] rwnx_plat_userconfig_parsing, lvl_11ax_mcs9_2g4 = 10
+[    0.490496] rwnx_plat_userconfig_parsing, lvl_11ax_mcs10_2g4 = 10
+[    0.490571] rwnx_plat_userconfig_parsing, lvl_11ax_mcs11_2g4 = 10
+[    0.490689] rwnx_plat_userconfig_parsing, lvl_11a_6m_5g = 13
+[    0.490808] rwnx_plat_userconfig_parsing, lvl_11a_9m_5g = 13
+[    0.490929] rwnx_plat_userconfig_parsing, lvl_11a_12m_5g = 13
+[    0.491052] rwnx_plat_userconfig_parsing, lvl_11a_18m_5g = 13
+[    0.491177] rwnx_plat_userconfig_parsing, lvl_11a_24m_5g = 12
+[    0.491303] rwnx_plat_userconfig_parsing, lvl_11a_36m_5g = 12
+[    0.491490] rwnx_plat_userconfig_parsing, lvl_11a_48m_5g = 11
+[    0.491623] rwnx_plat_userconfig_parsing, lvl_11a_54m_5g = 11
+[    0.491779] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs0_5g = 13
+[    0.491937] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs1_5g = 13
+[    0.492097] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs2_5g = 13
+[    0.492258] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs3_5g = 13
+[    0.492421] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs4_5g = 12
+[    0.492586] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs5_5g = 12
+[    0.492752] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs6_5g = 11
+[    0.492921] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs7_5g = 11
+[    0.493091] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs8_5g = 10
+[    0.493263] rwnx_plat_userconfig_parsing, lvl_11n_11ac_mcs9_5g = 10
+[    0.493417] rwnx_plat_userconfig_parsing, lvl_11ax_mcs0_5g = 13
+[    0.493572] rwnx_plat_userconfig_parsing, lvl_11ax_mcs1_5g = 13
+[    0.493730] rwnx_plat_userconfig_parsing, lvl_11ax_mcs2_5g = 13
+[    0.493890] rwnx_plat_userconfig_parsing, lvl_11ax_mcs3_5g = 13
+[    0.494051] rwnx_plat_userconfig_parsing, lvl_11ax_mcs4_5g = 12
+[    0.494213] rwnx_plat_userconfig_parsing, lvl_11ax_mcs5_5g = 12
+[    0.494377] rwnx_plat_userconfig_parsing, lvl_11ax_mcs6_5g = 10
+[    0.494543] rwnx_plat_userconfig_parsing, lvl_11ax_mcs7_5g = 10
+[    0.494709] rwnx_plat_userconfig_parsing, lvl_11ax_mcs8_5g = 10
+[    0.494877] rwnx_plat_userconfig_parsing, lvl_11ax_mcs9_5g = 10
+[    0.495048] rwnx_plat_userconfig_parsing, lvl_11ax_mcs10_5g = 9
+[    0.495219] rwnx_plat_userconfig_parsing, lvl_11ax_mcs11_5g = 9
+[    0.495625] rwnx_plat_userconfig_parsing, lvl_adj_enable = 0
+[    0.495814] rwnx_plat_userconfig_parsing, lvl_adj_2g4_chan_1_4 = 0
+[    0.496003] rwnx_plat_userconfig_parsing, lvl_adj_2g4_chan_5_9 = 0
+[    0.496197] rwnx_plat_userconfig_parsing, lvl_adj_2g4_chan_10_13 = 0
+[    0.498685] rwnx_plat_userconfig_parsing, ofst2x_enable = 0
+[    0.498890] rwnx_plat_userconfig_parsing, ofst_2g4_11b_chan_1_4 = 0
+[    0.499097] rwnx_plat_userconfig_parsing, ofst_2g4_11b_chan_5_9 = 0
+[    0.499311] rwnx_plat_userconfig_parsing, ofst_2g4_11b_chan_10_13 = 0
+[    0.499553] rwnx_plat_userconfig_parsing, ofst_2g4_ofdm_highrate_chan_1_4 = 0
+[    0.499784] rwnx_plat_userconfig_parsing, ofst_2g4_ofdm_highrate_chan_5_9 = 0
+[    0.500019] rwnx_plat_userconfig_parsing, ofst_2g4_ofdm_highrate_chan_10_13 = 0
+[    0.500251] rwnx_plat_userconfig_parsing, ofst_2g4_ofdm_lowrate_chan_1_4 = 0
+[    0.500487] rwnx_plat_userconfig_parsing, ofst_2g4_ofdm_lowrate_chan_5_9 = 0
+[    0.500728] rwnx_plat_userconfig_parsing, ofst_2g4_ofdm_lowrate_chan_10_13 = 0
+[    0.500962] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_lowrate_chan_42 = 0
+[    0.501197] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_lowrate_chan_58 = 0
+[    0.501437] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_lowrate_chan_106 = 0
+[    0.501679] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_lowrate_chan_122 = 0
+[    0.501925] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_lowrate_chan_138 = 0
+[    0.502172] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_lowrate_chan_155 = 0
+[    0.502420] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_highrate_chan_42 = 0
+[    0.502671] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_highrate_chan_58 = 0
+[    0.502926] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_highrate_chan_106 = 0
+[    0.503181] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_highrate_chan_122 = 0
+[    0.503469] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_highrate_chan_138 = 0
+[    0.503733] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_highrate_chan_155 = 0
+[    0.503991] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_midrate_chan_42 = 0
+[    0.504250] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_midrate_chan_58 = 0
+[    0.504516] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_midrate_chan_106 = 0
+[    0.504784] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_midrate_chan_122 = 0
+[    0.505054] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_midrate_chan_138 = 0
+[    0.505326] rwnx_plat_userconfig_parsing, ofst_5g_ofdm_midrate_chan_155 = 0
+[    0.505747] rwnx_plat_userconfig_parsing, xtal_enable = 0
+[    0.505959] rwnx_plat_userconfig_parsing, xtal_cap = 24
+[    0.506186] rwnx_plat_userconfig_parsing, xtal_cap_fine = 31
+[    0.506209] >>> rwnx_send_txpwr_lvl_v3_req()
+[    0.506496] >>> rwnx_send_txpwr_lvl_adj_req()
+[    0.506506] >>> rwnx_msg_free()
+[    0.506512] >>> rwnx_send_txpwr_ofst2x_req()
+[    0.506519] rwnx_send_txpwr_ofst2x_req:Do not use txpwr_ofst2x
+[    0.506524] >>> rwnx_msg_free()
+[    0.506530] >>> rwnx_send_rf_calib_req()
+[    1.391400] >>> rwnx_send_get_macaddr_req()
+[    1.391833] get macaddr: 0c:cd:d0:1f:b4:86
+[    1.391841] >>> rwnx_send_reset()
+[    1.392791] >>> rwnx_send_version_req()
+[    1.392995] >>> rwnx_set_vers()
+[    1.393017] >>> rwnx_send_me_config_req()
+[    1.393037] ieee80211 phy0: HT supp 1, VHT supp 1, HE supp 1
+[    1.393567] >>> rwnx_send_me_chan_config_req()
+[    1.393581] Release no IR freq = 5180 
+[    1.393587] Release no IR freq = 5200 
+[    1.393592] Release no IR freq = 5220 
+[    1.393598] Release no IR freq = 5240 
+[    1.393603] Release no IR freq = 5260 
+[    1.393609] Release no IR freq = 5280 
+[    1.393614] Release no IR freq = 5300 
+[    1.393619] Release no IR freq = 5320 
+[    1.393625] Release no IR freq = 5500 
+[    1.393630] Release no IR freq = 5520 
+[    1.393636] Release no IR freq = 5540 
+[    1.393641] Release no IR freq = 5560 
+[    1.393646] Release no IR freq = 5580 
+[    1.393652] Release no IR freq = 5600 
+[    1.393657] Release no IR freq = 5620 
+[    1.393662] Release no IR freq = 5640 
+[    1.393667] Release no IR freq = 5660 
+[    1.393673] Release no IR freq = 5680 
+[    1.393678] Release no IR freq = 5700 
+[    1.393684] Release no IR freq = 5720 
+[    1.393689] Release no IR freq = 5745 
+[    1.393694] Release no IR freq = 5765 
+[    1.393700] Release no IR freq = 5785 
+[    1.393705] Release no IR freq = 5805 
+[    1.393711] Release no IR freq = 5825 
+[    1.393994] >>> rwnx_send_me_chan_config_req()
+[    1.394226] rwnx_interface_add: wlan%d, 2, 10
+[    1.394335] interface add:c cd d0 1f b4 86
+[    1.408925] ieee80211 phy0: New interface create wlan0
+[    1.408937] aic_ipc_setting, enter
+[    1.408960] set_channel_access_req:edca[]= 0 138542 0 0
+[    1.408960] vif_idx: 0, retry_cnt: 1e, rts_en: 0, long_nav_en: 0, cfe_en: 0, rc_retry_cnt: 2:2:7, ccademod_th = 0 remove_1m2m = 1
+[    2.575469] random: crng init done
+[    2.839973] file system registered
+[    3.703815] read private 20:ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+[    3.872659] >>> rwnx_open()
+[    3.872670] >>> rwnx_send_start()
+[    3.883550] >>> rwnx_send_coex_req()
+[    3.883907] rwnx_open rwnx_vif->drv_flags:4
+[    3.883915] >>> rwnx_send_add_if()
+[    3.947270] ly_encry_open
+[    3.947307] decode success
+[    3.967559] abc:118 abc type=15 
+[    3.967573] abc:185 abc result1=6019 
+[    3.967587] abc:205 abc type2=0 
+[    3.967594] abc:219 abc ok 
+[    3.967601] abc:224 abc result2=1 
+[    3.967608] abc:227 abc result1,2 = 6019,1 
+[    3.967615] abc:238 abc ret = 1 
+[    3.967620] ly:6239 chk ok
+[    3.971796] check2=15
+[    3.972159] check1=0
+[    4.176236] decode success
+[    4.204104] gadget_dev_desc_UDC_store name=none fail ret=-19
+[    4.204560] iphone_ptp_alloc_inst 634
+[    4.204568] iphone_setup
+[    4.204970] ly_usb_mode=1
+[    4.205066] iphone_audio_alloc_inst 420
+[    4.205117] iphone_hid_alloc_inst 764
+[    4.205125] iphone_hid_init 726
+[    4.205285] iphone_hid_init 750 hid_iap gadget driver to initialize ok
+[    4.205349] iphone_vendor1_alloc_inst 305
+[    4.205419] iphone_vendor2_alloc_inst 289
+[    4.206483] iphone_ptp_alloc 678
+[    4.206560] iphone_audio_alloc 532
+[    4.206622] iphone_hid_alloc 933
+[    4.206686] iphone_ptp_alloc 678
+[    4.206751] iphone_vendor1_alloc 358
+[    4.206813] iphone_ptp_alloc 678
+[    4.206874] iphone_vendor1_alloc 358
+[    4.206937] iphone_vendor2_alloc 342
+[    4.207080] iphone_ptp_bind 428 config:c,name:ptp bind
+[    4.207094] iphone_ptp_bind 459 ep_in address 81 name=ep1in-bulk
+[    4.207103] iphone_ptp_bind 467 ep_out address 01 name=ep1out-bulk
+[    4.207112] iphone_ptp_bind 478 ep_int address 83 name=ep3-int
+[    4.207121] iphone_ptp_bind 489 config:c dual speed ptp: IN/ep1in-bulk, OUT/ep1out-bulk
+[    4.207134] iphone_audio_bind 269 config:c,name:audio bind
+[    4.207143] iphone_audio_bind 305 config:c dual speed audio
+[    4.207151] iphone_hid_bind 529 config:c,name:hid bind
+[    4.207158] iphone_hid_bind 542 iInterface: 8
+[    4.207168] iphone_hid_bind 563 gooo ep_int address 83 name=ep3-int
+[    4.207178] iphone_hid_bind 585 config:c dual speed hid
+[    4.207195] iphone_ptp_bind 428 config:c,name:ptp bind
+[    4.207204] iphone_ptp_bind 459 ep_in address 81 name=ep1in-bulk
+[    4.207213] iphone_ptp_bind 467 ep_out address 01 name=ep1out-bulk
+[    4.207221] iphone_ptp_bind 478 ep_int address 83 name=ep3-int
+[    4.207230] iphone_ptp_bind 489 config:c dual speed ptp: IN/ep1in-bulk, OUT/ep1out-bulk
+[    4.207239] iphone_vendor1_bind 131 config:c,name:vendor1 bind
+[    4.207248] iphone_vendor1_bind 161 ep_in address 82 name=ep2in-bulk
+[    4.207256] iphone_vendor1_bind 169 ep_out address 02 name=ep2out-bulk
+[    4.207264] iphone_vendor1_bind 173 config:c dual speed vendor1
+[    4.207274] iphone_ptp_bind 428 config:c,name:ptp bind
+[    4.207282] iphone_ptp_bind 459 ep_in address 81 name=ep1in-bulk
+[    4.207290] iphone_ptp_bind 467 ep_out address 01 name=ep1out-bulk
+[    4.207299] iphone_ptp_bind 478 ep_int address 83 name=ep3-int
+[    4.207307] iphone_ptp_bind 489 config:c dual speed ptp: IN/ep1in-bulk, OUT/ep1out-bulk
+[    4.207315] iphone_vendor1_bind 131 config:c,name:vendor1 bind
+[    4.207324] iphone_vendor1_bind 161 ep_in address 82 name=ep2in-bulk
+[    4.207332] iphone_vendor1_bind 169 ep_out address 02 name=ep2out-bulk
+[    4.207340] iphone_vendor1_bind 173 config:c dual speed vendor1
+[    4.207348] iphone_vendor2_bind 160 config:c,name:vendor2 bind
+[    4.207356] iphone_vendor2_bind 186 config:c dual speed vendor2
+[    4.207813] ly_cdc_ncm_set_enable value=2
+[    4.207823] ly_cdc_ncm_enable=2
+[    4.207885] ly_cdc_ncm_set_enable value=0
+[    4.207891] ly_cdc_ncm_enable=0
+[    4.209225] iphone_hid_open 409
+[    4.209978] iphone_hid_read 235 count=256
+[    4.209992] iphone_hid_read 260 waiting for online 0 or error 0
+[    4.262860] iphone_disconnect
+[    4.262884] android_work: did not send uevent (0 0 00000000)
+[    4.425332] iphone_ctrlrequest 302 ctrl:80.06 v0100 i0000 l18
+[    4.425435] iphone_ctrlrequest 302 ctrl:80.06 v0302 i0409 l2
+[    4.425504] iphone_ctrlrequest 302 ctrl:80.06 v0302 i0409 l14
+[    4.425601] iphone_ctrlrequest 302 ctrl:80.06 v0301 i0409 l2
+[    4.425665] iphone_ctrlrequest 302 ctrl:80.06 v0301 i0409 l22
+[    4.425758] iphone_ctrlrequest 302 ctrl:80.06 v0303 i0409 l2
+[    4.425834] iphone_ctrlrequest 302 ctrl:80.06 v0303 i0409 l82
+[    4.425924] iphone_ctrlrequest 302 ctrl:80.06 v0f00 i0000 l5
+[    4.426120] iphone_ctrlrequest 302 ctrl:80.06 v0200 i0000 l9
+[    4.426191] iphone_ctrlrequest 302 ctrl:80.06 v0200 i0000 l39
+[    4.426231] android_work: sent uevent USB_STATE=CONNECTED
+[    4.426288] iphone_ctrlrequest 302 ctrl:80.06 v0201 i0000 l9
+[    4.426359] iphone_ctrlrequest 302 ctrl:80.06 v0201 i0000 l149
+[    4.426461] iphone_ctrlrequest 302 ctrl:80.06 v0202 i0000 l9
+[    4.426539] iphone_ctrlrequest 302 ctrl:80.06 v0202 i0000 l62
+[    4.426644] iphone_ctrlrequest 302 ctrl:80.06 v0203 i0000 l9
+[    4.426712] iphone_ctrlrequest 302 ctrl:80.06 v0203 i0000 l117
+[    4.427545] iphone_ctrlrequest 302 ctrl:c0.45 v0000 i0000 l4
+[    4.428369] iphone_ctrlrequest 302 ctrl:40.40 v0960 i076c l0
+[    4.428377] iphone_ctrlrequest 312 set power capability 2400 mA
+[    4.428440] iphone_ctrlrequest 302 ctrl:00.09 v0001 i0000 l0
+[    4.428448] iphone_ctrlrequest 328 set config=1
+[    4.428464] configfs-gadget gadget: high-speed config #1: c
+[    4.428482] iphone_ptp_set_alt 511 config:c name:ptp intf: 0 alt: 0
+[    4.428501] ep enable: ep1(0xaf69711b, ep1in-bulk, 128, 512), fifo(512, 512, 0)
+[    4.428520] ep enable: ep1(0xe27b81b0, ep1out-bulk, 0, 512), fifo(1024, 512, 0)
+[    4.428536] ep enable: ep3(0x4a41411f, ep3-int, 128, 64), fifo(3584, 512, 0)
+[    4.428848] android_work: sent uevent USB_STATE=CONFIGURED
+[    4.430356] iphone_ctrlrequest 302 ctrl:80.06 v0305 i0409 l2
+[    4.430439] iphone_ctrlrequest 302 ctrl:80.06 v0305 i0409 l8
+[    4.432333] iphone_ctrlrequest 302 ctrl:80.08 v0000 i0000 l1
+[    4.433795] iphone_ctrlrequest 302 ctrl:80.08 v0000 i0000 l1
+[    4.433925] iphone_ctrlrequest 302 ctrl:80.06 v0300 i0000 l4
+[    4.679165] sunxi:uart-ng-uart-ng1:[INFO]: uart1, baud 500000 beyond rance
+[    4.860523] Bluetooth: Unable to create CMAC crypto context
+[    5.393890] rwnx_virtual_interface_add: 10, p2p-dev-wlan0
+[    5.393912] rwnx_virtual_interface_add, ifname=p2p-dev-wlan0, wdev=f0bb87f3, vif_idx=1
+[    5.393923] p2p dev addr=c cd d0 1f b4 87
+[    5.403386] P2P interface started
+[    6.044495] rwnx_interface_add: p2p-wlan0-0, 9, 10
+[    6.044613] interface add:cc a6 8d f4 1d 33
+[    6.115218] >>> rwnx_open()
+[    6.115230] >>> rwnx_send_coex_req()
+[    6.116473] rwnx_open rwnx_vif->drv_flags:4
+[    6.116481] add p2p dev if
+[    6.116488] >>> rwnx_send_add_if()
+[    6.116823] >>> rwnx_send_add_if()
+[    6.139834] >>> rwnx_cfg80211_del_key()
+[    6.139845] >>> rwnx_send_key_del()
+[    6.140532] >>> rwnx_cfg80211_del_key()
+[    6.140542] >>> rwnx_send_key_del()
+[    6.142377] >>> rwnx_cfg80211_del_key()
+[    6.142387] >>> rwnx_send_key_del()
+[    6.143110] >>> rwnx_cfg80211_del_key()
+[    6.143121] >>> rwnx_send_key_del()
+[    6.143906] >>> rwnx_cfg80211_del_key()
+[    6.143915] >>> rwnx_send_key_del()
+[    6.144581] >>> rwnx_cfg80211_del_key()
+[    6.144592] >>> rwnx_send_key_del()
+[    6.334565] >>> rwnx_cfg80211_del_station_compat()
+[    6.335970] >>> rwnx_cfg80211_start_ap()
+[    6.336142] >>> rwnx_send_apm_start_req()
+[    6.495527] aicwf_sdio mmc0:390b:1 p2p-wlan0-0: AP started: ch=0, bcmc_idx=34 channel=5180 bw=1
+[    6.496888] >>> rwnx_cfg80211_add_key()
+[    6.496898] >>> rwnx_send_key_add()
+[    6.496914] rwnx_send_key_add: sta_idx:255 key_idx:1 inst_nbr:2 cipher:2 key_len:16
+[    6.497858] >>> rwnx_cfg80211_set_default_key()
+[    6.497983] >>> rwnx_cfg80211_set_txq_params()
+[    6.497991] >>> rwnx_send_set_edca()
+[    6.498433] >>> rwnx_cfg80211_set_txq_params()
+[    6.498441] >>> rwnx_send_set_edca()
+[    6.498824] >>> rwnx_cfg80211_set_txq_params()
+[    6.498832] >>> rwnx_send_set_edca()
+[    6.499199] >>> rwnx_cfg80211_set_txq_params()
+[    6.499207] >>> rwnx_send_set_edca()
+[    7.563192] >>> rwnx_cfg80211_change_iface()
+[    7.563206] change_if: 2 to 3, 8, 2
+[    7.563213] >>> rwnx_send_coex_req()
+[    7.563657] >>> rwnx_send_remove_if()
+[    7.563666] >>> rwnx_send_msg1()
+[    7.563923] change_if from 0 
+[    7.563930] >>> rwnx_send_add_if()
+[    7.564452] change_if to 3 
+[    7.573170] >>> rwnx_cfg80211_scan()
+[    7.573181] >>> rwnx_send_scanu_req()
+[    7.606696] sh (173): drop_caches: 3
+[    7.723772] >>> rwnx_rx_scanu_start_cfm()
+[    7.725544] >>> rwnx_cfg80211_del_station_compat()
+[    7.892970] >>> rwnx_cfg80211_start_ap()
+[    7.893145] >>> rwnx_send_apm_start_req()
+[    7.894209] aicwf_sdio mmc0:390b:1 wlan0: AP started: ch=0, bcmc_idx=35 channel=5180 bw=2
+[    7.895940] >>> rwnx_cfg80211_add_key()
+[    7.895952] >>> rwnx_send_key_add()
+[    7.895968] rwnx_send_key_add: sta_idx:255 key_idx:1 inst_nbr:3 cipher:2 key_len:16
+[    7.896580] >>> rwnx_cfg80211_set_default_key()
+[    7.897640] >>> rwnx_cfg80211_set_txq_params()
+[    7.897651] >>> rwnx_send_set_edca()
+[    7.898262] >>> rwnx_cfg80211_set_txq_params()
+[    7.898271] >>> rwnx_send_set_edca()
+[    7.898821] >>> rwnx_cfg80211_set_txq_params()
+[    7.898830] >>> rwnx_send_set_edca()
+[    7.899345] >>> rwnx_cfg80211_set_txq_params()
+[    7.899353] >>> rwnx_send_set_edca()
+[    9.156759] sh (154): drop_caches: 3
+[    9.416560] decode success
+[   13.614016] >>> rwnx_cfg80211_change_beacon()
+[   13.614368] >>> rwnx_send_bcn_change()
+[   13.615175] >>> rwnx_cfg80211_del_station_compat()
+[   13.615377] >>> rwnx_cfg80211_add_station()
+[   13.615385] >>> rwnx_send_me_sta_add()
+[   13.617278] aicwf_sdio mmc0:390b:1 wlan0: Add sta 0 (be:9d:b6:53:dd:98) flags=[WME][AUTHENTICATED][ASSOCIATED]
+[   13.617626] need cfm mgmt:10,user_idx=1, skb=803af0d3
+[   13.618340] sdio_host_tx_cfm_handler:used_idx=0, 0xf5863cbb, status=9
+[   13.618354] done=1 retry_required=0 sw_retry_required=0 acknowledged=1
+[   13.619303] >>> rwnx_cfg80211_del_key()
+[   13.619314] >>> rwnx_send_key_del()
+[   13.620741] >>> rwnx_cfg80211_del_key()
+[   13.620752] >>> rwnx_send_key_del()
+[   13.621454] >>> rwnx_cfg80211_del_key()
+[   13.621464] >>> rwnx_send_key_del()
+[   13.622007] >>> rwnx_send_me_set_control_port_req()
+[   13.623280] >>> rwnx_cfg80211_add_key()
+[   13.623291] >>> rwnx_send_key_add()
+[   13.623307] rwnx_send_key_add: sta_idx:255 key_idx:1 inst_nbr:3 cipher:2 key_len:16
+[   13.623960] >>> rwnx_cfg80211_set_default_key()
+[   13.624395] need cfm ethertype:    8e88,user_idx=2, skb=87f440f0
+[   13.625042] sdio_host_tx_cfm_handler:used_idx=1, 0xf5863cbb, status=9
+[   13.626837] >>> rwnx_cfg80211_get_key()
+[   13.627361] need cfm ethertype:    8e88,user_idx=3, skb=87f440f0
+[   13.630175] sdio_host_tx_cfm_handler:used_idx=2, 0xf5863cbb, status=9
+[   13.631812] >>> rwnx_cfg80211_add_key()
+[   13.631826] >>> rwnx_send_key_add()
+[   13.631842] rwnx_send_key_add: sta_idx:0 key_idx:0 inst_nbr:3 cipher:2 key_len:16
+[   13.632755] >>> rwnx_send_me_set_control_port_req()
+[   13.816869] reord_init_sta:be:9d:b6:53:dd:98
+[   23.103577] >>> rwnx_rx_me_tx_credits_update_ind()
+[  184.759400] check2=15
+[  184.759623] check1=0
+[  313.625213] rwnx_fill_station_info ModTx(1):5 TxIndex:11 ModRx(1):5 RxHTIndex:11 RxVHTIndex:15 RxHEIndex:11 RSSI:-51 

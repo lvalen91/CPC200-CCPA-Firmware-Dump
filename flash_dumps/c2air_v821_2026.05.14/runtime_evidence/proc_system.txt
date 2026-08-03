@@ -1,0 +1,54 @@
+Warning: Permanently added '192.168.50.100' (ED25519) to the list of known hosts.
+##### CMDLINE
+earlyprintk=sunxi-uart,0x42500000 initcall_debug=0 console=ttyS0,115200 loglevel=3 root=/dev/mtdblock3 rootwait rootfstype=squashfs init=/init rdinit=/rdinit partitions=boot@mtdblock1:recovery@mtdblock2:rootfs@mtdblock3:customer@mtdblock4:env@mtdblock5:env-redund@mtdblock6:private@mtdblock7:logo@mtdblock8:UDISK@mtdblock9 cma=1M coherent_pool= led_mode=6 sdcard_mode=0 project=ly6239 ly_boot_mode=normal func_det_mode= custom_name=VehiConn ly_efex_mode=0 sys_mode=0 boot_partition=boot rgb_mode=0xff0000 ly_flash_clock=100000000 ly_bt_bdrate=500000 led_update_mode=1 ly_test=0 androidboot.hardware=sun300iw1p1 boot_type=3 androidboot.boot_type=3 gpt=1 uboot_message=2018.07(05/09/2026-04:18:41) mbr_offset=376832 androidboot.dramfreq=520 androidboot.dramsize=64 uboot_backup=ubootA spi_max_hz=50000000 
+##### KVER
+Linux version 5.4.220 (tenc@ubuntu) (gcc version 10.4.0 (2024-02-02_nds32le-linux-glibc-v5d-bbc31ec98)) #2 PREEMPT Sat May 9 12:29:51 CST 2026
+##### CPU
+processor	: 0
+hart		: 0
+isa		: rv32imafdc
+
+##### MEM
+MemTotal:          58488 kB
+MemFree:           26072 kB
+MemAvailable:      30384 kB
+Buffers:             732 kB
+##### MODULES
+Module                  Size  Used by
+awbase                  1904  0 [permanent]
+##### MOUNTS
+/dev/root / squashfs ro,relatime 0 0
+devtmpfs /dev devtmpfs rw,relatime,size=27136k,nr_inodes=6784,mode=755 0 0
+/proc /proc proc rw,relatime 0 0
+tmpfs /tmp tmpfs rw,relatime 0 0
+sys /sys sysfs rw,relatime 0 0
+devpts /dev/pts devpts rw,relatime,gid=5,mode=620,ptmxmode=000 0 0
+/dev/by-name/customer /mnt/customer squashfs ro,relatime 0 0
+/dev/by-name/UDISK /mnt/UDISK jffs2 rw,relatime 0 0
+/dev/by-name/logo /mnt/logo jffs2 rw,relatime 0 0
+none /sys/kernel/config configfs rw,relatime 0 0
+##### DF
+Filesystem                Size      Used Available Use% Mounted on
+/dev/root                 4.5M      4.5M         0 100% /
+devtmpfs                 26.5M         0     26.5M   0% /dev
+tmpfs                    28.6M      2.4M     26.1M   9% /tmp
+/dev/by-name/customer
+                          3.0M      3.0M         0 100% /mnt/customer
+/dev/by-name/UDISK      512.0K    196.0K    316.0K  38% /mnt/UDISK
+/dev/by-name/logo       704.0K    196.0K    508.0K  28% /mnt/logo
+##### MTD
+dev:    size   erasesize  name
+mtd0: 00060000 00010000 "uboot"
+mtd1: 00310000 00010000 "boot"
+mtd2: 00310000 00010000 "recovery"
+mtd3: 00480000 00010000 "rootfs"
+mtd4: 003a0000 00010000 "customer"
+mtd5: 00010000 00010000 "env"
+mtd6: 00010000 00010000 "env-redund"
+mtd7: 00010000 00010000 "private"
+mtd8: 000b0000 00010000 "logo"
+mtd9: 00080000 00010000 "UDISK"
+##### UPTIME
+188.36 173.82
+##### HOSTNAME
+(lybox)

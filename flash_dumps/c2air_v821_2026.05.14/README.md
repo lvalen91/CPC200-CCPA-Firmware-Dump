@@ -22,7 +22,7 @@
 | Reader | XGecu **T48** (firmware `00.1.35`) |
 | OS / tool | macOS (Darwin 27), `minipro` 0.7.4 (Homebrew) |
 | Dump date | 2026-07-31 |
-| Verification | Two independent full reads, **byte-identical** (SHA-256 match) |
+| Verification | Two independent T48 reads **+ one FEL read**, all three **byte-identical** (SHA-256 `e9e8424c…`) |
 
 ```sh
 minipro -p 'XT25F128F@SOP8' -D                          # ID check -> 0xB4018 OK
@@ -33,6 +33,19 @@ minipro -p 'XT25F128F@SOP8' -r flash_dump_c2air_2026.05.14.bin
 the 3 KB SFDP + security/OTP register page goes to `<name>.eeprom.bin` (stored here as
 `security_regs_c2air_2026.05.14.bin`). Read time 37.9 s at minipro's default SPI clock.
 
+**Solderless alternative — FEL (validated).** A brief press of the hidden button at power-on puts the
+V821 BootROM into Allwinner FEL mode (USB `1f3a:efe8`, 12 Mb/s). `xfel` (github.com/xboot/xfel, native
+V821 support) then reads the SPI NOR over the USB-C with no clip:
+
+```sh
+xfel version                            # -> AWUSBFEX ID=0x00188200 (V821)
+xfel spinor read 0 0x1000000 fel_dump.bin   # ~450 KB/s, ~37 s
+```
+
+This FEL read was **byte-identical** to the T48 dump (same SHA-256), so the image is triple-confirmed.
+See [`../../documentation/01_Firmware_Architecture/c2air_v821_platform.md`](../../documentation/01_Firmware_Architecture/c2air_v821_platform.md)
+§8 for full FEL details and the `console=ttyS0`→`ttyAS0` serial-console fix.
+
 > `minipro` prints `T48 support is not yet complete` and a firmware-newer-than-expected warning.
 > Harmless for SPI NOR reads — the two matching passes confirm that — but re-verify carefully
 > before trusting it for a **write**.
@@ -41,7 +54,8 @@ the 3 KB SFDP + security/OTP register page goes to `<name>.eeprom.bin` (stored h
 
 | File | Size | Contents |
 |---|---|---|
-| `flash_dump_c2air_2026.05.14.bin` | 16 MiB | Full SPI NOR main array |
+| `flash_dump_c2air_2026.05.14.bin` | 16 MiB | Full SPI NOR main array — **XGecu T48** read (primary) |
+| `flash_dump_c2air_2026.05.14_FEL.bin` | 16 MiB | Same array via **FEL / xfel** (solderless) — byte-identical to the T48 read (`cmp` clean, same SHA-256); kept as an independent-method cross-check |
 | `security_regs_c2air_2026.05.14.bin` | 3072 B | SFDP + security/OTP registers — **device-unique, see below** |
 | `rootfs_c2air_2026.05.14.zip` | 4.9 MB | Unpacked `rootfs` partition (SquashFS/xz) |
 | `app_c2air_2026.05.14.zip` | 3.4 MB | Unpacked `app` partition (SquashFS/xz) |

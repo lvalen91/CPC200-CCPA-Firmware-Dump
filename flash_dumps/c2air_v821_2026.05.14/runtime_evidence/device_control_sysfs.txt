@@ -1,0 +1,15 @@
+# Vendor device-control sysfs + per-partition mounts (live, 2026-08-01)
+# Per-unit identifiers (SID, MACs) redacted; secret blobs (carplay.key, raa.crt) excluded.
+
+/mnt/UDISK (jffs2): carplay.key(601, EXCLUDED), ly-VehiConn-4890(11), dbglog/debug_booted(session leftovers), bt.mac(empty)
+/mnt/logo (jffs2): empty on this unit
+
+/sys/class/misc/ly_misc_dev/ly/  (vendor hardware-control surface):
+  chipid=<REDACTED-SID>  product_number=4890  project=ly6239  ly_custom_name=VehiConn  func_mode=cp
+  key_status=0 (hidden button, 0=released)   wifi_en  wifi_pwr
+  red_gpio green_gpio blue_gpio led_mode     bt_rst  bt_bdrate(500000)
+  ly_efex (trigger FEL)  ly_boot  ly_boot_mode  ly_boot_partition  ly_sys_mode  ly_sdcard_mode  update  gpr  phy_range
+
+/sys/ly_private/wifi_ch = 0
+MACs: wlan0=xx:xx:xx:xx:xx:xx  p2p-wlan0-0=yy:yy:yy:yy:yy:yy
+private partition (mtd7): display=1

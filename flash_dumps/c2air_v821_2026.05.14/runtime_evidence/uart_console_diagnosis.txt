@@ -1,0 +1,59 @@
+Warning: Permanently added '192.168.50.100' (ED25519) to the list of known hosts.
+##### ACTIVE CONSOLES (/proc/consoles)
+ttyS0                -W- (EC p  )  251:0
+##### TTY DRIVERS (/proc/tty/drivers)
+/dev/tty             /dev/tty        5       0 system:/dev/tty
+/dev/console         /dev/console    5       1 system:console
+/dev/ptmx            /dev/ptmx       5       2 system
+rfcomm               /dev/rfcomm   216 0-255 serial
+uart-ng              /dev/ttyS     251 0-3 serial
+g_serial             /dev/ttyGS    252 0-3 serial
+pty_slave            /dev/pts      136 0-1048575 pty:slave
+pty_master           /dev/ptm      128 0-1048575 pty:master
+##### TTY DEVICES (/sys/class/tty)
+console ptmx tty ttyS0 ttyS1 
+##### console device
+ls: /dev/ttyAS*: No such file or directory
+crw-------    1 root     root        5,   1 Jan  1 00:00 /dev/console
+crw-------    1 root     root      251,   0 Jan  1 00:00 /dev/ttyS0
+crw-------    1 root     root      251,   1 Jan  1 00:00 /dev/ttyS1
+##### what has /dev/console open?
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/1/fd/0 -> /dev/console
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/1/fd/1 -> /dev/console
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/1/fd/2 -> /dev/console
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/117/fd/0 -> /dev/console
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/117/fd/1 -> /dev/console
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/117/fd/2 -> /dev/console
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/155/fd/1 -> /dev/console
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/155/fd/2 -> /dev/console
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/169/fd/1 -> /dev/console
+lrwx------    1 root     root            64 Jan  1 00:03 /proc/169/fd/2 -> /dev/console
+##### inittab console line
+/dev/console::respawn:-/bin/sh
+##### getty/sh on console?
+  117 root       952 S    -/bin/sh
+##### DMESG: console/serial/uart handoff
+[    0.000000] Kernel command line: earlyprintk=sunxi-uart,0x42500000 initcall_debug=0 console=ttyS0,115200 loglevel=3 root=/dev/mtdblock3 rootwait rootfstype=squashfs init=/init rdinit=/rdinit partitions=boot@mtdblock1:recovery@mtdblock2:rootfs@mtdblock3:customer@mtdblock4:env@mtdblock5:env-redund@mtdblock6:private@mtdblock7:logo@mtdblock8:UDISK@mtdblock9 cma=1M coherent_pool= led_mode=6 sdcard_mode=0 project=ly6239 ly_boot_mode=normal func_det_mode= custom_name=VehiConn ly_efex_mode=0 sys_mode=0 boot_partition=boot rgb_mode=0xff0000 ly_flash_clock=100000000 ly_bt_bdrate=500000 led_update_mode=1 ly_test=0 androidboot.hardware=sun300iw1p1 boot_type=3 androidboot.boot_type=3 gpt=1 uboot_message=2018.07(05/09/2026-04:18:41) mbr_offset=376832 androidboot.dramfreq=520 androidboot.dramsize=64 uboot_backup=ubootA spi_max_hz=50000000 
+[    0.145570] Bluetooth: HCI UART driver ver 2.3
+[    0.145583] Bluetooth: HCI UART protocol H4 registered
+[    0.147296] sunxi:uart-ng-uart-ng0:[INFO]: cannot get the TX DMA channel!
+[    0.147308] sunxi:uart-ng-uart-ng0:[INFO]: cannot get the RX DMA channel!
+[    0.147364] sunxi:uart-ng:[INFO]: sunxi uart-ng driver version: 1.1.10
+[    0.147414] uart-ng0: ttyS0 at MMIO 0x42500000 (irq = 134, base_baud = 12000000) is a SUNXI
+[    0.147561] sunxi:uart-ng-uart-ng0:[INFO]: console setup baud 115200 parity n bits 8, flow n
+[    0.147580] sunxi:uart-ng-uart-ng0:[INFO]: uart0, select set 0, baud 115200, uartclk 192000000 beyond rance[24000000, 120000000]
+[    0.147641] printk: console [ttyS0] enabled
+[    0.148443] sunxi:uart-ng-uart-ng1:[INFO]: cannot get the TX DMA channel!
+[    0.148454] sunxi:uart-ng-uart-ng1:[INFO]: cannot get the RX DMA channel!
+[    0.148548] uart-ng1: ttyS1 at MMIO 0x42500400 (irq = 135, base_baud = 12000000) is a SUNXI
+[    0.196883] Bluetooth: HCI UART protocol (null) registered
+[    0.196906] ly_console_init
+[    0.211224] sunxi:uart-ng-uart-ng0:[INFO]: uart0, select set 0, baud 115200, uartclk 192000000 beyond rance[24000000, 120000000]
+[    0.317657] aicbt_patch_table_load bt uart baud: 500000, flowctrl: 1, lpm_enable: 0, tx_pwr: 28463, bt mode:5.
+[    4.679165] sunxi:uart-ng-uart-ng1:[INFO]: uart1, baud 500000 beyond rance
+##### DMESG: does it mention disabling console?
+[    0.000000] Kernel command line: earlyprintk=sunxi-uart,0x42500000 initcall_debug=0 console=ttyS0,115200 loglevel=3 root=/dev/mtdblock3 rootwait rootfstype=squashfs init=/init rdinit=/rdinit partitions=boot@mtdblock1:recovery@mtdblock2:rootfs@mtdblock3:customer@mtdblock4:env@mtdblock5:env-redund@mtdblock6:private@mtdblock7:logo@mtdblock8:UDISK@mtdblock9 cma=1M coherent_pool= led_mode=6 sdcard_mode=0 project=ly6239 ly_boot_mode=normal func_det_mode= custom_name=VehiConn ly_efex_mode=0 sys_mode=0 boot_partition=boot rgb_mode=0xff0000 ly_flash_clock=100000000 ly_bt_bdrate=500000 led_update_mode=1 ly_test=0 androidboot.hardware=sun300iw1p1 boot_type=3 androidboot.boot_type=3 gpt=1 uboot_message=2018.07(05/09/2026-04:18:41) mbr_offset=376832 androidboot.dramfreq=520 androidboot.dramsize=64 uboot_backup=ubootA spi_max_hz=50000000 
+##### TEST: can we write to the console device?
+write to /dev/console: OK (rc=0)
+##### loglevel now
+3	4	1	7

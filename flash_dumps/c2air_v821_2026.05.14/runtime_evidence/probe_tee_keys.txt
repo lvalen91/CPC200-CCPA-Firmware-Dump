@@ -1,0 +1,16 @@
+=== TEE / secure storage / keys ===
+OP-TEE: NOT active. No /dev/tee*, no tee-supplicant process, no /data/tee, no sec_storage mount.
+  U-boot references optee/monitor/ATF but no secure_os_exist in cmdline => secure world not loaded.
+Kernel config.gz not exposed (/proc/config.gz absent); /dev/mem, /dev/kmem, /proc/kcore all absent.
+
+env keybox_list = EMPTY (no Widevine/attestation keybox provisioned in env).
+
+Per-device secrets (sizes/paths only, contents NOT read/exfiltrated):
+  /mnt/UDISK/carplay.key          601 bytes  (jffs2, root-readable)  <- CarPlay private key
+  /mnt/customer/app/raa.crt      2120 bytes  (squashfs ro)           <- RAA/root cert chain
+raaservice (347248) manages this: strings show it does SSL "set client certificate / set
+private key / add root certificate / Verify returned", plus raw mtd_read/mtd_write and
+"read /proc/mtd" (mtdid lookup) -> it can read AND WRITE a per-device cert/key into an mtd
+partition (secure-storage-in-flash pattern; no hardware TEE backing).
+private partition (mtd7) only contained "display=1" -> not the key store here; the key store
+in this unit is the writable UDISK jffs2 (carplay.key) + squashfs raa.crt.

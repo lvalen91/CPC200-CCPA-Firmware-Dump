@@ -1,0 +1,34 @@
+=== Update binaries (/sbin) ===
+swupdate 115968 (mainline SWUpdate), swupdate-client, swupdate-progress,
+swupdate_cmd.sh 3706, ly_swupdate 133 (wrapper), update 13688 (vendor "<<-UPDATE->>" tool)
+fw_printenv/fw_setenv present (fw_setenv -> symlink to fw_printenv) ; /etc/fw_env.config present.
+
+=== Autorun: /etc/init.d/S99swupdate_autorun ===
+start(){ /sbin/ly_swupdate & }
+ly_swupdate: sleep3; swupdate-progress -w & ; exec swupdate_cmd.sh
+swupdate_cmd.sh: reads env swu_param/swu_software/swu_mode/swu_version in a loop;
+  get_flash_type() maps root= to emmc/ubinand/rawnand (NOR/mtdblock case is commented out).
+
+=== Vendor /sbin/update package verification (strings) ===
+Package names accepted: /tmp/update.img /tmp/update.swu /mnt/UDISK/update.{img,swu}
+  /mnt/SDCARD/update.img  -> moved to /tmp/lyupdate.img ; then swupdate_cmd.sh -i <img> -e stable,upgrade_recovery
+Integrity/authenticity checks performed:
+  - "src file read magic" + "magic check ok/fail"      (a fixed MAGIC header, integrity/format)
+  - "find ly_project_name" + "project=%s check ok"     (must match ly_project_name=ly6239)
+  - md5.txt inside package + "cd %s;md5sum -c md5.txt"  (MD5 integrity)
+  => NO RSA / NO digital signature / NO public-key check.  MD5 + magic + project-name only.
+  => A hand-crafted package with correct magic, ly_project_name=ly6239 and valid md5.txt is ACCEPTED.
+Runs /mnt/customer/app/update_kill_service.sh (copied to /tmp/kill_service.sh) before flashing.
+
+=== In-kernel update path ===
+kthread [ly_update_scan] (PID42) + sysfs ly_misc_dev/ly/update attribute.
+lyUpdate.sh: waits for /sbin/update, then `echo 0 > .../ly/update`, copies WORKPATH/update to
+/tmp/update and runs it; also spins up a local httpd from /usr/ota/www (web-OTA UI, index.cgi 26064).
+
+=== OTA web ===
+/usr/ota/httpd.conf ; /usr/ota/www/{index.html 89076, css, js, lan, cgi-bin/index.cgi}
+lydopack (customer/app) is a 0-byte stub (repack tool removed).
+
+=== Recovery entry ===
+env boot_recovery reads 'recovery' partition and bootm; entered via key (0x10-0x13) or
+env swu_mode=...upgrade_recovery. fastboot via key 0x2-0x8 or env boot_fastboot=fastboot.

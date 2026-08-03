@@ -1,0 +1,40 @@
+=== VERDICT: SECURE BOOT NOT ENABLED ===
+
+1) uboot partition (mtd0) header:
+   6f 00 80 3c 65 47 4f 4e 2e 42 54 30  = jump + "eGON.BT0"
+   => PLAIN non-secure boot0. A secure device would show "TOC0.GLH".
+
+2) boot (mtd1) & recovery (mtd2) headers: "ANDROID!" magic, header_version=2,
+   name "sun300i_riscv32", page 2048, kernel_addr 0x80000000.
+   id[] field = SHA1 (da31d1e0 7d6578c1 cbf13289 5dc28a25 608c1c51) = mkbootimg
+   INTEGRITY hash only. No AVB/vbmeta footer, no RSA cert appended, no signature.
+
+3) U-Boot env (fw_printenv): keybox_list= (EMPTY). No 'secure'/'verify'/rotpk flags.
+   bootcmd=run setargs_nor boot_normal ;  boot_normal="sunxi_flash read 82000000 boot; bootm 82000000"
+   => legacy bootm, NO signature verification step.
+   boot_recovery="... read recovery; bootm"  boot_fastboot="fastboot"
+   recovery_key_value_min/max=0x10/0x13 ; fastboot_key 0x2/0x8 ; bootdelay=0
+
+4) dmesg grep secure|sign|rsa|verify|efuse|keybox => NOTHING.
+   No androidboot.secure_os_exist in /proc/cmdline => OP-TEE secure world NOT active.
+   (the two 'smc' lines in dmesg are sdmmc CMD52 errors, not secure-monitor calls)
+
+5) U-Boot CONTAINS secure-boot CAPABILITY (dead code, not enforced):
+   strings mtd0: TOC0.GLH, burn_secure_mode, "burn sboot ok, set secure bit",
+   "puk burned,stop set secure mode!", bootsecure, ft_verify_fdt, RSA, OPTEE/monitor/ATF,
+   "not support rsa, use software if you need", "normal mode: download secure firmware".
+   => The SoC (V821) can do sunxi secure boot, but the efuse secure bit is NOT burned here.
+
+=== eFuse / SID ===
+misc devs: sid_efuse, sunxi_soc_info (57), ly_encry(59), ly_misc_dev(62)
+/sys/.../sid@43006000 present; secure_status node is a DIR (not readable as flat file).
+chipid (ly_misc_dev/ly/chipid) = <REDACTED-SID>
+No /dev/mem so raw efuse bank not directly dumpable; no burned-secure evidence anywhere.
+
+=== LOCKOUT PICTURE ===
+- rootfs (mtd3) modifiable: YES (already proven).
+- boot/recovery/uboot: NOT signature-enforced -> can be reflashed with custom images.
+- Practical brick risk: writing bad mtd0(uboot)/mtd1(boot) bricks normal boot, BUT
+  Allwinner FEL/efex USB recovery is available (ly_efex_mode / "jump to efex", boot_fastboot).
+  FEL over USB recovers a bricked boot0/uboot since secure boot is off (no signed FEL required).
+- Bottom line: device is effectively UNLOCKED for firmware modification.

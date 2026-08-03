@@ -1,0 +1,47 @@
+Warning: Permanently added '192.168.50.100' (ED25519) to the list of known hosts.
+##### /mnt/UDISK (per-device data)
+drwxr-xr-x    3 root     root             0 Jan  1 00:00 .
+drwxrwxr-x    7 root     root            84 Sep 24  2025 ..
+-rw-r--r--    1 root     root           601 Jan  1 00:00 carplay.key
+-rw-r--r--    1 root     root           128 Jan  1 00:00 dbglog
+-rw-r--r--    1 root     root            20 Jan  1 00:00 debug_booted
+-rw-r--r--    1 root     root            11 Jan  1 00:00 ly-VehiConn-4890
+--- bt.mac ---
+
+--- files ---
+##### /mnt/logo
+drwxr-xr-x    3 root     root             0 Jan  1 00:00 .
+drwxrwxr-x    7 root     root            84 Sep 24  2025 ..
+##### chipid / device sysfs
+<REDACTED-SID>
+
+blue_gpio
+bt_bdrate
+bt_rst
+chipid
+func_mode
+gpr
+green_gpio
+key_status
+led_mode
+ly_boot
+ly_boot_mode
+ly_boot_partition
+ly_custom_name
+ly_efex
+ly_sdcard_mode
+ly_sys_mode
+phy_range
+product_number
+project
+red_gpio
+update
+wifi_en
+wifi_pwr
+##### ly_private sysfs
+wifi_ch
+/sys/ly_private/wifi_ch = 0
+##### MAC addrs
+xx:xx:xx:xx:xx:xx
+yy:yy:yy:yy:yy:yy
+##### raa.crt (AA license cert)

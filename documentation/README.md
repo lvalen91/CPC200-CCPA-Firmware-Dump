@@ -99,7 +99,8 @@ RE_Documention/
 │   ├── version_comparison.md           # Firmware version differences (2022-2025)
 │   ├── web_interface.md                # Web UI API and settings (2025.10 firmware release; the live unit's build datestamp 2025.09.26 belongs to this 2025.10 release line)
 │   ├── web_settings_reference.md       # Web settings quick reference
-│   └── c2air_v821_platform.md          # C2Air — Allwinner V821 / RISC-V. SEPARATE PLATFORM, not an A15W
+│   ├── c2air_v821_platform.md          # C2Air — Allwinner V821 / RISC-V. SEPARATE PLATFORM, not an A15W (dump-derived)
+│   └── c2air_v821_runtime_and_access.md # C2Air — LIVE analysis: root access (SSH/USB-serial), FEL trials, UART bug, USB/ADB/NCM, secure boot, MFi
 ├── 02_Protocol_Reference/
 │   ├── usb_protocol.md                 # USB message types and payloads
 │   ├── device_identification.md        # phoneType, BoxSettings, SessionToken analysis

@@ -6,10 +6,11 @@ This is a **different platform from the CPC200-CCPA (A15W)** documented in
 [`cpc200-ccpa_spec.md`](cpc200-ccpa_spec.md) — different SoC, different CPU architecture,
 different ODM, different firmware lineage.
 
-> **Provenance note.** Everything below is dump-derived. No boot log, serial console, or live
-> device telemetry has been captured for this unit yet, so there are no runtime-confirmed values
-> (contrast `cpc200-ccpa_spec.md`, which is largely boot-log confirmed). Items that would
-> normally come from a boot log are marked **(dump-derived, not runtime-confirmed)**.
+> **Provenance note (updated).** Originally dump-only, but a **live root shell was later obtained**
+> (SSH-over-WiFi and USB-serial) and much of this spec is now **runtime-confirmed** — those sections
+> are marked. For the full live analysis (access methods, boot log, UART bug, partition map,
+> USB/ADB/NCM feasibility, secure boot, MFi, update mechanism) see
+> [`../documentation/01_Firmware_Architecture/c2air_v821_runtime_and_access.md`](../documentation/01_Firmware_Architecture/c2air_v821_runtime_and_access.md).
 
 ## SoC
 
@@ -94,57 +95,73 @@ Stock AP credentials (shipped defaults, not per-unit): SSID `smartLinkBox`, WPA2
 
 ```yaml
 usb_ports: 1                         # single USB-C, sole external USB
-usb_controller: allwinner,sunxi-otg-manager (usbc0)
-usb_port_type: 0                     # DEVICE-only (0=device, 1=host, 2=OTG); UDC @0x44100000 active
+usb_controller: allwinner,sunxi-otg-manager (usbc0); UDC 44100000.udc-controller
+usb_port_type: 0                     # DEVICE-only (0=device, 1=host, 2=OTG)
 usb_role_when_connected: device/gadget   # computer/head-unit = host; dongle = USB device
-cdc_ncm: host-side only              # cdc_ncm (usbnet host driver) present but dormant given device-only port
-cdc_ncm_note: ODM wrapper ly_cdc_ncm / ly_cdc_ncm_enable; runtime "gooo usb ncm probe ok!"
-gadget_configfs: present
-gadget_functions: [functionfs, usb_f_accessory, mtp, mass_storage]
-gadget_net_functions: none           # no f_ncm / u_ether / f_ecm / f_rndis / f_eem in kernel
-setusbconfig_modes: [none, adb, mtp, mass_storage]
-gadget_ident: {manufacturer: Allwinner, product: Tina}
-adbd: present (/bin/adbd over FunctionFS); NOT autostarted
+# gadget function support — RUNTIME-TESTED live via configfs (create/remove each function):
+gadget_net_functions: NONE           # ncm/ecm/rndis/eem all rejected -> no USB-network gadget
+gadget_acm: SUPPORTED                # f_acm + g_serial (ttyGS, major 252) -> USB serial console
+gadget_ffs: SUPPORTED                # functionfs (adb transport)
+cdc_ncm: host-side only              # cdc_ncm + ly_cdc_ncm are the usbnet HOST driver, not a gadget
+normal_gadget: CarPlay iAP accessory # app configures: ffs.adb + iphone_audio/hid/ptp/vendor.gs0
+adbd: present (/bin/adbd); NOT autostarted; needs shell(2000) user + non-production to serve
 ```
 
-The single USB-C port is **device-only** (`usb_port_type=0`): when plugged into a computer the
-**computer is the USB host and the dongle is the USB device (gadget)**. What it presents is set by
-`setusbconfig` (adb/mtp/mass_storage). The `cdc_ncm` in the kernel is the USB **host** driver and
-is dormant on a device-only port — it is *not* how the dongle appears to a computer.
+Runtime-confirmed USB feasibility (see runtime doc §5):
+- **NCM / USB-network over USB: NOT possible** without a kernel rebuild — `f_ncm`/`u_ether`/`f_ecm`/
+  `f_rndis` are absent (tested by trying to instantiate each in configfs; all rejected). The
+  `cdc_ncm`/`ly_cdc_ncm` in-kernel are the **host-side** driver, not a gadget.
+- **ADB: PROVEN in debug mode** — adbd runs fine as root (no shell-user/production blocker in
+  practice); the only conflict was gadget ownership by the CarPlay app. With the app disabled, adb
+  works and **coexists with ACM as a composite `acm+ffs.adb` gadget** (`adb shell` = root, no key).
+  Not usable alongside wired-CarPlay. Can be enabled live (configfs hot-swap, reverts on reboot) or
+  persistently via `rootfs_acmadb.squashfs`.
+- **ACM (USB serial): supported and PROVEN** — the `rootfs_acmdebug` image brings up a CDC-ACM
+  `ttyGS0` root console (`/dev/cu.usbmodem*` on the host); see Root access below.
 
-**The A15W SSH-over-USB-NCM trick does not port as-is:** exposing the adapter as a USB network
-device would need a kernel rebuild (`f_ncm` + `u_ether`) plus a musl/RISC-V userland. Over USB, the
-usable shell path is **ADB** (adbd is present); see the root-access section. See also
-[`../documentation/CPC200-CCPA_SSH_over_USB_NCM.md`](../documentation/CPC200-CCPA_SSH_over_USB_NCM.md)
-for the A15W approach and
-[`../documentation/01_Firmware_Architecture/c2air_v821_platform.md`](../documentation/01_Firmware_Architecture/c2air_v821_platform.md)
-§7 for the full gadget analysis.
+See [`../documentation/01_Firmware_Architecture/c2air_v821_runtime_and_access.md`](../documentation/01_Firmware_Architecture/c2air_v821_runtime_and_access.md)
+§5 for the full live gadget analysis.
 
 ## Root access / on-device security
 
 ```yaml
-uart_console: /dev/console respawn -/bin/sh   # inittab: unauthenticated ROOT shell, no getty
-uart_port: ttyS0 @ 115200 (earlyprintk sunxi-uart 0x42500000)
-root_password: tina                            # /etc/shadow DES hash 91rMiZzGliXHM; stock Tina default
-ssh: none                                      # no dropbear/sshd/telnetd in either partition
-adb: /bin/adbd present, manual enable via /sbin/adb.sh (setusbconfig adb)
+root_password: tina                  # /etc/shadow DES hash; stock Tina default (musl crypt validates)
 selinux: 0
-login_shells: root only (root:/bin/ash); daemon/ftp/network/nobody locked
+login_shells: root only (root:/bin/ash)
+# stock has NO network shell (no dropbear/sshd/telnetd). Two custom root consoles were built+proven:
+console_A_ssh_wifi: rootfs_ssh.squashfs  -> ssh root@192.168.50.100 (pw tina); CarPlay/WiFi/BT stay ON
+console_B_acm_usb:  rootfs_acmdebug.squashfs -> screen /dev/cu.usbmodem* (root shell); app OFF (no WiFi)
+stock_restore:      restore_rootfs_slot.bin  -> bone-stock
+switch_method: FEL (xfel spinor write 0x680000 <image>); brief-button+power to enter FEL
+hardware_uart: UNUSABLE  # kernel UART-clock bug, see Debug UART; the ACM console replaces it
 ```
 
-Primary access vector is the **UART** — the serial console spawns a root `/bin/sh` with no login
-at all. Full treatment in
-[`../documentation/01_Firmware_Architecture/c2air_v821_platform.md`](../documentation/01_Firmware_Architecture/c2air_v821_platform.md)
-§8.
+Stock ships no network shell. Two working root consoles were built (faithful VM repack + FEL flash)
+and confirmed live: **SSH over WiFi** (keeps CarPlay running) and **CDC-ACM serial over USB** (a
+dedicated debug mode that disables the app). Full recipes + workflow:
+[`../documentation/01_Firmware_Architecture/c2air_v821_runtime_and_access.md`](../documentation/01_Firmware_Architecture/c2air_v821_runtime_and_access.md)
+§1 & §6.
 
 ## Debug UART (3-pad header)
 
 ```yaml
-controller: UART0 @ 0x42500000 (allwinner,uart-v100), status okay
-tty: ttyS0 / ttyAS0
-baud: 115200 8N1                     # U-Boot baudrate=115200 AND kernel console=ttyS0,115200
+controller: UART0 @ 0x42500000, driver uart-ng (registers /dev/ttyS, major 251)
+tty: ttyS0                           # NOT ttyAS0; console=ttyS0 is correct
+baud: 115200 8N1 (for U-Boot)        # U-Boot output is clean at 115200
+console_status: UNUSABLE past kernel handoff  # RUNTIME-CONFIRMED: kernel UART-clock bug --
+                                     # dmesg "uartclk 192000000 beyond rance[24000000,120000000]" ->
+                                     # baud divisor mis-computed -> kernel log/shell at WRONG effective
+                                     # baud (garbage at 115200). Console IS bound to ttyS0 w/ a root
+                                     # shell on it; it's just mis-clocked. Fix needs kernel/DTS (signed
+                                     # boot partition) -> not fixable in place. Use the ACM-USB console
+                                     # instead. See runtime doc §3.
 wires: 2 (TX + RX, no flow control)  # uart0_type=2 -> 3 pads incl. GND
-pins: [PL4, PL5]                     # uart0_pins_default; convention PL4=TX, PL5=RX (confirm empirically)
+pins: [PL4, PL5]                     # uart0_pins_default (PL4=TX, PL5=RX)
+pad_order_edge_to_cpu: [GND, RX, TX] # CONFIRMED on-board; device-side signal names
+wiring_to_3v3_adapter:               # crossover
+  pad1_edge_GND: adapter GND
+  pad2_mid_RX:   adapter TX
+  pad3_cpu_TX:   adapter RX          # read-only boot log: pad3 -> adapter RX + GND suffices
 io_domain: PL bank / R_PIO (always-on)
 idle_voltage: ~2.67 V                # both pads idle HIGH -> ~2.7 V logic UART
 adapter: use 3.3 V USB-TTL           # do NOT use 5 V into the ~2.7 V IO
@@ -154,9 +171,8 @@ not_console:
   uart2/uart3: disabled
 ```
 
-Identify TX vs RX with a DMM: power-cycle and watch which pad momentarily dips below 2.67 V — that
-one is TX (transmitting the boot log); RX stays steady. Wiring: GND↔GND, adapter-RX↔device-TX,
-adapter-TX↔device-RX.
+Pad order is confirmed on-board (edge→CPU = GND, RX, TX), so no DMM identification needed — wire the
+crossover in the YAML above.
 
 ## Hidden service button (case-internal, new to this variant)
 
@@ -168,7 +184,14 @@ boot_time:                       # boot0/U-Boot: held at power-on -> download/re
   fastboot_key_value: 0x02-0x08
   recovery_key_value: 0x10-0x13
   modes: [efex (FEL/USB download), recovery, "factory + wipe data", sysrecovery, fastboot]
-  reflash: xfel / sunxi-fel over USB-C (no desolder needed)
+  reflash: xfel over USB-C (no desolder needed)
+fel_confirmed:                   # brief button press at power-on -> FEL, verified on hardware
+  usb_id: 1f3a:efe8              # VID Allwinner / PID FEL; 12 Mb/s full-speed (BootROM stage)
+  xfel_probe: AWUSBFEX ID=0x00188200 (V821)
+  sid: 12c028000c40490c8411410c208818d5   # eFuse; matches OTP page; per-unit (treat as serial)
+  spinor: SFDP 16 MB, ~450 KB/s (~37 s full dump)
+  validation: FEL read == T48 dump SHA-256 e9e8424c...e5c34e (byte-identical)
+  tool: xfel (github.com/xboot/xfel) built on macOS; native chips/v821.c; sunxi-tools not needed
 runtime:                         # Linux: /dev/ly_misc_dev, sysfs /sys/class/misc/ly_misc_dev/ly/
   readers: [CPowerKey (liblyctrl.so), checkKeyThread2/procDKeyThread (raaservice, ly_testcp)]
   short_press: switch phone / P2P re-pair; Bluetooth switch (dual-phone)
@@ -223,25 +246,38 @@ recovery_key_value: 0x10..0x13
 fastboot_key_value: 0x2..0x8
 ```
 
-### Secure boot — UNRESOLVED
+### Secure boot — **RESOLVED: NOT enforced (device unlocked)**
 
-boot0 contains `sunxi_rsa_sign_check`, `sunxi-secure`, `sunxi_sha_calc_with_software`, a TRNG
-error path, and the kernel DTB has a `secure_status` node. **Whether signature enforcement is
-actually fused on is not established.** The i.MX6UL HAB findings in
-[`../documentation/01_Firmware_Architecture/secure_boot_hab.md`](../documentation/01_Firmware_Architecture/secure_boot_hab.md)
-describe a different silicon vendor's mechanism entirely and **do not transfer**. Treat this as
-open until a fuse read or a modified-image boot test says otherwise.
+Runtime-confirmed: boot0 magic is plain **`eGON.BT0`** (secure would be `TOC0.GLH`); `boot`/`recovery`
+are plain `ANDROID!` images with only a SHA1 integrity hash (no AVB/RSA); U-Boot env has no
+secure/keybox flags; `bootcmd` = legacy `bootm` with **no verification**. The RSA/`burn_secure_mode`/
+OPTEE machinery in U-Boot is dormant capability, not enforcement. ⇒ **`boot`/`recovery`/`uboot` can
+be reflashed with unsigned custom images**; FEL/efex recovers a bad mtd0/mtd1. Update packages are
+accepted on **MD5 + magic + `ly6239` project match only — no signature**. No OP-TEE / TEE in use.
+Full evidence:
+[`../documentation/01_Firmware_Architecture/c2air_v821_runtime_and_access.md`](../documentation/01_Firmware_Architecture/c2air_v821_runtime_and_access.md)
+§7–§10.
 
-## Partitions
+## Partitions (RUNTIME-CONFIRMED — `/proc/mtd` + kernel cmdline)
 
-Names resolved by `/init` through `/dev/mtdblock/by-name/`:
+10 MTD partitions on the SPI-NOR (`spif`). This supersedes the earlier dump-only guess (no
+`app`/`extend`/`sec`/`riscv0` partitions actually exist on this unit):
 
-`rootfs` · `rootfs_data` · `app` · `customer` · `extend` · `sec` / `sec_storage` · `boot` ·
-`recovery` · `riscv0` / `riscv0-r` · `sys`
+| mtd | name | size | offset | notes |
+|---|---|---|---|---|
+| 0 | `uboot` | 0x60000 | 0x000000 | boot0/SPL + U-Boot |
+| 1 | `boot` | 0x310000 | 0x060000 | ANDROID! kernel (active) |
+| 2 | `recovery` | 0x310000 | 0x370000 | recovery image (NOT "boot B") |
+| 3 | `rootfs` | 0x480000 | 0x680000 | SquashFS (mounted `/`, ro) |
+| 4 | `customer` | 0x3a0000 | 0xB00000 | SquashFS — the live app (`/mnt/customer`, ro) |
+| 5 | `env` | 0x10000 | 0xEA0000 | U-Boot env |
+| 6 | `env-redund` | 0x10000 | 0xEB0000 | redundant env |
+| 7 | `private` | 0x10000 | 0xEC0000 | small config |
+| 8 | `logo` | 0xb0000 | 0xED0000 | jffs2 (`/mnt/logo`) |
+| 9 | `UDISK` | 0x80000 | 0xF80000 | jffs2, per-device data (`/mnt/UDISK`) |
 
-`/init` mounts `rootfs_data` as the writable overlay and will `mkfs` it (jffs2, ubifs, or ext4
-depending on the backing device class) if the mount fails. `extend` is mounted at `/tmp/usr`.
-`sec_storage` is mounted at `/data/tee` when present. Measured offsets are in the dump README.
+`/` = squashfs ro; `/mnt/customer` = squashfs ro; `/mnt/UDISK` + `/mnt/logo` = jffs2 rw. There is
+no overlay mount (the `/init` `mount_etc`/`mount_overlay` calls are commented out).
 
 ## Confirmed capability deltas vs. CPC200-CCPA (A15W)
 
@@ -255,7 +291,7 @@ depending on the backing device class) if the mount fails. `extend` is mounted a
 | Distro | HeWei custom | **Tina Linux 5.0 / OpenWrt 21.02** |
 | WiFi | WiFi 5 (RTL8822CS / IW416 / BCM4354) | **WiFi 6 (AIC8800, 802.11ax)** |
 | Flash | 16 MB MX25L12835F | 16 MB XT25F128F-W |
-| Boot A/B | no | **yes (bit-identical slots)** |
+| Boot layout | single | `boot` + separate `recovery` (not A/B) |
 | ODM | DongGuan HeWei | **Liaoyuan** |
 | Protocols | CarPlay + Android Auto | **CarPlay only** (`ly_link_type=cp`; HiCar DHCP config present but unused) |
 

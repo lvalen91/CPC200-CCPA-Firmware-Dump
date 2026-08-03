@@ -1,0 +1,27 @@
+=== meminfo ===
+MemTotal 58488 kB ; MemFree 43284 ; MemAvailable 43236 ; Buffers 1004 ; Cached 1412
+Slab 8524 (SReclaimable 380, SUnreclaim 8144) ; KernelStack 416 ; PageTables 136
+CommitLimit 29244 ; Committed_AS 1804 ; VmallocTotal 524288 ; VmallocUsed 3044
+CmaTotal 4096 kB ; CmaFree 4072 kB   (cma=1M in cmdline OVERRIDDEN by DT reserved-mem)
+SwapTotal 0
+
+=== free ===
+Mem total 58488 used 12360 free 43332 buff/cache 2796 available 43284  (~12MB used w/ app OFF)
+
+=== dmesg mem ===
+Reserved memory: CMA pool at 0x83c00000 size 4 MiB (linux,cma shared-dma-pool)
+Memory: 54276K/65532K available (3120K code,180K rwdata,1475K rodata,116K init,1138K bss,
+        7160K reserved, 4096K cma-reserved)   -- 64MB DRAM (dramsize=64, dramfreq=520)
+
+=== buddyinfo ===
+Node0 Normal: 5 4 2 2 2 4 2 2 40   (largest order-8+ blocks free; healthy)
+
+=== vmstat (head) ===
+nr_free_pages 8690 ; nr_free_cma 1018 ; nr_page_table_pages 34 ; nr_kernel_stack 408
+
+=== RAM DUMP FEASIBILITY ===
+/dev/mem      : ABSENT (CONFIG_DEVMEM off)
+/dev/kmem     : ABSENT
+/proc/kcore   : ABSENT (CONFIG_PROC_KCORE off)
+No swap. => Live full-RAM dump NOT possible from this console via standard nodes.
+Per-process RSS: all userspace tiny (init 940K VSZ, dropbear 844K, shells ~950K).

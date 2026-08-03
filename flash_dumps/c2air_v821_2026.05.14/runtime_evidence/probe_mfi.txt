@@ -1,0 +1,25 @@
+=== MFi / Apple auth coprocessor: HARDWARE PRESENT ===
+
+i2c buses: only i2c-1 = SUNXI TWI @0x42502400 (PLIC irq 141), node /dev/i2c-1 (major 89).
+i2cdetect -y 1:
+  10: 10 11 -- ...
+  => TWO devices answer at 0x10 and 0x11  == Apple MFi authentication coprocessor
+     (standard 7-bit addresses 0x10/0x11 for CP2.0C / CP3.0 / MFi 3.0 auth IC).
+
+Kernel: dmesg "usbcore: registered new interface driver iap" -> in-kernel Apple 'iap'
+(iAP-over-USB) driver present. "i2c /dev entries driver" loaded. twi1 v2.7.9 probe success.
+(the twi1 SLA+W NAK errors at t=172s were caused by MY i2cdetect scan of empty addresses.)
+
+/dev/iap : NOT present (char node normally made by the app at 180,192; app disabled here).
+
+libiap_new.so (customer app) MFi symbols:
+  AuthDeviceInitialize/Finalize/CopyCertificate/CreateSignature  _hard  AND  _soft variants
+  "SetiAPMFiSAPI2CSlaveAddress", "IAP set MFi auth device slave address:%d - 0x%02x,path:%s"
+  "Using MFi Auth v.%d chip", "HardwareVersion", reads/writes MFi registers 0x00.. via ioctl
+  "AuthDeviceCopyCertificate_hard/_soft", "...is not need for soft auth", g_authMode selector.
+  iAP2Client/AuthHard.c present.
+  => The lib supports BOTH a real HARDWARE coprocessor (i2c reg r/w via /dev/i2c-1) and a
+     SOFTWARE auth fallback. Given devices ACK at 0x10/0x11, this unit uses HARDWARE MFi auth.
+
+CONCLUSION: Wired/wireless CarPlay MFi authentication on this dongle is done by a PHYSICAL
+Apple auth coprocessor on i2c bus 1 at address 0x10 (0x11 alt). Not pure-software.

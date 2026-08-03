@@ -1,0 +1,36 @@
+=== /proc/mtd ===
+mtd0 00060000/10000 uboot      (eGON.BT0 non-secure boot0)
+mtd1 00310000/10000 boot       (ANDROID! v2 kernel image)
+mtd2 00310000/10000 recovery   (ANDROID! v2)
+mtd3 00480000/10000 rootfs     (squashfs, mounted / ro)
+mtd4 003a0000/10000 customer   (squashfs, /mnt/customer ro, the app)
+mtd5 00010000/10000 env        (U-Boot env)
+mtd6 00010000/10000 env-redund
+mtd7 00010000/10000 private    (jffs2-ish tiny; strings: "display=1")
+mtd8 000b0000/10000 logo       (jffs2 /mnt/logo, EMPTY)
+mtd9 00080000/10000 UDISK      (jffs2 /mnt/UDISK, holds per-device carplay.key)
+
+=== df -h / mounts ===
+/dev/root  / squashfs ro (4.5M 100%)
+tmpfs /tmp 28.6M ; devtmpfs /dev 26.5M
+/mnt/customer squashfs ro 3.0M 100%
+/mnt/UDISK jffs2 rw 512K used196K avail316K (38%)
+/mnt/logo  jffs2 rw 704K used196K avail508K (28%)
+configfs at /sys/kernel/config
+NO /data/tee, NO sec_storage mount, NO ubifs.
+
+=== /mnt/UDISK contents ===
+carplay.key   601  (per-device secret - NOT exfiltrated)
+dbglog        128  "=== BOOT up=0.80 ... adb try ... adbd_pid=166"
+debug_booted   20  "DEBUG_ROOTFS_BOOTED"
+ly-VehiConn-4890 11 "<REDACTED-PAIRED-PHONE>"   (paired phone name marker)
+
+=== /mnt/logo === EMPTY
+
+=== /mnt/customer/app (the CarPlay app, read-only squashfs) ===
+btapp 146084 ; libiap_new.so 130852 ; liblyctrl.so 83160 ; liblylinkmw.so.1 26036
+libprotobuf-c.so.1 25916 ; libwcarplay_new.so 1789268 ; lylink 1244846 ; lylinkapp 158292
+mtpservice 105308 ; ly_testcp 84212 ; raaservice 347248 ; lyhostapd 9612
+raa.crt 2120 ; system.json 94 ; mtpservice.conf 3112 ; my.ttf 34696
+scripts: blink.sh lyLink.sh lyLoadModule.sh lyUpdate.sh format_udisk.sh update_kill_service.sh
+lydopack  0 bytes (stub)

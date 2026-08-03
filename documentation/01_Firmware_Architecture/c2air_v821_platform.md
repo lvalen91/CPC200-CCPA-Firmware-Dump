@@ -3,6 +3,17 @@
 **Status:** first-pass, dump-only analysis. Single unit, single dump, no serial console, no live
 device access, no boot log.
 
+> [!IMPORTANT]
+> **A live root shell was later obtained and the running system probed directly. Where this
+> dump-only doc and the runtime doc disagree, the runtime doc wins** —
+> [`c2air_v821_runtime_and_access.md`](c2air_v821_runtime_and_access.md). Two speculative claims
+> below are now **corrected** there: (1) the UART going silent after "Starting kernel …" is a
+> **kernel UART-clock bug** (`uartclk 192 MHz beyond range`), **not** a `ttyS0`/`ttyAS0` console-name
+> mismatch — `console=ttyS0` was correct; (2) the two `0x310000` images at 0x060000 and 0x370000 are
+> **`boot` and `recovery`**, not a "boot A/B" pair, and the 0xB00000 squashfs is the **`customer`**
+> partition. See the runtime doc for the confirmed partition map, USB/ADB/NCM feasibility, and the
+> dropbear-over-WiFi access method.
+
 **Evidence base:** one verified 16 MB SPI NOR dump —
 [`../../flash_dumps/c2air_v821_2026.05.14/`](../../flash_dumps/c2air_v821_2026.05.14/). Two
 independent reads, byte-identical. Every claim below is traceable to that image; nothing here is
@@ -56,17 +67,20 @@ eGON.BT0 (boot0/SPL) @ 0x000000
         └─ env @ 0xEA0000 (+ redundant copy @ 0xEB0000)
         └─ bootcmd = run setargs_nor boot_normal
              └─ sunxi_flash read 82000000 ${boot_partition}; bootm 82000000
-                  └─ ANDROID! boot image @ 0x060000  (slot A)
+                  └─ ANDROID! boot image @ 0x060000  (mtd1 `boot`)
                        ├─ gzip kernel @ 0x060800, 3 021 796 B -> 6 186 500 B
                        └─ kernel DTB  @ 0x342800, 62 937 B
-                  └─ identical slot B @ 0x370000
+                  └─ mtd2 `recovery` @ 0x370000 (separate recovery image)
 ```
 
-### A/B redundancy is real
+### boot vs recovery (NOT an A/B pair — corrected)
 
-`dump[0x60000:0x370000] == dump[0x370000:0x680000]` evaluates **True** — the two boot slots are
-bit-identical over the full 0x310000 span, not two different builds. The A15W family has no
-equivalent mechanism.
+The two `0x310000` images at 0x060000 and 0x370000 are the **`boot`** (mtd1) and **`recovery`**
+(mtd2) partitions — confirmed at runtime via `/proc/mtd` + kernel cmdline (`boot_partition=boot`,
+`boot_recovery` command). They happen to be **bit-identical on this unit**
+(`dump[0x60000:0x370000] == dump[0x370000:0x680000]` is True), which earlier looked like "boot
+A/B" — but they are functionally distinct partitions (normal boot vs recovery), not a redundant
+A/B scheme.
 
 ### Runtime kernel command line
 
@@ -93,23 +107,26 @@ Recovery/fastboot are key-triggered at boot: `recovery_key_value` `0x10`–`0x13
 
 ## 4. Storage layout
 
-Partition names come from `/init`, which resolves through `/dev/mtdblock/by-name/`. Offsets are
-measured directly from the image (there is no `sunxi_mbr` table — that is a NAND/eMMC construct).
+> **Runtime-confirmed** (2026-08-01) from the live kernel — `/proc/mtd` for names/sizes and the
+> kernel cmdline `partitions=…@mtdblockN` for the name↔index map. This **supersedes** the earlier
+> dump-only guess (which mis-read `boot`+`recovery` as a "boot A/B" pair and the 0xB00000 squashfs
+> as "app"). There is no `sunxi_mbr` table — offsets are the cumulative partition sizes.
 
-| Offset | Partition | Format |
-|---|---|---|
-| `0x000000` | boot0 + U-Boot | raw |
-| `0x060000` | `boot` slot A | ANDROID! (kernel + DTB) |
-| `0x370000` | `boot` slot B | identical to A |
-| `0x680000` | `rootfs` | SquashFS 4.0 / xz, 4 273 672 B, 308 inodes |
-| `0xB00000` | `app` | SquashFS 4.0 / xz, 3 139 586 B, 69 inodes |
-| `0xE00000` | `customer` / `extend` / `sec` | JFFS2, largely erased |
-| `0xEA0000` | U-Boot env (×2) | raw |
-| `0xFF0000` | — | blank `0xFF` |
+| mtd | name | size | flash offset | notes |
+|---|---|---|---|---|
+| 0 | `uboot` | `0x60000` | `0x000000` | boot0/SPL + U-Boot |
+| 1 | `boot` | `0x310000` | `0x060000` | ANDROID! kernel image (**active boot partition**) |
+| 2 | `recovery` | `0x310000` | `0x370000` | recovery image (**not** a "boot B"; bit-identical to `boot` on this unit) |
+| 3 | **`rootfs`** | `0x480000` | `0x680000` | SquashFS 4.0 / xz (mounted `/`, read-only) |
+| 4 | **`customer`** | `0x3a0000` | `0xB00000` | SquashFS 4.0 / xz — **the live app** (`/mnt/customer`); this is the 0xB00000 squashfs earlier mislabeled "app" |
+| 5 | `env` | `0x10000` | `0xEA0000` | U-Boot environment |
+| 6 | `env-redund` | `0x10000` | `0xEB0000` | redundant env copy |
+| 7 | `private` | `0x10000` | `0xEC0000` | small config (`display=1` observed) |
+| 8 | `logo` | `0xb0000` | `0xED0000` | jffs2, boot logo / `raa.crt` staging (`/mnt/logo`) |
+| 9 | `UDISK` | `0x80000` | `0xF80000` | jffs2, per-device data (`carplay.key`, name) (`/mnt/UDISK`) |
 
-Names referenced by `/init` and the env but **not located** in this dump: `rootfs_data`,
-`recovery`, `riscv0` / `riscv0-r`, `sys`, `sec_storage`. They are either in the blank tail, in
-the JFFS2 region, or absent on this unit.
+Full boot log and `/proc/mtd` capture:
+[`../../flash_dumps/c2air_v821_2026.05.14/runtime_evidence/`](../../flash_dumps/c2air_v821_2026.05.14/runtime_evidence/).
 
 ### `/init` overlay behaviour
 
@@ -288,17 +305,69 @@ The debug console is **UART0**, and its 2-wire type accounts for the 3 pads (GND
 | **Baud** | **115200 8N1** | U-Boot `baudrate=115200` **and** kernel `console=ttyS0,115200` |
 | Wires | 2-wire, no flow control (`uart0_type=2`) | kernel DTB — matches the 3 pads |
 | Pins | **PL4, PL5** (`uart0_pins_default`, function `uart0`) | kernel DTB pinctrl |
-| Direction | by sunxi convention **PL4 = TX, PL5 = RX** (DTB does not label direction — confirm empirically) | — |
 | FIFO | 64 B (`sunxi,uart-fifosize=0x40`) | kernel DTB |
+
+**Physical pad order (confirmed on-board): from the board edge toward the CPU = `GND, RX, TX`**
+(device-side signal names). Consistent with the sunxi convention PL4=TX / PL5=RX.
+
+| Pad (edge → CPU) | Signal (device) | Connect to 3.3 V USB-TTL adapter |
+|---|---|---|
+| 1 (edge) | GND | GND |
+| 2 (middle) | RX (input) | adapter **TX** |
+| 3 (CPU side) | TX (output) | adapter **RX** |
+
+Read-only (just the boot log): pad 3 (TX) → adapter RX + GND is enough.
 
 **Electrical.** PL4/PL5 are in the **PL bank (`R_PIO`, always-on domain)**; measured idle **~2.67 V** on
 both pads = both lines idling HIGH, i.e. a **~2.7 V logic UART**. Use a **3.3 V** USB-TTL adapter
-(reads the 2.7 V highs fine, 3.3 V output tolerated); **do not use 5 V**. Wiring: GND↔GND,
-adapter-RX↔device-TX, adapter-TX↔device-RX. To identify TX vs RX with a DMM, power-cycle and watch
-which pad momentarily dips below 2.67 V (that one is TX, transmitting the boot log); RX stays steady.
+(reads the 2.7 V highs fine, 3.3 V output tolerated); **do not use 5 V**.
 
 Not the console: **UART1** (PD7–PD10, 4-wire) is the **Bluetooth HCI** link (`hciattach_rtk`,
 `ly_bt_bdrate=500000`). UART2/UART3 are `disabled`.
+
+#### Serial goes silent after "Starting kernel ..." — kernel UART-clock bug (RUNTIME-CONFIRMED)
+
+Observed live boot transcript (UART @ 115200):
+
+```
+[0]LY BOOT0
+LY U-Boot(05/09/2026-04:18:41)
+[00.259]
+Starting kernel ...
+        <-- nothing intelligible further
+```
+
+boot0 and U-Boot print fine; the kernel then goes quiet. **Root cause (confirmed from inside the
+running kernel via SSH): a UART parent-clock bug, NOT a console-name mismatch.** The earlier
+`ttyS0`/`ttyAS0` theory in prior revisions of this doc was **wrong** — there is no `ttyAS` on this
+kernel and `console=ttyS0` was correct all along:
+
+- `/proc/consoles` → `ttyS0 -W- (EC p) 251:0` — the console **is** enabled and bound.
+- `/proc/tty/drivers` → the Allwinner `uart-ng` driver registers as **`ttyS`** (major **251**, not the
+  8250 major 4). The inittab shell (`-/bin/sh`) **is** running on `/dev/console`, and writing to
+  `/dev/console` succeeds.
+- **The bug, verbatim from dmesg:**
+  ```
+  uart-ng0: ttyS0 at MMIO 0x42500000 ... is a SUNXI
+  console setup baud 115200 parity n bits 8 flow n
+  uart0 ... baud 115200, uartclk 192000000 beyond rance[24000000, 120000000]
+  printk: console [ttyS0] enabled
+  ```
+  UART0 is clocked at **192 MHz — outside the driver's supported `[24–120 MHz]` range** — so the
+  baud-rate divisor is mis-computed and the kernel drives the line at the **wrong effective baud**.
+  At a 115200 terminal the kernel log + shell are garbage/nothing, even though U-Boot (which clocks
+  the UART correctly) was clean at 115200. `loglevel=3` additionally suppresses most messages.
+
+**Fix status — not fixable in place on the locked device:**
+- The real fix is in the **kernel/DTS UART parent-clock config** (make UART0's clock ≤120 MHz). The
+  kernel lives in the signed `boot` partition, so this needs the vendor SDK / a re-signed kernel.
+- Runtime register poke is unavailable: `/dev/mem` is disabled (`CONFIG_DEVMEM` off) and busybox has
+  no `devmem`/`stty`.
+- **Empirical workaround (untested):** set the terminal to a non-standard baud matching the
+  mis-clock — likely **≈184320/187500** (if the driver clamped to 120 MHz) or **921600** (if it fell
+  back to the 24 MHz oscillator).
+- **Recommended:** don't bother — **SSH-over-WiFi (§ root access) is a superior root console**, and a
+  `f_acm` USB-serial gadget (supported) is an alternative that bypasses this UART entirely.
 
 ### Hidden service button — boot-mode + runtime multi-function key
 
@@ -338,6 +407,39 @@ pressed (active-low, momentary-to-GND). The boot-time ADC-key detection may sit 
 line; firmware alone can't separate the two. ⚠️ The long-press path performs a **data-wiping factory
 reset** — capture UART before experimenting and be deliberate with hold time.
 
+### FEL (Allwinner USB download mode) — CONFIRMED working, solderless dump/flash
+
+A **brief** button press at power-on drops the SoC BootROM into **FEL**, verified on real hardware:
+
+| Property | Value |
+|---|---|
+| USB ID | **`1f3a:efe8`** (VID Allwinner, PID FEL) |
+| Link speed | 12 Mb/s (USB full-speed → BootROM stage, not the 480 Mb/s Linux gadget) |
+| xfel probe | `AWUSBFEX ID=0x00188200 (V821)` |
+| SID (eFuse) | `12c028000c40490c8411410c208818d5` — **matches the OTP security-register page**; per-unit, treat as a serial |
+| SPI NOR | SFDP-detected, 16 777 216 B |
+| Read speed | ~450 KB/s → full 16 MB in ~37 s |
+| **Validation** | **FEL read is byte-identical to the T48 dump** (SHA-256 `e9e8424c…e5c34e`) — the image is now triple-confirmed (2× T48 + FEL) |
+
+**Tooling:** `xfel` (github.com/xboot/xfel) built from source on macOS (libusb) — it ships **native
+V821 support** (`chips/v821.c`), no patching. `sunxi-tools`/`sunxi-fel` is not in Homebrew and was
+not needed. macOS may require running under `sudo` for raw USB.
+
+```sh
+xfel version                            # -> V821, confirms FEL link
+xfel sid                                # chip eFuse SID
+xfel spinor                             # detect 16 MB SFDP NOR
+xfel spinor read 0 0x1000000 dump.bin   # full dump, ~37 s
+# writes (not run here): xfel spinor write 0 img.bin  /  xfel spinor erase <a> <len>
+# RAM: xfel ddr && xfel read <addr> <len> file
+```
+
+FEL is also how the rootfs-based root consoles were delivered (SSH-over-WiFi and USB-serial) — see
+[`c2air_v821_runtime_and_access.md`](c2air_v821_runtime_and_access.md). Note: the "console env fix"
+described in earlier revisions of this doc (`console=ttyAS0`) was based on a wrong theory — the
+serial console is unusable due to a kernel UART-clock bug, not a console-name mismatch (§7), and no
+env change fixes it.
+
 ## 9. Web surface
 
 Much smaller than the A15W's Boa config server. `/app/ota/httpd.conf` sets document root
@@ -345,17 +447,18 @@ Much smaller than the A15W's Boa config server. `/app/ota/httpd.conf` sets docum
 `lan/`, and `cgi-bin/index.cgi`. It is an **OTA-only** surface. The replacement web UI in
 [`../../web_interface/`](../../web_interface/) targets the A15W Boa server and does not apply.
 
-## 10. Secure boot — largely unassessed
+## 10. Secure boot — **RESOLVED: NOT enforced (device unlocked)**
 
-Present in boot0: `sunxi_rsa_sign_check`, `sunxi-secure`, `sunxi_sha_calc_with_software`, a TRNG
-init path (`[trng][err]: sunxi_trng_start err`). The kernel DTB carries a `secure_status` node at
-offset `0x24c`, size `0x20`.
+Earlier this was "unassessed." **Runtime analysis settled it: secure boot is OFF.** boot0 magic is
+plain **`eGON.BT0`** (a secure unit ships `TOC0.GLH`); `boot`/`recovery` are plain `ANDROID!` images
+with only a mkbootimg SHA1 integrity hash (no AVB/RSA); the U-Boot env has no secure/keybox flags and
+`bootcmd` uses legacy `bootm` with **no verification**. The `sunxi_rsa_sign_check`/`burn_secure_mode`/
+RSA/OPTEE strings in U-Boot are **dormant capability, not enforcement**. So `boot`/`recovery`/`uboot`
+can be reflashed with custom (unsigned) images; a bad `mtd0`/`mtd1` is recoverable via FEL/efex. Full
+evidence and the firmware-modification picture:
+[`c2air_v821_runtime_and_access.md`](c2air_v821_runtime_and_access.md) §7.
 
-**Whether signature verification is actually fused on is not established.** No fuse read was
-performed. The i.MX6UL HAB analysis in [`secure_boot_hab.md`](secure_boot_hab.md) is a different
-vendor's mechanism and says nothing about this SoC. Treat modified-image booting as untested,
-and expect to need a recovery path (`recovery` partition, fastboot key combo `0x2`–`0x8`, or
-Allwinner FEL) before attempting it.
+`selinux=0` on the kernel command line. Combined with §8, on-device security is minimal.
 
 `selinux=0` on the kernel command line. Combined with §8, on-device security is minimal: the
 serial console alone is unauthenticated root.

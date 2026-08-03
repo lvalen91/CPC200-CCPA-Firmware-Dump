@@ -1,0 +1,180 @@
+Warning: Permanently added '192.168.50.100' (ED25519) to the list of known hosts.
+##### PROCESSES
+  PID USER       VSZ STAT COMMAND
+    1 root       940 S    /sbin/init
+    2 root         0 SW   [kthreadd]
+    3 root         0 IW<  [rcu_gp]
+    4 root         0 IW<  [rcu_par_gp]
+    5 root         0 IW   [kworker/0:0-mm_]
+    6 root         0 IW<  [kworker/0:0H-kb]
+    7 root         0 IW   [kworker/u2:0-ev]
+    8 root         0 IW<  [mm_percpu_wq]
+    9 root         0 SW   [ksoftirqd/0]
+   10 root         0 IW   [rcu_preempt]
+   11 root         0 SW   [kdevtmpfs]
+   12 root         0 SW   [rcu_tasks_kthre]
+   14 root         0 SW   [oom_reaper]
+   15 root         0 IW<  [writeback]
+   16 root         0 SW   [kcompactd0]
+   39 root         0 IW<  [kblockd]
+   40 root         0 SW   [watchdogd]
+   41 root         0 SW   [irq/141-4250240]
+   42 root         0 DW   [ly_update_scan]
+   43 root         0 IW<  [ly_matrix_led]
+   44 root         0 IW   [kworker/0:1-eve]
+   45 root         0 IW<  [cfg80211]
+   46 root         0 SW   [spi1]
+   47 root         0 DW   [ly_rgb_led_th]
+   48 root         0 SW   [kswapd0]
+   50 root         0 IW<  [ly_usb_driver]
+   51 root         0 SW   [irq/144-mmc1]
+   52 root         0 IW   [kworker/0:2-eve]
+   53 root         0 IW<  [ipv6_addrconf]
+   54 root         0 SW<  [krfcommd]
+   56 root         0 IW<  [kworker/u3:0-hc]
+   57 root         0 IW<  [kworker/u3:1-hc]
+   58 root         0 IW<  [kworker/0:1H]
+   59 root         0 SW   [aicwf_bustx_thr]
+   60 root         0 SW   [aicwf_busrx_thr]
+   62 root         0 SW   [aicwf_pwrctl]
+   63 root         0 SW   [aicwf_bustx_thr]
+   64 root         0 SW   [aicwf_busrx_thr]
+   65 root         0 SW   [ksdioirqd/mmc0]
+   66 root         0 IW<  [cmd_wq]
+   67 root         0 IW<  [apmStaloss_wq]
+  100 root         0 SWN  [jffs2_gcd_mtd9]
+  103 root         0 SWN  [jffs2_gcd_mtd8]
+  109 root         0 IW   [kworker/u2:1-ev]
+  113 root       844 S    /usr/sbin/dropbear -r /tmp/dropbear/hk -p 22
+  117 root       952 S    -/bin/sh
+  155 root       692 S    /sbin/update
+  162 root         0 IW<  [kworker/0:2H]
+  169 root      2088 S    logwrapper /mnt/customer/app/ly_testcp -f=2
+  170 root     10080 S<   {iAP2Client} /tmp/app/rcpservice
+  185 root      2796 S    /mnt/customer/app/ly_testcp -f=2
+  220 root      2656 S    mdnsd
+  224 root       940 S    httpd -c /tmp/ota/httpd.conf
+  227 root      2252 S<   /mnt/customer/app/btapp -NVehiConn-4890 -T/dev/ttyS1 -B -M
+  228 root      2264 S<   /mnt/customer/app/btapp -NVehiConn-4890 -T/dev/ttyS1 -B -M
+  246 root         0 IW<  [usb_wq]
+  258 root         0 IW<  [kworker/u3:2-hc]
+  259 root         0 IW   [kworker/u2:2-ev]
+  270 root      1608 S    wpa_supplicant -i wlan0 -c /tmp/p2p.conf -Dnl80211
+  286 root       688 S    /sbin/swupdate-progress -w
+  303 root         0 IW<  [apmprobe_wq]
+  328 root       944 S    udhcpd /tmp/udhcpd_p2p.conf
+  334 root      1192 S    hostapd -B /tmp/hostapd.conf
+  338 root       944 S    udhcpd /tmp/udhcpd_ap.conf
+  341 root         0 IW<  [apmprobe_wq]
+  359 root      4560 S<   /mnt/customer/app/lylinkapp -w
+  360 root      5968 S<   /mnt/customer/app/lylinkapp -w
+  430 root      1100 S    /usr/sbin/dropbear -r /tmp/dropbear/hk -p 22 -2 9
+  431 root       940 S    sh -s
+  432 root       948 R    ps -w
+##### LISTENING
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:8299            0.0.0.0:*               LISTEN      360/lylinkapp
+tcp        0      0 0.0.0.0:38187           0.0.0.0:*               LISTEN      170/rcpservice
+tcp        0      0 0.0.0.0:38188           0.0.0.0:*               LISTEN      170/rcpservice
+tcp        0      0 0.0.0.0:38189           0.0.0.0:*               LISTEN      170/rcpservice
+tcp        0      0 0.0.0.0:38190           0.0.0.0:*               LISTEN      170/rcpservice
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      113/dropbear
+tcp        0      0 0.0.0.0:38301           0.0.0.0:*               LISTEN      170/rcpservice
+tcp        0      0 0.0.0.0:38302           0.0.0.0:*               LISTEN      170/rcpservice
+tcp        0      0 0.0.0.0:50721           0.0.0.0:*               LISTEN      170/rcpservice
+tcp        0      0 0.0.0.0:38185           0.0.0.0:*               LISTEN      170/rcpservice
+tcp        0      0 :::80                   :::*                    LISTEN      224/httpd
+tcp        0      0 :::22                   :::*                    LISTEN      113/dropbear
+tcp        0      0 :::50721                :::*                    LISTEN      170/rcpservice
+##### IFCONFIG
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+p2p-wlan0-0 Link encap:Ethernet  HWaddr yy:yy:yy:yy:yy:yy  
+          inet addr:192.168.43.1  Bcast:192.168.43.255  Mask:255.255.255.0
+          inet6 addr: fe80::cea6:8dff:fef4:1d33/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+wlan0     Link encap:Ethernet  HWaddr xx:xx:xx:xx:xx:xx  
+          inet addr:192.168.50.100  Bcast:192.168.50.255  Mask:255.255.255.0
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+##### HOSTAPD.CONF (live)
+interface=wlan0
+ctrl_interface=/var/run/hostapd
+ssid=VehiConn-4890
+channel=36
+auth_algs=3
+dtim_period=1
+wpa=2
+wpa_passphrase=88888888
+driver=nl80211
+ieee80211n=1
+ieee80211ac=1
+ieee80211ax=1
+hw_mode=a
+ignore_broadcast_ssid=0
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=CCMP
+rsn_pairwise=CCMP
+max_num_sta=2
+wpa_group_rekey=86400
+ht_capab=[SHORT-GI-20][SHORT-GI-40][HT40+]
+interworking=1
+access_network_type=0
+internet=0
+asra=0
+esr=0
+uesa=0
+venue_group=10
+venue_type=1
+##### P2P.CONF
+ctrl_interface=/var/run/wpa_supplicant
+update_config=1
+device_name=VehiConn-4890
+manufacturer=LY
+model_name=LY
+model_number=WLAN_CU
+serial_number=12345
+device_type=1-0050F204-1
+os_version=01020300
+config_methods=virtual_display virtual_push_button keypad
+
+##### CUSTOMER APP LISTING
+drwxr-xr-x    3 root     root           473 May 14  2026 .
+drwxr-xr-x    7 root     root            79 May 14  2026 ..
+-rwxr-xr-x    1 root     root           221 May 14  2026 blink.sh
+-rwxr-xr-x    1 root     root        146084 May 14  2026 btapp
+-rwxr-xr-x    1 root     root            67 May 14  2026 format_udisk.sh
+-rwxr-xr-x    1 root     root        130852 May 14  2026 libiap_new.so
+-rwxr-xr-x    1 root     root         83160 May 14  2026 liblyctrl.so
+-rwxr-xr-x    1 root     root         26036 May 14  2026 liblylinkmw.so.1
+-rwxr-xr-x    1 root     root         25916 May 14  2026 libprotobuf-c.so.1
+-rwxr-xr-x    1 root     root       1789268 May 14  2026 libwcarplay_new.so
+drwxr-xr-x    2 root     root           123 May 14  2026 logo
+-rwxr-xr-x    1 root     root          1586 May 14  2026 lyLink.sh
+-rwxr-xr-x    1 root     root          3712 May 14  2026 lyLoadModule.sh
+-rwxr-xr-x    1 root     root          1094 May 14  2026 lyUpdate.sh
+-rwxr-xr-x    1 root     root         84212 May 14  2026 ly_testcp
+-rwxr-xr-x    1 root     root             0 May 14  2026 lydopack
+-rwxr-xr-x    1 root     root          9612 May 14  2026 lyhostapd
+-rwxr-xr-x    1 root     root       1244846 May 14  2026 lylink
+-rwxr-xr-x    1 root     root        158292 May 14  2026 lylinkapp
+-rwxr-xr-x    1 root     root        105308 May 14  2026 mtpservice
+-rwxr-xr-x    1 root     root          3112 May 14  2026 mtpservice.conf
+-rwxr-xr-x    1 root     root         34696 May 14  2026 my.ttf
+-rwxr-xr-x    1 root     root          2120 May 14  2026 raa.crt
+-rwxr-xr-x    1 root     root        347248 May 14  2026 raaservice
+-rwxr-xr-x    1 root     root            94 May 14  2026 system.json
+-rwxr-xr-x    1 root     root           437 May 14  2026 update_kill_service.sh
+##### CUSTOMER TOP
+drwxr-xr-x    7 root     root            79 May 14  2026 .
+drwxrwxr-x    7 root     root            84 Sep 24  2025 ..
+drwxr-xr-x    3 root     root           473 May 14  2026 app
+drwxr-xr-x    2 root     root            30 May  9  2026 dev
+drwxr-xr-x    2 root     root             3 May 14  2026 firmware
+drwxr-xr-x    2 root     root             3 May 14  2026 modules
+drwxr-xr-x    3 root     root            44 May 14  2026 ota
+##### system.json
+{"align" : "right|bottom", "color" : "#ffffff", "appver" : "26051418.6239.2", "led" : "103-5"}{"align" : "right|bottom", "color" : "#ffffff", "appver" : "00000000.6239.2", "led" : "103-5"}##### VERSIONS
+DISTRIB_ID='OpenWrt' DISTRIB_RELEASE='5.0' DISTRIB_REVISION='r0-162b8ff' DISTRIB_TARGET='v821-lybox_aic8800/generic Generic' DISTRIB_DESCRIPTION='OpenWrt 21.02-SNAPSHOT' DISTRIB_TAINTS='no-all mklibs busybox' DISTRIB_INFO='tina.tenc.20260509.043018' TINA_VERSION='5.0' 
