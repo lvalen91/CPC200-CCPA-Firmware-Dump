@@ -120,6 +120,26 @@ WIRELESS=no
 # The extraction carries no chipset table: we intersect the modules in THIS unit's own tarball
 # with the dispatcher's own insmod lines. A part nobody anticipated still resolves, because the
 # unit ships a dispatcher that knows its own silicon and a tarball that names its own modules.
+# REFUSE TO EMIT WHAT WE CANNOT FAITHFULLY EXECUTE. Single-line extraction only works while a
+# vendor branch is closed-form. The Realtek branches are; the NXP and Broadcom ones are NOT -
+# they carry shell variables resolved elsewhere in the dispatcher:
+#     insmod /tmp/moal.ko "mod_para=$nxpWiFiConfig"
+#     brcm_patchram_plus --patchram /lib/firmware/bcm/$bcmBTFirmware ... --bd_addr "$bcmBTMac" &
+# Captured verbatim, those are not commands, they are text that happens to look like one. Worse,
+# writing them into the descriptor makes `. /tmp/radio_caps` abort under `set -u` - status 2,
+# which radio_hal defines as "already converged". A mapping we cannot execute must therefore
+# become NO mapping, so the seam reports "unsupported" honestly and the caller can act on it.
+# A trailing `&` is stripped rather than rejected: backgrounding is the vendor's control-flow
+# choice, and radio_hal supplies its own detached-and-converged discipline in its place.
+safe_cmd() {  # stdin -> stdout, empty if the line cannot be executed as captured
+  _c=$(cat)
+  _c=$(echo "$_c" | sed 's/[[:space:]]*&[[:space:]]*$//')          # vendor's backgrounding
+  case "$_c" in
+    *'$'*|*'`'*|*'"'*|*"'"*) echo "" ;;   # unresolved substitution or quoting we cannot honour
+    *) echo "$_c" ;;
+  esac
+}
+
 BT_LDISC=""; WLAN_MODS=""
 for m in $(tar tzf "$KO_TARBALL" 2>/dev/null | sed 's|.*/||' | grep '\.ko$'); do
   case "$m" in *hci_uart*) BT_LDISC=$m ;; *) WLAN_MODS="$WLAN_MODS $m" ;; esac
@@ -132,7 +152,7 @@ WLAN_INSMOD=""
 for m in $WLAN_MODS; do
   l=$(grep -h "insmod /tmp/$m" /script/init_bluetooth_wifi.sh 2>/dev/null \
       | grep -v '^[[:space:]]*#' | head -1 \
-      | sed 's|.*\(insmod /tmp/[^&|;}]*\).*|\1|' | sed 's/[[:space:]]*$//')
+      | sed 's|.*\(insmod /tmp/[^&|;}]*\).*|\1|' | sed 's/[[:space:]]*$//' | safe_cmd)
   [ -n "$l" ] && WLAN_INSMOD="$WLAN_INSMOD$l
 "
 done
@@ -140,7 +160,7 @@ done
 # never be mistaken for the command itself.
 BT_ATTACH_CMD=""
 [ -n "$BT_ATTACH" ] && BT_ATTACH_CMD=$(grep -hE "^[[:space:]]*$BT_ATTACH " /script/attach_bluetooth.sh 2>/dev/null \
-                       | head -1 | sed 's/^[[:space:]]*//')
+                       | head -1 | sed 's/^[[:space:]]*//' | safe_cmd)
 # Ordering constraint: some parts wedge if BT attaches before the WLAN driver is up. The vendor
 # encodes this as a wait loop inside the attach script; its presence is the signal.
 BT_AFTER_WLAN=0

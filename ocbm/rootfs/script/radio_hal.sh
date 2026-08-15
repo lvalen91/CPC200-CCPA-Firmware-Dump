@@ -98,7 +98,26 @@ caps() {
   # Refresh the descriptor unless a caller pre-loaded one. Detection is read-only and cheap.
   [ -x /script/radio_detect.sh ] && sh /script/radio_detect.sh -q >/dev/null 2>&1
   [ -f "$CAPS" ] || { log "no descriptor at $CAPS and radio_detect.sh is missing"; return 1; }
-  . "$CAPS"
+
+  # A MALFORMED DESCRIPTOR MUST NEVER ABORT THIS SCRIPT. Measured: an extracted vendor line
+  # carrying an unexpanded shell variable - e.g. the NXP branch's
+  #     insmod /tmp/moal.ko "mod_para=$nxpWiFiConfig"
+  # - makes `.` fail under `set -u` with status **2** in ash/dash, and 2 is this script's
+  # "already converged" code. The verb would exit before the backend switch, reporting SUCCESS,
+  # and the caller would start its advertiser over radios that were never brought up. That is
+  # the silent-failure class this whole seam exists to eliminate, so it is not acceptable to
+  # merely "usually" avoid it: source defensively and then require what we depend on.
+  set +u
+  . "$CAPS" 2>/dev/null
+  set -u
+  # Every key this script consumes gets a defined default, so a descriptor written by an older
+  # or partially-failed detect can degrade to "unsupported" instead of killing the shell.
+  : "${RADIO_BACKEND:=none}"   "${RADIO_WIRELESS:=no}"      "${RADIO_CHIP:=unknown}"
+  : "${RADIO_SDIO_DEVICE:=}"   "${RADIO_SDIO_VENDOR:=}"     "${RADIO_FW_TREE:=}"
+  : "${RADIO_KO_TARBALL:=}"    "${RADIO_WLAN_MODULES:=}"    "${RADIO_WLAN_INSMOD:=}"
+  : "${RADIO_BT_LDISC_KO:=}"   "${RADIO_BT_ATTACH_CMD:=}"   "${RADIO_BT_ATTACH:=}"
+  : "${RADIO_BT_PRELOAD:=}"    "${RADIO_BT_PRELOAD_CMD:=}"  "${RADIO_BT_AFTER_WLAN:=0}"
+  : "${RADIO_BT_UART:=/dev/ttymxc2}"
   return 0
 }
 
@@ -523,5 +542,5 @@ case "$VERB" in
   wifi_ap_off) lock_take wlan || exit 1; do_wifi_ap_off; _r=$?; lock_drop wlan; exit $_r ;;
   bt_on)       lock_take bt   || exit 1; do_bt_on;       _r=$?; lock_drop bt;   exit $_r ;;
   bt_off)      lock_take bt   || exit 1; do_bt_off;      _r=$?; lock_drop bt;   exit $_r ;;
-  *) echo "$LOGP usage: radio_hal.sh probe|status|wifi_ap_on|wifi_ap_off|bt_on|bt_off" >&2; exit 2 ;;
+  *) echo "$LOGP usage: radio_hal.sh probe|status|wifi_ap_on|wifi_ap_off|bt_on|bt_off" >&2; exit 64 ;;
 esac
