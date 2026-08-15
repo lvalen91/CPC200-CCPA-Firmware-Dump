@@ -1,0 +1,64 @@
+#!/bin/sh
+# Refuse to push anything carrying a Claude conversation/session reference.
+#
+# WHY THIS EXISTS. This repository is PUBLIC. A session link is an immediate PII exposure the
+# moment it lands here: transcripts can contain file paths, hostnames, device serials, MAC
+# addresses, network addresses and personal details, and neither the link nor the transcript
+# behind it can be reliably unpublished once it is indexed or cloned. Two such trailers reached
+# origin/main before this hook existed (ff1acdb, a70453a).
+#
+# The private repo that feeds this one carries ~145 of them in its own history, so the sync that
+# is eventually done from it is exactly the moment this would happen again. Remembering to check
+# is not a control; this is.
+#
+# Scope: only the commits actually being pushed are scanned, so pre-existing history does not
+# block new work. Attribution (Co-Authored-By) is deliberately NOT matched - that carries no
+# conversation reference and is fine to publish.
+#
+# Bypass, if you ever genuinely need to: git push --no-verify
+
+PATTERN='Claude-Session:|claude\.ai/code/session|claude\.ai/chat/'
+fail=0
+
+while read -r _local_ref local_sha _remote_ref remote_sha; do
+  # Deleting a ref: nothing to inspect.
+  case "$local_sha" in *[!0]*) ;; *) continue ;; esac
+
+  case "$remote_sha" in
+    *[!0]*) range="$remote_sha..$local_sha" ;;   # updating an existing branch
+    *)      range="$local_sha" ;;                # brand-new branch: check all its commits
+  esac
+
+  # Commit messages.
+  hits=$(git log --format='%H %s%n%b' "$range" 2>/dev/null | grep -nEi "$PATTERN")
+  if [ -n "$hits" ]; then
+    echo "pre-push: BLOCKED - a Claude session reference is present in a commit MESSAGE:" >&2
+    echo "$hits" | sed 's/^/  /' >&2
+    echo "" >&2
+    echo "  Offending commits:" >&2
+    git log --format='    %h %s' "$range" --grep='Claude-Session' --grep='claude\.ai' -i >&2
+    fail=1
+  fi
+
+  # Content, too: a session link pasted into a README, doc or script is the same exposure.
+  ctnt=$(git diff --no-color "$range" 2>/dev/null | grep -nEi "^\+.*($PATTERN)")
+  if [ -n "$ctnt" ]; then
+    echo "pre-push: BLOCKED - a Claude session reference is present in added CONTENT:" >&2
+    echo "$ctnt" | sed 's/^/  /' >&2
+    fail=1
+  fi
+done
+
+if [ "$fail" = 1 ]; then
+  cat >&2 <<'EOF'
+
+Nothing was pushed. To clean commit messages before publishing:
+
+  git filter-branch -f --msg-filter \
+    'grep -viE "Claude-Session:|claude\.ai/(code/session|chat)/"' <base>..HEAD
+
+(then re-run the push; use --no-verify only if you are certain)
+EOF
+  exit 1
+fi
+exit 0
