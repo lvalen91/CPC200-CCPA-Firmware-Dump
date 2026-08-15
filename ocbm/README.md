@@ -102,11 +102,20 @@ with a fully working adapter.
 
 ### The radio platform — chipset-agnostic WLAN/BT bring-up
 
-> **Status (2026-08-15): detection and Bluetooth bring-up are hardware-validated on an
-> RTL8822CS unit; the AP layer and the supervisor wiring are not landed yet, and the installers
-> below do not place these scripts yet.** Documented here because it changes what the conversion
-> is *for*: the baseline should leave a unit with a working radio platform whatever silicon it
-> has, and OCBM should build on that rather than re-solve it.
+> **Status (2026-08-15): hardware-validated end to end on an RTL8822CS unit — detection, WLAN
+> driver load, SoftAP, and a responsive `hci0` — with no repo backend for that chipset. Wireless
+> CarPlay itself is not yet demonstrated on a non-IW416 unit, and Broadcom is untested.**
+
+The scripts live in `rootfs/script/` here and are placed by `ncm_base_install.sh` as part of the
+owned boot path, so a converted unit has a working radio platform whatever silicon it carries.
+They are the *only* rootfs scripts published in this repo, and deliberately so: they contain no
+chipset payload, so they are safe on any variant. The IW416-specific `wlan_on.sh`/`bt_on.sh` are
+not published, because installing one chip's bring-up onto another's board is exactly what the
+variant rule forbids.
+
+    rootfs/script/radio_detect.sh   read-only detection; emits /tmp/radio_caps
+    rootfs/script/radio_hal.sh      the seam: probe|status|wifi_ap_on|wifi_ap_off|bt_on|bt_off
+    rootfs/script/radio_ap_up.sh    the owned SoftAP layer (never the vendor's)
 
 CCPA ships at least six WLAN/BT parts — RTL8822BS/CS, RTL8733BS, BCM4354/4335, BCM4358, NXP
 SD8987, NXP IW416 — and **only the driver set for a unit's own chip is in its rootfs.** There is

@@ -544,7 +544,16 @@ echo "--- /etc/inittab ---"; cat /etc/inittab
   #      mfgmode from sysfs and is 0 today, but leaving that loop running across a strip is
   #      not a risk worth carrying.
   say "installing the owned boot path (this is what disarms the vendor stack at next boot)"
-  for f in start_main_service.sh after_shutdown.sh init_gpio.sh sync_box_time.sh; do
+  # The radio seam ships with the BASELINE, not with OCBM. The radio platform is a property of
+  # the converted unit: OCBM (and anything else above it) should be able to ask for "wifi up"
+  # without knowing what silicon is on the board. These three carry NO chipset payload - no
+  # firmware path, no module name, no attach helper - so installing them does not violate the
+  # variant rule above (which forbids shipping one chip's BRING-UP onto another's board).
+  # radio_detect.sh reads this unit's own vendor dispatcher to learn its insmod/attach lines;
+  # radio_ap_up.sh is the owned SoftAP layer, deliberately NOT named start_bluetooth_wifi.sh
+  # because every unit already ships a vendor file at that path.
+  for f in start_main_service.sh after_shutdown.sh init_gpio.sh sync_box_time.sh \
+           radio_detect.sh radio_hal.sh radio_ap_up.sh; do
     [ -f "$OVERLAY/script/$f" ] && push "$OVERLAY/script/$f" "/script/$f.new"
   done
   push "$OVERLAY/etc/init.d/rcS" /etc/init.d/rcS.new
@@ -555,7 +564,11 @@ inst() { n="$1.new"; [ -f "$n" ] || return 0
          sh -n "$n" || { echo "SYNTAX FAIL $1 - not installed"; rm -f "$n"; return 1; }
          [ -f "$1" ] && [ ! -f "$1.pre" ] && cp "$1" "$1.pre"
          chmod 755 "$n" && mv "$n" "$1" && echo "  installed $1"; }
-for f in /script/start_main_service.sh /script/after_shutdown.sh /script/init_gpio.sh /script/sync_box_time.sh; do inst "$f"; done
+for f in /script/start_main_service.sh /script/after_shutdown.sh /script/init_gpio.sh /script/sync_box_time.sh \
+         /script/radio_detect.sh /script/radio_hal.sh /script/radio_ap_up.sh; do inst "$f"; done
+# Report what the seam resolves on THIS unit. Informational only - nothing gates on it, because
+# an unrecognised variant must still install fine (it keeps its own vendor dispatcher either way).
+[ -x /script/radio_detect.sh ] && { echo "--- radio platform ---"; sh /script/radio_detect.sh 2>/dev/null | grep -E "CHIP|SDIO_DEVICE|FW_TREE|BT_ATTACH_CMD|WLAN_INSMOD|BACKEND|WIRELESS"; }
 inst /etc/init.d/rcS
 mkdir -p /etc/mdev && inst /etc/mdev/udisk_insert.sh
 # Post-checks. A bad rcS on a unit with no UART wired is a reflash, so each of these reverts
@@ -641,6 +654,10 @@ is_radio() {
     # repo overlay. init_bluetooth_wifi.sh is the chipset dispatcher itself.
     init_bluetooth_wifi.sh|close_bluetooth_wifi.sh|load_bluetooth_wifi.sh|\
     attach_bluetooth.sh|start_bluetooth_wifi.sh|wlan_on.sh|wlan_off.sh|bt_on.sh|bt_off.sh) return 0;;
+    # The owned chipset-agnostic seam (radio_detect/radio_hal/radio_ap_up). It matches none of
+    # the wlan/wifi/bt name patterns above, so without this line a future kill-list edit could
+    # delete the very layer that brings the radios up on a non-IW416 unit.
+    radio_*) return 0;;
     # daemons, tools, attach helpers
     *hciattach*|hci*|bluetooth*|*bluetooth*|bt_*|*_bt|hfpd|dbus-daemon|dbus*|\
     hostapd|wpa_supplicant|wpa_cli|p2p_supplicant*|wl|iw|iwpriv|iwconfig|iwlist|\
