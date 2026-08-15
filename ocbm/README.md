@@ -1,4 +1,6 @@
 # OCBM — converting a CCPA to the Open CCPA Bulk Multiplexer
+[!CAUTION]
+> This is a work in progress, posting only because signficant positive return. Do at your own risk, with bricked adapter if something goes wrong. Do not expect recovery to be possible. Safer to assume a deadend, it would be even better if you were comforable with SPI Programmers like Xegu or others and can do a backup of your own IC before hand.
 
 OCBM replaces Carlinkit's `0x55AA55AA` projection protocol with an open framed multiplexer over
 the adapter's single bulk accessory pipe. This directory holds the tooling to take an adapter
