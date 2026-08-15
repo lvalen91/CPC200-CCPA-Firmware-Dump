@@ -149,6 +149,15 @@ manifest() {
   echo "$REPO/ccpa/rootfs/script/ocbm_boot.sh|/script/ocbm_boot.sh|755"
   echo "$REPO/tools/run_ocbmd.sh|/script/run_ocbmd.sh|755"
   if [ "$FULL" = 1 ]; then
+    # The radio seam MUST ship with session_supervisor.sh, because the supervisor's four radio
+    # call sites now resolve through it. A box that gets the supervisor without these has no
+    # radio bring-up at all - and on a BT-only bridge deployment (wifi_ap:false, e.g. the GM
+    # head-unit app, where the adapter IS the Bluetooth radio and the MFi coprocessor) that is a
+    # total failure, not a degraded one. The baseline installs these too; shipping them here
+    # covers a box converted before the seam existed.
+    echo "$REPO/ccpa/rootfs/script/radio_detect.sh|/script/radio_detect.sh|755"
+    echo "$REPO/ccpa/rootfs/script/radio_hal.sh|/script/radio_hal.sh|755"
+    echo "$REPO/ccpa/rootfs/script/radio_ap_up.sh|/script/radio_ap_up.sh|755"
     echo "$ARM/iap2d|/usr/sbin/iap2d|755"
     echo "$ARM/airplayd|/usr/sbin/airplayd|755"
     echo "$ARM/rx-connect|/usr/sbin/rx-connect|755"

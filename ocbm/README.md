@@ -102,9 +102,12 @@ with a fully working adapter.
 
 ### The radio platform — chipset-agnostic WLAN/BT bring-up
 
-> **Status (2026-08-15): hardware-validated end to end on an RTL8822CS unit — detection, WLAN
-> driver load, SoftAP, and a responsive `hci0` — with no repo backend for that chipset. Wireless
-> CarPlay itself is not yet demonstrated on a non-IW416 unit, and Broadcom is untested.**
+> **Status (2026-08-15): wireless CarPlay demonstrated end to end on an RTL8822CS unit** — a
+> chipset with no backend in this repo — over a SoftAP and Bluetooth controller brought up
+> entirely from command lines extracted from that unit's own vendor dispatcher. HEVC 1920×720,
+> audio, Siri voice uplink and the full iAP2 metadata stream, steady at 33–36 fps.
+> **Broadcom, RTL8733BS and SD8987 remain untested** — the seam resolves them from their own
+> dispatchers on paper, which is the design claim, but that claim is only measured on `0xc822`.
 
 The scripts live in `rootfs/script/` here and are placed by `ncm_base_install.sh` as part of the
 owned boot path, so a converted unit has a working radio platform whatever silicon it carries.
