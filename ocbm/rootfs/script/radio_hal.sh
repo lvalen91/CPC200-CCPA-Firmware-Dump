@@ -71,17 +71,39 @@ log() { echo "$LOGP $*"; }
 # invocation (an ssh session timing out mid-bring-up is enough) left the directory behind and
 # every later call refused to run, so wireless could never come up again until reboot. A lock is
 # an optimisation against stacking, never a way to permanently disable a radio.
+# RECLAIM ON LIVENESS, NOT ON AGE. The first version aged locks out after 2 minutes, which is
+# SHORTER THAN A LEGITIMATE bt_on: against a present-but-wedged controller the convergence poll
+# calls a `timeout 5` probe up to 30 times per attempt, across 4 attempts, so a genuine bring-up
+# can hold the lock for many minutes. A concurrent caller would then declare the LIVE holder
+# stale, delete its lock, and start a second attach against the same UART - which is exactly the
+# OP_H5_SYNC collision the lock exists to prevent, manufactured by the lock itself.
+#
+# So the holder records its PID and reclaim requires the holder to be GONE. The age check stays
+# only as a backstop for a PID that died and was recycled onto an unrelated process, and it is
+# now generous enough that it can never fire against a working bring-up.
 lock_take() {  # $1 = subsystem
   _lk="/tmp/.radio_lock_$1"; _n=0
   while ! mkdir "$_lk" 2>/dev/null; do
-    if [ -n "$(find "$_lk" -maxdepth 0 -mmin +2 2>/dev/null)" ]; then
-      log "lock $1 is stale (>2min) - reclaiming"; rm -rf "$_lk"; continue
+    _holder=$(cat "$_lk/pid" 2>/dev/null)
+    if [ -n "$_holder" ] && [ ! -d "/proc/$_holder" ]; then
+      log "lock $1 held by dead pid $_holder - reclaiming"
+      rm -rf "$_lk"; continue
     fi
-    _n=$((_n+1)); [ "$_n" -ge 60 ] && { log "lock $1 busy >30s - refusing to stack bring-ups"; return 1; }
+    if [ -z "$_holder" ] && [ -n "$(find "$_lk" -maxdepth 0 -mmin +20 2>/dev/null)" ]; then
+      log "lock $1 has no holder and is >20min old - reclaiming"
+      rm -rf "$_lk"; continue
+    fi
+    _n=$((_n+1)); [ "$_n" -ge 60 ] && {
+      log "lock $1 busy >30s (held by pid ${_holder:-unknown}) - refusing to stack bring-ups"; return 1; }
     sleep 0.5
   done
-  # Release on any exit path, including signals - otherwise a killed verb strands the lock.
-  trap 'rm -rf "/tmp/.radio_lock_'"$1"'" 2>/dev/null' EXIT INT TERM HUP
+  echo $$ > "$_lk/pid" 2>/dev/null
+  # TWO traps, deliberately. In ash a trapped signal runs the handler and then RESUMES the
+  # script: a single combined trap would release the lock on SIGTERM while the bring-up carried
+  # on running, so the next caller would take the lock and stack a second attach on top of a
+  # still-live one. The signal trap must therefore also exit.
+  trap 'rm -rf "/tmp/.radio_lock_'"$1"'" 2>/dev/null' EXIT
+  trap 'rm -rf "/tmp/.radio_lock_'"$1"'" 2>/dev/null; trap - EXIT; exit 143' INT TERM HUP
   return 0
 }
 lock_drop() { trap - EXIT INT TERM HUP; rm -rf "/tmp/.radio_lock_$1" 2>/dev/null; }
@@ -241,6 +263,38 @@ bt_set_name() {  # $1 = hci dev
   log "BT name=$_bn (asserted after $_n retries, now '${_cur:-unknown}')"
 }
 
+# Load THIS unit's WLAN driver and nothing else - no AP, no addressing. Factored out of
+# wifi_ap_on because bt_on needs it too: on the parts whose vendor script makes BT attach wait
+# for the WLAN interface, the BT-only bridge role (wifi_ap:false) never calls wifi_ap_on, so
+# waiting for an interface is waiting for something nobody will ever create. See do_bt_on.
+# Returns 0 if the driver is loaded (or was already), 1 if there is nothing to load.
+wlan_driver_up() {
+  [ -n "$RADIO_WLAN_INSMOD" ] || { log "no WLAN insmod mapping for this unit"; return 1; }
+  [ -e "/tmp/${RADIO_WLAN_MODULES%% *}" ] || tar -xzf "$RADIO_KO_TARBALL" -C /tmp 2>/dev/null \
+                                          || tar -xf "$RADIO_KO_TARBALL" -C /tmp 2>/dev/null
+  log "wlan driver: $RADIO_WLAN_INSMOD"
+  _old=$IFS; IFS=';'
+  for _cmd in $RADIO_WLAN_INSMOD; do
+    [ -n "$_cmd" ] || continue
+    IFS=$_old
+    # Idempotent: a module already in /proc/modules is success, not the "File exists" error
+    # insmod would print. Both verbs must be safe to call repeatedly - the supervisor can invoke
+    # them on any host-presence edge, and a driver already loaded is the common case.
+    _mod=$(echo "$_cmd" | sed 's|.*/tmp/||; s/ .*//; s/\.ko$//')
+    if [ -n "$_mod" ] && grep -q "^$_mod " /proc/modules 2>/dev/null; then
+      log "  $_mod already loaded"
+    else
+      $_cmd 2>&1 | sed "s|^|$LOGP   |"
+    fi
+    IFS=';'
+  done
+  IFS=$_old
+  # set_wifi_mac is the vendor's per-unit MAC applier and is kept by the base install's radio
+  # guard on every variant. Harmless where absent.
+  command -v set_wifi_mac >/dev/null 2>&1 && set_wifi_mac >/dev/null 2>&1
+  return 0
+}
+
 # =============================================================================================
 # WLAN
 # =============================================================================================
@@ -278,26 +332,9 @@ do_wifi_ap_on() {
       # provisioning, not bring-up, and it does not belong in a per-session call).
       [ -e "/tmp/${RADIO_WLAN_MODULES%% *}" ] || tar -xzf "$RADIO_KO_TARBALL" -C /tmp 2>/dev/null \
                                                 || tar -xf "$RADIO_KO_TARBALL" -C /tmp 2>/dev/null
-      log "backend=mapped chipset=$RADIO_SDIO_DEVICE -> $RADIO_WLAN_INSMOD"
-      _old=$IFS; IFS=';'
-      for _cmd in $RADIO_WLAN_INSMOD; do
-        [ -n "$_cmd" ] || continue
-        IFS=$_old
-        # Idempotent: a module already in /proc/modules is success, not the "File exists" error
-        # insmod would print. wifi_ap_on must be safe to call repeatedly - the supervisor can
-        # invoke it on any host-presence edge, and a driver already loaded is the common case.
-        _mod=$(echo "$_cmd" | sed 's|.*/tmp/||; s/ .*//; s/\.ko$//')
-        if [ -n "$_mod" ] && grep -q "^$_mod " /proc/modules 2>/dev/null; then
-          log "  $_mod already loaded"
-        else
-          $_cmd 2>&1 | sed "s|^|$LOGP   |"
-        fi
-        IFS=';'
-      done
-      IFS=$_old
-      # set_wifi_mac is the vendor's per-unit MAC applier and is kept by the base install's
-      # radio guard on every variant. Harmless where absent.
-      command -v set_wifi_mac >/dev/null 2>&1 && set_wifi_mac >/dev/null 2>&1
+      wlan_driver_up || {
+        publish "$WLAN_STATE" "result=fail" "backend=mapped" "chipset=$RADIO_SDIO_DEVICE" "detail=driver-load"
+        return 1; }
       # Converge on the interface appearing, discovered by enumeration.
       _n=0; while [ "$_n" -lt 100 ]; do wlan_iface >/dev/null 2>&1 && break; _n=$((_n+1)); sleep 0.1; done
       _i=$(wlan_iface 2>/dev/null) || {
@@ -390,6 +427,26 @@ do_bt_on() {
     return 2
   fi
 
+  # POWER IT UP BEFORE CONCLUDING IT IS WEDGED. The supervisor's deliberate teardown end state is
+  # "attached but powered down" (`hciconfig <dev> down`) - chosen precisely because re-attach is
+  # the wedge-prone half. But a name read on a DOWN adapter fails immediately with ENETDOWN: it
+  # never reaches the chip. So the check above misses on every teardown, and the code below would
+  # then run the full destructive recovery - kill the helper, rmmod the line discipline, toggle
+  # the reset GPIO, re-attach - against a perfectly healthy controller, once per session cycle,
+  # when a single `hciconfig up` was the entire fix. Today's testing was all cold bring-up, which
+  # never exercises this path.
+  if [ -n "$_d" ]; then
+    log "$_d present but not answering - trying to power it up before assuming it is wedged"
+    hciconfig "$_d" up 2>/dev/null
+    if bt_responsive_confirmed "$_d"; then
+      log "$_d was only powered down - up and responsive, no reset needed"
+      publish "$BT_STATE" "result=ok" "backend=$RADIO_BACKEND" "hci_dev=$_d" \
+              "bt_mac=$(cat /sys/class/bluetooth/$_d/address 2>/dev/null)"
+      return 0
+    fi
+    log "$_d still unresponsive after power-up - recovery is warranted"
+  fi
+
   case "$RADIO_BACKEND" in
     owned)
       log "backend=owned -> /script/bt_on.sh"
@@ -412,10 +469,31 @@ do_bt_on() {
       # Ordering constraint, discovered not assumed: some parts wedge if BT attaches before the
       # WLAN driver is up (the vendor encodes this as a wait loop inside its attach script, and
       # radio_detect.sh reports its presence). Honour it rather than re-deriving which chips care.
+      # LOAD the WLAN driver, do not merely wait for it. The constraint these chips impose is
+      # "the WLAN driver must be up before BT attaches" - on 0xc822 because attaching first can
+      # make WiFi fail to start, on SD8987 because it hangs the chip outright, which is why the
+      # vendor there GUARDS the attach on the interface existing rather than proceeding.
+      #
+      # The previous version only polled for an interface and then attached anyway, quoting the
+      # vendor's own timeout behaviour. That excuse does not survive the bridge role: with
+      # wifi_ap:false the supervisor never calls wifi_ap_on, so nothing ever loads the driver and
+      # the poll is guaranteed to time out - we would attach, every time, into the exact ordering
+      # the constraint exists to forbid, on the deployment where BT is the entire product.
+      #
+      # Loading the driver is not an AP: no addressing, no hostapd, nothing the bridge role
+      # objects to. If it cannot be loaded we fail honestly rather than wedge the chip.
       if [ "${RADIO_BT_AFTER_WLAN:-0}" = 1 ] && ! wlan_iface >/dev/null 2>&1; then
-        log "chipset requires WLAN before BT attach - bringing the driver up first"
-        _n=0; while [ "$_n" -lt 120 ]; do wlan_iface >/dev/null 2>&1 && break; _n=$((_n+1)); sleep 0.1; done
-        wlan_iface >/dev/null 2>&1 || log "  wlan interface still absent; attaching anyway (vendor does the same after its timeout)"
+        log "chipset requires the WLAN driver before BT attach - loading it (driver only, no AP)"
+        if wlan_driver_up; then
+          _n=0; while [ "$_n" -lt 120 ]; do wlan_iface >/dev/null 2>&1 && break; _n=$((_n+1)); sleep 0.1; done
+        fi
+        if ! wlan_iface >/dev/null 2>&1; then
+          log "  WLAN interface never appeared - refusing to attach BT into a documented wedge"
+          publish "$BT_STATE" "result=fail" "backend=mapped" "chipset=$RADIO_SDIO_DEVICE" \
+                  "detail=wlan-required-but-unavailable"
+          return 1
+        fi
+        log "  WLAN interface $(wlan_iface) up - BT attach may proceed"
       fi
 
       [ -e "/tmp/$RADIO_BT_LDISC_KO" ] || tar -xzf "$RADIO_KO_TARBALL" -C /tmp 2>/dev/null \
@@ -457,6 +535,17 @@ do_bt_on() {
         _k=0; while [ "$_k" -lt 20 ] && { pgrep -x "$_helper" >/dev/null 2>&1 || ps | grep -v grep | grep -qw "$_helper"; }; do
           _k=$((_k+1)); sleep 0.25
         done
+        # ESCALATE. A helper that ignored SIGTERM still owns /dev/ttymxc2, and continuing to
+        # rmmod the line discipline and re-attach underneath it recreates the very H5 collision
+        # this function exists to clear. The owned bt_off path already treats -9 on the helper as
+        # safe; only the CONTROLLER must never be SIGKILLed mid-bring-up, not the attach process.
+        if pgrep -x "$_helper" >/dev/null 2>&1 || ps | grep -v grep | grep -qw "$_helper"; then
+          log "  $_helper ignored SIGTERM - escalating to -9 before touching the line discipline"
+          killall -9 "$_helper" 2>/dev/null
+          _k=0; while [ "$_k" -lt 12 ] && { pgrep -x "$_helper" >/dev/null 2>&1 || ps | grep -v grep | grep -qw "$_helper"; }; do
+            _k=$((_k+1)); sleep 0.25
+          done
+        fi
         [ -n "$_ldisc" ] && grep -q "^$_ldisc " /proc/modules 2>/dev/null && { sleep 1; rmmod "$_ldisc" 2>/dev/null; }
         if [ -e /sys/class/gpio/gpio1/value ]; then
           echo 1 > /sys/class/gpio/gpio1/value 2>/dev/null; sleep 0.2
