@@ -23,5 +23,8 @@ Remembering to check is not a control; the hook is.
 Two trailers reached `origin/main` before this existed (`ff1acdb`, `a70453a`). To clean commit
 messages before publishing a range:
 
-    git filter-branch -f --msg-filter \
-      'grep -viE "Claude-Session:|claude\.ai/(code/session|chat)/"' <base>..HEAD
+    git filter-branch -f --msg-filter 'grep -vi "^<trailer-key>:"' <base>..HEAD
+
+where `<trailer-key>` is the trailer git appends; the hook names it when it fires. The hook
+deliberately does not reproduce the full pattern here, because matching its own documentation
+is how the first version blocked its own publication.
