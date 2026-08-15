@@ -409,12 +409,61 @@ EOF
     return 0
   }
 
-  say "arming the first-boot dead-man and switching the default"
+  # REFUSE TO ARM A DEAD-MAN THE BOX CANNOT HONOUR. The flag is written and cleared from here,
+  # but the timer that acts on it lives in ocbm_boot.sh. For a long time it lived NOWHERE: this
+  # phase promised a 240s self-revert that no box-side code implemented, so a first boot where
+  # OCBM did not come up left a no-UART unit with no NCM, no OCBM, and an operator waiting for a
+  # rescue that could not arrive. Never take that promise on trust again - verify it is installed.
+  say "verifying the box can honour the dead-man before arming it"
+  if ! box 'grep -q ocbm_trial /script/ocbm_boot.sh && echo DEADMAN_PRESENT' | grep -q DEADMAN_PRESENT; then
+    die "the ocbm_boot.sh on this box has no /script/ocbm_trial timer, so the 240s self-revert
+     this phase promises would not happen. Re-run 'place' to install the current ocbm_boot.sh,
+     or finalize by hand only if you have UART or SPI recovery for this unit."
+  fi
+
+  say "arming the first-boot dead-man, the failover watchdog, and ocbmd respawn"
   box '
+set -e
 touch /script/ocbm_trial
+
+# Arm the NCM failover watchdog. ocbm_boot.sh has always implemented it but gated it on this
+# flag, and nothing ever created the flag - so the "if OCBM cannot come up, fall back to NCM"
+# safety net was inert on every converted unit. It is opt-in precisely so it can be armed HERE,
+# at the moment the box stops having NCM as its default.
+touch /script/ocbm_failover
+
+# Give ocbmd PID-1 respawn protection. ocbmd exits deliberately when the USB transport drops
+# (a host closing the link is normal), and ocbm_boot.sh launches it exactly once. Without a
+# respawner the FIRST disconnect closes the only management door until the next power cycle -
+# on an adapter living in a car, that is every trip. ncm_base_install deliberately derives an
+# inittab with no OCBM respawns (correct for the NCM base, where those scripts do not exist);
+# this is where they are added back, now that they do.
+#
+# Derived and asserted, never blind-copied: a bad inittab on a unit with no UART is a reflash.
+if ! grep -q "run_ocbmd" /etc/inittab; then
+  [ -x /script/run_ocbmd.sh ] || { echo "FATAL: run_ocbmd.sh missing - refusing to edit inittab"; exit 1; }
+  [ -f /etc/inittab.pre ] || cp /etc/inittab /etc/inittab.pre
+  cp /etc/inittab /tmp/inittab.new
+  echo "::respawn:/script/run_ocbmd.sh" >> /tmp/inittab.new
+  [ -x /script/run_supervisor.sh ] && ! grep -q run_supervisor /tmp/inittab.new \
+    && echo "::respawn:/script/run_supervisor.sh" >> /tmp/inittab.new
+  grep -q "sysinit:/etc/init.d/rcS" /tmp/inittab.new || { echo "FATAL: derived inittab lost rcS"; exit 1; }
+  grep -q "run_ocbmd"              /tmp/inittab.new || { echo "FATAL: derived inittab lost the respawn"; exit 1; }
+  [ "$(wc -l < /tmp/inittab.new)" -ge 5 ]           || { echo "FATAL: derived inittab looks truncated"; exit 1; }
+  # mv, not cp: same filesystem, so the replacement is atomic. A torn /etc/inittab is the one
+  # truncation on this box that no software path can recover from.
+  cp /tmp/inittab.new /etc/inittab.new && mv /etc/inittab.new /etc/inittab
+  echo "  inittab: ocbmd respawn installed"
+else
+  echo "  inittab: ocbmd respawn already present"
+fi
+
 rm -f /script/ncm_only /script/ncm_wifi
 sync
-echo "flags: ncm_only=$([ -e /script/ncm_only ] && echo yes || echo no) ocbm_trial=$([ -e /script/ocbm_trial ] && echo yes || echo no)"'
+echo "flags: ncm_only=$([ -e /script/ncm_only ] && echo yes || echo no) ocbm_trial=$([ -e /script/ocbm_trial ] && echo yes || echo no) ocbm_failover=$([ -e /script/ocbm_failover ] && echo yes || echo no)"
+echo FINALIZE_ARMED' | tee "$RUN_DIR/finalize_arm.txt"
+  grep -q FINALIZE_ARMED "$RUN_DIR/finalize_arm.txt" \
+    || die "arming failed — the box was NOT switched. See $RUN_DIR/finalize_arm.txt; ncm_only is still in place."
   boxq 'sync; (sleep 1; reboot) >/dev/null 2>&1 &' || true
   sleep 15
 
