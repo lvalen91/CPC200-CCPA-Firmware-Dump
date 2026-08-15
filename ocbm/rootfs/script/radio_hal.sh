@@ -106,16 +106,26 @@ caps() {
 # that differs per chip (Realtek if2name=sta0, Broadcom iface_name=sta), and on Broadcom wlan0
 # does not exist until something explicitly creates it on top of sta0. A cfg80211/wext netdev is
 # identifiable without knowing the driver: it carries wireless/ or phy80211/ in sysfs.
+#
+# NOTE THE VARIABLE NAMES. These helpers are called from inside caller loops, and sh has no
+# function scope, so a bare or short loop variable here silently overwrites the caller's. That is
+# not theoretical: wlan_iface() once used `_n`, the BT wait loop used `_n` as its counter, and
+# calling the helper replaced the counter with a sysfs path — `_n=$((_n+1))` then failed with an
+# arithmetic syntax error. It only ever reached that line when NO interface existed (otherwise
+# the caller's `&& break` fired first), i.e. exclusively in the BT-only bridge role. Keep these
+# names distinctive.
 wlan_iface() {
-  for _n in /sys/class/net/*/; do
-    [ -e "$_n/wireless" ] || [ -e "$_n/phy80211" ] || continue
-    basename "$_n"; return 0
+  for _wif_d in /sys/class/net/*/; do
+    [ -e "$_wif_d/wireless" ] || [ -e "$_wif_d/phy80211" ] || continue
+    basename "$_wif_d"; return 0
   done
   return 1
 }
 
 hci_dev() {
-  for _b in /sys/class/bluetooth/hci*/; do [ -d "$_b" ] && { basename "${_b%/}"; return 0; }; done
+  for _hcid_d in /sys/class/bluetooth/hci*/; do
+    [ -d "$_hcid_d" ] && { basename "${_hcid_d%/}"; return 0; }
+  done
   return 1
 }
 
