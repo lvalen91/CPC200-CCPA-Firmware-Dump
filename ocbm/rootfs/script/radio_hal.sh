@@ -205,8 +205,9 @@ ap_running() { pgrep -x hostapd >/dev/null 2>&1 || ps | grep -v grep | grep -qw 
 # guarantee that is to decide it ONCE and persist it.
 #
 # Deriving it per-radio does not work, and the failure is not hypothetical. The natural sources
-# disagree: this unit's WLAN MAC is 00:e0:4c:98:0a:6c (-> ccpa-0a6c) and its BT controller is
-# 48:8f:4c:e0:ac:2b (-> ccpa-ac2b). So which name a radio gets would depend on which radio
+# disagree: on the validated unit the WLAN MAC and the BT controller address share no octets at
+# all (Realtek sets no bd_addr, so BT uses its own chip efuse), giving suffixes like ccpa-AABB
+# from Wi-Fi and ccpa-CCDD from Bluetooth. So which name a radio gets would depend on which radio
 # happened to be up when it was asked — and in the BT-only bridge role (wifi_ap:false) the WLAN
 # driver is never loaded at all, so BT would silently take the other name. Worse, the answer
 # could change between boots, and the phone stores the name in its bonded record.

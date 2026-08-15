@@ -65,12 +65,22 @@
 #   (b) the generated payload re-checks EVERY candidate against `is_radio()` immediately before
 #       deleting it, so a later edit to a list cannot bypass the rule — it prints
 #       "SKIP (WLAN/BT guard)" and moves on;
-#   (c) no radio script or firmware is ever installed FROM the repo overlay, because those are
-#       the IW416 baseline's. Each unit keeps its own bring-up path, which means the vendor
-#       scripts (init_bluetooth_wifi.sh + attach_bluetooth.sh + start_bluetooth_wifi.sh) are
-#       KEPT and become the on-demand radio path, in place of the baseline's IW416-only
-#       wlan_on.sh/bt_on.sh. `audit` will list them under "dead references"; that is expected
-#       on this base and is not a failure.
+#   (c) no CHIPSET-SPECIFIC bring-up, driver or firmware is ever installed FROM the repo
+#       overlay, because those are the IW416 baseline's. Each unit keeps its own bring-up path,
+#       which means the vendor scripts (init_bluetooth_wifi.sh + attach_bluetooth.sh +
+#       start_bluetooth_wifi.sh) are KEPT and become the on-demand radio path, in place of the
+#       baseline's IW416-only wlan_on.sh/bt_on.sh. `audit` will list them under "dead
+#       references"; that is expected on this base and is not a failure.
+#
+#       THE SANCTIONED EXCEPTION, because the letter of (c) would otherwise forbid the fix for
+#       the problem (c) exists to describe: the chipset-neutral seam — radio_detect.sh,
+#       radio_hal.sh, radio_ap_up.sh — IS installed from the overlay, and must be. Those three
+#       contain no firmware path, no module name and no attach-helper invocation; they resolve
+#       a unit's bring-up at runtime from that unit's OWN vendor dispatcher. Installing them
+#       cannot put one chip's bring-up on another chip's board, which is the only thing (c)
+#       protects against. `is_radio()` gains `radio_*` so they are also protected from deletion.
+#       See docs/57. Do not "restore compliance" by removing them from the install list — that
+#       leaves every non-IW416 unit with callers naming scripts it does not have.
 # Preflight reports the detected variant for the log; it never gates behaviour.
 #
 # ============================== TRANSPORT ==============================================
@@ -232,8 +242,11 @@ wait_box() {
 # So this script does not branch on a chipset whitelist — an unrecognised variant would fall
 # off the end of one. Instead: (a) nothing radio-related is ever in a kill list, (b) the
 # generated payload re-checks every candidate against `is_radio()` before deleting it, so a
-# later edit to the lists cannot bypass the rule, and (c) no radio script or firmware is ever
-# installed FROM the repo overlay (those are the IW416 baseline's). Each unit keeps its own.
+# later edit to the lists cannot bypass the rule, and (c) no CHIPSET-SPECIFIC bring-up, driver
+# or firmware is ever installed FROM the repo overlay (those are the IW416 baseline's). Each
+# unit keeps its own. The chipset-neutral seam (radio_detect/radio_hal/radio_ap_up) is the
+# sanctioned exception and IS installed — it carries no chipset payload; see the header and
+# docs/57.
 # Detection below is reported for the log; it never gates behaviour.
 # ======================================================================================
 SBIN_A="AppleCarPlay ARMadb-driver ARMandroid_Mirror ARMAndroidAuto ARMHiCar ARMiPhoneIAP2 \
@@ -568,7 +581,21 @@ for f in /script/start_main_service.sh /script/after_shutdown.sh /script/init_gp
          /script/radio_detect.sh /script/radio_hal.sh /script/radio_ap_up.sh; do inst "$f"; done
 # Report what the seam resolves on THIS unit. Informational only - nothing gates on it, because
 # an unrecognised variant must still install fine (it keeps its own vendor dispatcher either way).
-[ -x /script/radio_detect.sh ] && { echo "--- radio platform ---"; sh /script/radio_detect.sh 2>/dev/null | grep -E "CHIP|SDIO_DEVICE|FW_TREE|BT_ATTACH_CMD|WLAN_INSMOD|BACKEND|WIRELESS"; }
+#
+# THE `|| true` IS LOAD-BEARING. This block runs under `set -e`, and the brace group ends in a
+# pipeline whose exit status comes from grep - so a detect run that printed nothing, or matched
+# nothing, would FAIL the group and abort the payload right here: after the /script inst loop has
+# already replaced start_main_service.sh, but BEFORE `inst /etc/init.d/rcS` and before the
+# post-checks below - including the one that reverts a start_main_service.sh missing its
+# custom_init hook, whose absence means NCM never arms at the next boot. The host would then
+# report that the box reverted itself when it had done no such thing, and an operator who
+# power-cycled anyway would have a unit with no NCM and, on a no-UART board, no way in. An
+# informational line must never be able to skip the safety net that follows it.
+#
+# NOTE: no apostrophes anywhere in this payload. It is a single-quoted box '...' block, so one
+# stray apostrophe closes the string and breaks the whole phase - which is exactly what the first
+# draft of this comment did.
+[ -x /script/radio_detect.sh ] && { echo "--- radio platform ---"; sh /script/radio_detect.sh 2>/dev/null | grep -E "CHIP|SDIO_DEVICE|FW_TREE|BT_ATTACH_CMD|WLAN_INSMOD|BACKEND|WIRELESS"; } || true
 inst /etc/init.d/rcS
 mkdir -p /etc/mdev && inst /etc/mdev/udisk_insert.sh
 # Post-checks. A bad rcS on a unit with no UART wired is a reflash, so each of these reverts
