@@ -1,0 +1,52 @@
+state=VANILLA (projection stripped, cruft removed, scripts owned & dead-code-free, early UART console, radios on-demand)
+uptime=647s
+sw=2025.10.15.1127
+serial=2025.02.25.1521626a
+Filesystem                Size      Used Available Use% Mounted on
+/dev/root                12.5M      6.3M      6.2M  50% /
+--- running processes (all non-kernel; every one owned or recovery) ---
+PID   USER     TIME  COMMAND
+    1 root      0:01 init
+   52 root      0:00 {early_console.s} /bin/sh /script/early_console.sh
+   56 root      0:00 /bin/sh -l
+   64 root      0:00 /bin/busybox telnetd -l /bin/sh -p 23
+   65 root      0:00 dropbear
+   71 root      0:00 init
+  203 root      0:00 busybox udhcpd -f /tmp/udhcpd_ncm.conf
+  249 root      0:00 dropbear
+--- /script (all owned) ---
+after_shutdown.sh
+attach_bluetooth.sh
+bt_off.sh
+bt_on.sh
+copy_to_tmp.sh
+custom_init.sh
+early_console.sh
+init_gpio.sh
+ko.tar.gz
+mount_usb.sh
+ncm_only
+start_bluetooth_wifi.sh
+start_main_service.sh
+start_ncm.sh
+sync_box_time.sh
+uart_console.sh
+wlan_off.sh
+wlan_on.sh
+--- /usr/sbin real binaries (radio/recovery only) ---
+436856 dropbear
+284560 hostapd
+173032 bluetoothDaemon
+126248 hfpd
+119016 dbus-daemon
+105976 hcid
+48504 hcitool
+33484 hciconfig
+22380 fw_loader_linux
+16056 hciattach
+15000 udhcpd
+6256 set_wifi_mac
+12 .delete
+--- gadget + radios ---
+functions=ncm
+sdio=0x9159

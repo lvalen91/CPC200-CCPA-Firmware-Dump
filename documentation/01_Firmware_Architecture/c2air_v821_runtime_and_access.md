@@ -451,3 +451,45 @@ Captured live; **kept out of this repo** (they identify/authorize this specific 
 The web config server (`httpd :80`, unauthenticated, CORS `*`) also exposes device info via
 `/cgi-bin/index.cgi?id=host` (SID, MAC, name, versions) and has `id=set&…`, `id=logcat`, `id=upload`
 endpoints — a stock control surface reachable over WiFi even without SSH.
+
+## 14. RGB status LEDs — programmable color & brightness (runtime-confirmed)
+
+The three front LEDs are **addressable serial-RGB LEDs**, not fixed-function red. Kernel driver
+`ly_led_rgb` probes as `led_max_num=12, max_speed_hz=3000000` — i.e. a serial-RGB string (WS2812-style,
+up to 12 LEDs at 3 MHz), of which 3 are populated. They ship red only because firmware boots them to
+`rgb_mode=0xff0000`. 8 bits per channel ⇒ **full 24-bit colour + 256 brightness steps per channel**.
+
+### Reliable control — the `rgb_mode` U-Boot env var (recommended)
+`rgb_mode` is a real U-Boot environment variable, piped into the kernel cmdline via `${rgb_mode}` in
+`setargs_nor`. `fw_printenv`/`fw_setenv` are on the device (`/etc/fw_env.config` → `env` + `env-redund`).
+Format is `0x00RRGGBB`; the value applies at the next boot (boot0/U-Boot drives the LEDs early, so it
+works even with the app disabled):
+
+```sh
+fw_setenv rgb_mode 0x00ff00     # green
+fw_setenv rgb_mode 0x000100     # green, brightness 1/255 (lowest non-zero)
+fw_setenv rgb_mode 0x0000ff     # blue
+fw_setenv rgb_mode 0x201810     # warm-white, dim
+fw_setenv rgb_mode 0xff0000     # restore stock red
+reboot                          # (use `reboot -f`; a backgrounded reboot gets SIGHUP'd on shell exit)
+```
+
+**Confirmed live** on this unit: `0xff0000` (red) → `0x00ff00` (all three green) → `0x000100`
+(all three faintly green). After each reboot `/proc/cmdline` shows the new `rgb_mode=` and
+`/sys/class/misc/ly_led/ly_led_ctrl/led_rgb` reflects it (e.g. `0x00000100`).
+
+### Live runtime path (app-owned) and why raw sysfs is unreliable in debug mode
+The runtime control surface is `/dev/ly_led` (the app's `ledColorFd` ioctl, alongside `led_mode` /
+`led_update_mode`) plus sysfs `/sys/class/misc/ly_led/ly_led_ctrl/{led_rgb,led_rgb_id}` (`led_rgb` =
+`0x00RRGGBB`, `led_rgb_id` = LED index). In the **app-off ACM/SSH debug modes these sysfs writes are
+unreliable**: the serial-RGB string shares the `sunxi_spif` SPI bus with the NOR flash, so `led_rgb`
+writes either return `-EIO` (bus busy) or update the register without clocking a frame — the LEDs hold
+their boot colour. The vendor app normally owns the pinctrl/SPI init and the flush; the clean,
+app-independent lever is therefore `rgb_mode` + reboot (above).
+
+### Dead ends (mapped, so nobody re-treads them)
+- `/sys/class/misc/ly_misc_dev/ly/{red,green,blue}_gpio` — inert on this board (writes accepted, no effect).
+- `/sys/class/misc/ly_misc_dev/ly/led_mode` — app-consumed pattern index; no effect with the app off.
+- `matrix_led` (`ly_matrix_led`, nodes `brightness/grid/seg/on`) — a **separate segment/matrix display**
+  peripheral, not the status LEDs; its `matrix_led_dts_parse not find default pinctrl` at boot is
+  unrelated to RGB control.
