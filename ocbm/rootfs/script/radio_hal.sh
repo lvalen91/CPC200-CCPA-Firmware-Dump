@@ -150,6 +150,46 @@ bt_responsive_confirmed() {  # $1 = hci dev
 
 ap_running() { pgrep -x hostapd >/dev/null 2>&1 || ps | grep -v grep | grep -qw hostapd; }
 
+# The device-unique identity, derived the same way radio_ap_up.sh derives the SSID so ONE box
+# presents ONE name on both radios. Sourced from sysfs rather than the vendor's set_wifi_mac, so
+# it works on a unit where that helper was stripped. Prefers the WLAN MAC (which is what the SSID
+# uses); falls back to the BT controller's own address, then the serial.
+box_name() {
+  _sfx=""
+  _wi=$(wlan_iface 2>/dev/null) && _sfx=$(cat "/sys/class/net/$_wi/address" 2>/dev/null | tr -d ':' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
+  case "$_sfx" in ''|*[!0-9a-f]*) _sfx="" ;; esac
+  if [ -z "$_sfx" ] && [ -n "${1:-}" ]; then
+    _sfx=$(cat "/sys/class/bluetooth/$1/address" 2>/dev/null | tr -d ':' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
+    case "$_sfx" in ''|*[!0-9a-f]*) _sfx="" ;; esac
+  fi
+  [ -n "$_sfx" ] || _sfx=$(cat /etc/serial_number 2>/dev/null | tr -cd '0-9a-fA-F' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
+  [ -n "$_sfx" ] || _sfx=0000
+  echo "ccpa-$_sfx"
+}
+
+# Name the controller. The owned bt_on.sh has always done this; the mapped path did not, which
+# left a non-IW416 unit advertising its chip default (an RTL8822CS came up as "RTK_BT_4.2") while
+# its SoftAP was correctly named ccpa-<4hex> — one box, two identities.
+#
+# Two mechanisms, both needed: /etc/.custom_bluetooth_name is the flag bluetoothDaemon honours
+# when it applies a custom name (without it the daemon BLANKS the adapter name during init), and
+# the direct hciconfig set covers the case where the daemon is not managing us. The retry exists
+# because the daemon can blank the name AFTER our first set — assert until it sticks.
+bt_set_name() {  # $1 = hci dev
+  _bn=$(box_name "$1")
+  echo "$_bn" > /etc/.custom_bluetooth_name 2>/dev/null
+  echo "$_bn" > /etc/bluetooth_name 2>/dev/null
+  _n=0
+  while [ "$_n" -lt 10 ]; do
+    hciconfig "$1" name "$_bn" 2>/dev/null
+    sleep 0.5
+    _cur=$(timeout 5 hciconfig "$1" name 2>/dev/null | sed -n "s/.*Name: '\(.*\)'.*/\1/p")
+    [ "$_cur" = "$_bn" ] && break
+    _n=$((_n+1))
+  done
+  log "BT name=$_bn (asserted after $_n retries, now '${_cur:-unknown}')"
+}
+
 # =============================================================================================
 # WLAN
 # =============================================================================================
@@ -395,6 +435,7 @@ do_bt_on() {
       if [ -n "$_d" ] && bt_responsive "$_d"; then
         # Vendor SCO tuning where the mapping carried it; non-fatal.
         hciconfig "$_d" scomtu 240:32 2>/dev/null
+        bt_set_name "$_d"
         publish "$BT_STATE" "result=ok" "backend=mapped" "chipset=$RADIO_SDIO_DEVICE" "hci_dev=$_d" \
                 "bt_mac=$(cat /sys/class/bluetooth/$_d/address 2>/dev/null)"
         log "BT converged: $_d responsive on attempt $_try"
