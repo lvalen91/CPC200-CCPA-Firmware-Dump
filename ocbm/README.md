@@ -1,7 +1,34 @@
 # OCBM — converting a CCPA to the Open CCPA Bulk Multiplexer
-[!CAUTION]
-> This is a work in progress, posting only because signficant positive return. Do at your own risk, with bricked adapter if something goes wrong. Do not expect recovery to be possible. Safer to assume a deadend, it would be even better if you were comforable with SPI Programmers like Xegu or others and can do a backup of your own IC before hand.
-> OCBM is currently Carplay Only, AA testing will happen eventually. OCBM binaries will be published soon.
+
+> [!CAUTION]
+> **This is work in progress, published because the results are good — not because it is safe.**
+>
+> Converting an adapter rewrites its firmware. If something goes wrong you will have a bricked
+> adapter, and you should **assume recovery is not possible**. Treat every unit you convert as
+> potentially expendable.
+>
+> Do not attempt this unless you are comfortable with an **SPI programmer** (CH341A, XGecu T48/T56
+> or similar) and have **already taken a full dump of that unit's flash**, verified, before you
+> begin. The backup is the only reliable way back. A unit with no UART pads wired and no flash
+> dump has no recovery path at all once its boot configuration is replaced.
+>
+> The conversion is staged so that nothing is deleted until a cold boot has come back on its own,
+> and the OCBM switch is guarded by a first-boot dead-man that restores the previous mode if the
+> host cannot reach the box. Those guards are real and tested, but they protect against the
+> failures we anticipated — not against every one.
+
+> [!IMPORTANT]
+> **Where this project is going.** This repository started as documentation of Carlinkit's stock
+> CPC200-CCPA firmware. It is progressively becoming an **OCBM** project: an open replacement for
+> Carlinkit's proprietary `0x55AA55AA` projection protocol. Expect that shift to continue, and
+> expect the stock-firmware material to become reference rather than the main subject.
+>
+> Current scope and limits, so nobody is surprised:
+> - **CarPlay only.** Android Auto is not implemented; testing will come later.
+> - **Wireless CarPlay is demonstrated on one adapter** (Realtek RTL8822CS). Other WLAN chipsets
+>   are expected to work by design but are **not measured** — see the radio platform section.
+> - **OCBM binaries are not published yet.** The tooling here expects them; they will follow.
+> - Interfaces, on-box layout and script names are still moving. Pin a commit if you depend on it.
 
 OCBM replaces Carlinkit's `0x55AA55AA` projection protocol with an open framed multiplexer over
 the adapter's single bulk accessory pipe. This directory holds the tooling to take an adapter
