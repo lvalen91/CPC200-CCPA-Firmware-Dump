@@ -132,6 +132,49 @@ supported every chip, but the **binary payload in the delta** was built for one 
 A rootfs whose shipped driver does not match the installed silicon simply fails to bring up
 `wlan0`.
 
+### The dispatcher's full SDIO-ID table (transcribed from a live unit, 2026-08-15)
+
+`init_bluetooth_wifi.sh` reads `/sys/bus/sdio/devices/mmc0:0001:1/device` and dispatches. The
+complete table, with the WLAN driver arguments and the BT attach helper from
+`attach_bluetooth.sh`:
+
+| SDIO id | Chip | WLAN module + args | firmware tree | BT attach |
+|---|---|---|---|---|
+| `0xb822`, `0xc822` | Realtek RTL8822BS/CS | `88x2bs.ko` / `88x2cs.ko` `if2name=sta0` | `rtlbt` | `rtk_hciattach -s 115200 ttymxc2 rtk_h5` |
+| `0xb733` | Realtek RTL8733BS | `8733bs.ko` `if2name=sta0 rtw_channel_plan=0x76` | `rtlbt` | `rtk_hciattach` |
+| `0x4354`, `0x4335` | Broadcom BCM4354/4335 | `bcmdhd.ko` `iface_name=sta op_mode=5` + `firmware_path=`/`nvram_path=` | `bcm` | `brcm_patchram_plus` (`bcm4350.hcd`) |
+| `0x4358`, `0xaa31` | Broadcom BCM4358 | `bcmdhd.ko` (nvram varies on `4358_ant_num`) | `bcm` | `brcm_patchram_plus` |
+| `0x9149`, `0x9141` | NXP SD8987 | `mlan.ko`/`moal.ko` `mod_para=nxp/wifi_mod_para[_apsta].conf` | `nxp` | `hciattach … any 3000000 flow` |
+| `0x9159` | NXP IW416 | `mlan.ko`/`moal.ko` `mod_para=nxp/wifi_mod_para[_p2psta].conf` | `nxp` | `fw_loader_linux` + `hciattach` |
+| anything else | — | `echo "unknown SDIO card ID"`, then **nothing** | — | — |
+
+Notes that matter for anyone writing conversion or bring-up tooling:
+
+* **Hardware-confirmed on an RTL8822CS unit:** `vendor=0x024c`, `device=0xc822`, `class=0x07`,
+  and the SDIO node enumerates **before any WLAN driver is loaded** — so the chip is
+  identifiable at boot for free. `class=0x07` is the SDIO WLAN function code and is the right
+  selector when a card exposes several functions. The vendor id is only verified for Realtek;
+  the NXP and Broadcom vendor ids are not yet observed on hardware.
+* **Glob `/sys/bus/sdio/devices/*/`** rather than copying the vendor's hardcoded
+  `mmc0:0001:1` — that path encodes a host index and an RCA which are enumeration accidents.
+* **The interface name is a driver argument, not a constant.** Realtek's `if2name=sta0` names
+  the *secondary* interface (`wlan0` stays primary; `sta0` only materialises in STA/P2P mode,
+  which requires `wpa_supplicant` — absent on the AP-only Realtek unit examined). Broadcom is
+  the opposite: the primary is `sta`/`sta0` and **`wlan0` does not exist until**
+  `iw dev sta0 interface add wlan0 type managed` runs. Enumerate `/sys/class/net/*/wireless`.
+* **Load-order constraints are per-chip and are encoded as wait loops, not comments.** On
+  `0xc822` and on SD8987 the BT attach blocks on the WLAN interface appearing first
+  ("否则启动wifi可能会失败" / "否则会卡死" — otherwise WiFi may fail to start / it hangs).
+* **Two branches are not safe to reuse verbatim.** The IW416 branch ends with a raw
+  `hcitool cmd 0x03 0x0003` (HCI_Reset) and the SD8987 branch does a bare `hciconfig hci0 reset`
+  after bring-up; both wipe the SSP event mask, which leaves bonded reconnects working while
+  making *fresh* pairing impossible. The SD8987 branch also backgrounds a block ending in
+  `dmesg | grep "woal_request_fw failed" && reboot` — a reboot inside a radio bring-up.
+* **BT attach is structurally independent of WiFi** on every variant: the dispatcher launches
+  `attach_bluetooth.sh` before any WLAN branch, and all six BT paths ride UART `ttymxc2`.
+* `load_bluetooth_wifi.sh` is **Realtek-only despite its generic name** (it hardcodes
+  `rtk_hciattach` and `88x2bs.ko`) — it is not a dispatcher and must not be used as one.
+
 ---
 
 ## 4. CheckBoxManuDateSign — Identity Architecture

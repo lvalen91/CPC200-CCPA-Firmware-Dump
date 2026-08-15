@@ -1,6 +1,7 @@
 # OCBM — converting a CCPA to the Open CCPA Bulk Multiplexer
 [!CAUTION]
 > This is a work in progress, posting only because signficant positive return. Do at your own risk, with bricked adapter if something goes wrong. Do not expect recovery to be possible. Safer to assume a deadend, it would be even better if you were comforable with SPI Programmers like Xegu or others and can do a backup of your own IC before hand.
+> OCBM is currently Carplay Only, AA testing will happen eventually. OCBM binaries will be published soon.
 
 OCBM replaces Carlinkit's `0x55AA55AA` projection protocol with an open framed multiplexer over
 the adapter's single bulk accessory pipe. This directory holds the tooling to take an adapter
@@ -98,6 +99,64 @@ That ordering also disarms `check_mfg_mode.sh`, a 2-second polling loop that doe
 
 Nothing is deleted until a cold boot has returned on NCM unaided. Fail that gate and you abort
 with a fully working adapter.
+
+### The radio platform — chipset-agnostic WLAN/BT bring-up
+
+> **Status (2026-08-15): detection and Bluetooth bring-up are hardware-validated on an
+> RTL8822CS unit; the AP layer and the supervisor wiring are not landed yet, and the installers
+> below do not place these scripts yet.** Documented here because it changes what the conversion
+> is *for*: the baseline should leave a unit with a working radio platform whatever silicon it
+> has, and OCBM should build on that rather than re-solve it.
+
+CCPA ships at least six WLAN/BT parts — RTL8822BS/CS, RTL8733BS, BCM4354/4335, BCM4358, NXP
+SD8987, NXP IW416 — and **only the driver set for a unit's own chip is in its rootfs.** There is
+no fallback set. That is why `ncm_base_install.sh` never branches on a chipset whitelist and
+never installs radio scripts from the repo overlay: each unit keeps its own bring-up path.
+
+The gap that leaves: the *callers* still named one chip's scripts. `session_supervisor.sh` calls
+`/script/wlan_on.sh` and `/script/bt_on.sh` by literal path, and those are the IW416 baseline's.
+On a Realtek unit they simply do not exist, so wireless bring-up fails **silently** — the calls
+sit inside a detached `sh -c` whose output is redirected and whose exit status is never read.
+Wired projection keeps working, so nothing looks wrong.
+
+The fix is a seam — `radio_detect.sh` + `radio_hal.sh` — that **adopts the vendor's mapping and
+not their mechanism**:
+
+* Every unit ships `/script/init_bluetooth_wifi.sh`, the vendor's own SDIO-ID dispatcher, which
+  the strip deliberately preserves. Its per-chip `insmod` lines, attach helper/baud, and ordering
+  constraints are *observations* — fleet-deployed, working, and not re-derivable for parts you do
+  not own. They are extracted and used verbatim, by intersecting the modules in the unit's own
+  tarball with that dispatcher's own `insmod` lines. **No chipset table is involved**, so a part
+  nobody anticipated still resolves.
+* The dispatcher itself is **never executed**. Its control flow is a *choice*, and it carries:
+  `attach_bluetooth.sh &` (fork-and-return — the uncoordinated double-bring-up that once fought
+  itself for 7+ minutes), the Broadcom branch backgrounding `brcm_patchram_plus` the same way, an
+  SD8987 branch that can `reboot` from inside a radio bring-up, per-boot `tar -xvf … -C /` into
+  the rootfs, and a BT health check that is object existence — which a dead chip passes.
+
+Three findings from running it on real hardware, each worth knowing before reimplementing:
+
+* **The AP layer must stay owned.** On a stripped box the vendor's `start_bluetooth_wifi.sh`
+  reads config through `riddleBoxCfg`, which the OCBM base removes, and the calls are not
+  existence-guarded. With it gone the script seds an **empty `wpa_passphrase` into
+  `/etc/hostapd.conf`** — persistent, on flash — and falls back to `WLANIP=192.168.50.2`, which
+  is NCM's own address, then repoints the DHCP pool onto the management subnet. Its teardown
+  `killall`s every `udhcpd`, including NCM's.
+* **`hci0` existing proves nothing — and neither does `UP RUNNING`.** A wedged controller was
+  observed reporting `UP RUNNING` while every HCI name read timed out. Convergence has to be a
+  real round-trip under a timeout. Recovering such a chip needs the attach helper killed, the
+  **line-discipline module rmmod'd**, and the reset GPIO driven `1` → `0` (polarity matters —
+  the other way is a no-op that looks correct in the log), then re-insmod and re-attach.
+* **The interface name is an `insmod` parameter, not a constant.** Realtek loads
+  `if2name=sta0`, Broadcom `iface_name=sta op_mode=5`, and on Broadcom `wlan0` does not exist at
+  all until something runs `iw dev sta0 interface add wlan0 type managed`. Enumerate
+  `/sys/class/net/*/wireless`; never assume `wlan0`.
+
+Measured on the RTL8822CS unit, with no repo backend for that chipset: SDIO
+`vendor=0x024c device=0xc822 class=0x07`, firmware tree `rtlbt`, extracted
+`insmod /tmp/88x2cs.ko if2name=sta0` and `rtk_hciattach -s 115200 ttymxc2 rtk_h5`, BT-after-WLAN
+ordering detected; `wlan0` and a responsive `hci0` (`RTK_BT_4.2`) both came up, with `ncm0` and
+the management channel untouched.
 
 ### `scripts/ocbm_install.sh` — NCM base → OCBM
 
