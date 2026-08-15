@@ -67,11 +67,19 @@ trap 'rm -rf "$LOCK"' EXIT INT TERM
 # We are safe only because session_supervisor skips wifi_ap_on entirely when CARPLAY_WIFI_AP=0.
 # So: do NOT make radio_hal call this verb unconditionally, and do NOT "fix" the supervisor's
 # wifi_ap:false branch to fall through to here.
-SUF=$(cat "/sys/class/net/$IF/address" 2>/dev/null | tr -d ':' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
-case "$SUF" in ''|*[!0-9a-f]*) SUF="" ;; esac
-[ -n "$SUF" ] || SUF=$(cat /etc/serial_number 2>/dev/null | tr -cd '0-9a-fA-F' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
-[ -n "$SUF" ] || SUF=0000
-NAME="ccpa-$SUF"
+# The seam resolves the identity once and passes it in, so the SSID and the Bluetooth name come
+# from ONE decision. The local derivation below is only for a direct/bench invocation; it reads
+# the same persisted /etc/carplay_ident first, so the two paths cannot diverge.
+NAME="${RADIO_BOX_NAME:-}"
+if [ -z "$NAME" ] && [ -s /etc/carplay_ident ]; then NAME=$(head -1 /etc/carplay_ident); fi
+if [ -z "$NAME" ]; then
+  SUF=$(cat "/sys/class/net/$IF/address" 2>/dev/null | tr -d ':' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
+  case "$SUF" in ''|*[!0-9a-f]*) SUF="" ;; esac
+  [ -n "$SUF" ] || SUF=$(cat /etc/serial_number 2>/dev/null | tr -cd '0-9a-fA-F' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
+  if [ -n "$SUF" ]; then NAME="ccpa-$SUF"; echo "$NAME" > /etc/carplay_ident 2>/dev/null
+  else NAME="ccpa-0000"; fi
+fi
+SUF=${NAME#ccpa-}
 sed -i "s/^ssid=.*/ssid=$NAME/" /etc/hostapd.conf
 echo "$NAME" > /etc/wifi_name
 

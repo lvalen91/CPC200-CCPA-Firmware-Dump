@@ -150,20 +150,42 @@ bt_responsive_confirmed() {  # $1 = hci dev
 
 ap_running() { pgrep -x hostapd >/dev/null 2>&1 || ps | grep -v grep | grep -qw hostapd; }
 
-# The device-unique identity, derived the same way radio_ap_up.sh derives the SSID so ONE box
-# presents ONE name on both radios. Sourced from sysfs rather than the vendor's set_wifi_mac, so
-# it works on a unit where that helper was stripped. Prefers the WLAN MAC (which is what the SSID
-# uses); falls back to the BT controller's own address, then the serial.
-box_name() {
+# THE BOX IDENTITY. Wi-Fi and Bluetooth MUST advertise the same ccpa-<4hex>, and the only way to
+# guarantee that is to decide it ONCE and persist it.
+#
+# Deriving it per-radio does not work, and the failure is not hypothetical. The natural sources
+# disagree: this unit's WLAN MAC is 00:e0:4c:98:0a:6c (-> ccpa-0a6c) and its BT controller is
+# 48:8f:4c:e0:ac:2b (-> ccpa-ac2b). So which name a radio gets would depend on which radio
+# happened to be up when it was asked — and in the BT-only bridge role (wifi_ap:false) the WLAN
+# driver is never loaded at all, so BT would silently take the other name. Worse, the answer
+# could change between boots, and the phone stores the name in its bonded record.
+#
+# So: first successful derivation wins and is written to /etc/carplay_ident; everything after
+# reads that file. One small flash write, once per box.
+IDENT_FILE=/etc/carplay_ident
+box_name() {  # $1 = optional hci dev, used only as a late fallback source
+  if [ -s "$IDENT_FILE" ]; then head -1 "$IDENT_FILE"; return 0; fi
   _sfx=""
+  # Preference order is about STABILITY, not availability: the Wi-Fi MAC is what the SSID has
+  # historically been derived from, so a box that already has a name keeps it.
   _wi=$(wlan_iface 2>/dev/null) && _sfx=$(cat "/sys/class/net/$_wi/address" 2>/dev/null | tr -d ':' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
   case "$_sfx" in ''|*[!0-9a-f]*) _sfx="" ;; esac
+  # The vendor helper reports the Wi-Fi MAC without the interface being up, which is exactly the
+  # bridge-role case. Kept by the base install's radio guard where it exists.
+  if [ -z "$_sfx" ] && command -v set_wifi_mac >/dev/null 2>&1; then
+    _sfx=$(set_wifi_mac 2>/dev/null | grep -oE '([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}' | head -1 \
+           | tr -d ':' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
+    case "$_sfx" in ''|*[!0-9a-f]*) _sfx="" ;; esac
+  fi
   if [ -z "$_sfx" ] && [ -n "${1:-}" ]; then
     _sfx=$(cat "/sys/class/bluetooth/$1/address" 2>/dev/null | tr -d ':' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
     case "$_sfx" in ''|*[!0-9a-f]*) _sfx="" ;; esac
   fi
   [ -n "$_sfx" ] || _sfx=$(cat /etc/serial_number 2>/dev/null | tr -cd '0-9a-fA-F' | tr 'A-F' 'a-f' | sed 's/.*\(....\)$/\1/')
-  [ -n "$_sfx" ] || _sfx=0000
+  # Do NOT persist a placeholder: if every source failed we want the next call to try again
+  # rather than freezing ccpa-0000 into flash forever.
+  [ -n "$_sfx" ] || { echo "ccpa-0000"; return 0; }
+  echo "ccpa-$_sfx" > "$IDENT_FILE" 2>/dev/null
   echo "ccpa-$_sfx"
 }
 
@@ -272,7 +294,10 @@ do_wifi_ap_on() {
         log "  on a stripped box it corrupts hostapd.conf and collides with the NCM subnet"
         publish "$WLAN_STATE" "result=fail" "backend=mapped" "ap_iface=$_i" "detail=no-owned-ap-layer"
         return 1; }
-      ONDEMAND_WIFI=1 RADIO_WLAN_IF="$_i" sh /script/radio_ap_up.sh AP 2>&1 | sed "s/^/$LOGP   /"
+      # RADIO_BOX_NAME is resolved HERE, not inside the AP layer, so the SSID and the Bluetooth
+      # name provably come from one decision rather than two derivations that can disagree.
+      ONDEMAND_WIFI=1 RADIO_WLAN_IF="$_i" RADIO_BOX_NAME="$(box_name)" \
+        sh /script/radio_ap_up.sh AP 2>&1 | sed "s/^/$LOGP   /"
       _n=0; while [ "$_n" -lt 50 ]; do ap_running && break; _n=$((_n+1)); sleep 0.2; done
       if ap_running; then
         publish "$WLAN_STATE" "result=ok" "backend=mapped" "chipset=$RADIO_SDIO_DEVICE" \
