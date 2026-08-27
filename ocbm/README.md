@@ -24,7 +24,9 @@
 > expect the stock-firmware material to become reference rather than the main subject.
 >
 > Current scope and limits, so nobody is surprised:
-> - **CarPlay only.** Android Auto is not implemented; testing will come later.
+> - **Wired Android Auto now works** and is hardware-proven against a Pixel 10 — video, all three
+>   audio sinks, mic uplink, touch, hardware buttons and the night/driving sensors, over the same
+>   OCBM link as CarPlay. Wireless AA is not implemented.
 > - **Wireless CarPlay is demonstrated on one adapter** (Realtek RTL8822CS). Other WLAN chipsets
 >   are expected to work by design but are **not measured** — see the radio platform section.
 > - **OCBM binaries are not published yet.** The tooling here expects them; they will follow.
@@ -34,6 +36,20 @@ OCBM replaces Carlinkit's `0x55AA55AA` projection protocol with an open framed m
 the adapter's single bulk accessory pipe. This directory holds the tooling to take an adapter
 from stock Carlinkit firmware to an OCBM-default appliance, the binaries that go with it, and
 the results of doing exactly that on a Realtek RTL8822CS unit on 2026-08-15.
+
+> [!NOTE]
+> **The source lives in its own repository: [github.com/lvalen91/ocbm](https://github.com/lvalen91/ocbm).**
+>
+> That is where the actual implementation is — the Rust box daemons (`ocbmd`, `iap2d`, `airplayd`,
+> `aa-bridge`), the macOS host app, the OCBM protocol crate, and the full design/protocol
+> documentation. It is the project; this directory is the **conversion guide and landing page** for
+> people arriving from the stock-firmware material in this repository.
+>
+> | Looking for | Go to |
+> |---|---|
+> | Converting an adapter, binaries, verified results | **here** |
+> | Source, architecture, protocol docs, host app | [`lvalen91/ocbm`](https://github.com/lvalen91/ocbm) |
+> | Stock Carlinkit firmware analysis, flash dumps, hardware | the rest of this repository |
 
 ---
 
